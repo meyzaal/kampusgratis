@@ -7,7 +7,8 @@ const _storageKey = 'local_storage_key';
 /// A generic class implementing the [TokenStorage] interface for local storage.
 ///
 /// This class uses the Hive package to interact with a local storage box.
-/// It provides methods to delete, read, and write data of generic type [T] in the box.
+/// It provides methods to delete, read, and write data of generic type [T] in 
+/// the box.
 ///
 /// Example usage:
 /// ```dart

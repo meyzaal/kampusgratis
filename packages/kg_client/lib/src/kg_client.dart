@@ -120,11 +120,12 @@ class KgClient {
     return {'authorization': '${token.tokenType} ${token.accessToken}'};
   }
 
-  /// A utility function for authenticating a user with access and refresh tokens.
+  /// A utility function for authenticating a user with access and refresh 
+  /// tokens.
   ///
-  /// This function sets the provided access and refresh tokens in the token storage
-  /// using the Fresh package. It creates a new [Token] instance and updates the
-  /// token storage with the user's authentication information.
+  /// This function sets the provided access and refresh tokens in the token 
+  /// storage using the Fresh package. It creates a new [Token] instance and 
+  /// updates the token storage with the user's authentication information.
   ///
   /// Parameters:
   /// - [accessToken]: The access token received after user authentication.
