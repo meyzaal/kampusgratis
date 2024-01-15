@@ -7,3 +7,4 @@ library kg_client;
 
 export 'src/failure/failure.dart';
 export 'src/kg_client.dart';
+export 'src/models/token.dart';
