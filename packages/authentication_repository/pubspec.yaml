@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   freezed_annotation: ^2.4.1
+  google_sign_in: ^6.2.1
   json_annotation: ^4.8.1
   kg_client:
     path: ../kg_client
