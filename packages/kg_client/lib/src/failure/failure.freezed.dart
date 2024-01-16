@@ -16,14 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Failure {
-  String? get message => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) unknown,
     required TResult Function(String message) parsingFailed,
     required TResult Function(String message) connectionError,
     required TResult Function(String message) connectionTimeout,
-    required TResult Function(String? message, int? statusCode) badResponse,
+    required TResult Function(String message, int? statusCode) badResponse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,7 +32,7 @@ mixin _$Failure {
     TResult? Function(String message)? parsingFailed,
     TResult? Function(String message)? connectionError,
     TResult? Function(String message)? connectionTimeout,
-    TResult? Function(String? message, int? statusCode)? badResponse,
+    TResult? Function(String message, int? statusCode)? badResponse,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,7 +41,7 @@ mixin _$Failure {
     TResult Function(String message)? parsingFailed,
     TResult Function(String message)? connectionError,
     TResult Function(String message)? connectionTimeout,
-    TResult Function(String? message, int? statusCode)? badResponse,
+    TResult Function(String message, int? statusCode)? badResponse,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -103,7 +103,7 @@ class _$FailureCopyWithImpl<$Res, $Val extends Failure>
   }) {
     return _then(_value.copyWith(
       message: null == message
-          ? _value.message!
+          ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
@@ -183,7 +183,7 @@ class _$UnknownFailureImpl implements UnknownFailure {
     required TResult Function(String message) parsingFailed,
     required TResult Function(String message) connectionError,
     required TResult Function(String message) connectionTimeout,
-    required TResult Function(String? message, int? statusCode) badResponse,
+    required TResult Function(String message, int? statusCode) badResponse,
   }) {
     return unknown(message);
   }
@@ -195,7 +195,7 @@ class _$UnknownFailureImpl implements UnknownFailure {
     TResult? Function(String message)? parsingFailed,
     TResult? Function(String message)? connectionError,
     TResult? Function(String message)? connectionTimeout,
-    TResult? Function(String? message, int? statusCode)? badResponse,
+    TResult? Function(String message, int? statusCode)? badResponse,
   }) {
     return unknown?.call(message);
   }
@@ -207,7 +207,7 @@ class _$UnknownFailureImpl implements UnknownFailure {
     TResult Function(String message)? parsingFailed,
     TResult Function(String message)? connectionError,
     TResult Function(String message)? connectionTimeout,
-    TResult Function(String? message, int? statusCode)? badResponse,
+    TResult Function(String message, int? statusCode)? badResponse,
     required TResult orElse(),
   }) {
     if (unknown != null) {
@@ -341,7 +341,7 @@ class _$ParsingFailedFailureImpl implements ParsingFailedFailure {
     required TResult Function(String message) parsingFailed,
     required TResult Function(String message) connectionError,
     required TResult Function(String message) connectionTimeout,
-    required TResult Function(String? message, int? statusCode) badResponse,
+    required TResult Function(String message, int? statusCode) badResponse,
   }) {
     return parsingFailed(message);
   }
@@ -353,7 +353,7 @@ class _$ParsingFailedFailureImpl implements ParsingFailedFailure {
     TResult? Function(String message)? parsingFailed,
     TResult? Function(String message)? connectionError,
     TResult? Function(String message)? connectionTimeout,
-    TResult? Function(String? message, int? statusCode)? badResponse,
+    TResult? Function(String message, int? statusCode)? badResponse,
   }) {
     return parsingFailed?.call(message);
   }
@@ -365,7 +365,7 @@ class _$ParsingFailedFailureImpl implements ParsingFailedFailure {
     TResult Function(String message)? parsingFailed,
     TResult Function(String message)? connectionError,
     TResult Function(String message)? connectionTimeout,
-    TResult Function(String? message, int? statusCode)? badResponse,
+    TResult Function(String message, int? statusCode)? badResponse,
     required TResult orElse(),
   }) {
     if (parsingFailed != null) {
@@ -501,7 +501,7 @@ class _$ConnectionErrorFailureImpl implements ConnectionErrorFailure {
     required TResult Function(String message) parsingFailed,
     required TResult Function(String message) connectionError,
     required TResult Function(String message) connectionTimeout,
-    required TResult Function(String? message, int? statusCode) badResponse,
+    required TResult Function(String message, int? statusCode) badResponse,
   }) {
     return connectionError(message);
   }
@@ -513,7 +513,7 @@ class _$ConnectionErrorFailureImpl implements ConnectionErrorFailure {
     TResult? Function(String message)? parsingFailed,
     TResult? Function(String message)? connectionError,
     TResult? Function(String message)? connectionTimeout,
-    TResult? Function(String? message, int? statusCode)? badResponse,
+    TResult? Function(String message, int? statusCode)? badResponse,
   }) {
     return connectionError?.call(message);
   }
@@ -525,7 +525,7 @@ class _$ConnectionErrorFailureImpl implements ConnectionErrorFailure {
     TResult Function(String message)? parsingFailed,
     TResult Function(String message)? connectionError,
     TResult Function(String message)? connectionTimeout,
-    TResult Function(String? message, int? statusCode)? badResponse,
+    TResult Function(String message, int? statusCode)? badResponse,
     required TResult orElse(),
   }) {
     if (connectionError != null) {
@@ -661,7 +661,7 @@ class _$ConnectionTimeoutFailureImpl implements ConnectionTimeoutFailure {
     required TResult Function(String message) parsingFailed,
     required TResult Function(String message) connectionError,
     required TResult Function(String message) connectionTimeout,
-    required TResult Function(String? message, int? statusCode) badResponse,
+    required TResult Function(String message, int? statusCode) badResponse,
   }) {
     return connectionTimeout(message);
   }
@@ -673,7 +673,7 @@ class _$ConnectionTimeoutFailureImpl implements ConnectionTimeoutFailure {
     TResult? Function(String message)? parsingFailed,
     TResult? Function(String message)? connectionError,
     TResult? Function(String message)? connectionTimeout,
-    TResult? Function(String? message, int? statusCode)? badResponse,
+    TResult? Function(String message, int? statusCode)? badResponse,
   }) {
     return connectionTimeout?.call(message);
   }
@@ -685,7 +685,7 @@ class _$ConnectionTimeoutFailureImpl implements ConnectionTimeoutFailure {
     TResult Function(String message)? parsingFailed,
     TResult Function(String message)? connectionError,
     TResult Function(String message)? connectionTimeout,
-    TResult Function(String? message, int? statusCode)? badResponse,
+    TResult Function(String message, int? statusCode)? badResponse,
     required TResult orElse(),
   }) {
     if (connectionTimeout != null) {
@@ -755,7 +755,7 @@ abstract class _$$BadResponseFailureImplCopyWith<$Res>
       __$$BadResponseFailureImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? message, int? statusCode});
+  $Res call({String message, int? statusCode});
 }
 
 /// @nodoc
@@ -769,14 +769,14 @@ class __$$BadResponseFailureImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
     Object? statusCode = freezed,
   }) {
     return _then(_$BadResponseFailureImpl(
-      message: freezed == message
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       statusCode: freezed == statusCode
           ? _value.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
@@ -793,7 +793,7 @@ class _$BadResponseFailureImpl implements BadResponseFailure {
 
   @override
   @JsonKey()
-  final String? message;
+  final String message;
   @override
   final int? statusCode;
 
@@ -829,7 +829,7 @@ class _$BadResponseFailureImpl implements BadResponseFailure {
     required TResult Function(String message) parsingFailed,
     required TResult Function(String message) connectionError,
     required TResult Function(String message) connectionTimeout,
-    required TResult Function(String? message, int? statusCode) badResponse,
+    required TResult Function(String message, int? statusCode) badResponse,
   }) {
     return badResponse(message, statusCode);
   }
@@ -841,7 +841,7 @@ class _$BadResponseFailureImpl implements BadResponseFailure {
     TResult? Function(String message)? parsingFailed,
     TResult? Function(String message)? connectionError,
     TResult? Function(String message)? connectionTimeout,
-    TResult? Function(String? message, int? statusCode)? badResponse,
+    TResult? Function(String message, int? statusCode)? badResponse,
   }) {
     return badResponse?.call(message, statusCode);
   }
@@ -853,7 +853,7 @@ class _$BadResponseFailureImpl implements BadResponseFailure {
     TResult Function(String message)? parsingFailed,
     TResult Function(String message)? connectionError,
     TResult Function(String message)? connectionTimeout,
-    TResult Function(String? message, int? statusCode)? badResponse,
+    TResult Function(String message, int? statusCode)? badResponse,
     required TResult orElse(),
   }) {
     if (badResponse != null) {
@@ -904,11 +904,11 @@ class _$BadResponseFailureImpl implements BadResponseFailure {
 }
 
 abstract class BadResponseFailure implements Failure {
-  factory BadResponseFailure({final String? message, final int? statusCode}) =
+  factory BadResponseFailure({final String message, final int? statusCode}) =
       _$BadResponseFailureImpl;
 
   @override
-  String? get message;
+  String get message;
   int? get statusCode;
   @override
   @JsonKey(ignore: true)
