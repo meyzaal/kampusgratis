@@ -6,7 +6,7 @@ import 'package:fresh_dio/fresh_dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kg_client/src/failure/failure.dart';
 import 'package:kg_client/src/local_storage.dart';
-import 'package:kg_client/src/models/token.dart';
+import 'package:kg_client/src/models/models.dart';
 import 'package:ua_client_hints/ua_client_hints.dart';
 
 /// Box name for storing and retrieving tokens in local storage.
@@ -37,7 +37,7 @@ class KgClient {
     KgFlavor? flavor,
   }) : _httpClient = (httpClient ?? Dio())
           ..options.baseUrl = (flavor ?? KgFlavor.development).baseUrl
-          ..interceptors.add(fresh)
+          ..interceptors.add(_fresh)
           ..interceptors.add(
             LogInterceptor(requestBody: true, responseBody: true),
           )
@@ -54,10 +54,16 @@ class KgClient {
                 final response = error.response as Response<JSON>?;
 
                 if (error.type == DioExceptionType.badResponse) {
-                  throw BadResponseFailure(
-                    message: response?.data?['message'] as String?,
-                    statusCode: response?.statusCode,
-                  );
+                  final message = response?.data?['message'] as String?;
+
+                  if (message != null) {
+                    throw BadResponseFailure(
+                      message: message,
+                      statusCode: response?.statusCode,
+                    );
+                  } else {
+                    throw BadResponseFailure(statusCode: response?.statusCode);
+                  }
                 }
 
                 if (error.type == DioExceptionType.connectionTimeout) {
@@ -84,15 +90,39 @@ class KgClient {
   /// This method must be called before using [KgClient] for http request.
   Future<void> initializeHive() => Hive.initFlutter();
 
+  /// Authenticates the user with the provided access and refresh tokens.
+  ///
+  /// This method sets the access and refresh tokens for the user in the
+  /// [_fresh] object. If a [refreshToken] is not provided, it can be set to
+  /// `null`.
+  ///
+  /// Throws an error if the [_fresh] object is not initialized.
+  Future<void> authenticate({
+    required String accessToken,
+    required String? refreshToken,
+  }) =>
+      _fresh.setToken(
+        Token(
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        ),
+      );
+
+  /// Unauthenticates the user by setting the access and refresh tokens to null.
+  ///
+  /// This method effectively logs the user out by removing the stored tokens.
+  /// Throws an error if the [_fresh] object is not initialized.
+  Future<void> unauthenticate() => _fresh.setToken(null);
+
   /// Dio instance for making HTTP requests.
   final Dio _httpClient;
 
   /// Instance of [Fresh] for managing token freshness in the application.
   ///
-  /// The [fresh] instance is configured with a [LocalStorage] for token
+  /// The [_fresh] instance is configured with a [LocalStorage] for token
   /// storage, a refresh token function, a token header function, and a should
   /// refresh function. It allows for automatic token refreshing when needed.
-  static final Fresh<Token> fresh = Fresh<Token>(
+  static final Fresh<Token> _fresh = Fresh<Token>(
     tokenStorage: LocalStorage<Token>(_tokenBoxName),
     refreshToken: (token, httpClient) async {
       debugPrint('refreshing token...');
@@ -102,8 +132,10 @@ class KgClient {
 
       try {
         final requestBody = {'refresh_token': refreshToken};
-        final response = await httpClient.post<JSON>('/api/v1/auth/refresh',
-            data: requestBody);
+        final response = await httpClient.post<JSON>(
+          '/api/v1/auth/refresh',
+          data: requestBody,
+        );
 
         if (response.data == null) throw RevokeTokenException();
 
@@ -125,6 +157,50 @@ class KgClient {
     },
   );
 
+  /// Asynchronously retrieves the authentication token from local storage.
+  ///
+  /// Returns a [Token] instance representing the authentication token if 
+  /// available, otherwise returns `null` if no token is found in local storage.
+  ///
+  /// This method uses the [LocalStorage] utility with the specified 
+  /// [_tokenBoxName].
+  ///
+  /// Example:
+  /// ```dart
+  /// final token = await getToken();
+  /// if (token != null) {
+  ///   // Use the retrieved authentication token
+  /// } else {
+  ///   // Token not found, user may need to sign in
+  /// }
+  /// ```
+  Future<Token?> getToken() => LocalStorage<Token>(_tokenBoxName).read();
+
+  /// Returns a stream providing updates on the authentication status.
+  ///
+  /// This Dart getter returns a `Stream` of `AuthenticationStatus` objects,
+  /// allowing consumers to listen for changes in the authentication status.
+  /// The stream is sourced from the `_fresh` object's `authenticationStatus`
+  /// property.
+  ///
+  /// The `AuthenticationStatus` enum typically represents different states of
+  /// authentication, such as authenticated, unauthenticated, or in the process
+  /// of authentication.
+  ///
+  /// Example:
+  /// ```dart
+  /// final authenticationStream = myAuthenticationManager.status;
+  ///
+  /// authenticationStream.listen((status) {
+  ///   if (status == AuthenticationStatus.authenticated) {
+  ///     // User is authenticated, perform necessary actions.
+  ///   } else {
+  ///     // User is unauthenticated or in another authentication state.
+  ///   }
+  /// });
+  /// ```
+  Stream<AuthenticationStatus> get status => _fresh.authenticationStatus;
+
   /// Returns the underlying Dio HTTP client instance without any additional
   /// modifications.
   ///
@@ -136,7 +212,7 @@ class KgClient {
   ///
   /// The Dio instance is enhanced with an interceptor that adds authorization
   /// headers to the outgoing requests based on the authentication token
-  /// obtained from the [fresh] object. If a valid token is present, the
+  /// obtained from the [_fresh] object. If a valid token is present, the
   /// 'authorization' header is added with the token type and access token. If
   /// no token is available, the request proceeds without modification.
   ///
@@ -149,7 +225,7 @@ class KgClient {
         InterceptorsWrapper(
           onRequest: (options, handler) async {
             // Retrieve the authentication token from the [fresh] object.
-            final token = await fresh.token;
+            final token = await _fresh.token;
 
             // Add authorization headers if a valid token is present.
             if (token != null) {
@@ -179,4 +255,49 @@ extension on KgFlavor {
         return 'https://www.mknows.my.id/lms';
     }
   }
+}
+
+/// Dart extension providing convenience methods for working with
+/// `AuthenticationStatus`.
+///
+/// This extension, named `AuthenticationStatusX`, adds three boolean getters to
+/// the `AuthenticationStatus` enum. These getters allow for easier and more
+/// readable conditional checks on the authentication status.
+///
+/// - `isInitial`: Returns `true` if the authentication status is
+///   `AuthenticationStatus.initial`, indicating that the authentication process
+///   is in its initial state.
+///
+/// - `isAuthenticated`: Returns `true` if the authentication status is
+///   `AuthenticationStatus.authenticated`, indicating that the user is
+///   currently authenticated.
+///
+/// - `isUnauthenticated`: Returns `true` if the authentication status is
+///   `AuthenticationStatus.unauthenticated`, indicating that the user is
+///   currently unauthenticated.
+///
+/// Example:
+/// ```dart
+/// AuthenticationStatus status = AuthenticationStatus.authenticated;
+///
+/// if (status.isInitial) {
+///   // Handle initial authentication state.
+/// } else if (status.isAuthenticated) {
+///   // Handle authenticated state.
+/// } else if (status.isUnauthenticated) {
+///   // Handle unauthenticated state.
+/// }
+/// ```
+extension AuthenticationStatusX on AuthenticationStatus {
+  /// Returns `true` if the authentication status is
+  /// `AuthenticationStatus.initial`.
+  bool get isInitial => this == AuthenticationStatus.initial;
+
+  /// Returns `true` if the authentication status is
+  /// `AuthenticationStatus.authenticated`.
+  bool get isAuthenticated => this == AuthenticationStatus.authenticated;
+
+  /// Returns `true` if the authentication status is
+  /// `AuthenticationStatus.unauthenticated`.
+  bool get isUnauthenticated => this == AuthenticationStatus.unauthenticated;
 }
