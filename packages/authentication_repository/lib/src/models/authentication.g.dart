@@ -1,26 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth.dart';
+part of 'authentication.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AuthImpl _$$AuthImplFromJson(Map<String, dynamic> json) => _$AuthImpl(
+_$AuthenticationResponseImpl<T> _$$AuthenticationResponseImplFromJson<T>(
+  Map<String, dynamic> json,
+  T Function(Object? json) fromJsonT,
+) =>
+    _$AuthenticationResponseImpl<T>(
+      data: fromJsonT(json['data']),
       code: json['code'] as int? ?? 0,
       status: json['status'] as String? ?? '',
       message: json['message'] as String? ?? '',
-      data: json['data'] == null
-          ? const Token()
-          : Token.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$AuthImplToJson(_$AuthImpl instance) =>
+Map<String, dynamic> _$$AuthenticationResponseImplToJson<T>(
+  _$AuthenticationResponseImpl<T> instance,
+  Object? Function(T value) toJsonT,
+) =>
     <String, dynamic>{
+      'data': toJsonT(instance.data),
       'code': instance.code,
       'status': instance.status,
       'message': instance.message,
-      'data': instance.data,
     };
 
 _$TokenImpl _$$TokenImplFromJson(Map<String, dynamic> json) => _$TokenImpl(
@@ -32,4 +37,16 @@ Map<String, dynamic> _$$TokenImplToJson(_$TokenImpl instance) =>
     <String, dynamic>{
       'refresh_token': instance.refreshToken,
       'access_token': instance.accessToken,
+    };
+
+_$ResetPasswordImpl _$$ResetPasswordImplFromJson(Map<String, dynamic> json) =>
+    _$ResetPasswordImpl(
+      email: json['email'] as String? ?? '',
+      token: json['token'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$ResetPasswordImplToJson(_$ResetPasswordImpl instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'token': instance.token,
     };
