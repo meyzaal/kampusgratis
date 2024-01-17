@@ -1,4 +1,4 @@
-/// Exception representing a failure during the sign-in process with email and 
+/// Exception representing a failure during the sign-in process with email and
 /// password.
 ///
 /// Provides details about the failure through the [message] attribute.
@@ -38,7 +38,15 @@ class SignInWithEmailAndPasswordFailure implements Exception {
 class UnverifiedEmailFailure implements Exception {}
 
 /// Exception representing a failure in the Google Sign-In service.
-class GoogleSignInServiceFailure implements Exception {}
+class GoogleSignInServiceFailure implements Exception {
+  /// Default constructor for [GoogleSignInServiceFailure].
+  const GoogleSignInServiceFailure([
+    this.message = 'Gagal masuk dengan akun Google',
+  ]);
+
+  /// The message describing the Google sign-in service failure.
+  final String message;
+}
 
 /// Exception representing a failure during the sign-in process with Google.
 ///
@@ -160,11 +168,11 @@ class RequestEmailVerificationFailure implements Exception {
   final String message;
 }
 
-/// Exception representing a failure when the email is already verified during 
+/// Exception representing a failure when the email is already verified during
 /// email verification.
 class EmailAlreadyVerifiedFailure implements Exception {}
 
-/// Exception representing a failure during the verification of OTP for email 
+/// Exception representing a failure during the verification of OTP for email
 /// verification.
 ///
 /// Provides details about the failure through the [message] attribute.
@@ -198,7 +206,7 @@ class VerifyOtpEmailVerificationFailure implements Exception {
   final String message;
 }
 
-/// Exception representing a failure during the request for resetting the 
+/// Exception representing a failure during the request for resetting the
 /// password.
 ///
 /// Provides details about the failure through the [message] attribute.
@@ -224,7 +232,7 @@ class RequestResetPasswordFailure implements Exception {
   final String message;
 }
 
-/// Exception representing a failure during the verification of OTP for 
+/// Exception representing a failure during the verification of OTP for
 /// resetting the password.
 ///
 /// Provides details about the failure through the [message] attribute.

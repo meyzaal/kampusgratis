@@ -9,7 +9,8 @@ import 'package:kg_client/kg_client.dart';
 class AuthenticationRepository {
   /// Constructs an [AuthenticationRepository] with an optional [KgClient].
   AuthenticationRepository({KgClient? kgClient})
-      : _kgClient = kgClient ?? KgClient();
+      : _kgClient = kgClient ?? KgClient(),
+        _googleSignInService = GoogleSignInService();
 
   /// A stream providing the authentication status based on [_kgClient]'s
   /// status.
@@ -20,6 +21,7 @@ class AuthenticationRepository {
       });
 
   final KgClient _kgClient;
+  final GoogleSignInService _googleSignInService;
 
   /// Signs up a new user with the provided [name], [email], [password], and
   /// [confirmPassword].
@@ -55,44 +57,50 @@ class AuthenticationRepository {
         'password': password,
         if (role != null) 'role': role.upperCaseName,
       };
-      final response =
-          await _kgClient.client.post<AuthenticationResponse<Token>>(
+      final response = await _kgClient.client.post<dynamic>(
         '/api/v1/auth/login',
         data: data,
       );
 
-      final token = response.data?.data;
-      if (token == null) throw ParsingFailedFailure();
+      final result = AuthenticationResponse<Token>.fromJson(
+        response.data as JSON,
+        (json) => Token.fromJson(json as JSON? ?? {}),
+      );
 
       return await _kgClient.authenticate(
-        accessToken: token.accessToken,
-        refreshToken: token.refreshToken,
+        accessToken: result.data.accessToken,
+        refreshToken: result.data.refreshToken,
       );
     } on BadResponseFailure catch (e) {
       throw SignInWithEmailAndPasswordFailure.fromMessage(e.message);
+    } catch (e) {
+      throw ParsingFailedFailure();
     }
   }
 
   /// Signs in a user using Google authentication.
   Future<void> signInWithGoogle() async {
     try {
-      final idToken = await signInGoogle();
+      final idToken = await _googleSignInService.signIn();
       final data = {'credential': idToken};
-      final response =
-          await _kgClient.client.post<AuthenticationResponse<Token>>(
+      final response = await _kgClient.client.post<dynamic>(
         'auth/login/google/callback/android',
         data: data,
       );
 
-      final token = response.data?.data;
-      if (token == null) throw ParsingFailedFailure();
+      final result = AuthenticationResponse<Token>.fromJson(
+        response.data as JSON,
+        (json) => Token.fromJson(json as JSON? ?? {}),
+      );
 
       return await _kgClient.authenticate(
-        accessToken: token.accessToken,
-        refreshToken: token.refreshToken,
+        accessToken: result.data.accessToken,
+        refreshToken: result.data.refreshToken,
       );
     } on BadResponseFailure catch (e) {
       throw SignInWithGoogleFailure.fromMessage(e.message);
+    } catch (e) {
+      throw ParsingFailedFailure();
     }
   }
 
@@ -107,6 +115,7 @@ class AuthenticationRepository {
         _kgClient.authorizedClient.post<void>('/auth/logout', data: data),
       );
     }
+    await _googleSignInService.signOut();
 
     return _kgClient
         .unauthenticate()
@@ -172,6 +181,8 @@ class AuthenticationRepository {
       return result;
     } on BadResponseFailure catch (e) {
       throw VerifyOtpEmailVerificationFailure.fromMessage(e.message);
+    } catch (e) {
+      throw ParsingFailedFailure();
     }
   }
 
