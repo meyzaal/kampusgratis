@@ -1,7 +1,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:kg_client/kg_client.dart';
 
 class CounterCubit extends Cubit<int> {
   CounterCubit(this.authenticationRepository) : super(0);
@@ -11,20 +10,27 @@ class CounterCubit extends Cubit<int> {
   Future<void> testingLogin() async {
     try {
       await authenticationRepository.signInWithEmailAndPassword(
-        email: 'almayza17@gmail.com',
+        email: 'student3@gmail.com',
         password: '1',
       );
       debugPrint('SUCCESS');
+      _printStatus();
     } on SignInWithEmailAndPasswordFailure catch (e) {
-      debugPrint(e.message);
-    } on ParsingFailedFailure catch (e) {
-      debugPrint(e.message);
+      debugPrint('SIGNIN FAILURE: ${e.message}');
     } catch (e) {
-      
-      debugPrint(e.toString());
+      debugPrint('UNKNOWN FAILURE: $e');
     }
   }
 
-  void increment() => emit(state + 1);
+  void _printStatus() {
+    authenticationRepository.status
+        .listen((event) => debugPrint('STATUS : $event'));
+  }
+
+  Future<void> increment() async {
+    await authenticationRepository.signOut();
+    _printStatus();
+  }
+
   void decrement() => emit(state - 1);
 }
