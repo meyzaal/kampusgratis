@@ -4,8 +4,15 @@ import 'package:user_repository/src/utils/utils.dart';
 part 'profile.freezed.dart';
 part 'profile.g.dart';
 
+/// A class representing a user profile with various attributes.
+///
+/// This class is annotated with the `@freezed` annotation, which is used for
+/// code generation to provide immutability and equality for classes. The
+/// generated code includes a constructor with named parameters, and the mixin
+/// `_Profile` for implementation of equality and immutability.
 @freezed
 class Profile with _$Profile {
+  /// Constructs a [Profile] instance with the specified attributes.
   const factory Profile({
     @JsonKey(name: 'avatar') @Default('') String avatar,
     @JsonKey(name: 'poin') @Default(0) int poin,
@@ -23,6 +30,7 @@ class Profile with _$Profile {
     @JsonKey(name: 'faculty') @Default('') String faculty,
   }) = _Profile;
 
+  /// Factory method to create a [Profile] instance from a JSON map.
   factory Profile.fromJson(Map<String, Object?> json) =>
       _$ProfileFromJson(json);
 }

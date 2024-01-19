@@ -4,8 +4,15 @@ import 'package:user_repository/src/utils/utils.dart';
 part 'user.freezed.dart';
 part 'user.g.dart';
 
+/// A class representing a user with various attributes.
+///
+/// This class is annotated with the `@freezed` annotation, which is used for
+/// code generation to provide immutability and equality for classes. The
+/// generated code includes a constructor with named parameters, and the mixin
+/// `_User` for implementation of equality and immutability.
 @freezed
 class User with _$User {
+  /// Constructs a [User] instance with the specified attributes.
   const factory User({
     @JsonKey(name: 'id') @Default('') String id,
     @JsonKey(name: 'full_name') @Default('') String fullName,
@@ -20,5 +27,6 @@ class User with _$User {
     @JsonKey(name: 'updated_at') @Default('') String updatedAt,
   }) = _User;
 
+  /// Factory method to create a [User] instance from a JSON map.
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }

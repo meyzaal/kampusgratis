@@ -16,6 +16,7 @@ class UpdateUserAvatarFailure implements Exception {
         return const UpdateUserAvatarFailure(
           'Format file hanya .jpeg, .jpg, dan .png yang diperbolehkan.',
         );
+      // TODO(meyzaal): Add handling for too large file
       default:
         return const UpdateUserAvatarFailure();
     }
