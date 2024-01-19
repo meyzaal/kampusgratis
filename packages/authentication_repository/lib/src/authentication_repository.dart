@@ -39,9 +39,15 @@ class AuthenticationRepository {
         'password_confirmation': confirmPassword,
       };
 
-      await _kgClient.client.post<void>('/auth/register', data: data);
-    } on BadResponseFailure catch (e) {
-      throw SignUpFailure.fromMessage(e.message);
+      await _kgClient.client.post<void>('/v1/auth/register', data: data);
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final data = e.response?.data as JSON;
+        final message = data['message'] as String?;
+
+        if (message != null) throw SignUpFailure.fromMessage(message);
+      }
+      rethrow;
     }
   }
 
@@ -58,23 +64,29 @@ class AuthenticationRepository {
         if (role != null) 'role': role.upperCaseName,
       };
       final response = await _kgClient.client.post<dynamic>(
-        '/api/v1/auth/login',
+        '/v1/auth/login',
         data: data,
       );
 
-      final result = AuthenticationResponse<Token>.fromJson(
+      final result = Response<Token>.fromJson(
         response.data as JSON,
         (json) => Token.fromJson(json as JSON? ?? {}),
       );
 
-      return await _kgClient.authenticate(
+      await _kgClient.authenticate(
         accessToken: result.data.accessToken,
         refreshToken: result.data.refreshToken,
       );
-    } on BadResponseFailure catch (e) {
-      throw SignInWithEmailAndPasswordFailure.fromMessage(e.message);
-    } catch (e) {
-      throw ParsingFailedFailure();
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final data = e.response?.data as JSON;
+        final message = data['message'] as String?;
+
+        if (message != null) {
+          throw SignInWithEmailAndPasswordFailure.fromMessage(message);
+        }
+      }
+      rethrow;
     }
   }
 
@@ -84,11 +96,11 @@ class AuthenticationRepository {
       final idToken = await _googleSignInService.signIn();
       final data = {'credential': idToken};
       final response = await _kgClient.client.post<dynamic>(
-        'auth/login/google/callback/android',
+        '/v1/auth/login/google/callback/android',
         data: data,
       );
 
-      final result = AuthenticationResponse<Token>.fromJson(
+      final result = Response<Token>.fromJson(
         response.data as JSON,
         (json) => Token.fromJson(json as JSON? ?? {}),
       );
@@ -97,10 +109,16 @@ class AuthenticationRepository {
         accessToken: result.data.accessToken,
         refreshToken: result.data.refreshToken,
       );
-    } on BadResponseFailure catch (e) {
-      throw SignInWithGoogleFailure.fromMessage(e.message);
-    } catch (e) {
-      throw ParsingFailedFailure();
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final data = e.response?.data as JSON;
+        final message = data['message'] as String?;
+
+        if (message != null) {
+          throw SignInWithGoogleFailure.fromMessage(message);
+        }
+      }
+      rethrow;
     }
   }
 
@@ -112,7 +130,7 @@ class AuthenticationRepository {
       final data = {'refresh_token': token?.refreshToken};
 
       unawaited(
-        _kgClient.authorizedClient.post<void>('/auth/logout', data: data),
+        _kgClient.authorizedClient.post<void>('/v1/auth/logout', data: data),
       );
     }
     await _googleSignInService.signOut();
@@ -130,8 +148,16 @@ class AuthenticationRepository {
 
       await _kgClient.client
           .post<void>('/email-verification/request', data: data);
-    } on BadResponseFailure catch (e) {
-      throw RequestEmailVerificationFailure.fromMessage(e.message);
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final data = e.response?.data as JSON;
+        final message = data['message'] as String?;
+
+        if (message != null) {
+          throw RequestEmailVerificationFailure.fromMessage(message);
+        }
+      }
+      rethrow;
     }
   }
 
@@ -146,8 +172,16 @@ class AuthenticationRepository {
 
       await _kgClient.client
           .post<void>('/email-verification/verify', data: data);
-    } on BadResponseFailure catch (e) {
-      throw VerifyOtpEmailVerificationFailure.fromMessage(e.message);
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final data = e.response?.data as JSON;
+        final message = data['message'] as String?;
+
+        if (message != null) {
+          throw VerifyOtpEmailVerificationFailure.fromMessage(message);
+        }
+      }
+      rethrow;
     }
   }
 
@@ -157,8 +191,16 @@ class AuthenticationRepository {
       final data = {'email': email};
 
       await _kgClient.client.post<void>('/reset-password/request', data: data);
-    } on BadResponseFailure catch (e) {
-      throw VerifyOtpEmailVerificationFailure.fromMessage(e.message);
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final data = e.response?.data as JSON;
+        final message = data['message'] as String?;
+
+        if (message != null) {
+          throw VerifyOtpEmailVerificationFailure.fromMessage(message);
+        }
+      }
+      rethrow;
     }
   }
 
@@ -169,20 +211,25 @@ class AuthenticationRepository {
   }) async {
     try {
       final data = {'otp': otpCode, 'email': email};
-      final response =
-          await _kgClient.client.post<AuthenticationResponse<ResetPassword>>(
+      final response = await _kgClient.client.post<Response<ResetPassword>>(
         '/reset-password/verify',
         data: data,
       );
 
       final result = response.data?.data;
-      if (result == null) throw ParsingFailedFailure();
+      if (result == null) throw const VerifyOtpEmailVerificationFailure();
 
       return result;
-    } on BadResponseFailure catch (e) {
-      throw VerifyOtpEmailVerificationFailure.fromMessage(e.message);
-    } catch (e) {
-      throw ParsingFailedFailure();
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final data = e.response?.data as JSON;
+        final message = data['message'] as String?;
+
+        if (message != null) {
+          throw VerifyOtpEmailVerificationFailure.fromMessage(message);
+        }
+      }
+      rethrow;
     }
   }
 
@@ -194,9 +241,15 @@ class AuthenticationRepository {
     try {
       final data = {'token': token, 'password': password};
 
-      await _kgClient.client.post<void>('/auth/reset-password', data: data);
-    } on BadResponseFailure catch (e) {
-      ResetPasswordFailure.fromMessage(e.message);
+      await _kgClient.client.post<void>('/v1/auth/reset-password', data: data);
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final data = e.response?.data as JSON;
+        final message = data['message'] as String?;
+
+        if (message != null) throw ResetPasswordFailure.fromMessage(message);
+      }
+      rethrow;
     }
   }
 
@@ -215,9 +268,15 @@ class AuthenticationRepository {
       };
 
       await _kgClient.authorizedClient
-          .put<void>('/auth/change-password', data: data);
-    } on BadResponseFailure catch (e) {
-      ChangePasswordFailure.fromMessage(e.message);
+          .put<void>('/v1/auth/change-password', data: data);
+    } on DioException catch (e) {
+      if (e.response != null) {
+        final data = e.response?.data as JSON;
+        final message = data['message'] as String?;
+
+        if (message != null) throw ChangePasswordFailure.fromMessage(message);
+      }
+      rethrow;
     }
   }
 }

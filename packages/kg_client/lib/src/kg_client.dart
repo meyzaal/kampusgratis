@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fresh_dio/fresh_dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:kg_client/src/failure/failure.dart';
 import 'package:kg_client/src/local_storage.dart';
 import 'package:kg_client/src/models/models.dart';
 import 'package:ua_client_hints/ua_client_hints.dart';
@@ -50,45 +49,10 @@ class KgClient {
 
                 return handler.next(options);
               },
-              onError: (error, handler) {
-                final response = error.response as Response<JSON>?;
-
-                if (error.type == DioExceptionType.badResponse) {
-                  final message = response?.data?['message'] as String?;
-
-                  if (message != null) {
-                    throw BadResponseFailure(
-                      message: message,
-                      statusCode: response?.statusCode,
-                    );
-                  } else {
-                    throw BadResponseFailure(statusCode: response?.statusCode);
-                  }
-                }
-
-                if (error.type == DioExceptionType.connectionTimeout) {
-                  throw ConnectionTimeoutFailure();
-                }
-
-                if (error.type == DioExceptionType.connectionError ||
-                    error.type == DioExceptionType.receiveTimeout ||
-                    error.type == DioExceptionType.sendTimeout) {
-                  throw ConnectionErrorFailure();
-                }
-
-                if (error.type == DioExceptionType.unknown) {
-                  throw UnknownFailure();
-                }
-
-                return handler.next(error);
-              },
             ),
-          );
-
-  /// Initializes Hive for Flutter.
-  ///
-  /// This method must be called before using [KgClient] for http request.
-  Future<void> initializeHive() => Hive.initFlutter();
+          ) {
+    Hive.registerAdapter<Token>(TokenAdapter());
+  }
 
   /// Authenticates the user with the provided access and refresh tokens.
   ///
@@ -159,10 +123,10 @@ class KgClient {
 
   /// Asynchronously retrieves the authentication token from local storage.
   ///
-  /// Returns a [Token] instance representing the authentication token if 
+  /// Returns a [Token] instance representing the authentication token if
   /// available, otherwise returns `null` if no token is found in local storage.
   ///
-  /// This method uses the [LocalStorage] utility with the specified 
+  /// This method uses the [LocalStorage] utility with the specified
   /// [_tokenBoxName].
   ///
   /// Example:
@@ -250,9 +214,9 @@ extension on KgFlavor {
   String get baseUrl {
     switch (this) {
       case KgFlavor.production:
-        return 'https://api.kampusgratis.id';
+        return 'https://api.kampusgratis.id/api';
       case KgFlavor.development:
-        return 'https://www.mknows.my.id/lms';
+        return 'https://www.mknows.my.id/lms/api';
     }
   }
 }

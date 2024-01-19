@@ -5,5 +5,8 @@
 /// application flavors.
 library kg_client;
 
-export 'src/failure/failure.dart';
+export 'package:dio/dio.dart'
+    show DioException, DioExceptionType, FormData, MultipartFile;
+export 'package:hive_flutter/hive_flutter.dart';
+
 export 'src/kg_client.dart';

@@ -9,7 +9,7 @@ class SignInWithEmailAndPasswordFailure implements Exception {
   ]);
 
   /// Factory method to create an instance from a specific error [message].
-  factory SignInWithEmailAndPasswordFailure.fromMessage(String message) {
+  factory SignInWithEmailAndPasswordFailure.fromMessage(String? message) {
     switch (message) {
       case 'Invalid email and password combination':
         return const SignInWithEmailAndPasswordFailure(
