@@ -18,33 +18,49 @@ class UserRepository {
 
   /// Fetches user data from the server.
   Future<User> getUser() async {
-    final response =
-        await _kgClient.authorizedClient.get<dynamic>('/v1/user/profile/me');
+    try {
+      final response =
+          await _kgClient.authorizedClient.get<dynamic>('/v1/user/profile/me');
 
-    final result = Response<UserData>.fromJson(
-      response.data as JSON,
-      (json) => UserData.fromJson(json as JSON? ?? {}),
-    );
+      final result = Response<UserData>.fromJson(
+        response.data as JSON,
+        (json) => UserData.fromJson(json as JSON? ?? {}),
+      );
 
-    user = result.data.user;
-    if (user != null) {
-      return user!;
-    } else {
-      throw Exception('User null.');
+      user = result.data.user;
+      if (user != null) {
+        return user!;
+      } else {
+        throw Exception('User null.');
+      }
+    } on DioException catch (e) {
+      if (_isConnectionError(e.type)) {
+        throw const UserConnectionFailure();
+      }
+
+      rethrow;
     }
   }
 
   /// Fetches complete user profile data from the server.
   Future<Profile> getProfile() async {
-    final response = await _kgClient.authorizedClient
-        .get<dynamic>('/v1/user/profile/complete');
+    try {
+      final response = await _kgClient.authorizedClient
+          .get<dynamic>('/v1/user/profile/complete');
 
-    final result = Response<Profile>.fromJson(
-      response.data as JSON,
-      (json) => Profile.fromJson(json as JSON? ?? {}),
-    );
+      final result = Response<Profile>.fromJson(
+        response.data as JSON,
+        (json) => Profile.fromJson(json as JSON? ?? {}),
+      );
 
-    return result.data;
+      return result.data;
+    } on DioException catch (e) {
+      if (_isConnectionError(e.type)) {
+        throw const UserConnectionFailure();
+      }
+
+      rethrow;
+    }
   }
 
   /// Updates user information on the server.
@@ -55,29 +71,37 @@ class UserRepository {
     String? username,
     String? phone,
   }) async {
-    if (fullName == null && username == null && phone == null) {
-      throw Exception('Semua field kosong.');
-    }
+    try {
+      if (fullName == null && username == null && phone == null) {
+        throw Exception('Semua field kosong.');
+      }
 
-    final data = {
-      if (fullName != null) 'full_name': fullName,
-      if (username != null) 'user_name': username,
-      if (phone != null) 'phone_number': phone,
-    };
-    final response = await _kgClient.authorizedClient.put<dynamic>(
-      '/v1/user/profile/me',
-      data: data,
-    );
-    final result = Response<UserData>.fromJson(
-      response.data as JSON,
-      (json) => UserData.fromJson(json as JSON? ?? {}),
-    );
+      final data = {
+        if (fullName != null) 'full_name': fullName,
+        if (username != null) 'user_name': username,
+        if (phone != null) 'phone_number': phone,
+      };
+      final response = await _kgClient.authorizedClient.put<dynamic>(
+        '/v1/user/profile/me',
+        data: data,
+      );
+      final result = Response<UserData>.fromJson(
+        response.data as JSON,
+        (json) => UserData.fromJson(json as JSON? ?? {}),
+      );
 
-    user = result.data.user;
-    if (user != null) {
-      return user!;
-    } else {
-      throw Exception('User null.');
+      user = result.data.user;
+      if (user != null) {
+        return user!;
+      } else {
+        throw Exception('User null.');
+      }
+    } on DioException catch (e) {
+      if (_isConnectionError(e.type)) {
+        throw const UserConnectionFailure();
+      }
+
+      rethrow;
     }
   }
 
@@ -108,7 +132,18 @@ class UserRepository {
 
         if (message != null) throw UpdateUserAvatarFailure.fromMessage(message);
       }
+
+      if (_isConnectionError(e.type)) {
+        throw const UserConnectionFailure();
+      }
+
       rethrow;
     }
   }
 }
+
+bool _isConnectionError(DioExceptionType type) =>
+    type == DioExceptionType.connectionError ||
+    type == DioExceptionType.connectionTimeout ||
+    type == DioExceptionType.receiveTimeout ||
+    type == DioExceptionType.sendTimeout;

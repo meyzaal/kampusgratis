@@ -1,3 +1,17 @@
+/// An exception class representing a connection failure during the 
+/// authentication process.
+class AuthenticationConnectionFailure implements Exception {
+  /// Constructs an [AuthenticationConnectionFailure] instance with an optional
+  /// [message].
+  const AuthenticationConnectionFailure([
+    this.message = 'Terjadi masalah koneksi.',
+  ]);
+
+  /// The error message associated with the connection failure. Defaults to a
+  /// generic message if not provided.
+  final String message;
+}
+
 /// Exception representing a failure during the sign-in process with email and
 /// password.
 ///

@@ -1,3 +1,16 @@
+/// An exception class representing a failure to establish a connection with the
+/// user-related services.
+class UserConnectionFailure implements Exception {
+  /// Constructs a [UserConnectionFailure] instance with an optional [message].
+  const UserConnectionFailure([
+    this.message = 'Terjadi masalah koneksi.',
+  ]);
+
+  /// The error message associated with the connection failure. Defaults to a
+  /// generic message if not provided.
+  final String message;
+}
+
 /// An exception class representing a failure during the process of updating a
 /// user's avatar.
 class UpdateUserAvatarFailure implements Exception {

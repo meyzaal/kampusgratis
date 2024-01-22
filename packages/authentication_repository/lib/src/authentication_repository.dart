@@ -47,6 +47,11 @@ class AuthenticationRepository {
 
         if (message != null) throw SignUpFailure.fromMessage(message);
       }
+
+      if (_isConnectionError(e.type)) {
+        throw const AuthenticationConnectionFailure();
+      }
+
       rethrow;
     }
   }
@@ -86,6 +91,11 @@ class AuthenticationRepository {
           throw SignInWithEmailAndPasswordFailure.fromMessage(message);
         }
       }
+
+      if (_isConnectionError(e.type)) {
+        throw const AuthenticationConnectionFailure();
+      }
+
       rethrow;
     }
   }
@@ -118,6 +128,11 @@ class AuthenticationRepository {
           throw SignInWithGoogleFailure.fromMessage(message);
         }
       }
+
+      if (_isConnectionError(e.type)) {
+        throw const AuthenticationConnectionFailure();
+      }
+
       rethrow;
     }
   }
@@ -157,6 +172,11 @@ class AuthenticationRepository {
           throw RequestEmailVerificationFailure.fromMessage(message);
         }
       }
+
+      if (_isConnectionError(e.type)) {
+        throw const AuthenticationConnectionFailure();
+      }
+
       rethrow;
     }
   }
@@ -181,6 +201,11 @@ class AuthenticationRepository {
           throw VerifyOtpEmailVerificationFailure.fromMessage(message);
         }
       }
+
+      if (_isConnectionError(e.type)) {
+        throw const AuthenticationConnectionFailure();
+      }
+
       rethrow;
     }
   }
@@ -200,6 +225,11 @@ class AuthenticationRepository {
           throw VerifyOtpEmailVerificationFailure.fromMessage(message);
         }
       }
+
+      if (_isConnectionError(e.type)) {
+        throw const AuthenticationConnectionFailure();
+      }
+
       rethrow;
     }
   }
@@ -229,6 +259,11 @@ class AuthenticationRepository {
           throw VerifyOtpEmailVerificationFailure.fromMessage(message);
         }
       }
+
+      if (_isConnectionError(e.type)) {
+        throw const AuthenticationConnectionFailure();
+      }
+
       rethrow;
     }
   }
@@ -249,6 +284,11 @@ class AuthenticationRepository {
 
         if (message != null) throw ResetPasswordFailure.fromMessage(message);
       }
+
+      if (_isConnectionError(e.type)) {
+        throw const AuthenticationConnectionFailure();
+      }
+
       rethrow;
     }
   }
@@ -276,10 +316,21 @@ class AuthenticationRepository {
 
         if (message != null) throw ChangePasswordFailure.fromMessage(message);
       }
+
+      if (_isConnectionError(e.type)) {
+        throw const AuthenticationConnectionFailure();
+      }
+
       rethrow;
     }
   }
 }
+
+bool _isConnectionError(DioExceptionType type) =>
+    type == DioExceptionType.connectionError ||
+    type == DioExceptionType.connectionTimeout ||
+    type == DioExceptionType.receiveTimeout ||
+    type == DioExceptionType.sendTimeout;
 
 extension on Role {
   String get upperCaseName => name.toUpperCase();
