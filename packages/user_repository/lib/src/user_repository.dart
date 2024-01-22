@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:kg_client/kg_client.dart';
@@ -13,8 +14,32 @@ class UserRepository {
 
   final KgClient _kgClient;
 
-  /// The currently authenticated user.
-  User? user;
+  User? _user;
+
+  final StreamController<User?> _controller =
+      StreamController<User?>.broadcast()..add(null);
+
+  /// A stream getter providing asynchronous access to user-related events.
+  ///
+  /// This getter returns a [Stream] of [User] objects. It first yields the current
+  /// user value, followed by any updates from the associated [_controller] stream.
+  Stream<User?> get user async* {
+    // Yield the current user value
+    yield _user;
+
+    // Yield updates from the controller stream
+    yield* _controller.stream;
+  }
+
+  /// Clears the current user by adding a `null` value to the [_controller]
+  /// stream.
+  void clearUser() => _controller.add(null);
+
+  /// Closes the associated [_controller] stream.
+  ///
+  /// This method should be called when the stream is no longer needed to free
+  /// up resources and prevent memory leaks.
+  Future<void> closeStream() => _controller.close();
 
   /// Fetches user data from the server.
   Future<User> getUser() async {
@@ -27,12 +52,9 @@ class UserRepository {
         (json) => UserData.fromJson(json as JSON? ?? {}),
       );
 
-      user = result.data.user;
-      if (user != null) {
-        return user!;
-      } else {
-        throw Exception('User null.');
-      }
+      _user = result.data.user;
+      _controller.add(_user);
+      return result.data.user;
     } on DioException catch (e) {
       if (_isConnectionError(e.type)) {
         throw const UserConnectionFailure();
@@ -90,12 +112,9 @@ class UserRepository {
         (json) => UserData.fromJson(json as JSON? ?? {}),
       );
 
-      user = result.data.user;
-      if (user != null) {
-        return user!;
-      } else {
-        throw Exception('User null.');
-      }
+      _user = result.data.user;
+      _controller.add(_user);
+      return result.data.user;
     } on DioException catch (e) {
       if (_isConnectionError(e.type)) {
         throw const UserConnectionFailure();
@@ -112,16 +131,17 @@ class UserRepository {
         image.path,
         filename: basename(image.path),
       );
-      final data = FormData.fromMap({'avatar': avatar});
+      final data = FormData.fromMap({'ava tar': avatar});
       final response = await _kgClient.authorizedClient.put<dynamic>(
         '/v1/user/profile/avatar',
         data: data,
       );
       final result = response.data as JSON;
 
-      user = user?.copyWith(avatar: result['avatar'] as String? ?? '');
-      if (user != null) {
-        return user!;
+      _user = _user?.copyWith(avatar: result['avatar'] as String? ?? '');
+      _controller.add(_user);
+      if (_user != null) {
+        return _user!;
       } else {
         throw Exception('User null.');
       }
