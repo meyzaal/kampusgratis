@@ -131,7 +131,7 @@ class UserRepository {
         image.path,
         filename: basename(image.path),
       );
-      final data = FormData.fromMap({'ava tar': avatar});
+      final data = FormData.fromMap({'avatar': avatar});
       final response = await _kgClient.authorizedClient.put<dynamic>(
         '/v1/user/profile/avatar',
         data: data,
