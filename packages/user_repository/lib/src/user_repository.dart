@@ -21,8 +21,9 @@ class UserRepository {
 
   /// A stream getter providing asynchronous access to user-related events.
   ///
-  /// This getter returns a [Stream] of [User] objects. It first yields the current
-  /// user value, followed by any updates from the associated [_controller] stream.
+  /// This getter returns a [Stream] of [User] objects. It first yields the
+  /// current user value, followed by any updates from the associated
+  /// [_controller] stream.
   Stream<User?> get user async* {
     // Yield the current user value
     yield _user;
