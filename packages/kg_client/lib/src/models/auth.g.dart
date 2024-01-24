@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'token.dart';
+part of 'auth.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -71,4 +71,16 @@ Map<String, dynamic> _$$TokenImplToJson(_$TokenImpl instance) =>
       'expires_in': instance.expiresIn,
       'refresh_token': instance.refreshToken,
       'scope': instance.scope,
+    };
+
+_$ResetPasswordImpl _$$ResetPasswordImplFromJson(Map<String, dynamic> json) =>
+    _$ResetPasswordImpl(
+      email: json['email'] as String?,
+      token: json['token'] as String?,
+    );
+
+Map<String, dynamic> _$$ResetPasswordImplToJson(_$ResetPasswordImpl instance) =>
+    <String, dynamic>{
+      'email': instance.email,
+      'token': instance.token,
     };
