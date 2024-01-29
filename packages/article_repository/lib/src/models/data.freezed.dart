@@ -14,24 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Data _$DataFromJson(Map<String, dynamic> json) {
-  return _Data.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Data {
-  @JsonKey(name: 'data')
   List<Article> get articles => throw _privateConstructorUsedError;
-  @JsonKey(name: 'page_size')
-  int get pageSize => throw _privateConstructorUsedError;
-  @JsonKey(name: 'total_data')
-  int get totalData => throw _privateConstructorUsedError;
-  @JsonKey(name: 'current_page')
-  int get currentPage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'max_page')
-  int get maxPage => throw _privateConstructorUsedError;
+  ArticleMeta get meta => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
 }
@@ -41,12 +28,9 @@ abstract class $DataCopyWith<$Res> {
   factory $DataCopyWith(Data value, $Res Function(Data) then) =
       _$DataCopyWithImpl<$Res, Data>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'data') List<Article> articles,
-      @JsonKey(name: 'page_size') int pageSize,
-      @JsonKey(name: 'total_data') int totalData,
-      @JsonKey(name: 'current_page') int currentPage,
-      @JsonKey(name: 'max_page') int maxPage});
+  $Res call({List<Article> articles, ArticleMeta meta});
+
+  $ArticleMetaCopyWith<$Res> get meta;
 }
 
 /// @nodoc
@@ -63,33 +47,26 @@ class _$DataCopyWithImpl<$Res, $Val extends Data>
   @override
   $Res call({
     Object? articles = null,
-    Object? pageSize = null,
-    Object? totalData = null,
-    Object? currentPage = null,
-    Object? maxPage = null,
+    Object? meta = null,
   }) {
     return _then(_value.copyWith(
       articles: null == articles
           ? _value.articles
           : articles // ignore: cast_nullable_to_non_nullable
               as List<Article>,
-      pageSize: null == pageSize
-          ? _value.pageSize
-          : pageSize // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalData: null == totalData
-          ? _value.totalData
-          : totalData // ignore: cast_nullable_to_non_nullable
-              as int,
-      currentPage: null == currentPage
-          ? _value.currentPage
-          : currentPage // ignore: cast_nullable_to_non_nullable
-              as int,
-      maxPage: null == maxPage
-          ? _value.maxPage
-          : maxPage // ignore: cast_nullable_to_non_nullable
-              as int,
+      meta: null == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as ArticleMeta,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ArticleMetaCopyWith<$Res> get meta {
+    return $ArticleMetaCopyWith<$Res>(_value.meta, (value) {
+      return _then(_value.copyWith(meta: value) as $Val);
+    });
   }
 }
 
@@ -100,12 +77,10 @@ abstract class _$$DataImplCopyWith<$Res> implements $DataCopyWith<$Res> {
       __$$DataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'data') List<Article> articles,
-      @JsonKey(name: 'page_size') int pageSize,
-      @JsonKey(name: 'total_data') int totalData,
-      @JsonKey(name: 'current_page') int currentPage,
-      @JsonKey(name: 'max_page') int maxPage});
+  $Res call({List<Article> articles, ArticleMeta meta});
+
+  @override
+  $ArticleMetaCopyWith<$Res> get meta;
 }
 
 /// @nodoc
@@ -119,53 +94,29 @@ class __$$DataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? articles = null,
-    Object? pageSize = null,
-    Object? totalData = null,
-    Object? currentPage = null,
-    Object? maxPage = null,
+    Object? meta = null,
   }) {
     return _then(_$DataImpl(
       articles: null == articles
           ? _value._articles
           : articles // ignore: cast_nullable_to_non_nullable
               as List<Article>,
-      pageSize: null == pageSize
-          ? _value.pageSize
-          : pageSize // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalData: null == totalData
-          ? _value.totalData
-          : totalData // ignore: cast_nullable_to_non_nullable
-              as int,
-      currentPage: null == currentPage
-          ? _value.currentPage
-          : currentPage // ignore: cast_nullable_to_non_nullable
-              as int,
-      maxPage: null == maxPage
-          ? _value.maxPage
-          : maxPage // ignore: cast_nullable_to_non_nullable
-              as int,
+      meta: null == meta
+          ? _value.meta
+          : meta // ignore: cast_nullable_to_non_nullable
+              as ArticleMeta,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$DataImpl implements _Data {
-  const _$DataImpl(
-      {@JsonKey(name: 'data') final List<Article> articles = const <Article>[],
-      @JsonKey(name: 'page_size') this.pageSize = 0,
-      @JsonKey(name: 'total_data') this.totalData = 0,
-      @JsonKey(name: 'current_page') this.currentPage = 0,
-      @JsonKey(name: 'max_page') this.maxPage = 0})
-      : _articles = articles;
 
-  factory _$DataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DataImplFromJson(json);
+class _$DataImpl implements _Data {
+  const _$DataImpl({required final List<Article> articles, required this.meta})
+      : _articles = articles;
 
   final List<Article> _articles;
   @override
-  @JsonKey(name: 'data')
   List<Article> get articles {
     if (_articles is EqualUnmodifiableListView) return _articles;
     // ignore: implicit_dynamic_type
@@ -173,21 +124,11 @@ class _$DataImpl implements _Data {
   }
 
   @override
-  @JsonKey(name: 'page_size')
-  final int pageSize;
-  @override
-  @JsonKey(name: 'total_data')
-  final int totalData;
-  @override
-  @JsonKey(name: 'current_page')
-  final int currentPage;
-  @override
-  @JsonKey(name: 'max_page')
-  final int maxPage;
+  final ArticleMeta meta;
 
   @override
   String toString() {
-    return 'Data(articles: $articles, pageSize: $pageSize, totalData: $totalData, currentPage: $currentPage, maxPage: $maxPage)';
+    return 'Data(articles: $articles, meta: $meta)';
   }
 
   @override
@@ -196,64 +137,29 @@ class _$DataImpl implements _Data {
         (other.runtimeType == runtimeType &&
             other is _$DataImpl &&
             const DeepCollectionEquality().equals(other._articles, _articles) &&
-            (identical(other.pageSize, pageSize) ||
-                other.pageSize == pageSize) &&
-            (identical(other.totalData, totalData) ||
-                other.totalData == totalData) &&
-            (identical(other.currentPage, currentPage) ||
-                other.currentPage == currentPage) &&
-            (identical(other.maxPage, maxPage) || other.maxPage == maxPage));
+            (identical(other.meta, meta) || other.meta == meta));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_articles),
-      pageSize,
-      totalData,
-      currentPage,
-      maxPage);
+      runtimeType, const DeepCollectionEquality().hash(_articles), meta);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DataImplCopyWith<_$DataImpl> get copyWith =>
       __$$DataImplCopyWithImpl<_$DataImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$DataImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Data implements Data {
   const factory _Data(
-      {@JsonKey(name: 'data') final List<Article> articles,
-      @JsonKey(name: 'page_size') final int pageSize,
-      @JsonKey(name: 'total_data') final int totalData,
-      @JsonKey(name: 'current_page') final int currentPage,
-      @JsonKey(name: 'max_page') final int maxPage}) = _$DataImpl;
-
-  factory _Data.fromJson(Map<String, dynamic> json) = _$DataImpl.fromJson;
+      {required final List<Article> articles,
+      required final ArticleMeta meta}) = _$DataImpl;
 
   @override
-  @JsonKey(name: 'data')
   List<Article> get articles;
   @override
-  @JsonKey(name: 'page_size')
-  int get pageSize;
-  @override
-  @JsonKey(name: 'total_data')
-  int get totalData;
-  @override
-  @JsonKey(name: 'current_page')
-  int get currentPage;
-  @override
-  @JsonKey(name: 'max_page')
-  int get maxPage;
+  ArticleMeta get meta;
   @override
   @JsonKey(ignore: true)
   _$$DataImplCopyWith<_$DataImpl> get copyWith =>

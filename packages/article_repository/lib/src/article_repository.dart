@@ -1,8 +1,25 @@
 import 'dart:async';
 
 import 'package:article_repository/src/models/models.dart';
-import 'package:article_repository/src/utils/utils.dart';
 import 'package:kg_client/kg_client.dart';
+
+/// Enumeration representing the types of articles, used for filtering.
+enum ArticleType {
+  /// Represents the newest articles.
+  newest,
+
+  /// Represents the popular articles.
+  popular,
+}
+
+/// Enumeration representing the sorting options for articles.
+enum ArticleSort {
+  /// Sorts articles by title.
+  title,
+
+  /// Sorts articles by date.
+  date,
+}
 
 /// A repository class for managing article-related data and interactions.
 ///
@@ -12,7 +29,7 @@ import 'package:kg_client/kg_client.dart';
 class ArticleRepository {
   /// Creates an instance of [ArticleRepository] with an optional [KgClient].
   ArticleRepository({KgClient? kgClient}) : _kgClient = kgClient ?? KgClient();
-
+  
   /// The instance of [KgClient] used for communication with external services.
   final KgClient _kgClient;
 
@@ -52,58 +69,76 @@ class ArticleRepository {
     String? search,
     ArticleSort? sortBy,
   }) async {
-    try {
-      final params = {
-        'page': page,
-        'limit': limit,
-        'type': type.name,
-        if (search != null) 'search': search,
-        if (sortBy != null) 'sort_by': sortBy.name.toUpperCase(),
-      };
-      final response = await _kgClient.authorizedClient.get<dynamic>(
-        '/v1/article/filter',
-        queryParameters: params,
-      );
-      final result = Response<Data>.fromJson(
-        response.data as JSON,
-        (json) => Data.fromJson(json as JSON? ?? {}),
-      );
+    final result = await _kgClient.getArticles(
+      type: type.name,
+      page: page,
+      limit: limit,
+      search: search,
+      sortBy: sortBy?.name.toUpperCase(),
+    );
 
-      final isLoadMore = page > 1;
-      if (isLoadMore) {
-        _articles.addAll(result.data.articles);
-      } else {
-        _articles = result.data.articles;
-      }
-      _articlesController.add(_articles);
-      return result.data;
-    } on DioException catch (e) {
-      if (_isConnectionError(e.type)) {
-        throw const ArticleConnectionFailure();
-      }
+    final meta = ArticleMeta(
+      pageSize: result.pageSize ?? 0,
+      totalData: result.totalData ?? 0,
+      currentPage: result.currentPage ?? 0,
+      maxPage: result.maxPage ?? 0,
+    );
+    final articles = (result.articles ?? []).map(
+      (article) {
+        DateTime? createdAt;
+        final formattedString = article.createdAt;
+        if (formattedString != null) {
+          createdAt = DateTime.parse(formattedString).toLocal();
+        }
 
-      rethrow;
+        return Article(
+          author: Author(fullName: article.author?.fullName ?? 'unknown'),
+          content: article.content ?? '',
+          id: article.id ?? '',
+          isFavorite: article.isFavorite ?? false,
+          slug: article.slug ?? '',
+          tags: article.tags ?? <String>[],
+          thumbnail: article.thumbnail ?? '',
+          title: article.title ?? '',
+          views: article.views ?? 0,
+          createdAt: createdAt,
+        );
+      },
+    ).toList();
+
+    final isLoadMore = page > 1;
+    if (isLoadMore) {
+      _articles.addAll(articles);
+    } else {
+      _articles = articles;
     }
+    _articlesController.add(_articles);
+
+    return Data(articles: articles, meta: meta);
   }
 
   /// Retrieves a single article based on its slug.
   Future<Article> getArticleBySlug(String slug) async {
-    try {
-      final response =
-          await _kgClient.authorizedClient.get<dynamic>('/v1/article/$slug');
-      final result = Response<Article>.fromJson(
-        response.data as JSON,
-        (json) => Article.fromJson(json as JSON? ?? {}),
-      );
+    final article = await _kgClient.getArticleBySlug(slug);
 
-      return result.data;
-    } on DioException catch (e) {
-      if (_isConnectionError(e.type)) {
-        throw const ArticleConnectionFailure();
-      }
-
-      rethrow;
+    DateTime? createdAt;
+    final formattedString = article.createdAt;
+    if (formattedString != null) {
+      createdAt = DateTime.parse(formattedString).toLocal();
     }
+
+    return Article(
+      author: Author(fullName: article.author?.fullName ?? 'unknown'),
+      content: article.content ?? '',
+      id: article.id ?? '',
+      isFavorite: article.isFavorite ?? false,
+      slug: article.slug ?? '',
+      tags: article.tags ?? <String>[],
+      thumbnail: article.thumbnail ?? '',
+      title: article.title ?? '',
+      views: article.views ?? 0,
+      createdAt: createdAt,
+    );
   }
 
   /// Retrieves a paginated list of favorited articles based on specified
@@ -114,115 +149,141 @@ class ArticleRepository {
     String? search,
     ArticleSort? sortBy,
   }) async {
-    try {
-      final params = {
-        'page': page,
-        'limit': limit,
-        if (search != null) 'search': search,
-        if (sortBy != null) 'sort_by': sortBy.name.toUpperCase(),
-      };
-      final response = await _kgClient.client.get<dynamic>(
-        '/v1/article/favorite',
-        queryParameters: params,
-      );
-      final result = Response<Data>.fromJson(
-        response.data as JSON,
-        (json) => Data.fromJson(json as JSON? ?? {}),
-      );
+    final result = await _kgClient.getFavoritedArticles(
+      page: page,
+      limit: limit,
+      search: search,
+      sortBy: sortBy?.name.toUpperCase(),
+    );
 
-      final isLoadMore = page > 1;
-      if (isLoadMore) {
-        _favoritedArticles.addAll(result.data.articles);
-      } else {
-        _favoritedArticles = result.data.articles;
-      }
-      _favoritedArticlesController.add(_favoritedArticles);
-      return result.data;
-    } on DioException catch (e) {
-      if (_isConnectionError(e.type)) {
-        throw const ArticleConnectionFailure();
-      }
+    final meta = ArticleMeta(
+      pageSize: result.pageSize ?? 0,
+      totalData: result.totalData ?? 0,
+      currentPage: result.currentPage ?? 0,
+      maxPage: result.maxPage ?? 0,
+    );
+    final favoritedArticles = (result.articles ?? []).map(
+      (favoritedArticle) {
+        DateTime? createdAt;
+        final formattedString = favoritedArticle.createdAt;
+        if (formattedString != null) {
+          createdAt = DateTime.parse(formattedString).toLocal();
+        }
 
-      rethrow;
+        return Article(
+          author: Author(
+            fullName: favoritedArticle.author?.fullName ?? 'unknown',
+          ),
+          content: favoritedArticle.content ?? '',
+          id: favoritedArticle.id ?? '',
+          isFavorite: favoritedArticle.isFavorite ?? false,
+          slug: favoritedArticle.slug ?? '',
+          tags: favoritedArticle.tags ?? <String>[],
+          thumbnail: favoritedArticle.thumbnail ?? '',
+          title: favoritedArticle.title ?? '',
+          views: favoritedArticle.views ?? 0,
+          createdAt: createdAt,
+        );
+      },
+    ).toList();
+
+    final isLoadMore = page > 1;
+    if (isLoadMore) {
+      _favoritedArticles.addAll(favoritedArticles);
+    } else {
+      _favoritedArticles = favoritedArticles;
     }
+    _favoritedArticlesController.add(_favoritedArticles);
+    return Data(articles: favoritedArticles, meta: meta);
   }
 
   /// Retrieves a list of articles related to a specified article.
-  Future<List<Article>> getRelatedArticle(String articleId) async {
-    try {
-      final response = await _kgClient.authorizedClient
-          .get<dynamic>('/v1/article/related/$articleId');
-      final result = Response<List<Article>>.fromJson(
-        response.data as JSON,
-        (json) => List<Article>.from(
-          (json as List<JSON>? ?? <JSON>[]).map(Article.fromJson),
-        ).toList(),
-      );
-      return result.data;
-    } on DioException catch (e) {
-      if (_isConnectionError(e.type)) {
-        throw const ArticleConnectionFailure();
-      }
+  Future<List<Article>> getRelatedArticles(String articleId) async {
+    final relatedArticles = await _kgClient.getRelatedArticles(articleId);
+    return relatedArticles.map(
+      (relatedArticle) {
+        DateTime? createdAt;
+        final formattedString = relatedArticle.createdAt;
+        if (formattedString != null) {
+          createdAt = DateTime.parse(formattedString).toLocal();
+        }
 
-      rethrow;
-    }
+        return Article(
+          author: Author(
+            fullName: relatedArticle.author?.fullName ?? 'unknown',
+          ),
+          content: relatedArticle.content ?? '',
+          id: relatedArticle.id ?? '',
+          isFavorite: relatedArticle.isFavorite ?? false,
+          slug: relatedArticle.slug ?? '',
+          tags: relatedArticle.tags ?? <String>[],
+          thumbnail: relatedArticle.thumbnail ?? '',
+          title: relatedArticle.title ?? '',
+          views: relatedArticle.views ?? 0,
+          createdAt: createdAt,
+        );
+      },
+    ).toList();
   }
 
   /// Adds an article to the user's list of favorited articles.
   Future<void> bookmarkArticle(String articleId) async {
-    try {
-      final data = {'article_id': articleId};
-      await _kgClient.authorizedClient
-          .post<void>('/v1/article/favorite', data: data);
+    await _kgClient.bookmarkArticle(articleId);
 
-      final articleIndex =
-          _articles.indexWhere((article) => article.id == articleId);
-      final favoritedArticle =
-          _articles[articleIndex].copyWith(isFavorite: true);
+    final articleIndex =
+        _articles.indexWhere((article) => article.id == articleId);
+    final favoritedArticle = _articles[articleIndex].copyWith(isFavorite: true);
 
-      _articles[articleIndex] = favoritedArticle;
-      _favoritedArticles.add(favoritedArticle);
+    _articles[articleIndex] = favoritedArticle;
+    _favoritedArticles.add(favoritedArticle);
 
-      _articlesController.add(_articles);
-      _favoritedArticlesController.add(_favoritedArticles);
-    } on DioException catch (e) {
-      if (_isConnectionError(e.type)) {
-        throw const ArticleConnectionFailure();
-      }
-
-      rethrow;
-    }
+    _articlesController.add(_articles);
+    _favoritedArticlesController.add(_favoritedArticles);
   }
 
   /// Removes an article from the user's list of favorited articles.
   Future<void> unbookmarkArticle(String articleId) async {
-    try {
-      await _kgClient.authorizedClient
-          .delete<void>('/v1/article/favorite/$articleId');
+    await _kgClient.unbookmarkArticle(articleId);
 
-      final articleIndex =
-          _articles.indexWhere((article) => article.id == articleId);
-      final unfavoritedArticle =
-          _articles[articleIndex].copyWith(isFavorite: false);
+    final articleIndex =
+        _articles.indexWhere((article) => article.id == articleId);
+    final unfavoritedArticle =
+        _articles[articleIndex].copyWith(isFavorite: false);
 
-      _articles[articleIndex] = unfavoritedArticle;
-      _favoritedArticles.removeWhere((article) => article.id == articleId);
+    _articles[articleIndex] = unfavoritedArticle;
+    _favoritedArticles.removeWhere((article) => article.id == articleId);
 
-      _articlesController.add(_articles);
-      _favoritedArticlesController.add(_favoritedArticles);
-    } on DioException catch (e) {
-      if (_isConnectionError(e.type)) {
-        throw const ArticleConnectionFailure();
-      }
+    _articlesController.add(_articles);
+    _favoritedArticlesController.add(_favoritedArticles);
+  }
 
-      rethrow;
+  Future<SearchHistories> getSearchHistories({int? page, int? limit}) async {
+    final result = await _kgClient.getArticleSearchHistories(
+      page: page,
+      limit: limit,
+    );
+
+    final meta = HistoryMeta(
+      page: result.meta?.page ?? 0,
+      pageSize: result.meta?.pageSize ?? 0,
+      perPage: result.meta?.perPage ?? 0,
+      totalData: result.meta?.totalData ?? 0,
+    );
+    final histories = (result.data?.articles ?? []).map((history) {
+      return History(
+        id: history.id ?? '',
+        keyword: history.keyword ?? '',
+      );
+    }).toList();
+
+    return SearchHistories(histories: histories, meta: meta);
+  }
+
+  Future<void> deleteSearchHistory({String? historyId}) async {
+    if (historyId == null) {
+      await _kgClient.deleteAllArticleSearchHistory();
+    } else {
+      await _kgClient.deleteArticleSearchHistory(historyId);
     }
   }
 }
-
-/// Checks if a [DioExceptionType] corresponds to a connection-related error.
-bool _isConnectionError(DioExceptionType type) =>
-    type == DioExceptionType.connectionError ||
-    type == DioExceptionType.connectionTimeout ||
-    type == DioExceptionType.receiveTimeout ||
-    type == DioExceptionType.sendTimeout;

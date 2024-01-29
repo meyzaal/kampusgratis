@@ -14,36 +14,19 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Article _$ArticleFromJson(Map<String, dynamic> json) {
-  return _Article.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Article {
-  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'content')
   String get content => throw _privateConstructorUsedError;
-  @JsonKey(name: 'thumbnail')
   String get thumbnail => throw _privateConstructorUsedError;
-  @JsonKey(name: 'slug')
   String get slug => throw _privateConstructorUsedError;
-  @JsonKey(name: 'views')
   int get views => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  String? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'author')
   Author get author => throw _privateConstructorUsedError;
-  @JsonKey(name: 'category')
-  String get category => throw _privateConstructorUsedError;
-  @JsonKey(name: 'is_favorite')
   bool get isFavorite => throw _privateConstructorUsedError;
-  @JsonKey(name: 'tags')
   List<String> get tags => throw _privateConstructorUsedError;
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ArticleCopyWith<Article> get copyWith => throw _privateConstructorUsedError;
 }
@@ -54,17 +37,16 @@ abstract class $ArticleCopyWith<$Res> {
       _$ArticleCopyWithImpl<$Res, Article>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'content') String content,
-      @JsonKey(name: 'thumbnail') String thumbnail,
-      @JsonKey(name: 'slug') String slug,
-      @JsonKey(name: 'views') int views,
-      @JsonKey(name: 'created_at') String? createdAt,
-      @JsonKey(name: 'author') Author author,
-      @JsonKey(name: 'category') String category,
-      @JsonKey(name: 'is_favorite') bool isFavorite,
-      @JsonKey(name: 'tags') List<String> tags});
+      {String id,
+      String title,
+      String content,
+      String thumbnail,
+      String slug,
+      int views,
+      Author author,
+      bool isFavorite,
+      List<String> tags,
+      DateTime? createdAt});
 
   $AuthorCopyWith<$Res> get author;
 }
@@ -88,11 +70,10 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
     Object? thumbnail = null,
     Object? slug = null,
     Object? views = null,
-    Object? createdAt = freezed,
     Object? author = null,
-    Object? category = null,
     Object? isFavorite = null,
     Object? tags = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -119,18 +100,10 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
           ? _value.views
           : views // ignore: cast_nullable_to_non_nullable
               as int,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as Author,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String,
       isFavorite: null == isFavorite
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
@@ -139,6 +112,10 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 
@@ -159,17 +136,16 @@ abstract class _$$ArticleImplCopyWith<$Res> implements $ArticleCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'content') String content,
-      @JsonKey(name: 'thumbnail') String thumbnail,
-      @JsonKey(name: 'slug') String slug,
-      @JsonKey(name: 'views') int views,
-      @JsonKey(name: 'created_at') String? createdAt,
-      @JsonKey(name: 'author') Author author,
-      @JsonKey(name: 'category') String category,
-      @JsonKey(name: 'is_favorite') bool isFavorite,
-      @JsonKey(name: 'tags') List<String> tags});
+      {String id,
+      String title,
+      String content,
+      String thumbnail,
+      String slug,
+      int views,
+      Author author,
+      bool isFavorite,
+      List<String> tags,
+      DateTime? createdAt});
 
   @override
   $AuthorCopyWith<$Res> get author;
@@ -192,11 +168,10 @@ class __$$ArticleImplCopyWithImpl<$Res>
     Object? thumbnail = null,
     Object? slug = null,
     Object? views = null,
-    Object? createdAt = freezed,
     Object? author = null,
-    Object? category = null,
     Object? isFavorite = null,
     Object? tags = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$ArticleImpl(
       id: null == id
@@ -223,18 +198,10 @@ class __$$ArticleImplCopyWithImpl<$Res>
           ? _value.views
           : views // ignore: cast_nullable_to_non_nullable
               as int,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String?,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as Author,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String,
       isFavorite: null == isFavorite
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
@@ -243,63 +210,48 @@ class __$$ArticleImplCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$ArticleImpl implements _Article {
   const _$ArticleImpl(
-      {@JsonKey(name: 'id') this.id = '',
-      @JsonKey(name: 'title') this.title = '',
-      @JsonKey(name: 'content') this.content = '',
-      @JsonKey(name: 'thumbnail') this.thumbnail = '',
-      @JsonKey(name: 'slug') this.slug = '',
-      @JsonKey(name: 'views') this.views = 0,
-      @JsonKey(name: 'created_at') this.createdAt,
-      @JsonKey(name: 'author') this.author = const Author(),
-      @JsonKey(name: 'category') this.category = '',
-      @JsonKey(name: 'is_favorite') this.isFavorite = false,
-      @JsonKey(name: 'tags') final List<String> tags = const <String>[]})
+      {required this.id,
+      required this.title,
+      required this.content,
+      required this.thumbnail,
+      required this.slug,
+      required this.views,
+      required this.author,
+      required this.isFavorite,
+      required final List<String> tags,
+      this.createdAt})
       : _tags = tags;
 
-  factory _$ArticleImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ArticleImplFromJson(json);
-
   @override
-  @JsonKey(name: 'id')
   final String id;
   @override
-  @JsonKey(name: 'title')
   final String title;
   @override
-  @JsonKey(name: 'content')
   final String content;
   @override
-  @JsonKey(name: 'thumbnail')
   final String thumbnail;
   @override
-  @JsonKey(name: 'slug')
   final String slug;
   @override
-  @JsonKey(name: 'views')
   final int views;
   @override
-  @JsonKey(name: 'created_at')
-  final String? createdAt;
-  @override
-  @JsonKey(name: 'author')
   final Author author;
   @override
-  @JsonKey(name: 'category')
-  final String category;
-  @override
-  @JsonKey(name: 'is_favorite')
   final bool isFavorite;
   final List<String> _tags;
   @override
-  @JsonKey(name: 'tags')
   List<String> get tags {
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
@@ -307,8 +259,11 @@ class _$ArticleImpl implements _Article {
   }
 
   @override
+  final DateTime? createdAt;
+
+  @override
   String toString() {
-    return 'Article(id: $id, title: $title, content: $content, thumbnail: $thumbnail, slug: $slug, views: $views, createdAt: $createdAt, author: $author, category: $category, isFavorite: $isFavorite, tags: $tags)';
+    return 'Article(id: $id, title: $title, content: $content, thumbnail: $thumbnail, slug: $slug, views: $views, author: $author, isFavorite: $isFavorite, tags: $tags, createdAt: $createdAt)';
   }
 
   @override
@@ -323,17 +278,14 @@ class _$ArticleImpl implements _Article {
                 other.thumbnail == thumbnail) &&
             (identical(other.slug, slug) || other.slug == slug) &&
             (identical(other.views, views) || other.views == views) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
             (identical(other.author, author) || other.author == author) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
             (identical(other.isFavorite, isFavorite) ||
                 other.isFavorite == isFavorite) &&
-            const DeepCollectionEquality().equals(other._tags, _tags));
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -343,75 +295,51 @@ class _$ArticleImpl implements _Article {
       thumbnail,
       slug,
       views,
-      createdAt,
       author,
-      category,
       isFavorite,
-      const DeepCollectionEquality().hash(_tags));
+      const DeepCollectionEquality().hash(_tags),
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ArticleImplCopyWith<_$ArticleImpl> get copyWith =>
       __$$ArticleImplCopyWithImpl<_$ArticleImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ArticleImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Article implements Article {
   const factory _Article(
-      {@JsonKey(name: 'id') final String id,
-      @JsonKey(name: 'title') final String title,
-      @JsonKey(name: 'content') final String content,
-      @JsonKey(name: 'thumbnail') final String thumbnail,
-      @JsonKey(name: 'slug') final String slug,
-      @JsonKey(name: 'views') final int views,
-      @JsonKey(name: 'created_at') final String? createdAt,
-      @JsonKey(name: 'author') final Author author,
-      @JsonKey(name: 'category') final String category,
-      @JsonKey(name: 'is_favorite') final bool isFavorite,
-      @JsonKey(name: 'tags') final List<String> tags}) = _$ArticleImpl;
-
-  factory _Article.fromJson(Map<String, dynamic> json) = _$ArticleImpl.fromJson;
+      {required final String id,
+      required final String title,
+      required final String content,
+      required final String thumbnail,
+      required final String slug,
+      required final int views,
+      required final Author author,
+      required final bool isFavorite,
+      required final List<String> tags,
+      final DateTime? createdAt}) = _$ArticleImpl;
 
   @override
-  @JsonKey(name: 'id')
   String get id;
   @override
-  @JsonKey(name: 'title')
   String get title;
   @override
-  @JsonKey(name: 'content')
   String get content;
   @override
-  @JsonKey(name: 'thumbnail')
   String get thumbnail;
   @override
-  @JsonKey(name: 'slug')
   String get slug;
   @override
-  @JsonKey(name: 'views')
   int get views;
   @override
-  @JsonKey(name: 'created_at')
-  String? get createdAt;
-  @override
-  @JsonKey(name: 'author')
   Author get author;
   @override
-  @JsonKey(name: 'category')
-  String get category;
-  @override
-  @JsonKey(name: 'is_favorite')
   bool get isFavorite;
   @override
-  @JsonKey(name: 'tags')
   List<String> get tags;
+  @override
+  DateTime? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$ArticleImplCopyWith<_$ArticleImpl> get copyWith =>

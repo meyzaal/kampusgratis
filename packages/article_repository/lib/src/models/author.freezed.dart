@@ -14,16 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Author _$AuthorFromJson(Map<String, dynamic> json) {
-  return _Author.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Author {
-  @JsonKey(name: 'full_name')
   String get fullName => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuthorCopyWith<Author> get copyWith => throw _privateConstructorUsedError;
 }
@@ -33,7 +27,7 @@ abstract class $AuthorCopyWith<$Res> {
   factory $AuthorCopyWith(Author value, $Res Function(Author) then) =
       _$AuthorCopyWithImpl<$Res, Author>;
   @useResult
-  $Res call({@JsonKey(name: 'full_name') String fullName});
+  $Res call({String fullName});
 }
 
 /// @nodoc
@@ -67,7 +61,7 @@ abstract class _$$AuthorImplCopyWith<$Res> implements $AuthorCopyWith<$Res> {
       __$$AuthorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'full_name') String fullName});
+  $Res call({String fullName});
 }
 
 /// @nodoc
@@ -93,15 +87,11 @@ class __$$AuthorImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$AuthorImpl implements _Author {
-  const _$AuthorImpl({@JsonKey(name: 'full_name') this.fullName = 'unknown'});
 
-  factory _$AuthorImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AuthorImplFromJson(json);
+class _$AuthorImpl implements _Author {
+  const _$AuthorImpl({required this.fullName});
 
   @override
-  @JsonKey(name: 'full_name')
   final String fullName;
 
   @override
@@ -118,7 +108,6 @@ class _$AuthorImpl implements _Author {
                 other.fullName == fullName));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, fullName);
 
@@ -127,23 +116,12 @@ class _$AuthorImpl implements _Author {
   @pragma('vm:prefer-inline')
   _$$AuthorImplCopyWith<_$AuthorImpl> get copyWith =>
       __$$AuthorImplCopyWithImpl<_$AuthorImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$AuthorImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Author implements Author {
-  const factory _Author({@JsonKey(name: 'full_name') final String fullName}) =
-      _$AuthorImpl;
-
-  factory _Author.fromJson(Map<String, dynamic> json) = _$AuthorImpl.fromJson;
+  const factory _Author({required final String fullName}) = _$AuthorImpl;
 
   @override
-  @JsonKey(name: 'full_name')
   String get fullName;
   @override
   @JsonKey(ignore: true)
