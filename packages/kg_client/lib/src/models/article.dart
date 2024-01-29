@@ -70,3 +70,53 @@ class Author with _$Author {
   /// Factory method to create an [Author] instance from a JSON map.
   factory Author.fromJson(Map<String, Object?> json) => _$AuthorFromJson(json);
 }
+
+@freezed
+class SearchHistoryResult with _$SearchHistoryResult {
+  const factory SearchHistoryResult({
+    @JsonKey(name: 'code') int? code,
+    @JsonKey(name: 'status') String? status,
+    @JsonKey(name: 'message') String? message,
+    @JsonKey(name: 'data') SearchHistoryData? data,
+    @JsonKey(name: 'meta') SearchHistoryMeta? meta,
+  }) = _SearchHistoryResult;
+
+  factory SearchHistoryResult.fromJson(Map<String, Object?> json) =>
+      _$SearchHistoryResultFromJson(json);
+}
+
+@freezed
+class SearchHistoryData with _$SearchHistoryData {
+  const factory SearchHistoryData({
+    @JsonKey(name: 'articles') List<History>? articles,
+  }) = _SearchHistoryData;
+
+  factory SearchHistoryData.fromJson(Map<String, Object?> json) =>
+      _$SearchHistoryDataFromJson(json);
+}
+
+@freezed
+class History with _$History {
+  const factory History({
+    @JsonKey(name: 'id') String? id,
+    @JsonKey(name: 'keyword') String? keyword,
+    @JsonKey(name: 'type') String? type,
+    @JsonKey(name: 'created_at') String? createdAt,
+  }) = _History;
+
+  factory History.fromJson(Map<String, Object?> json) =>
+      _$HistoryFromJson(json);
+}
+
+@freezed
+class SearchHistoryMeta with _$SearchHistoryMeta {
+  const factory SearchHistoryMeta({
+    @JsonKey(name: 'page') int? page,
+    @JsonKey(name: 'per_page') int? perPage,
+    @JsonKey(name: 'page_size') int? pageSize,
+    @JsonKey(name: 'total_data') int? totalData,
+  }) = _SearchHistoryMeta;
+
+  factory SearchHistoryMeta.fromJson(Map<String, Object?> json) =>
+      _$SearchHistoryMetaFromJson(json);
+}

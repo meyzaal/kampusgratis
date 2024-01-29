@@ -8,6 +8,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:kg_client/src/exception/network_exception.dart';
 import 'package:kg_client/src/local_storage.dart';
+import 'package:kg_client/src/models/leaderboard.dart';
 import 'package:kg_client/src/models/models.dart';
 import 'package:mime/mime.dart';
 import 'package:path/path.dart';
@@ -174,15 +175,12 @@ class KgClient {
   Future<void> signOut() async {
     final token = await _fresh.token;
 
-    if (token?.refreshToken != null) {
-      final data = {'refresh_token': token?.refreshToken};
+    if (token?.refreshToken == null) return _unauthenticate();
 
-      unawaited(
-        _httpClient.authorized.post<void>('/v1/auth/logout', data: data),
-      );
-    }
+    final data = {'refresh_token': token?.refreshToken};
+    await _httpClient.post<void>('/v1/auth/logout', data: data);
 
-    await _unauthenticate();
+    return _unauthenticate();
   }
 
   Future<void> requestOtpEmailVerification(String email) async {
@@ -289,8 +287,7 @@ class KgClient {
 
   Future<User> getUser() async {
     try {
-      final response =
-          await _httpClient.authorized.get<dynamic>('/v1/user/profile/me');
+      final response = await _httpClient.get<dynamic>('/v1/user/profile/me');
 
       final result = Result<UserData>.fromJson(
         response.data as JSON,
@@ -311,8 +308,8 @@ class KgClient {
 
   Future<Profile> getProfile() async {
     try {
-      final response = await _httpClient.authorized
-          .get<dynamic>('/v1/user/profile/complete');
+      final response =
+          await _httpClient.get<dynamic>('/v1/user/profile/complete');
 
       final result = Result<Profile>.fromJson(
         response.data as JSON,
@@ -346,7 +343,7 @@ class KgClient {
         if (username != null) 'user_name': username,
         if (phone != null) 'phone_number': phone,
       };
-      final response = await _httpClient.authorized.put<dynamic>(
+      final response = await _httpClient.put<dynamic>(
         '/v1/user/profile/me',
         data: data,
       );
@@ -379,7 +376,7 @@ class KgClient {
         contentType: image.mediaType,
       );
       final data = FormData.fromMap({'avatar': avatarFile});
-      final response = await _httpClient.authorized.put<dynamic>(
+      final response = await _httpClient.put<dynamic>(
         '/v1/user/profile/avatar',
         data: data,
       );
@@ -423,7 +420,7 @@ class KgClient {
         if (search != null) 'search': search,
         if (sortBy != null) 'sort_by': sortBy,
       };
-      final response = await _httpClient.authorized.get<dynamic>(
+      final response = await _httpClient.get<dynamic>(
         '/v1/article/filter',
         queryParameters: params,
       );
@@ -446,8 +443,7 @@ class KgClient {
 
   Future<Article> getArticleBySlug(String slug) async {
     try {
-      final response =
-          await _httpClient.authorized.get<dynamic>('/v1/article/$slug');
+      final response = await _httpClient.get<dynamic>('/v1/article/$slug');
       final result = Result<Article>.fromJson(
         response.data as JSON,
         (json) => Article.fromJson(json as JSON? ?? {}),
@@ -478,7 +474,7 @@ class KgClient {
         if (search != null) 'search': search,
         if (sortBy != null) 'sort_by': sortBy,
       };
-      final response = await _httpClient.authorized.get<dynamic>(
+      final response = await _httpClient.get<dynamic>(
         '/v1/article/favorite',
         queryParameters: params,
       );
@@ -501,8 +497,8 @@ class KgClient {
 
   Future<List<Article>> getRelatedArticles(String articleId) async {
     try {
-      final response = await _httpClient.authorized
-          .get<dynamic>('/v1/article/related/$articleId');
+      final response =
+          await _httpClient.get<dynamic>('/v1/article/related/$articleId');
       final result = Result<List<Article>>.fromJson(
         response.data as JSON,
         (json) {
@@ -511,8 +507,7 @@ class KgClient {
         },
       );
 
-      final articles = result.data;
-      return articles ?? <Article>[];
+      return result.data ?? <Article>[];
     } catch (e) {
       throw _getException(e);
     }
@@ -522,8 +517,7 @@ class KgClient {
     try {
       final data = {'article_id': articleId};
 
-      await _httpClient.authorized
-          .post<void>('/v1/article/favorite', data: data);
+      await _httpClient.post<void>('/v1/article/favorite', data: data);
     } catch (e) {
       throw _getException(e);
     }
@@ -531,8 +525,46 @@ class KgClient {
 
   Future<void> unbookmarkArticle(String articleId) async {
     try {
-      await _httpClient.authorized
-          .delete<void>('/v1/article/favorite/$articleId');
+      await _httpClient.delete<void>('/v1/article/favorite/$articleId');
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+  Future<SearchHistoryResult> getArticleSearchHistories({
+    int? page,
+    int? limit,
+  }) async {
+    try {
+      final params = {
+        if (page != null) 'page': page,
+        if (limit != null) 'limit': limit,
+      };
+      final response = await _httpClient.get<dynamic>(
+        '//v1/search/histories/articles',
+        queryParameters: params,
+      );
+
+      final result = SearchHistoryResult.fromJson(response.data as JSON);
+
+      return result;
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+  Future<void> deleteArticleSearchHistory(String historySearchId) async {
+    try {
+      await _httpClient
+          .delete<void>('/v1/search/histories/articles/$historySearchId');
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+  Future<void> deleteAllArticleSearchHistory() async {
+    try {
+      await _httpClient.delete<void>('/v1/search/histories/articles/all');
     } catch (e) {
       throw _getException(e);
     }
@@ -557,8 +589,7 @@ class KgClient {
 
   Future<Administration> getAdministration() async {
     try {
-      final response =
-          await _httpClient.authorized.get<dynamic>('/v1/administration');
+      final response = await _httpClient.get<dynamic>('/v1/administration');
       final result = Result<Administration>.fromJson(
         response.data as JSON,
         (json) => Administration.fromJson(json as JSON? ?? {}),
@@ -638,7 +669,7 @@ class KgClient {
         if (semester != null) 'semester': semester,
         if (nim != null) 'nim': nim,
       };
-      final response = await _httpClient.authorized
+      final response = await _httpClient
           .post<dynamic>('/administration/biodata', data: data);
       final result = Result<Biodata>.fromJson(
         response.data as JSON,
@@ -682,7 +713,7 @@ class KgClient {
         'live_with': liveWith,
         'tuition_payer': tuitionPayer,
       };
-      final response = await _httpClient.authorized
+      final response = await _httpClient
           .post<dynamic>('/administration/biodata', data: data);
       final result = Result<Familial>.fromJson(
         response.data as JSON,
@@ -791,8 +822,8 @@ class KgClient {
         if (letterOfRecommendation != null)
           'letter_of_Recommendation': letterOfRecommendation,
       });
-      final response = await _httpClient.authorized
-          .post<dynamic>('/administration/file', data: data);
+      final response =
+          await _httpClient.post<dynamic>('/administration/file', data: data);
       final result = Result<Documents>.fromJson(
         response.data as JSON,
         (json) => Documents.fromJson(json as JSON? ?? {}),
@@ -805,6 +836,162 @@ class KgClient {
         );
       }
       return documents;
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+  Future<List<Province>> getProvincies() async {
+    try {
+      final response =
+          await _httpClient.get<dynamic>('/v1/administrative/provincies');
+      final result =
+          Result<List<Province>>.fromJson(response.data as JSON, (json) {
+        final datas = json as List<JSON>? ?? [];
+        return datas.map(Province.fromJson).toList();
+      });
+
+      return result.data ?? <Province>[];
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+  Future<List<Regency>> getRegencies(String provinceId) async {
+    try {
+      final params = {'province_id': provinceId};
+      final response = await _httpClient.get<dynamic>(
+        '/v1/administrative/regencies',
+        queryParameters: params,
+      );
+      final result =
+          Result<List<Regency>>.fromJson(response.data as JSON, (json) {
+        final datas = json as List<JSON>? ?? [];
+        return datas.map(Regency.fromJson).toList();
+      });
+
+      return result.data ?? <Regency>[];
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+  Future<List<District>> getDistricts(String regencyId) async {
+    try {
+      final params = {'regency_id': regencyId};
+      final response = await _httpClient.get<dynamic>(
+        '/v1/administrative/districts',
+        queryParameters: params,
+      );
+      final result =
+          Result<List<District>>.fromJson(response.data as JSON, (json) {
+        final datas = json as List<JSON>? ?? [];
+        return datas.map(District.fromJson).toList();
+      });
+
+      return result.data ?? <District>[];
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+  Future<List<Village>> getVillages(String districtId) async {
+    try {
+      final params = {'district_id': districtId};
+      final response = await _httpClient.get<dynamic>(
+        '/v1/administrative/villages',
+        queryParameters: params,
+      );
+      final result =
+          Result<List<Village>>.fromJson(response.data as JSON, (json) {
+        final datas = json as List<JSON>? ?? [];
+        return datas.map(Village.fromJson).toList();
+      });
+
+      return result.data ?? <Village>[];
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+// PAPAN SKOR
+//
+//  ██╗     ███████╗ █████╗ ██████╗ ███████╗██████╗
+//  ██║     ██╔════╝██╔══██╗██╔══██╗██╔════╝██╔══██╗
+//  ██║     █████╗  ███████║██║  ██║█████╗  ██████╔╝
+//  ██║     ██╔══╝  ██╔══██║██║  ██║██╔══╝  ██╔══██╗
+//  ███████╗███████╗██║  ██║██████╔╝███████╗██║  ██║
+//  ╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝
+//
+//  ██████╗  ██████╗  █████╗ ██████╗ ██████╗
+//  ██╔══██╗██╔═══██╗██╔══██╗██╔══██╗██╔══██╗
+//  ██████╔╝██║   ██║███████║██████╔╝██║  ██║
+//  ██╔══██╗██║   ██║██╔══██║██╔══██╗██║  ██║
+//  ██████╔╝╚██████╔╝██║  ██║██║  ██║██████╔╝
+//  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝
+//
+
+  Future<LeaderboardResult> getLeaderboardHighestScore({
+    int? page,
+    int? limit,
+    String? search,
+  }) async {
+    try {
+      final params = {
+        if (page != null) 'page': page,
+        if (limit != null) 'limit': limit,
+        if (search != null) 'search': search,
+      };
+      final response = await _httpClient.get<dynamic>(
+        '/v2/leaderboard/highest',
+        queryParameters: params,
+      );
+
+      return LeaderboardResult.fromJson(response.data as JSON);
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+  Future<LeaderboardResult> getLeaderboardMostActive({
+    int? page,
+    int? limit,
+    String? search,
+  }) async {
+    try {
+      final params = {
+        if (page != null) 'page': page,
+        if (limit != null) 'limit': limit,
+        if (search != null) 'search': search,
+      };
+      final response = await _httpClient.get<dynamic>(
+        '/v2/leaderboard/most-active',
+        queryParameters: params,
+      );
+
+      return LeaderboardResult.fromJson(response.data as JSON);
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+  Future<LeaderboardResult> getLeaderboardFastest({
+    int? page,
+    int? limit,
+    String? search,
+  }) async {
+    try {
+      final params = {
+        if (page != null) 'page': page,
+        if (limit != null) 'limit': limit,
+        if (search != null) 'search': search,
+      };
+      final response = await _httpClient.get<dynamic>(
+        '/v2/leaderboard/fastest',
+        queryParameters: params,
+      );
+
+      return LeaderboardResult.fromJson(response.data as JSON);
     } catch (e) {
       throw _getException(e);
     }
@@ -924,32 +1111,28 @@ extension on File {
   Future<double> get fileSizeInMB async => await length() / (1024 * 1024);
 }
 
+// extension on Dio {
+//   Dio get authorized => this
+//     ..interceptors.add(
+//       InterceptorsWrapper(
+//         onRequest: (options, handler) async {
+//           final token = await _fresh.token;
+
+//           if (token != null) {
+//             options.headers = {'authorization': 'Bearer'};
+//           }
+
+//           return handler.next(options);
+//         },
+//       ),
+//     );
+// }
+
 extension on DioExceptionType {
   String get toDashedSnakeCase => name.replaceAllMapped(
         RegExp('([A-Z])'),
         (Match match) => '-${match.group(1)!.toLowerCase()}',
       );
-}
-
-extension on Dio {
-  Dio get authorized => this
-    ..interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) async {
-          // Retrieve the authentication token from the [fresh] object.
-          final token = await _fresh.token;
-
-          // Add authorization headers if a valid token is present.
-          if (token != null) {
-            options.headers.addAll(
-              {'authorization': '${token.tokenType} ${token.accessToken}'},
-            );
-          }
-
-          return handler.next(options);
-        },
-      ),
-    );
 }
 
 /// JSON type definition for Map<String, dynamic>.

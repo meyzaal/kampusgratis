@@ -25,7 +25,7 @@ mixin _$Administration {
   @JsonKey(name: 'user_id')
   String? get userId => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
-  String? get status => throw _privateConstructorUsedError;
+  Status? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'type')
   String? get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'reason')
@@ -54,7 +54,7 @@ abstract class $AdministrationCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'user_id') String? userId,
-      @JsonKey(name: 'status') String? status,
+      @JsonKey(name: 'status') Status? status,
       @JsonKey(name: 'type') String? type,
       @JsonKey(name: 'reason') String? reason,
       @JsonKey(name: 'action_by') String? actionBy,
@@ -102,7 +102,7 @@ class _$AdministrationCopyWithImpl<$Res, $Val extends Administration>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Status?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ abstract class _$$AdministrationImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'user_id') String? userId,
-      @JsonKey(name: 'status') String? status,
+      @JsonKey(name: 'status') Status? status,
       @JsonKey(name: 'type') String? type,
       @JsonKey(name: 'reason') String? reason,
       @JsonKey(name: 'action_by') String? actionBy,
@@ -227,7 +227,7 @@ class __$$AdministrationImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Status?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -281,7 +281,7 @@ class _$AdministrationImpl implements _Administration {
   final String? userId;
   @override
   @JsonKey(name: 'status')
-  final String? status;
+  final Status? status;
   @override
   @JsonKey(name: 'type')
   final String? type;
@@ -348,7 +348,7 @@ abstract class _Administration implements Administration {
   const factory _Administration(
       {@JsonKey(name: 'id') final String? id,
       @JsonKey(name: 'user_id') final String? userId,
-      @JsonKey(name: 'status') final String? status,
+      @JsonKey(name: 'status') final Status? status,
       @JsonKey(name: 'type') final String? type,
       @JsonKey(name: 'reason') final String? reason,
       @JsonKey(name: 'action_by') final String? actionBy,
@@ -367,7 +367,7 @@ abstract class _Administration implements Administration {
   String? get userId;
   @override
   @JsonKey(name: 'status')
-  String? get status;
+  Status? get status;
   @override
   @JsonKey(name: 'type')
   String? get type;
@@ -405,7 +405,7 @@ mixin _$Biodata {
   @JsonKey(name: 'full_name')
   String? get fullName => throw _privateConstructorUsedError;
   @JsonKey(name: 'gender')
-  String? get gender => throw _privateConstructorUsedError;
+  Gender? get gender => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'birthdate')
@@ -459,7 +459,7 @@ abstract class $BiodataCopyWith<$Res> {
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'administration_id') String? administrationId,
       @JsonKey(name: 'full_name') String? fullName,
-      @JsonKey(name: 'gender') String? gender,
+      @JsonKey(name: 'gender') Gender? gender,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'birthdate') String? birthdate,
       @JsonKey(name: 'birthplace') String? birthplace,
@@ -534,7 +534,7 @@ class _$BiodataCopyWithImpl<$Res, $Val extends Biodata>
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Gender?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -626,7 +626,7 @@ abstract class _$$BiodataImplCopyWith<$Res> implements $BiodataCopyWith<$Res> {
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'administration_id') String? administrationId,
       @JsonKey(name: 'full_name') String? fullName,
-      @JsonKey(name: 'gender') String? gender,
+      @JsonKey(name: 'gender') Gender? gender,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'birthdate') String? birthdate,
       @JsonKey(name: 'birthplace') String? birthplace,
@@ -699,7 +699,7 @@ class __$$BiodataImplCopyWithImpl<$Res>
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Gender?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -822,7 +822,7 @@ class _$BiodataImpl implements _Biodata {
   final String? fullName;
   @override
   @JsonKey(name: 'gender')
-  final String? gender;
+  final Gender? gender;
   @override
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
@@ -980,7 +980,7 @@ abstract class _Biodata implements Biodata {
       {@JsonKey(name: 'id') final String? id,
       @JsonKey(name: 'administration_id') final String? administrationId,
       @JsonKey(name: 'full_name') final String? fullName,
-      @JsonKey(name: 'gender') final String? gender,
+      @JsonKey(name: 'gender') final Gender? gender,
       @JsonKey(name: 'phone_number') final String? phoneNumber,
       @JsonKey(name: 'birthdate') final String? birthdate,
       @JsonKey(name: 'birthplace') final String? birthplace,
@@ -1014,7 +1014,7 @@ abstract class _Biodata implements Biodata {
   String? get fullName;
   @override
   @JsonKey(name: 'gender')
-  String? get gender;
+  Gender? get gender;
   @override
   @JsonKey(name: 'phone_number')
   String? get phoneNumber;
@@ -1509,31 +1509,31 @@ mixin _$Documents {
   @JsonKey(name: 'administration_id')
   String? get administrationId => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_card_id')
-  String? get idCardId => throw _privateConstructorUsedError;
+  int? get idCardId => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_card')
   String? get idCard => throw _privateConstructorUsedError;
   @JsonKey(name: 'diploma_certificate_id')
-  String? get diplomaCertificateId => throw _privateConstructorUsedError;
+  int? get diplomaCertificateId => throw _privateConstructorUsedError;
   @JsonKey(name: 'diploma_certificate')
   String? get diplomaCertificate => throw _privateConstructorUsedError;
   @JsonKey(name: 'family_card_id')
-  String? get familyCardId => throw _privateConstructorUsedError;
+  int? get familyCardId => throw _privateConstructorUsedError;
   @JsonKey(name: 'family_card')
   String? get familyCard => throw _privateConstructorUsedError;
   @JsonKey(name: 'photo_id')
-  String? get photoId => throw _privateConstructorUsedError;
+  int? get photoId => throw _privateConstructorUsedError;
   @JsonKey(name: 'photo')
   String? get photo => throw _privateConstructorUsedError;
   @JsonKey(name: 'transcript_id')
-  String? get transcriptId => throw _privateConstructorUsedError;
+  int? get transcriptId => throw _privateConstructorUsedError;
   @JsonKey(name: 'transcript')
   String? get transcript => throw _privateConstructorUsedError;
   @JsonKey(name: 'letter_of_recommendation_id')
-  String? get letterOfRecommendationId => throw _privateConstructorUsedError;
+  int? get letterOfRecommendationId => throw _privateConstructorUsedError;
   @JsonKey(name: 'letter_of_recommendation')
   String? get letterOfRecommendation => throw _privateConstructorUsedError;
   @JsonKey(name: 'student_card_id')
-  String? get studentCardId => throw _privateConstructorUsedError;
+  int? get studentCardId => throw _privateConstructorUsedError;
   @JsonKey(name: 'student_card')
   String? get studentCard => throw _privateConstructorUsedError;
 
@@ -1551,20 +1551,20 @@ abstract class $DocumentsCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'administration_id') String? administrationId,
-      @JsonKey(name: 'id_card_id') String? idCardId,
+      @JsonKey(name: 'id_card_id') int? idCardId,
       @JsonKey(name: 'id_card') String? idCard,
-      @JsonKey(name: 'diploma_certificate_id') String? diplomaCertificateId,
+      @JsonKey(name: 'diploma_certificate_id') int? diplomaCertificateId,
       @JsonKey(name: 'diploma_certificate') String? diplomaCertificate,
-      @JsonKey(name: 'family_card_id') String? familyCardId,
+      @JsonKey(name: 'family_card_id') int? familyCardId,
       @JsonKey(name: 'family_card') String? familyCard,
-      @JsonKey(name: 'photo_id') String? photoId,
+      @JsonKey(name: 'photo_id') int? photoId,
       @JsonKey(name: 'photo') String? photo,
-      @JsonKey(name: 'transcript_id') String? transcriptId,
+      @JsonKey(name: 'transcript_id') int? transcriptId,
       @JsonKey(name: 'transcript') String? transcript,
       @JsonKey(name: 'letter_of_recommendation_id')
-      String? letterOfRecommendationId,
+      int? letterOfRecommendationId,
       @JsonKey(name: 'letter_of_recommendation') String? letterOfRecommendation,
-      @JsonKey(name: 'student_card_id') String? studentCardId,
+      @JsonKey(name: 'student_card_id') int? studentCardId,
       @JsonKey(name: 'student_card') String? studentCard});
 }
 
@@ -1610,7 +1610,7 @@ class _$DocumentsCopyWithImpl<$Res, $Val extends Documents>
       idCardId: freezed == idCardId
           ? _value.idCardId
           : idCardId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       idCard: freezed == idCard
           ? _value.idCard
           : idCard // ignore: cast_nullable_to_non_nullable
@@ -1618,7 +1618,7 @@ class _$DocumentsCopyWithImpl<$Res, $Val extends Documents>
       diplomaCertificateId: freezed == diplomaCertificateId
           ? _value.diplomaCertificateId
           : diplomaCertificateId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       diplomaCertificate: freezed == diplomaCertificate
           ? _value.diplomaCertificate
           : diplomaCertificate // ignore: cast_nullable_to_non_nullable
@@ -1626,7 +1626,7 @@ class _$DocumentsCopyWithImpl<$Res, $Val extends Documents>
       familyCardId: freezed == familyCardId
           ? _value.familyCardId
           : familyCardId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       familyCard: freezed == familyCard
           ? _value.familyCard
           : familyCard // ignore: cast_nullable_to_non_nullable
@@ -1634,7 +1634,7 @@ class _$DocumentsCopyWithImpl<$Res, $Val extends Documents>
       photoId: freezed == photoId
           ? _value.photoId
           : photoId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       photo: freezed == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -1642,7 +1642,7 @@ class _$DocumentsCopyWithImpl<$Res, $Val extends Documents>
       transcriptId: freezed == transcriptId
           ? _value.transcriptId
           : transcriptId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       transcript: freezed == transcript
           ? _value.transcript
           : transcript // ignore: cast_nullable_to_non_nullable
@@ -1650,7 +1650,7 @@ class _$DocumentsCopyWithImpl<$Res, $Val extends Documents>
       letterOfRecommendationId: freezed == letterOfRecommendationId
           ? _value.letterOfRecommendationId
           : letterOfRecommendationId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       letterOfRecommendation: freezed == letterOfRecommendation
           ? _value.letterOfRecommendation
           : letterOfRecommendation // ignore: cast_nullable_to_non_nullable
@@ -1658,7 +1658,7 @@ class _$DocumentsCopyWithImpl<$Res, $Val extends Documents>
       studentCardId: freezed == studentCardId
           ? _value.studentCardId
           : studentCardId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       studentCard: freezed == studentCard
           ? _value.studentCard
           : studentCard // ignore: cast_nullable_to_non_nullable
@@ -1678,20 +1678,20 @@ abstract class _$$DocumentsImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'id') String? id,
       @JsonKey(name: 'administration_id') String? administrationId,
-      @JsonKey(name: 'id_card_id') String? idCardId,
+      @JsonKey(name: 'id_card_id') int? idCardId,
       @JsonKey(name: 'id_card') String? idCard,
-      @JsonKey(name: 'diploma_certificate_id') String? diplomaCertificateId,
+      @JsonKey(name: 'diploma_certificate_id') int? diplomaCertificateId,
       @JsonKey(name: 'diploma_certificate') String? diplomaCertificate,
-      @JsonKey(name: 'family_card_id') String? familyCardId,
+      @JsonKey(name: 'family_card_id') int? familyCardId,
       @JsonKey(name: 'family_card') String? familyCard,
-      @JsonKey(name: 'photo_id') String? photoId,
+      @JsonKey(name: 'photo_id') int? photoId,
       @JsonKey(name: 'photo') String? photo,
-      @JsonKey(name: 'transcript_id') String? transcriptId,
+      @JsonKey(name: 'transcript_id') int? transcriptId,
       @JsonKey(name: 'transcript') String? transcript,
       @JsonKey(name: 'letter_of_recommendation_id')
-      String? letterOfRecommendationId,
+      int? letterOfRecommendationId,
       @JsonKey(name: 'letter_of_recommendation') String? letterOfRecommendation,
-      @JsonKey(name: 'student_card_id') String? studentCardId,
+      @JsonKey(name: 'student_card_id') int? studentCardId,
       @JsonKey(name: 'student_card') String? studentCard});
 }
 
@@ -1735,7 +1735,7 @@ class __$$DocumentsImplCopyWithImpl<$Res>
       idCardId: freezed == idCardId
           ? _value.idCardId
           : idCardId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       idCard: freezed == idCard
           ? _value.idCard
           : idCard // ignore: cast_nullable_to_non_nullable
@@ -1743,7 +1743,7 @@ class __$$DocumentsImplCopyWithImpl<$Res>
       diplomaCertificateId: freezed == diplomaCertificateId
           ? _value.diplomaCertificateId
           : diplomaCertificateId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       diplomaCertificate: freezed == diplomaCertificate
           ? _value.diplomaCertificate
           : diplomaCertificate // ignore: cast_nullable_to_non_nullable
@@ -1751,7 +1751,7 @@ class __$$DocumentsImplCopyWithImpl<$Res>
       familyCardId: freezed == familyCardId
           ? _value.familyCardId
           : familyCardId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       familyCard: freezed == familyCard
           ? _value.familyCard
           : familyCard // ignore: cast_nullable_to_non_nullable
@@ -1759,7 +1759,7 @@ class __$$DocumentsImplCopyWithImpl<$Res>
       photoId: freezed == photoId
           ? _value.photoId
           : photoId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       photo: freezed == photo
           ? _value.photo
           : photo // ignore: cast_nullable_to_non_nullable
@@ -1767,7 +1767,7 @@ class __$$DocumentsImplCopyWithImpl<$Res>
       transcriptId: freezed == transcriptId
           ? _value.transcriptId
           : transcriptId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       transcript: freezed == transcript
           ? _value.transcript
           : transcript // ignore: cast_nullable_to_non_nullable
@@ -1775,7 +1775,7 @@ class __$$DocumentsImplCopyWithImpl<$Res>
       letterOfRecommendationId: freezed == letterOfRecommendationId
           ? _value.letterOfRecommendationId
           : letterOfRecommendationId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       letterOfRecommendation: freezed == letterOfRecommendation
           ? _value.letterOfRecommendation
           : letterOfRecommendation // ignore: cast_nullable_to_non_nullable
@@ -1783,7 +1783,7 @@ class __$$DocumentsImplCopyWithImpl<$Res>
       studentCardId: freezed == studentCardId
           ? _value.studentCardId
           : studentCardId // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       studentCard: freezed == studentCard
           ? _value.studentCard
           : studentCard // ignore: cast_nullable_to_non_nullable
@@ -1825,43 +1825,43 @@ class _$DocumentsImpl implements _Documents {
   final String? administrationId;
   @override
   @JsonKey(name: 'id_card_id')
-  final String? idCardId;
+  final int? idCardId;
   @override
   @JsonKey(name: 'id_card')
   final String? idCard;
   @override
   @JsonKey(name: 'diploma_certificate_id')
-  final String? diplomaCertificateId;
+  final int? diplomaCertificateId;
   @override
   @JsonKey(name: 'diploma_certificate')
   final String? diplomaCertificate;
   @override
   @JsonKey(name: 'family_card_id')
-  final String? familyCardId;
+  final int? familyCardId;
   @override
   @JsonKey(name: 'family_card')
   final String? familyCard;
   @override
   @JsonKey(name: 'photo_id')
-  final String? photoId;
+  final int? photoId;
   @override
   @JsonKey(name: 'photo')
   final String? photo;
   @override
   @JsonKey(name: 'transcript_id')
-  final String? transcriptId;
+  final int? transcriptId;
   @override
   @JsonKey(name: 'transcript')
   final String? transcript;
   @override
   @JsonKey(name: 'letter_of_recommendation_id')
-  final String? letterOfRecommendationId;
+  final int? letterOfRecommendationId;
   @override
   @JsonKey(name: 'letter_of_recommendation')
   final String? letterOfRecommendation;
   @override
   @JsonKey(name: 'student_card_id')
-  final String? studentCardId;
+  final int? studentCardId;
   @override
   @JsonKey(name: 'student_card')
   final String? studentCard;
@@ -1946,22 +1946,21 @@ abstract class _Documents implements Documents {
   const factory _Documents(
       {@JsonKey(name: 'id') final String? id,
       @JsonKey(name: 'administration_id') final String? administrationId,
-      @JsonKey(name: 'id_card_id') final String? idCardId,
+      @JsonKey(name: 'id_card_id') final int? idCardId,
       @JsonKey(name: 'id_card') final String? idCard,
-      @JsonKey(name: 'diploma_certificate_id')
-      final String? diplomaCertificateId,
+      @JsonKey(name: 'diploma_certificate_id') final int? diplomaCertificateId,
       @JsonKey(name: 'diploma_certificate') final String? diplomaCertificate,
-      @JsonKey(name: 'family_card_id') final String? familyCardId,
+      @JsonKey(name: 'family_card_id') final int? familyCardId,
       @JsonKey(name: 'family_card') final String? familyCard,
-      @JsonKey(name: 'photo_id') final String? photoId,
+      @JsonKey(name: 'photo_id') final int? photoId,
       @JsonKey(name: 'photo') final String? photo,
-      @JsonKey(name: 'transcript_id') final String? transcriptId,
+      @JsonKey(name: 'transcript_id') final int? transcriptId,
       @JsonKey(name: 'transcript') final String? transcript,
       @JsonKey(name: 'letter_of_recommendation_id')
-      final String? letterOfRecommendationId,
+      final int? letterOfRecommendationId,
       @JsonKey(name: 'letter_of_recommendation')
       final String? letterOfRecommendation,
-      @JsonKey(name: 'student_card_id') final String? studentCardId,
+      @JsonKey(name: 'student_card_id') final int? studentCardId,
       @JsonKey(name: 'student_card')
       final String? studentCard}) = _$DocumentsImpl;
 
@@ -1976,43 +1975,43 @@ abstract class _Documents implements Documents {
   String? get administrationId;
   @override
   @JsonKey(name: 'id_card_id')
-  String? get idCardId;
+  int? get idCardId;
   @override
   @JsonKey(name: 'id_card')
   String? get idCard;
   @override
   @JsonKey(name: 'diploma_certificate_id')
-  String? get diplomaCertificateId;
+  int? get diplomaCertificateId;
   @override
   @JsonKey(name: 'diploma_certificate')
   String? get diplomaCertificate;
   @override
   @JsonKey(name: 'family_card_id')
-  String? get familyCardId;
+  int? get familyCardId;
   @override
   @JsonKey(name: 'family_card')
   String? get familyCard;
   @override
   @JsonKey(name: 'photo_id')
-  String? get photoId;
+  int? get photoId;
   @override
   @JsonKey(name: 'photo')
   String? get photo;
   @override
   @JsonKey(name: 'transcript_id')
-  String? get transcriptId;
+  int? get transcriptId;
   @override
   @JsonKey(name: 'transcript')
   String? get transcript;
   @override
   @JsonKey(name: 'letter_of_recommendation_id')
-  String? get letterOfRecommendationId;
+  int? get letterOfRecommendationId;
   @override
   @JsonKey(name: 'letter_of_recommendation')
   String? get letterOfRecommendation;
   @override
   @JsonKey(name: 'student_card_id')
-  String? get studentCardId;
+  int? get studentCardId;
   @override
   @JsonKey(name: 'student_card')
   String? get studentCard;
@@ -2567,5 +2566,730 @@ abstract class _ConstantMap implements ConstantMap {
   @override
   @JsonKey(ignore: true)
   _$$ConstantMapImplCopyWith<_$ConstantMapImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Province _$ProvinceFromJson(Map<String, dynamic> json) {
+  return _Province.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Province {
+  @JsonKey(name: 'code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
+  String? get name => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProvinceCopyWith<Province> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProvinceCopyWith<$Res> {
+  factory $ProvinceCopyWith(Province value, $Res Function(Province) then) =
+      _$ProvinceCopyWithImpl<$Res, Province>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code') String? code,
+      @JsonKey(name: 'name') String? name});
+}
+
+/// @nodoc
+class _$ProvinceCopyWithImpl<$Res, $Val extends Province>
+    implements $ProvinceCopyWith<$Res> {
+  _$ProvinceCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_value.copyWith(
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProvinceImplCopyWith<$Res>
+    implements $ProvinceCopyWith<$Res> {
+  factory _$$ProvinceImplCopyWith(
+          _$ProvinceImpl value, $Res Function(_$ProvinceImpl) then) =
+      __$$ProvinceImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code') String? code,
+      @JsonKey(name: 'name') String? name});
+}
+
+/// @nodoc
+class __$$ProvinceImplCopyWithImpl<$Res>
+    extends _$ProvinceCopyWithImpl<$Res, _$ProvinceImpl>
+    implements _$$ProvinceImplCopyWith<$Res> {
+  __$$ProvinceImplCopyWithImpl(
+      _$ProvinceImpl _value, $Res Function(_$ProvinceImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_$ProvinceImpl(
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProvinceImpl implements _Province {
+  const _$ProvinceImpl(
+      {@JsonKey(name: 'code') this.code, @JsonKey(name: 'name') this.name});
+
+  factory _$ProvinceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProvinceImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'code')
+  final String? code;
+  @override
+  @JsonKey(name: 'name')
+  final String? name;
+
+  @override
+  String toString() {
+    return 'Province(code: $code, name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProvinceImpl &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, code, name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProvinceImplCopyWith<_$ProvinceImpl> get copyWith =>
+      __$$ProvinceImplCopyWithImpl<_$ProvinceImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProvinceImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Province implements Province {
+  const factory _Province(
+      {@JsonKey(name: 'code') final String? code,
+      @JsonKey(name: 'name') final String? name}) = _$ProvinceImpl;
+
+  factory _Province.fromJson(Map<String, dynamic> json) =
+      _$ProvinceImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'code')
+  String? get code;
+  @override
+  @JsonKey(name: 'name')
+  String? get name;
+  @override
+  @JsonKey(ignore: true)
+  _$$ProvinceImplCopyWith<_$ProvinceImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Regency _$RegencyFromJson(Map<String, dynamic> json) {
+  return _Regency.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Regency {
+  @JsonKey(name: 'code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'province_code')
+  String? get provinceCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
+  String? get name => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RegencyCopyWith<Regency> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegencyCopyWith<$Res> {
+  factory $RegencyCopyWith(Regency value, $Res Function(Regency) then) =
+      _$RegencyCopyWithImpl<$Res, Regency>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code') String? code,
+      @JsonKey(name: 'province_code') String? provinceCode,
+      @JsonKey(name: 'name') String? name});
+}
+
+/// @nodoc
+class _$RegencyCopyWithImpl<$Res, $Val extends Regency>
+    implements $RegencyCopyWith<$Res> {
+  _$RegencyCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? provinceCode = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_value.copyWith(
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      provinceCode: freezed == provinceCode
+          ? _value.provinceCode
+          : provinceCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RegencyImplCopyWith<$Res> implements $RegencyCopyWith<$Res> {
+  factory _$$RegencyImplCopyWith(
+          _$RegencyImpl value, $Res Function(_$RegencyImpl) then) =
+      __$$RegencyImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code') String? code,
+      @JsonKey(name: 'province_code') String? provinceCode,
+      @JsonKey(name: 'name') String? name});
+}
+
+/// @nodoc
+class __$$RegencyImplCopyWithImpl<$Res>
+    extends _$RegencyCopyWithImpl<$Res, _$RegencyImpl>
+    implements _$$RegencyImplCopyWith<$Res> {
+  __$$RegencyImplCopyWithImpl(
+      _$RegencyImpl _value, $Res Function(_$RegencyImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? provinceCode = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_$RegencyImpl(
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      provinceCode: freezed == provinceCode
+          ? _value.provinceCode
+          : provinceCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RegencyImpl implements _Regency {
+  const _$RegencyImpl(
+      {@JsonKey(name: 'code') this.code,
+      @JsonKey(name: 'province_code') this.provinceCode,
+      @JsonKey(name: 'name') this.name});
+
+  factory _$RegencyImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RegencyImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'code')
+  final String? code;
+  @override
+  @JsonKey(name: 'province_code')
+  final String? provinceCode;
+  @override
+  @JsonKey(name: 'name')
+  final String? name;
+
+  @override
+  String toString() {
+    return 'Regency(code: $code, provinceCode: $provinceCode, name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegencyImpl &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.provinceCode, provinceCode) ||
+                other.provinceCode == provinceCode) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, code, provinceCode, name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegencyImplCopyWith<_$RegencyImpl> get copyWith =>
+      __$$RegencyImplCopyWithImpl<_$RegencyImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RegencyImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Regency implements Regency {
+  const factory _Regency(
+      {@JsonKey(name: 'code') final String? code,
+      @JsonKey(name: 'province_code') final String? provinceCode,
+      @JsonKey(name: 'name') final String? name}) = _$RegencyImpl;
+
+  factory _Regency.fromJson(Map<String, dynamic> json) = _$RegencyImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'code')
+  String? get code;
+  @override
+  @JsonKey(name: 'province_code')
+  String? get provinceCode;
+  @override
+  @JsonKey(name: 'name')
+  String? get name;
+  @override
+  @JsonKey(ignore: true)
+  _$$RegencyImplCopyWith<_$RegencyImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+District _$DistrictFromJson(Map<String, dynamic> json) {
+  return _District.fromJson(json);
+}
+
+/// @nodoc
+mixin _$District {
+  @JsonKey(name: 'code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'regency_code')
+  String? get regencyCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
+  String? get name => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DistrictCopyWith<District> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DistrictCopyWith<$Res> {
+  factory $DistrictCopyWith(District value, $Res Function(District) then) =
+      _$DistrictCopyWithImpl<$Res, District>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code') String? code,
+      @JsonKey(name: 'regency_code') String? regencyCode,
+      @JsonKey(name: 'name') String? name});
+}
+
+/// @nodoc
+class _$DistrictCopyWithImpl<$Res, $Val extends District>
+    implements $DistrictCopyWith<$Res> {
+  _$DistrictCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? regencyCode = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_value.copyWith(
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      regencyCode: freezed == regencyCode
+          ? _value.regencyCode
+          : regencyCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DistrictImplCopyWith<$Res>
+    implements $DistrictCopyWith<$Res> {
+  factory _$$DistrictImplCopyWith(
+          _$DistrictImpl value, $Res Function(_$DistrictImpl) then) =
+      __$$DistrictImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code') String? code,
+      @JsonKey(name: 'regency_code') String? regencyCode,
+      @JsonKey(name: 'name') String? name});
+}
+
+/// @nodoc
+class __$$DistrictImplCopyWithImpl<$Res>
+    extends _$DistrictCopyWithImpl<$Res, _$DistrictImpl>
+    implements _$$DistrictImplCopyWith<$Res> {
+  __$$DistrictImplCopyWithImpl(
+      _$DistrictImpl _value, $Res Function(_$DistrictImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? regencyCode = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_$DistrictImpl(
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      regencyCode: freezed == regencyCode
+          ? _value.regencyCode
+          : regencyCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DistrictImpl implements _District {
+  const _$DistrictImpl(
+      {@JsonKey(name: 'code') this.code,
+      @JsonKey(name: 'regency_code') this.regencyCode,
+      @JsonKey(name: 'name') this.name});
+
+  factory _$DistrictImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DistrictImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'code')
+  final String? code;
+  @override
+  @JsonKey(name: 'regency_code')
+  final String? regencyCode;
+  @override
+  @JsonKey(name: 'name')
+  final String? name;
+
+  @override
+  String toString() {
+    return 'District(code: $code, regencyCode: $regencyCode, name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DistrictImpl &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.regencyCode, regencyCode) ||
+                other.regencyCode == regencyCode) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, code, regencyCode, name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DistrictImplCopyWith<_$DistrictImpl> get copyWith =>
+      __$$DistrictImplCopyWithImpl<_$DistrictImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DistrictImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _District implements District {
+  const factory _District(
+      {@JsonKey(name: 'code') final String? code,
+      @JsonKey(name: 'regency_code') final String? regencyCode,
+      @JsonKey(name: 'name') final String? name}) = _$DistrictImpl;
+
+  factory _District.fromJson(Map<String, dynamic> json) =
+      _$DistrictImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'code')
+  String? get code;
+  @override
+  @JsonKey(name: 'regency_code')
+  String? get regencyCode;
+  @override
+  @JsonKey(name: 'name')
+  String? get name;
+  @override
+  @JsonKey(ignore: true)
+  _$$DistrictImplCopyWith<_$DistrictImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Village _$VillageFromJson(Map<String, dynamic> json) {
+  return _Village.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Village {
+  @JsonKey(name: 'code')
+  String? get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'district_code')
+  String? get districtCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
+  String? get name => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $VillageCopyWith<Village> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $VillageCopyWith<$Res> {
+  factory $VillageCopyWith(Village value, $Res Function(Village) then) =
+      _$VillageCopyWithImpl<$Res, Village>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code') String? code,
+      @JsonKey(name: 'district_code') String? districtCode,
+      @JsonKey(name: 'name') String? name});
+}
+
+/// @nodoc
+class _$VillageCopyWithImpl<$Res, $Val extends Village>
+    implements $VillageCopyWith<$Res> {
+  _$VillageCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? districtCode = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_value.copyWith(
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      districtCode: freezed == districtCode
+          ? _value.districtCode
+          : districtCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$VillageImplCopyWith<$Res> implements $VillageCopyWith<$Res> {
+  factory _$$VillageImplCopyWith(
+          _$VillageImpl value, $Res Function(_$VillageImpl) then) =
+      __$$VillageImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'code') String? code,
+      @JsonKey(name: 'district_code') String? districtCode,
+      @JsonKey(name: 'name') String? name});
+}
+
+/// @nodoc
+class __$$VillageImplCopyWithImpl<$Res>
+    extends _$VillageCopyWithImpl<$Res, _$VillageImpl>
+    implements _$$VillageImplCopyWith<$Res> {
+  __$$VillageImplCopyWithImpl(
+      _$VillageImpl _value, $Res Function(_$VillageImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? code = freezed,
+    Object? districtCode = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(_$VillageImpl(
+      code: freezed == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String?,
+      districtCode: freezed == districtCode
+          ? _value.districtCode
+          : districtCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$VillageImpl implements _Village {
+  const _$VillageImpl(
+      {@JsonKey(name: 'code') this.code,
+      @JsonKey(name: 'district_code') this.districtCode,
+      @JsonKey(name: 'name') this.name});
+
+  factory _$VillageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$VillageImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'code')
+  final String? code;
+  @override
+  @JsonKey(name: 'district_code')
+  final String? districtCode;
+  @override
+  @JsonKey(name: 'name')
+  final String? name;
+
+  @override
+  String toString() {
+    return 'Village(code: $code, districtCode: $districtCode, name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VillageImpl &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.districtCode, districtCode) ||
+                other.districtCode == districtCode) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, code, districtCode, name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$VillageImplCopyWith<_$VillageImpl> get copyWith =>
+      __$$VillageImplCopyWithImpl<_$VillageImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$VillageImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Village implements Village {
+  const factory _Village(
+      {@JsonKey(name: 'code') final String? code,
+      @JsonKey(name: 'district_code') final String? districtCode,
+      @JsonKey(name: 'name') final String? name}) = _$VillageImpl;
+
+  factory _Village.fromJson(Map<String, dynamic> json) = _$VillageImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'code')
+  String? get code;
+  @override
+  @JsonKey(name: 'district_code')
+  String? get districtCode;
+  @override
+  @JsonKey(name: 'name')
+  String? get name;
+  @override
+  @JsonKey(ignore: true)
+  _$$VillageImplCopyWith<_$VillageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

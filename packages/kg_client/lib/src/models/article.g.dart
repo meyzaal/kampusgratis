@@ -66,3 +66,75 @@ Map<String, dynamic> _$$AuthorImplToJson(_$AuthorImpl instance) =>
     <String, dynamic>{
       'full_name': instance.fullName,
     };
+
+_$SearchHistoryResultImpl _$$SearchHistoryResultImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SearchHistoryResultImpl(
+      code: json['code'] as int?,
+      status: json['status'] as String?,
+      message: json['message'] as String?,
+      data: json['data'] == null
+          ? null
+          : SearchHistoryData.fromJson(json['data'] as Map<String, dynamic>),
+      meta: json['meta'] == null
+          ? null
+          : SearchHistoryMeta.fromJson(json['meta'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$SearchHistoryResultImplToJson(
+        _$SearchHistoryResultImpl instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.data,
+      'meta': instance.meta,
+    };
+
+_$SearchHistoryDataImpl _$$SearchHistoryDataImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SearchHistoryDataImpl(
+      articles: (json['articles'] as List<dynamic>?)
+          ?.map((e) => History.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$SearchHistoryDataImplToJson(
+        _$SearchHistoryDataImpl instance) =>
+    <String, dynamic>{
+      'articles': instance.articles,
+    };
+
+_$HistoryImpl _$$HistoryImplFromJson(Map<String, dynamic> json) =>
+    _$HistoryImpl(
+      id: json['id'] as String?,
+      keyword: json['keyword'] as String?,
+      type: json['type'] as String?,
+      createdAt: json['created_at'] as String?,
+    );
+
+Map<String, dynamic> _$$HistoryImplToJson(_$HistoryImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'keyword': instance.keyword,
+      'type': instance.type,
+      'created_at': instance.createdAt,
+    };
+
+_$SearchHistoryMetaImpl _$$SearchHistoryMetaImplFromJson(
+        Map<String, dynamic> json) =>
+    _$SearchHistoryMetaImpl(
+      page: json['page'] as int?,
+      perPage: json['per_page'] as int?,
+      pageSize: json['page_size'] as int?,
+      totalData: json['total_data'] as int?,
+    );
+
+Map<String, dynamic> _$$SearchHistoryMetaImplToJson(
+        _$SearchHistoryMetaImpl instance) =>
+    <String, dynamic>{
+      'page': instance.page,
+      'per_page': instance.perPage,
+      'page_size': instance.pageSize,
+      'total_data': instance.totalData,
+    };

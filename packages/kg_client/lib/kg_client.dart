@@ -5,6 +5,6 @@
 /// application flavors.
 library kg_client;
 
-export 'package:hive_flutter/hive_flutter.dart';
 export 'src/exception/network_exception.dart';
 export 'src/kg_client.dart';
+export 'src/models/models.dart' show Gender, LeaderboardType, Role, Status;

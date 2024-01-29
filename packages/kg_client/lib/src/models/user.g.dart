@@ -29,9 +29,9 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       email: json['email'] as String?,
       emailVerifiedAt: json['email_verified_at'] as String?,
       avatar: json['avatar'] as String?,
-      gender: json['gender'] as String?,
+      gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
       phoneNumber: json['phone_number'] as String?,
-      role: json['role'] as String?,
+      role: $enumDecodeNullable(_$RoleEnumMap, json['role']),
       createdAt: json['created_at'] as String?,
       updatedAt: json['updated_at'] as String?,
     );
@@ -44,12 +44,24 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'email': instance.email,
       'email_verified_at': instance.emailVerifiedAt,
       'avatar': instance.avatar,
-      'gender': instance.gender,
+      'gender': _$GenderEnumMap[instance.gender],
       'phone_number': instance.phoneNumber,
-      'role': instance.role,
+      'role': _$RoleEnumMap[instance.role],
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
     };
+
+const _$GenderEnumMap = {
+  Gender.male: 'MALE',
+  Gender.female: 'FEMALE',
+};
+
+const _$RoleEnumMap = {
+  Role.guest: 'GUEST',
+  Role.student: 'STUDENT',
+  Role.admin: 'ADMIN',
+  Role.teacher: 'TEACHER',
+};
 
 _$ActivitiesImpl _$$ActivitiesImplFromJson(Map<String, dynamic> json) =>
     _$ActivitiesImpl(
@@ -95,7 +107,7 @@ _$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
       semester: json['semester'] as int?,
       ipk: json['ipk'] as String?,
       major: json['major'] as String?,
-      role: json['role'] as String?,
+      role: $enumDecodeNullable(_$RoleEnumMap, json['role']),
       totalCertificates: json['total_certificates'] as int?,
       currentSubjects: json['current_subjects'] as int?,
       finishedSubjects: json['finished_subjects'] as int?,
@@ -113,7 +125,7 @@ Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
       'semester': instance.semester,
       'ipk': instance.ipk,
       'major': instance.major,
-      'role': instance.role,
+      'role': _$RoleEnumMap[instance.role],
       'total_certificates': instance.totalCertificates,
       'current_subjects': instance.currentSubjects,
       'finished_subjects': instance.finishedSubjects,

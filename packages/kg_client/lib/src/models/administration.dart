@@ -1,14 +1,29 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kg_client/src/models/models.dart';
 
 part 'administration.freezed.dart';
 part 'administration.g.dart';
+
+enum Status {
+  @JsonValue('PENDING')
+  pending,
+
+  @JsonValue('ACCEPTED')
+  accepted,
+
+  @JsonValue('REJECTED')
+  rejected,
+
+  @JsonValue('NOT_SUBMITTED')
+  notSubmitted,
+}
 
 @freezed
 class Administration with _$Administration {
   const factory Administration({
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'user_id') String? userId,
-    @JsonKey(name: 'status') String? status,
+    @JsonKey(name: 'status') Status? status,
     @JsonKey(name: 'type') String? type,
     @JsonKey(name: 'reason') String? reason,
     @JsonKey(name: 'action_by') String? actionBy,
@@ -27,7 +42,7 @@ class Biodata with _$Biodata {
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'administration_id') String? administrationId,
     @JsonKey(name: 'full_name') String? fullName,
-    @JsonKey(name: 'gender') String? gender,
+    @JsonKey(name: 'gender') Gender? gender,
     @JsonKey(name: 'phone_number') String? phoneNumber,
     @JsonKey(name: 'birthdate') String? birthdate,
     @JsonKey(name: 'birthplace') String? birthplace,
@@ -79,20 +94,19 @@ class Documents with _$Documents {
   const factory Documents({
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'administration_id') String? administrationId,
-    @JsonKey(name: 'id_card_id') String? idCardId,
+    @JsonKey(name: 'id_card_id') int? idCardId,
     @JsonKey(name: 'id_card') String? idCard,
-    @JsonKey(name: 'diploma_certificate_id') String? diplomaCertificateId,
+    @JsonKey(name: 'diploma_certificate_id') int? diplomaCertificateId,
     @JsonKey(name: 'diploma_certificate') String? diplomaCertificate,
-    @JsonKey(name: 'family_card_id') String? familyCardId,
+    @JsonKey(name: 'family_card_id') int? familyCardId,
     @JsonKey(name: 'family_card') String? familyCard,
-    @JsonKey(name: 'photo_id') String? photoId,
+    @JsonKey(name: 'photo_id') int? photoId,
     @JsonKey(name: 'photo') String? photo,
-    @JsonKey(name: 'transcript_id') String? transcriptId,
+    @JsonKey(name: 'transcript_id') int? transcriptId,
     @JsonKey(name: 'transcript') String? transcript,
-    @JsonKey(name: 'letter_of_recommendation_id')
-    String? letterOfRecommendationId,
+    @JsonKey(name: 'letter_of_recommendation_id') int? letterOfRecommendationId,
     @JsonKey(name: 'letter_of_recommendation') String? letterOfRecommendation,
-    @JsonKey(name: 'student_card_id') String? studentCardId,
+    @JsonKey(name: 'student_card_id') int? studentCardId,
     @JsonKey(name: 'student_card') String? studentCard,
   }) = _Documents;
 
@@ -124,4 +138,51 @@ class ConstantMap with _$ConstantMap {
 
   factory ConstantMap.fromJson(Map<String, Object?> json) =>
       _$ConstantMapFromJson(json);
+}
+
+@freezed
+class Province with _$Province {
+  const factory Province({
+    @JsonKey(name: 'code') String? code,
+    @JsonKey(name: 'name') String? name,
+  }) = _Province;
+
+  factory Province.fromJson(Map<String, Object?> json) =>
+      _$ProvinceFromJson(json);
+}
+
+@freezed
+class Regency with _$Regency {
+  const factory Regency({
+    @JsonKey(name: 'code') String? code,
+    @JsonKey(name: 'province_code') String? provinceCode,
+    @JsonKey(name: 'name') String? name,
+  }) = _Regency;
+
+  factory Regency.fromJson(Map<String, Object?> json) =>
+      _$RegencyFromJson(json);
+}
+
+@freezed
+class District with _$District {
+  const factory District({
+    @JsonKey(name: 'code') String? code,
+    @JsonKey(name: 'regency_code') String? regencyCode,
+    @JsonKey(name: 'name') String? name,
+  }) = _District;
+
+  factory District.fromJson(Map<String, Object?> json) =>
+      _$DistrictFromJson(json);
+}
+
+@freezed
+class Village with _$Village {
+  const factory Village({
+    @JsonKey(name: 'code') String? code,
+    @JsonKey(name: 'district_code') String? districtCode,
+    @JsonKey(name: 'name') String? name,
+  }) = _Village;
+
+  factory Village.fromJson(Map<String, Object?> json) =>
+      _$VillageFromJson(json);
 }

@@ -3,6 +3,36 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user.freezed.dart';
 part 'user.g.dart';
 
+/// Enumeration representing different genders.
+enum Gender {
+  /// Represents the male gender.
+  @JsonValue('MALE')
+  male,
+
+  /// Represents the female gender.
+  @JsonValue('FEMALE')
+  female,
+}
+
+/// Enumeration representing different roles a user can have.
+enum Role {
+  /// Represents the guest role.
+  @JsonValue('GUEST')
+  guest,
+
+  /// Represents the student role.
+  @JsonValue('STUDENT')
+  student,
+
+  /// Represents the admin role.
+  @JsonValue('ADMIN')
+  admin,
+
+  /// Represents the teacher role.
+  @JsonValue('TEACHER')
+  teacher,
+}
+
 /// A class representing user data, including user information and activities.
 ///
 /// This class is annotated with the `@freezed` annotation, which is used for
@@ -38,9 +68,9 @@ class User with _$User {
     @JsonKey(name: 'email') String? email,
     @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,
     @JsonKey(name: 'avatar') String? avatar,
-    @JsonKey(name: 'gender') String? gender,
+    @JsonKey(name: 'gender') Gender? gender,
     @JsonKey(name: 'phone_number') String? phoneNumber,
-    @JsonKey(name: 'role') String? role,
+    @JsonKey(name: 'role') Role? role,
     @JsonKey(name: 'created_at') String? createdAt,
     @JsonKey(name: 'updated_at') String? updatedAt,
   }) = _User;
@@ -109,7 +139,7 @@ class Profile with _$Profile {
     @JsonKey(name: 'semester') int? semester,
     @JsonKey(name: 'ipk') String? ipk,
     @JsonKey(name: 'major') String? major,
-    @JsonKey(name: 'role') String? role,
+    @JsonKey(name: 'role') Role? role,
     @JsonKey(name: 'total_certificates') int? totalCertificates,
     @JsonKey(name: 'current_subjects') int? currentSubjects,
     @JsonKey(name: 'finished_subjects') int? finishedSubjects,

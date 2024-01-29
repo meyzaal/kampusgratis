@@ -10,7 +10,7 @@ _$AdministrationImpl _$$AdministrationImplFromJson(Map<String, dynamic> json) =>
     _$AdministrationImpl(
       id: json['id'] as String?,
       userId: json['user_id'] as String?,
-      status: json['status'] as String?,
+      status: $enumDecodeNullable(_$StatusEnumMap, json['status']),
       type: json['type'] as String?,
       reason: json['reason'] as String?,
       actionBy: json['action_by'] as String?,
@@ -30,7 +30,7 @@ Map<String, dynamic> _$$AdministrationImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
-      'status': instance.status,
+      'status': _$StatusEnumMap[instance.status],
       'type': instance.type,
       'reason': instance.reason,
       'action_by': instance.actionBy,
@@ -39,12 +39,19 @@ Map<String, dynamic> _$$AdministrationImplToJson(
       'file': instance.file,
     };
 
+const _$StatusEnumMap = {
+  Status.pending: 'PENDING',
+  Status.accepted: 'ACCEPTED',
+  Status.rejected: 'REJECTED',
+  Status.notSubmitted: 'NOT_SUBMITTED',
+};
+
 _$BiodataImpl _$$BiodataImplFromJson(Map<String, dynamic> json) =>
     _$BiodataImpl(
       id: json['id'] as String?,
       administrationId: json['administration_id'] as String?,
       fullName: json['full_name'] as String?,
-      gender: json['gender'] as String?,
+      gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
       phoneNumber: json['phone_number'] as String?,
       birthdate: json['birthdate'] as String?,
       birthplace: json['birthplace'] as String?,
@@ -71,7 +78,7 @@ Map<String, dynamic> _$$BiodataImplToJson(_$BiodataImpl instance) =>
       'id': instance.id,
       'administration_id': instance.administrationId,
       'full_name': instance.fullName,
-      'gender': instance.gender,
+      'gender': _$GenderEnumMap[instance.gender],
       'phone_number': instance.phoneNumber,
       'birthdate': instance.birthdate,
       'birthplace': instance.birthplace,
@@ -92,6 +99,11 @@ Map<String, dynamic> _$$BiodataImplToJson(_$BiodataImpl instance) =>
       'village_id': instance.villageId,
       'postal_code': instance.postalCode,
     };
+
+const _$GenderEnumMap = {
+  Gender.male: 'MALE',
+  Gender.female: 'FEMALE',
+};
 
 _$FamilialImpl _$$FamilialImplFromJson(Map<String, dynamic> json) =>
     _$FamilialImpl(
@@ -129,19 +141,19 @@ _$DocumentsImpl _$$DocumentsImplFromJson(Map<String, dynamic> json) =>
     _$DocumentsImpl(
       id: json['id'] as String?,
       administrationId: json['administration_id'] as String?,
-      idCardId: json['id_card_id'] as String?,
+      idCardId: json['id_card_id'] as int?,
       idCard: json['id_card'] as String?,
-      diplomaCertificateId: json['diploma_certificate_id'] as String?,
+      diplomaCertificateId: json['diploma_certificate_id'] as int?,
       diplomaCertificate: json['diploma_certificate'] as String?,
-      familyCardId: json['family_card_id'] as String?,
+      familyCardId: json['family_card_id'] as int?,
       familyCard: json['family_card'] as String?,
-      photoId: json['photo_id'] as String?,
+      photoId: json['photo_id'] as int?,
       photo: json['photo'] as String?,
-      transcriptId: json['transcript_id'] as String?,
+      transcriptId: json['transcript_id'] as int?,
       transcript: json['transcript'] as String?,
-      letterOfRecommendationId: json['letter_of_recommendation_id'] as String?,
+      letterOfRecommendationId: json['letter_of_recommendation_id'] as int?,
       letterOfRecommendation: json['letter_of_recommendation'] as String?,
-      studentCardId: json['student_card_id'] as String?,
+      studentCardId: json['student_card_id'] as int?,
       studentCard: json['student_card'] as String?,
     );
 
@@ -211,4 +223,58 @@ Map<String, dynamic> _$$ConstantMapImplToJson(_$ConstantMapImpl instance) =>
     <String, dynamic>{
       'keys': instance.keys,
       'values': instance.values,
+    };
+
+_$ProvinceImpl _$$ProvinceImplFromJson(Map<String, dynamic> json) =>
+    _$ProvinceImpl(
+      code: json['code'] as String?,
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$$ProvinceImplToJson(_$ProvinceImpl instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'name': instance.name,
+    };
+
+_$RegencyImpl _$$RegencyImplFromJson(Map<String, dynamic> json) =>
+    _$RegencyImpl(
+      code: json['code'] as String?,
+      provinceCode: json['province_code'] as String?,
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$$RegencyImplToJson(_$RegencyImpl instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'province_code': instance.provinceCode,
+      'name': instance.name,
+    };
+
+_$DistrictImpl _$$DistrictImplFromJson(Map<String, dynamic> json) =>
+    _$DistrictImpl(
+      code: json['code'] as String?,
+      regencyCode: json['regency_code'] as String?,
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$$DistrictImplToJson(_$DistrictImpl instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'regency_code': instance.regencyCode,
+      'name': instance.name,
+    };
+
+_$VillageImpl _$$VillageImplFromJson(Map<String, dynamic> json) =>
+    _$VillageImpl(
+      code: json['code'] as String?,
+      districtCode: json['district_code'] as String?,
+      name: json['name'] as String?,
+    );
+
+Map<String, dynamic> _$$VillageImplToJson(_$VillageImpl instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'district_code': instance.districtCode,
+      'name': instance.name,
     };

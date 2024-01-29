@@ -232,11 +232,11 @@ mixin _$User {
   @JsonKey(name: 'avatar')
   String? get avatar => throw _privateConstructorUsedError;
   @JsonKey(name: 'gender')
-  String? get gender => throw _privateConstructorUsedError;
+  Gender? get gender => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'role')
-  String? get role => throw _privateConstructorUsedError;
+  Role? get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
@@ -259,9 +259,9 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,
       @JsonKey(name: 'avatar') String? avatar,
-      @JsonKey(name: 'gender') String? gender,
+      @JsonKey(name: 'gender') Gender? gender,
       @JsonKey(name: 'phone_number') String? phoneNumber,
-      @JsonKey(name: 'role') String? role,
+      @JsonKey(name: 'role') Role? role,
       @JsonKey(name: 'created_at') String? createdAt,
       @JsonKey(name: 'updated_at') String? updatedAt});
 }
@@ -319,7 +319,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Gender?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -327,7 +327,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Role?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -354,9 +354,9 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'email_verified_at') String? emailVerifiedAt,
       @JsonKey(name: 'avatar') String? avatar,
-      @JsonKey(name: 'gender') String? gender,
+      @JsonKey(name: 'gender') Gender? gender,
       @JsonKey(name: 'phone_number') String? phoneNumber,
-      @JsonKey(name: 'role') String? role,
+      @JsonKey(name: 'role') Role? role,
       @JsonKey(name: 'created_at') String? createdAt,
       @JsonKey(name: 'updated_at') String? updatedAt});
 }
@@ -411,7 +411,7 @@ class __$$UserImplCopyWithImpl<$Res>
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Gender?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -419,7 +419,7 @@ class __$$UserImplCopyWithImpl<$Res>
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Role?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -471,13 +471,13 @@ class _$UserImpl implements _User {
   final String? avatar;
   @override
   @JsonKey(name: 'gender')
-  final String? gender;
+  final Gender? gender;
   @override
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
   @override
   @JsonKey(name: 'role')
-  final String? role;
+  final Role? role;
   @override
   @JsonKey(name: 'created_at')
   final String? createdAt;
@@ -541,9 +541,9 @@ abstract class _User implements User {
       @JsonKey(name: 'email') final String? email,
       @JsonKey(name: 'email_verified_at') final String? emailVerifiedAt,
       @JsonKey(name: 'avatar') final String? avatar,
-      @JsonKey(name: 'gender') final String? gender,
+      @JsonKey(name: 'gender') final Gender? gender,
       @JsonKey(name: 'phone_number') final String? phoneNumber,
-      @JsonKey(name: 'role') final String? role,
+      @JsonKey(name: 'role') final Role? role,
       @JsonKey(name: 'created_at') final String? createdAt,
       @JsonKey(name: 'updated_at') final String? updatedAt}) = _$UserImpl;
 
@@ -569,13 +569,13 @@ abstract class _User implements User {
   String? get avatar;
   @override
   @JsonKey(name: 'gender')
-  String? get gender;
+  Gender? get gender;
   @override
   @JsonKey(name: 'phone_number')
   String? get phoneNumber;
   @override
   @JsonKey(name: 'role')
-  String? get role;
+  Role? get role;
   @override
   @JsonKey(name: 'created_at')
   String? get createdAt;
@@ -1044,7 +1044,7 @@ mixin _$Profile {
   @JsonKey(name: 'major')
   String? get major => throw _privateConstructorUsedError;
   @JsonKey(name: 'role')
-  String? get role => throw _privateConstructorUsedError;
+  Role? get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_certificates')
   int? get totalCertificates => throw _privateConstructorUsedError;
   @JsonKey(name: 'current_subjects')
@@ -1074,7 +1074,7 @@ abstract class $ProfileCopyWith<$Res> {
       @JsonKey(name: 'semester') int? semester,
       @JsonKey(name: 'ipk') String? ipk,
       @JsonKey(name: 'major') String? major,
-      @JsonKey(name: 'role') String? role,
+      @JsonKey(name: 'role') Role? role,
       @JsonKey(name: 'total_certificates') int? totalCertificates,
       @JsonKey(name: 'current_subjects') int? currentSubjects,
       @JsonKey(name: 'finished_subjects') int? finishedSubjects,
@@ -1149,7 +1149,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Role?,
       totalCertificates: freezed == totalCertificates
           ? _value.totalCertificates
           : totalCertificates // ignore: cast_nullable_to_non_nullable
@@ -1187,7 +1187,7 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       @JsonKey(name: 'semester') int? semester,
       @JsonKey(name: 'ipk') String? ipk,
       @JsonKey(name: 'major') String? major,
-      @JsonKey(name: 'role') String? role,
+      @JsonKey(name: 'role') Role? role,
       @JsonKey(name: 'total_certificates') int? totalCertificates,
       @JsonKey(name: 'current_subjects') int? currentSubjects,
       @JsonKey(name: 'finished_subjects') int? finishedSubjects,
@@ -1260,7 +1260,7 @@ class __$$ProfileImplCopyWithImpl<$Res>
       role: freezed == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as Role?,
       totalCertificates: freezed == totalCertificates
           ? _value.totalCertificates
           : totalCertificates // ignore: cast_nullable_to_non_nullable
@@ -1332,7 +1332,7 @@ class _$ProfileImpl implements _Profile {
   final String? major;
   @override
   @JsonKey(name: 'role')
-  final String? role;
+  final Role? role;
   @override
   @JsonKey(name: 'total_certificates')
   final int? totalCertificates;
@@ -1424,7 +1424,7 @@ abstract class _Profile implements Profile {
       @JsonKey(name: 'semester') final int? semester,
       @JsonKey(name: 'ipk') final String? ipk,
       @JsonKey(name: 'major') final String? major,
-      @JsonKey(name: 'role') final String? role,
+      @JsonKey(name: 'role') final Role? role,
       @JsonKey(name: 'total_certificates') final int? totalCertificates,
       @JsonKey(name: 'current_subjects') final int? currentSubjects,
       @JsonKey(name: 'finished_subjects') final int? finishedSubjects,
@@ -1461,7 +1461,7 @@ abstract class _Profile implements Profile {
   String? get major;
   @override
   @JsonKey(name: 'role')
-  String? get role;
+  Role? get role;
   @override
   @JsonKey(name: 'total_certificates')
   int? get totalCertificates;
