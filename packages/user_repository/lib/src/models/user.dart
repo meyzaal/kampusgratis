@@ -1,8 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:user_repository/src/utils/utils.dart';
+import 'package:kg_client/kg_client.dart';
 
 part 'user.freezed.dart';
-part 'user.g.dart';
 
 /// A class representing a user with various attributes.
 ///
@@ -14,19 +13,16 @@ part 'user.g.dart';
 class User with _$User {
   /// Constructs a [User] instance with the specified attributes.
   const factory User({
-    @JsonKey(name: 'id') @Default('') String id,
-    @JsonKey(name: 'full_name') @Default('') String fullName,
-    @JsonKey(name: 'user_name') @Default('') String userName,
-    @JsonKey(name: 'email') @Default('') String email,
-    @JsonKey(name: 'email_verified_at') @Default('') String emailVerifiedAt,
-    @JsonKey(name: 'avatar') @Default('') String avatar,
-    @JsonKey(name: 'gender') @Default(Gender.unknown) Gender gender,
-    @JsonKey(name: 'phone_number') @Default('') String phoneNumber,
-    @JsonKey(name: 'role') @Default(Role.guest) Role role,
-    @JsonKey(name: 'created_at') @Default('') String createdAt,
-    @JsonKey(name: 'updated_at') @Default('') String updatedAt,
+    required String id,
+    required String fullName,
+    required String userName,
+    required String email,
+    required Role role,
+    String? avatar,
+    Gender? gender,
+    String? phoneNumber,
+    // DateTime? createdAt,
+    // DateTime? updatedAt,
+    // DateTime? emailVerifiedAt,
   }) = _User;
-
-  /// Factory method to create a [User] instance from a JSON map.
-  factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }

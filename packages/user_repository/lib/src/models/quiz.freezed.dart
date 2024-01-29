@@ -14,28 +14,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Quiz _$QuizFromJson(Map<String, dynamic> json) {
-  return _Quiz.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Quiz {
-  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'total_questions')
   int get totalQuestions => throw _privateConstructorUsedError;
-  @JsonKey(name: 'question_point')
   String get questionPoint => throw _privateConstructorUsedError;
-  @JsonKey(name: 'kkm')
-  int get kkm => throw _privateConstructorUsedError;
-  @JsonKey(name: 'duration')
-  int get duration => throw _privateConstructorUsedError;
-  @JsonKey(name: 'remaining_attempt')
+  Duration get duration => throw _privateConstructorUsedError;
   int get remainingAttempt => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $QuizCopyWith<Quiz> get copyWith => throw _privateConstructorUsedError;
 }
@@ -46,13 +33,12 @@ abstract class $QuizCopyWith<$Res> {
       _$QuizCopyWithImpl<$Res, Quiz>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'total_questions') int totalQuestions,
-      @JsonKey(name: 'question_point') String questionPoint,
-      @JsonKey(name: 'kkm') int kkm,
-      @JsonKey(name: 'duration') int duration,
-      @JsonKey(name: 'remaining_attempt') int remainingAttempt});
+      {String id,
+      String title,
+      int totalQuestions,
+      String questionPoint,
+      Duration duration,
+      int remainingAttempt});
 }
 
 /// @nodoc
@@ -72,7 +58,6 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
     Object? title = null,
     Object? totalQuestions = null,
     Object? questionPoint = null,
-    Object? kkm = null,
     Object? duration = null,
     Object? remainingAttempt = null,
   }) {
@@ -93,14 +78,10 @@ class _$QuizCopyWithImpl<$Res, $Val extends Quiz>
           ? _value.questionPoint
           : questionPoint // ignore: cast_nullable_to_non_nullable
               as String,
-      kkm: null == kkm
-          ? _value.kkm
-          : kkm // ignore: cast_nullable_to_non_nullable
-              as int,
       duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Duration,
       remainingAttempt: null == remainingAttempt
           ? _value.remainingAttempt
           : remainingAttempt // ignore: cast_nullable_to_non_nullable
@@ -117,13 +98,12 @@ abstract class _$$QuizImplCopyWith<$Res> implements $QuizCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'total_questions') int totalQuestions,
-      @JsonKey(name: 'question_point') String questionPoint,
-      @JsonKey(name: 'kkm') int kkm,
-      @JsonKey(name: 'duration') int duration,
-      @JsonKey(name: 'remaining_attempt') int remainingAttempt});
+      {String id,
+      String title,
+      int totalQuestions,
+      String questionPoint,
+      Duration duration,
+      int remainingAttempt});
 }
 
 /// @nodoc
@@ -140,7 +120,6 @@ class __$$QuizImplCopyWithImpl<$Res>
     Object? title = null,
     Object? totalQuestions = null,
     Object? questionPoint = null,
-    Object? kkm = null,
     Object? duration = null,
     Object? remainingAttempt = null,
   }) {
@@ -161,14 +140,10 @@ class __$$QuizImplCopyWithImpl<$Res>
           ? _value.questionPoint
           : questionPoint // ignore: cast_nullable_to_non_nullable
               as String,
-      kkm: null == kkm
-          ? _value.kkm
-          : kkm // ignore: cast_nullable_to_non_nullable
-              as int,
       duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Duration,
       remainingAttempt: null == remainingAttempt
           ? _value.remainingAttempt
           : remainingAttempt // ignore: cast_nullable_to_non_nullable
@@ -178,45 +153,32 @@ class __$$QuizImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$QuizImpl implements _Quiz {
   const _$QuizImpl(
-      {@JsonKey(name: 'id') this.id = '',
-      @JsonKey(name: 'title') this.title = '',
-      @JsonKey(name: 'total_questions') this.totalQuestions = 0,
-      @JsonKey(name: 'question_point') this.questionPoint = '',
-      @JsonKey(name: 'kkm') this.kkm = 0,
-      @JsonKey(name: 'duration') this.duration = 0,
-      @JsonKey(name: 'remaining_attempt') this.remainingAttempt = 0});
-
-  factory _$QuizImpl.fromJson(Map<String, dynamic> json) =>
-      _$$QuizImplFromJson(json);
+      {required this.id,
+      required this.title,
+      required this.totalQuestions,
+      required this.questionPoint,
+      required this.duration,
+      required this.remainingAttempt});
 
   @override
-  @JsonKey(name: 'id')
   final String id;
   @override
-  @JsonKey(name: 'title')
   final String title;
   @override
-  @JsonKey(name: 'total_questions')
   final int totalQuestions;
   @override
-  @JsonKey(name: 'question_point')
   final String questionPoint;
   @override
-  @JsonKey(name: 'kkm')
-  final int kkm;
+  final Duration duration;
   @override
-  @JsonKey(name: 'duration')
-  final int duration;
-  @override
-  @JsonKey(name: 'remaining_attempt')
   final int remainingAttempt;
 
   @override
   String toString() {
-    return 'Quiz(id: $id, title: $title, totalQuestions: $totalQuestions, questionPoint: $questionPoint, kkm: $kkm, duration: $duration, remainingAttempt: $remainingAttempt)';
+    return 'Quiz(id: $id, title: $title, totalQuestions: $totalQuestions, questionPoint: $questionPoint, duration: $duration, remainingAttempt: $remainingAttempt)';
   }
 
   @override
@@ -230,65 +192,43 @@ class _$QuizImpl implements _Quiz {
                 other.totalQuestions == totalQuestions) &&
             (identical(other.questionPoint, questionPoint) ||
                 other.questionPoint == questionPoint) &&
-            (identical(other.kkm, kkm) || other.kkm == kkm) &&
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
             (identical(other.remainingAttempt, remainingAttempt) ||
                 other.remainingAttempt == remainingAttempt));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, totalQuestions,
-      questionPoint, kkm, duration, remainingAttempt);
+      questionPoint, duration, remainingAttempt);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$QuizImplCopyWith<_$QuizImpl> get copyWith =>
       __$$QuizImplCopyWithImpl<_$QuizImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$QuizImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Quiz implements Quiz {
   const factory _Quiz(
-          {@JsonKey(name: 'id') final String id,
-          @JsonKey(name: 'title') final String title,
-          @JsonKey(name: 'total_questions') final int totalQuestions,
-          @JsonKey(name: 'question_point') final String questionPoint,
-          @JsonKey(name: 'kkm') final int kkm,
-          @JsonKey(name: 'duration') final int duration,
-          @JsonKey(name: 'remaining_attempt') final int remainingAttempt}) =
-      _$QuizImpl;
-
-  factory _Quiz.fromJson(Map<String, dynamic> json) = _$QuizImpl.fromJson;
+      {required final String id,
+      required final String title,
+      required final int totalQuestions,
+      required final String questionPoint,
+      required final Duration duration,
+      required final int remainingAttempt}) = _$QuizImpl;
 
   @override
-  @JsonKey(name: 'id')
   String get id;
   @override
-  @JsonKey(name: 'title')
   String get title;
   @override
-  @JsonKey(name: 'total_questions')
   int get totalQuestions;
   @override
-  @JsonKey(name: 'question_point')
   String get questionPoint;
   @override
-  @JsonKey(name: 'kkm')
-  int get kkm;
+  Duration get duration;
   @override
-  @JsonKey(name: 'duration')
-  int get duration;
-  @override
-  @JsonKey(name: 'remaining_attempt')
   int get remainingAttempt;
   @override
   @JsonKey(ignore: true)

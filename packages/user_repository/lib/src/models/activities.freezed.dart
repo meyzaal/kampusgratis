@@ -14,16 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Activities _$ActivitiesFromJson(Map<String, dynamic> json) {
-  return _Activities.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Activities {
-  @JsonKey(name: 'quizzes')
   List<Quiz> get quizzes => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ActivitiesCopyWith<Activities> get copyWith =>
       throw _privateConstructorUsedError;
@@ -35,7 +29,7 @@ abstract class $ActivitiesCopyWith<$Res> {
           Activities value, $Res Function(Activities) then) =
       _$ActivitiesCopyWithImpl<$Res, Activities>;
   @useResult
-  $Res call({@JsonKey(name: 'quizzes') List<Quiz> quizzes});
+  $Res call({List<Quiz> quizzes});
 }
 
 /// @nodoc
@@ -70,7 +64,7 @@ abstract class _$$ActivitiesImplCopyWith<$Res>
       __$$ActivitiesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: 'quizzes') List<Quiz> quizzes});
+  $Res call({List<Quiz> quizzes});
 }
 
 /// @nodoc
@@ -96,18 +90,13 @@ class __$$ActivitiesImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$ActivitiesImpl implements _Activities {
-  const _$ActivitiesImpl(
-      {@JsonKey(name: 'quizzes') final List<Quiz> quizzes = const <Quiz>[]})
-      : _quizzes = quizzes;
 
-  factory _$ActivitiesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ActivitiesImplFromJson(json);
+class _$ActivitiesImpl implements _Activities {
+  const _$ActivitiesImpl({required final List<Quiz> quizzes})
+      : _quizzes = quizzes;
 
   final List<Quiz> _quizzes;
   @override
-  @JsonKey(name: 'quizzes')
   List<Quiz> get quizzes {
     if (_quizzes is EqualUnmodifiableListView) return _quizzes;
     // ignore: implicit_dynamic_type
@@ -127,7 +116,6 @@ class _$ActivitiesImpl implements _Activities {
             const DeepCollectionEquality().equals(other._quizzes, _quizzes));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_quizzes));
@@ -137,24 +125,13 @@ class _$ActivitiesImpl implements _Activities {
   @pragma('vm:prefer-inline')
   _$$ActivitiesImplCopyWith<_$ActivitiesImpl> get copyWith =>
       __$$ActivitiesImplCopyWithImpl<_$ActivitiesImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ActivitiesImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Activities implements Activities {
-  const factory _Activities(
-      {@JsonKey(name: 'quizzes') final List<Quiz> quizzes}) = _$ActivitiesImpl;
-
-  factory _Activities.fromJson(Map<String, dynamic> json) =
-      _$ActivitiesImpl.fromJson;
+  const factory _Activities({required final List<Quiz> quizzes}) =
+      _$ActivitiesImpl;
 
   @override
-  @JsonKey(name: 'quizzes')
   List<Quiz> get quizzes;
   @override
   @JsonKey(ignore: true)

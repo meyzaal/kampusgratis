@@ -14,36 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
-}
-
 /// @nodoc
 mixin _$User {
-  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'full_name')
   String get fullName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_name')
   String get userName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'email')
   String get email => throw _privateConstructorUsedError;
-  @JsonKey(name: 'email_verified_at')
-  String get emailVerifiedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'avatar')
-  String get avatar => throw _privateConstructorUsedError;
-  @JsonKey(name: 'gender')
-  Gender get gender => throw _privateConstructorUsedError;
-  @JsonKey(name: 'phone_number')
-  String get phoneNumber => throw _privateConstructorUsedError;
-  @JsonKey(name: 'role')
   Role get role => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  String get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  String get updatedAt => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
+  Gender? get gender => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
 }
@@ -54,17 +35,14 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'full_name') String fullName,
-      @JsonKey(name: 'user_name') String userName,
-      @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'email_verified_at') String emailVerifiedAt,
-      @JsonKey(name: 'avatar') String avatar,
-      @JsonKey(name: 'gender') Gender gender,
-      @JsonKey(name: 'phone_number') String phoneNumber,
-      @JsonKey(name: 'role') Role role,
-      @JsonKey(name: 'created_at') String createdAt,
-      @JsonKey(name: 'updated_at') String updatedAt});
+      {String id,
+      String fullName,
+      String userName,
+      String email,
+      Role role,
+      String? avatar,
+      Gender? gender,
+      String? phoneNumber});
 }
 
 /// @nodoc
@@ -84,13 +62,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? fullName = null,
     Object? userName = null,
     Object? email = null,
-    Object? emailVerifiedAt = null,
-    Object? avatar = null,
-    Object? gender = null,
-    Object? phoneNumber = null,
     Object? role = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? avatar = freezed,
+    Object? gender = freezed,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -109,34 +84,22 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      emailVerifiedAt: null == emailVerifiedAt
-          ? _value.emailVerifiedAt
-          : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as Gender,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as Role,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as Gender?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -149,17 +112,14 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'full_name') String fullName,
-      @JsonKey(name: 'user_name') String userName,
-      @JsonKey(name: 'email') String email,
-      @JsonKey(name: 'email_verified_at') String emailVerifiedAt,
-      @JsonKey(name: 'avatar') String avatar,
-      @JsonKey(name: 'gender') Gender gender,
-      @JsonKey(name: 'phone_number') String phoneNumber,
-      @JsonKey(name: 'role') Role role,
-      @JsonKey(name: 'created_at') String createdAt,
-      @JsonKey(name: 'updated_at') String updatedAt});
+      {String id,
+      String fullName,
+      String userName,
+      String email,
+      Role role,
+      String? avatar,
+      Gender? gender,
+      String? phoneNumber});
 }
 
 /// @nodoc
@@ -176,13 +136,10 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? fullName = null,
     Object? userName = null,
     Object? email = null,
-    Object? emailVerifiedAt = null,
-    Object? avatar = null,
-    Object? gender = null,
-    Object? phoneNumber = null,
     Object? role = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? avatar = freezed,
+    Object? gender = freezed,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_$UserImpl(
       id: null == id
@@ -201,94 +158,59 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      emailVerifiedAt: null == emailVerifiedAt
-          ? _value.emailVerifiedAt
-          : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as Gender,
-      phoneNumber: null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
-              as String,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as Role,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updatedAt: null == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: freezed == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as Gender?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$UserImpl implements _User {
   const _$UserImpl(
-      {@JsonKey(name: 'id') this.id = '',
-      @JsonKey(name: 'full_name') this.fullName = '',
-      @JsonKey(name: 'user_name') this.userName = '',
-      @JsonKey(name: 'email') this.email = '',
-      @JsonKey(name: 'email_verified_at') this.emailVerifiedAt = '',
-      @JsonKey(name: 'avatar') this.avatar = '',
-      @JsonKey(name: 'gender') this.gender = Gender.unknown,
-      @JsonKey(name: 'phone_number') this.phoneNumber = '',
-      @JsonKey(name: 'role') this.role = Role.guest,
-      @JsonKey(name: 'created_at') this.createdAt = '',
-      @JsonKey(name: 'updated_at') this.updatedAt = ''});
-
-  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserImplFromJson(json);
+      {required this.id,
+      required this.fullName,
+      required this.userName,
+      required this.email,
+      required this.role,
+      this.avatar,
+      this.gender,
+      this.phoneNumber});
 
   @override
-  @JsonKey(name: 'id')
   final String id;
   @override
-  @JsonKey(name: 'full_name')
   final String fullName;
   @override
-  @JsonKey(name: 'user_name')
   final String userName;
   @override
-  @JsonKey(name: 'email')
   final String email;
   @override
-  @JsonKey(name: 'email_verified_at')
-  final String emailVerifiedAt;
-  @override
-  @JsonKey(name: 'avatar')
-  final String avatar;
-  @override
-  @JsonKey(name: 'gender')
-  final Gender gender;
-  @override
-  @JsonKey(name: 'phone_number')
-  final String phoneNumber;
-  @override
-  @JsonKey(name: 'role')
   final Role role;
   @override
-  @JsonKey(name: 'created_at')
-  final String createdAt;
+  final String? avatar;
   @override
-  @JsonKey(name: 'updated_at')
-  final String updatedAt;
+  final Gender? gender;
+  @override
+  final String? phoneNumber;
 
   @override
   String toString() {
-    return 'User(id: $id, fullName: $fullName, userName: $userName, email: $email, emailVerifiedAt: $emailVerifiedAt, avatar: $avatar, gender: $gender, phoneNumber: $phoneNumber, role: $role, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'User(id: $id, fullName: $fullName, userName: $userName, email: $email, role: $role, avatar: $avatar, gender: $gender, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -302,87 +224,51 @@ class _$UserImpl implements _User {
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.emailVerifiedAt, emailVerifiedAt) ||
-                other.emailVerifiedAt == emailVerifiedAt) &&
+            (identical(other.role, role) || other.role == role) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
-            (identical(other.role, role) || other.role == role) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.phoneNumber == phoneNumber));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, fullName, userName, email,
-      emailVerifiedAt, avatar, gender, phoneNumber, role, createdAt, updatedAt);
+      role, avatar, gender, phoneNumber);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
       __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _User implements User {
   const factory _User(
-      {@JsonKey(name: 'id') final String id,
-      @JsonKey(name: 'full_name') final String fullName,
-      @JsonKey(name: 'user_name') final String userName,
-      @JsonKey(name: 'email') final String email,
-      @JsonKey(name: 'email_verified_at') final String emailVerifiedAt,
-      @JsonKey(name: 'avatar') final String avatar,
-      @JsonKey(name: 'gender') final Gender gender,
-      @JsonKey(name: 'phone_number') final String phoneNumber,
-      @JsonKey(name: 'role') final Role role,
-      @JsonKey(name: 'created_at') final String createdAt,
-      @JsonKey(name: 'updated_at') final String updatedAt}) = _$UserImpl;
-
-  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
+      {required final String id,
+      required final String fullName,
+      required final String userName,
+      required final String email,
+      required final Role role,
+      final String? avatar,
+      final Gender? gender,
+      final String? phoneNumber}) = _$UserImpl;
 
   @override
-  @JsonKey(name: 'id')
   String get id;
   @override
-  @JsonKey(name: 'full_name')
   String get fullName;
   @override
-  @JsonKey(name: 'user_name')
   String get userName;
   @override
-  @JsonKey(name: 'email')
   String get email;
   @override
-  @JsonKey(name: 'email_verified_at')
-  String get emailVerifiedAt;
-  @override
-  @JsonKey(name: 'avatar')
-  String get avatar;
-  @override
-  @JsonKey(name: 'gender')
-  Gender get gender;
-  @override
-  @JsonKey(name: 'phone_number')
-  String get phoneNumber;
-  @override
-  @JsonKey(name: 'role')
   Role get role;
   @override
-  @JsonKey(name: 'created_at')
-  String get createdAt;
+  String? get avatar;
   @override
-  @JsonKey(name: 'updated_at')
-  String get updatedAt;
+  Gender? get gender;
+  @override
+  String? get phoneNumber;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

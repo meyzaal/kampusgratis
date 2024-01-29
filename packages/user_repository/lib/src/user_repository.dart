@@ -2,9 +2,35 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:kg_client/kg_client.dart';
-import 'package:path/path.dart';
 import 'package:user_repository/src/models/models.dart';
-import 'package:user_repository/src/utils/failures.dart';
+
+/// An exception class representing a failure during the process of updating a
+/// user's avatar.
+class UpdateUserAvatarFailure implements Exception {
+  /// Constructs an [UpdateUserAvatarFailure] instance with an optional
+  /// [message].
+  const UpdateUserAvatarFailure([this.message = 'Terjadi kesalahan.']);
+
+  /// Constructs an [UpdateUserAvatarFailure] instance with a specific [message]
+  /// based on the provided [message].
+  ///
+  /// This factory method helps create more specific instances of
+  /// [UpdateUserAvatarFailure] based on common error messages.
+  factory UpdateUserAvatarFailure.fromMessage(String message) {
+    switch (message) {
+      case 'Only JPEG, JPG, and PNG files are allowed':
+        return const UpdateUserAvatarFailure(
+          'Format file hanya .jpeg, .jpg, dan .png yang diperbolehkan.',
+        );
+      default:
+        return UpdateUserAvatarFailure(message);
+    }
+  }
+
+  /// The error message associated with the failure. Defaults to a generic
+  /// message if not provided.
+  final String message;
+}
 
 /// The [UserRepository] class handles interactions with the user data on the
 /// server.
@@ -16,8 +42,10 @@ class UserRepository {
 
   User? _user;
 
-  final StreamController<User?> _controller =
-      StreamController<User?>.broadcast()..add(null);
+  final StreamController<User?> _controller = StreamController<User?>.broadcast(
+    onListen: () => print('Listening stream user...'),
+    onCancel: () => print('Cancelling stream user...'),
+  )..add(null);
 
   /// A stream getter providing asynchronous access to user-related events.
   ///
@@ -44,46 +72,44 @@ class UserRepository {
 
   /// Fetches user data from the server.
   Future<User> getUser() async {
-    try {
-      final response =
-          await _kgClient.authorizedClient.get<dynamic>('/v1/user/profile/me');
+    final result = await _kgClient.getUser();
 
-      final result = Response<UserData>.fromJson(
-        response.data as JSON,
-        (json) => UserData.fromJson(json as JSON? ?? {}),
-      );
+    final data = User(
+      email: result.email ?? '',
+      fullName: result.fullName ?? '',
+      id: result.id ?? '',
+      role: result.role ?? Role.guest,
+      userName: result.userName ?? '',
+      avatar: result.avatar,
+      gender: result.gender,
+      phoneNumber: result.phoneNumber,
+    );
 
-      _user = result.data.user;
-      _controller.add(_user);
-      return result.data.user;
-    } on DioException catch (e) {
-      if (_isConnectionError(e.type)) {
-        throw const UserConnectionFailure();
-      }
-
-      rethrow;
-    }
+    _user = data;
+    _controller.add(data);
+    return data;
   }
 
   /// Fetches complete user profile data from the server.
   Future<Profile> getProfile() async {
-    try {
-      final response = await _kgClient.authorizedClient
-          .get<dynamic>('/v1/user/profile/complete');
+    final result = await _kgClient.getProfile();
 
-      final result = Response<Profile>.fromJson(
-        response.data as JSON,
-        (json) => Profile.fromJson(json as JSON? ?? {}),
-      );
-
-      return result.data;
-    } on DioException catch (e) {
-      if (_isConnectionError(e.type)) {
-        throw const UserConnectionFailure();
-      }
-
-      rethrow;
-    }
+    return Profile(
+      currentSubjects: result.currentSubjects ?? 0,
+      discussionLikes: result.discussionLikes ?? 0,
+      discussionPosted: result.discussionPosted ?? 0,
+      finishedSubjects: result.finishedSubjects ?? 0,
+      fullName: result.fullName ?? '',
+      poin: result.poin ?? 0,
+      role: result.role ?? Role.guest,
+      totalCertificates: result.totalCertificates ?? 0,
+      userName: result.userName ?? '',
+      avatar: result.avatar,
+      faculty: result.faculty,
+      ipk: result.ipk,
+      major: result.major,
+      semester: result.semester,
+    );
   }
 
   /// Updates user information on the server.
@@ -94,77 +120,66 @@ class UserRepository {
     String? username,
     String? phone,
   }) async {
-    try {
-      if (fullName == null && username == null && phone == null) {
-        throw Exception('Semua field kosong.');
-      }
+    final result = await _kgClient.updateUserInfo(
+      fullName: fullName,
+      username: username,
+      phone: phone,
+    );
 
-      final data = {
-        if (fullName != null) 'full_name': fullName,
-        if (username != null) 'user_name': username,
-        if (phone != null) 'phone_number': phone,
-      };
-      final response = await _kgClient.authorizedClient.put<dynamic>(
-        '/v1/user/profile/me',
-        data: data,
-      );
-      final result = Response<UserData>.fromJson(
-        response.data as JSON,
-        (json) => UserData.fromJson(json as JSON? ?? {}),
-      );
+    final data = User(
+      email: result.email ?? '',
+      fullName: result.fullName ?? '',
+      id: result.id ?? '',
+      role: result.role ?? Role.guest,
+      userName: result.userName ?? '',
+      avatar: result.avatar,
+      gender: result.gender,
+      phoneNumber: result.phoneNumber,
+    );
 
-      _user = result.data.user;
-      _controller.add(_user);
-      return result.data.user;
-    } on DioException catch (e) {
-      if (_isConnectionError(e.type)) {
-        throw const UserConnectionFailure();
-      }
-
-      rethrow;
-    }
+    _user = data;
+    _controller.add(data);
+    return data;
   }
 
   /// Updates the user's avatar on the server using the provided image file.
   Future<User> updateUserAvatar(File image) async {
-    try {
-      final avatar = await MultipartFile.fromFile(
-        image.path,
-        filename: basename(image.path),
+    final avatar = await _kgClient.updateUserAvatar(image);
+    var data = _user?.copyWith(avatar: avatar);
+
+    if (data == null) {
+      final result = await _kgClient.getUser();
+      data = User(
+        email: result.email ?? '',
+        fullName: result.fullName ?? '',
+        id: result.id ?? '',
+        role: result.role ?? Role.guest,
+        userName: result.userName ?? '',
+        avatar: result.avatar,
+        gender: result.gender,
+        phoneNumber: result.phoneNumber,
       );
-      final data = FormData.fromMap({'avatar': avatar});
-      final response = await _kgClient.authorizedClient.put<dynamic>(
-        '/v1/user/profile/avatar',
-        data: data,
-      );
-      final result = response.data as JSON;
-
-      _user = _user?.copyWith(avatar: result['avatar'] as String? ?? '');
-      _controller.add(_user);
-      if (_user != null) {
-        return _user!;
-      } else {
-        throw Exception('User null.');
-      }
-    } on DioException catch (e) {
-      if (e.response != null) {
-        final data = e.response?.data as JSON;
-        final message = data['message'] as String?;
-
-        if (message != null) throw UpdateUserAvatarFailure.fromMessage(message);
-      }
-
-      if (_isConnectionError(e.type)) {
-        throw const UserConnectionFailure();
-      }
-
-      rethrow;
     }
+
+    _user = data;
+    _controller.add(data);
+    return data;
   }
 }
 
-bool _isConnectionError(DioExceptionType type) =>
-    type == DioExceptionType.connectionError ||
-    type == DioExceptionType.connectionTimeout ||
-    type == DioExceptionType.receiveTimeout ||
-    type == DioExceptionType.sendTimeout;
+/// A Dart extension on the [Gender] enum providing additional functionality for
+/// converting gender values to Indonesian names.
+extension GenderX on Gender {
+  /// Returns the Indonesian name associated with the gender.
+  ///
+  /// - 'Laki-laki' for [Gender.male].
+  /// - 'Perempuan' for [Gender.female].
+  String get nameInIdn {
+    switch (this) {
+      case Gender.male:
+        return 'Laki-laki';
+      case Gender.female:
+        return 'Perempuan';
+    }
+  }
+}

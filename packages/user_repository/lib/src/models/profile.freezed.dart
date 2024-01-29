@@ -14,42 +14,23 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Profile _$ProfileFromJson(Map<String, dynamic> json) {
-  return _Profile.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Profile {
-  @JsonKey(name: 'avatar')
-  String get avatar => throw _privateConstructorUsedError;
-  @JsonKey(name: 'poin')
   int get poin => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_name')
   String get userName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'discussion_likes')
   int get discussionLikes => throw _privateConstructorUsedError;
-  @JsonKey(name: 'discussion_posted')
   int get discussionPosted => throw _privateConstructorUsedError;
-  @JsonKey(name: 'full_name')
   String get fullName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'semester')
-  int get semester => throw _privateConstructorUsedError;
-  @JsonKey(name: 'ipk')
-  String get ipk => throw _privateConstructorUsedError;
-  @JsonKey(name: 'major')
-  String get major => throw _privateConstructorUsedError;
-  @JsonKey(name: 'role')
   Role get role => throw _privateConstructorUsedError;
-  @JsonKey(name: 'total_certificates')
   int get totalCertificates => throw _privateConstructorUsedError;
-  @JsonKey(name: 'current_subjects')
   int get currentSubjects => throw _privateConstructorUsedError;
-  @JsonKey(name: 'finished_subjects')
   int get finishedSubjects => throw _privateConstructorUsedError;
-  @JsonKey(name: 'faculty')
-  String get faculty => throw _privateConstructorUsedError;
+  String? get avatar => throw _privateConstructorUsedError;
+  int? get semester => throw _privateConstructorUsedError;
+  String? get ipk => throw _privateConstructorUsedError;
+  String? get major => throw _privateConstructorUsedError;
+  String? get faculty => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ProfileCopyWith<Profile> get copyWith => throw _privateConstructorUsedError;
 }
@@ -60,20 +41,20 @@ abstract class $ProfileCopyWith<$Res> {
       _$ProfileCopyWithImpl<$Res, Profile>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'avatar') String avatar,
-      @JsonKey(name: 'poin') int poin,
-      @JsonKey(name: 'user_name') String userName,
-      @JsonKey(name: 'discussion_likes') int discussionLikes,
-      @JsonKey(name: 'discussion_posted') int discussionPosted,
-      @JsonKey(name: 'full_name') String fullName,
-      @JsonKey(name: 'semester') int semester,
-      @JsonKey(name: 'ipk') String ipk,
-      @JsonKey(name: 'major') String major,
-      @JsonKey(name: 'role') Role role,
-      @JsonKey(name: 'total_certificates') int totalCertificates,
-      @JsonKey(name: 'current_subjects') int currentSubjects,
-      @JsonKey(name: 'finished_subjects') int finishedSubjects,
-      @JsonKey(name: 'faculty') String faculty});
+      {int poin,
+      String userName,
+      int discussionLikes,
+      int discussionPosted,
+      String fullName,
+      Role role,
+      int totalCertificates,
+      int currentSubjects,
+      int finishedSubjects,
+      String? avatar,
+      int? semester,
+      String? ipk,
+      String? major,
+      String? faculty});
 }
 
 /// @nodoc
@@ -89,26 +70,22 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? avatar = null,
     Object? poin = null,
     Object? userName = null,
     Object? discussionLikes = null,
     Object? discussionPosted = null,
     Object? fullName = null,
-    Object? semester = null,
-    Object? ipk = null,
-    Object? major = null,
     Object? role = null,
     Object? totalCertificates = null,
     Object? currentSubjects = null,
     Object? finishedSubjects = null,
-    Object? faculty = null,
+    Object? avatar = freezed,
+    Object? semester = freezed,
+    Object? ipk = freezed,
+    Object? major = freezed,
+    Object? faculty = freezed,
   }) {
     return _then(_value.copyWith(
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
       poin: null == poin
           ? _value.poin
           : poin // ignore: cast_nullable_to_non_nullable
@@ -129,18 +106,6 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      semester: null == semester
-          ? _value.semester
-          : semester // ignore: cast_nullable_to_non_nullable
-              as int,
-      ipk: null == ipk
-          ? _value.ipk
-          : ipk // ignore: cast_nullable_to_non_nullable
-              as String,
-      major: null == major
-          ? _value.major
-          : major // ignore: cast_nullable_to_non_nullable
-              as String,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -157,10 +122,26 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.finishedSubjects
           : finishedSubjects // ignore: cast_nullable_to_non_nullable
               as int,
-      faculty: null == faculty
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      semester: freezed == semester
+          ? _value.semester
+          : semester // ignore: cast_nullable_to_non_nullable
+              as int?,
+      ipk: freezed == ipk
+          ? _value.ipk
+          : ipk // ignore: cast_nullable_to_non_nullable
+              as String?,
+      major: freezed == major
+          ? _value.major
+          : major // ignore: cast_nullable_to_non_nullable
+              as String?,
+      faculty: freezed == faculty
           ? _value.faculty
           : faculty // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -173,20 +154,20 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'avatar') String avatar,
-      @JsonKey(name: 'poin') int poin,
-      @JsonKey(name: 'user_name') String userName,
-      @JsonKey(name: 'discussion_likes') int discussionLikes,
-      @JsonKey(name: 'discussion_posted') int discussionPosted,
-      @JsonKey(name: 'full_name') String fullName,
-      @JsonKey(name: 'semester') int semester,
-      @JsonKey(name: 'ipk') String ipk,
-      @JsonKey(name: 'major') String major,
-      @JsonKey(name: 'role') Role role,
-      @JsonKey(name: 'total_certificates') int totalCertificates,
-      @JsonKey(name: 'current_subjects') int currentSubjects,
-      @JsonKey(name: 'finished_subjects') int finishedSubjects,
-      @JsonKey(name: 'faculty') String faculty});
+      {int poin,
+      String userName,
+      int discussionLikes,
+      int discussionPosted,
+      String fullName,
+      Role role,
+      int totalCertificates,
+      int currentSubjects,
+      int finishedSubjects,
+      String? avatar,
+      int? semester,
+      String? ipk,
+      String? major,
+      String? faculty});
 }
 
 /// @nodoc
@@ -200,26 +181,22 @@ class __$$ProfileImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? avatar = null,
     Object? poin = null,
     Object? userName = null,
     Object? discussionLikes = null,
     Object? discussionPosted = null,
     Object? fullName = null,
-    Object? semester = null,
-    Object? ipk = null,
-    Object? major = null,
     Object? role = null,
     Object? totalCertificates = null,
     Object? currentSubjects = null,
     Object? finishedSubjects = null,
-    Object? faculty = null,
+    Object? avatar = freezed,
+    Object? semester = freezed,
+    Object? ipk = freezed,
+    Object? major = freezed,
+    Object? faculty = freezed,
   }) {
     return _then(_$ProfileImpl(
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
       poin: null == poin
           ? _value.poin
           : poin // ignore: cast_nullable_to_non_nullable
@@ -240,18 +217,6 @@ class __$$ProfileImplCopyWithImpl<$Res>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      semester: null == semester
-          ? _value.semester
-          : semester // ignore: cast_nullable_to_non_nullable
-              as int,
-      ipk: null == ipk
-          ? _value.ipk
-          : ipk // ignore: cast_nullable_to_non_nullable
-              as String,
-      major: null == major
-          ? _value.major
-          : major // ignore: cast_nullable_to_non_nullable
-              as String,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -268,82 +233,81 @@ class __$$ProfileImplCopyWithImpl<$Res>
           ? _value.finishedSubjects
           : finishedSubjects // ignore: cast_nullable_to_non_nullable
               as int,
-      faculty: null == faculty
+      avatar: freezed == avatar
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String?,
+      semester: freezed == semester
+          ? _value.semester
+          : semester // ignore: cast_nullable_to_non_nullable
+              as int?,
+      ipk: freezed == ipk
+          ? _value.ipk
+          : ipk // ignore: cast_nullable_to_non_nullable
+              as String?,
+      major: freezed == major
+          ? _value.major
+          : major // ignore: cast_nullable_to_non_nullable
+              as String?,
+      faculty: freezed == faculty
           ? _value.faculty
           : faculty // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$ProfileImpl implements _Profile {
   const _$ProfileImpl(
-      {@JsonKey(name: 'avatar') this.avatar = '',
-      @JsonKey(name: 'poin') this.poin = 0,
-      @JsonKey(name: 'user_name') this.userName = '',
-      @JsonKey(name: 'discussion_likes') this.discussionLikes = 0,
-      @JsonKey(name: 'discussion_posted') this.discussionPosted = 0,
-      @JsonKey(name: 'full_name') this.fullName = '',
-      @JsonKey(name: 'semester') this.semester = -1,
-      @JsonKey(name: 'ipk') this.ipk = '-',
-      @JsonKey(name: 'major') this.major = '',
-      @JsonKey(name: 'role') this.role = Role.guest,
-      @JsonKey(name: 'total_certificates') this.totalCertificates = 0,
-      @JsonKey(name: 'current_subjects') this.currentSubjects = 0,
-      @JsonKey(name: 'finished_subjects') this.finishedSubjects = 0,
-      @JsonKey(name: 'faculty') this.faculty = ''});
-
-  factory _$ProfileImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProfileImplFromJson(json);
+      {required this.poin,
+      required this.userName,
+      required this.discussionLikes,
+      required this.discussionPosted,
+      required this.fullName,
+      required this.role,
+      required this.totalCertificates,
+      required this.currentSubjects,
+      required this.finishedSubjects,
+      this.avatar,
+      this.semester,
+      this.ipk,
+      this.major,
+      this.faculty});
 
   @override
-  @JsonKey(name: 'avatar')
-  final String avatar;
-  @override
-  @JsonKey(name: 'poin')
   final int poin;
   @override
-  @JsonKey(name: 'user_name')
   final String userName;
   @override
-  @JsonKey(name: 'discussion_likes')
   final int discussionLikes;
   @override
-  @JsonKey(name: 'discussion_posted')
   final int discussionPosted;
   @override
-  @JsonKey(name: 'full_name')
   final String fullName;
   @override
-  @JsonKey(name: 'semester')
-  final int semester;
-  @override
-  @JsonKey(name: 'ipk')
-  final String ipk;
-  @override
-  @JsonKey(name: 'major')
-  final String major;
-  @override
-  @JsonKey(name: 'role')
   final Role role;
   @override
-  @JsonKey(name: 'total_certificates')
   final int totalCertificates;
   @override
-  @JsonKey(name: 'current_subjects')
   final int currentSubjects;
   @override
-  @JsonKey(name: 'finished_subjects')
   final int finishedSubjects;
   @override
-  @JsonKey(name: 'faculty')
-  final String faculty;
+  final String? avatar;
+  @override
+  final int? semester;
+  @override
+  final String? ipk;
+  @override
+  final String? major;
+  @override
+  final String? faculty;
 
   @override
   String toString() {
-    return 'Profile(avatar: $avatar, poin: $poin, userName: $userName, discussionLikes: $discussionLikes, discussionPosted: $discussionPosted, fullName: $fullName, semester: $semester, ipk: $ipk, major: $major, role: $role, totalCertificates: $totalCertificates, currentSubjects: $currentSubjects, finishedSubjects: $finishedSubjects, faculty: $faculty)';
+    return 'Profile(poin: $poin, userName: $userName, discussionLikes: $discussionLikes, discussionPosted: $discussionPosted, fullName: $fullName, role: $role, totalCertificates: $totalCertificates, currentSubjects: $currentSubjects, finishedSubjects: $finishedSubjects, avatar: $avatar, semester: $semester, ipk: $ipk, major: $major, faculty: $faculty)';
   }
 
   @override
@@ -351,7 +315,6 @@ class _$ProfileImpl implements _Profile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProfileImpl &&
-            (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.poin, poin) || other.poin == poin) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
@@ -361,10 +324,6 @@ class _$ProfileImpl implements _Profile {
                 other.discussionPosted == discussionPosted) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
-            (identical(other.semester, semester) ||
-                other.semester == semester) &&
-            (identical(other.ipk, ipk) || other.ipk == ipk) &&
-            (identical(other.major, major) || other.major == major) &&
             (identical(other.role, role) || other.role == role) &&
             (identical(other.totalCertificates, totalCertificates) ||
                 other.totalCertificates == totalCertificates) &&
@@ -372,26 +331,30 @@ class _$ProfileImpl implements _Profile {
                 other.currentSubjects == currentSubjects) &&
             (identical(other.finishedSubjects, finishedSubjects) ||
                 other.finishedSubjects == finishedSubjects) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.semester, semester) ||
+                other.semester == semester) &&
+            (identical(other.ipk, ipk) || other.ipk == ipk) &&
+            (identical(other.major, major) || other.major == major) &&
             (identical(other.faculty, faculty) || other.faculty == faculty));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      avatar,
       poin,
       userName,
       discussionLikes,
       discussionPosted,
       fullName,
-      semester,
-      ipk,
-      major,
       role,
       totalCertificates,
       currentSubjects,
       finishedSubjects,
+      avatar,
+      semester,
+      ipk,
+      major,
       faculty);
 
   @JsonKey(ignore: true)
@@ -399,76 +362,53 @@ class _$ProfileImpl implements _Profile {
   @pragma('vm:prefer-inline')
   _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>
       __$$ProfileImplCopyWithImpl<_$ProfileImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ProfileImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class _Profile implements Profile {
   const factory _Profile(
-      {@JsonKey(name: 'avatar') final String avatar,
-      @JsonKey(name: 'poin') final int poin,
-      @JsonKey(name: 'user_name') final String userName,
-      @JsonKey(name: 'discussion_likes') final int discussionLikes,
-      @JsonKey(name: 'discussion_posted') final int discussionPosted,
-      @JsonKey(name: 'full_name') final String fullName,
-      @JsonKey(name: 'semester') final int semester,
-      @JsonKey(name: 'ipk') final String ipk,
-      @JsonKey(name: 'major') final String major,
-      @JsonKey(name: 'role') final Role role,
-      @JsonKey(name: 'total_certificates') final int totalCertificates,
-      @JsonKey(name: 'current_subjects') final int currentSubjects,
-      @JsonKey(name: 'finished_subjects') final int finishedSubjects,
-      @JsonKey(name: 'faculty') final String faculty}) = _$ProfileImpl;
-
-  factory _Profile.fromJson(Map<String, dynamic> json) = _$ProfileImpl.fromJson;
+      {required final int poin,
+      required final String userName,
+      required final int discussionLikes,
+      required final int discussionPosted,
+      required final String fullName,
+      required final Role role,
+      required final int totalCertificates,
+      required final int currentSubjects,
+      required final int finishedSubjects,
+      final String? avatar,
+      final int? semester,
+      final String? ipk,
+      final String? major,
+      final String? faculty}) = _$ProfileImpl;
 
   @override
-  @JsonKey(name: 'avatar')
-  String get avatar;
-  @override
-  @JsonKey(name: 'poin')
   int get poin;
   @override
-  @JsonKey(name: 'user_name')
   String get userName;
   @override
-  @JsonKey(name: 'discussion_likes')
   int get discussionLikes;
   @override
-  @JsonKey(name: 'discussion_posted')
   int get discussionPosted;
   @override
-  @JsonKey(name: 'full_name')
   String get fullName;
   @override
-  @JsonKey(name: 'semester')
-  int get semester;
-  @override
-  @JsonKey(name: 'ipk')
-  String get ipk;
-  @override
-  @JsonKey(name: 'major')
-  String get major;
-  @override
-  @JsonKey(name: 'role')
   Role get role;
   @override
-  @JsonKey(name: 'total_certificates')
   int get totalCertificates;
   @override
-  @JsonKey(name: 'current_subjects')
   int get currentSubjects;
   @override
-  @JsonKey(name: 'finished_subjects')
   int get finishedSubjects;
   @override
-  @JsonKey(name: 'faculty')
-  String get faculty;
+  String? get avatar;
+  @override
+  int? get semester;
+  @override
+  String? get ipk;
+  @override
+  String? get major;
+  @override
+  String? get faculty;
   @override
   @JsonKey(ignore: true)
   _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>

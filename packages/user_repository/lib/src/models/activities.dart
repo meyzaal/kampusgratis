@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:user_repository/src/models/models.dart';
 
 part 'activities.freezed.dart';
-part 'activities.g.dart';
 
 /// A class representing activities, including a list of quizzes.
 ///
@@ -14,11 +13,5 @@ part 'activities.g.dart';
 @freezed
 class Activities with _$Activities {
   /// Constructs an [Activities] instance with the specified list of quizzes.
-  const factory Activities({
-    @JsonKey(name: 'quizzes') @Default(<Quiz>[]) List<Quiz> quizzes,
-  }) = _Activities;
-
-  /// Factory method to create an [Activities] instance from a JSON map.
-  factory Activities.fromJson(Map<String, Object?> json) =>
-      _$ActivitiesFromJson(json);
+  const factory Activities({required List<Quiz> quizzes}) = _Activities;
 }
