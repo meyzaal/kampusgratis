@@ -1,4 +1,4 @@
-import 'package:authentication_repository/src/utils/utils.dart';
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 /// A service class for handling Google Sign-In operations.
@@ -6,16 +6,16 @@ class GoogleSignInService {
   /// Constructor for the [GoogleSignInService] class.
   GoogleSignInService() : _googleSignIn = GoogleSignIn();
 
-  /// Attempts to sign in with Google and returns the Google Sign-In ID Token 
+  /// Attempts to sign in with Google and returns the Google Sign-In ID Token
   /// upon success.
-  /// Throws a [GoogleSignInServiceFailure] exception if the sign-in operation 
+  /// Throws a [GoogleSignInServiceFailure] exception if the sign-in operation
   /// fails.
   Future<String> signIn() async {
     try {
       // Attempt to sign in with Google
       final account = await _googleSignIn.signIn();
 
-      // Throw an exception if the sign-in operation returns null (indicating 
+      // Throw an exception if the sign-in operation returns null (indicating
       // failure)
       if (account == null) {
         throw const GoogleSignInServiceFailure(
@@ -32,7 +32,8 @@ class GoogleSignInService {
       // Throw an exception if the ID Token is null (indicating failure)
       if (idToken == null) {
         throw const GoogleSignInServiceFailure(
-            'Failed to retrieve credentials',);
+          'Failed to retrieve credentials',
+        );
       }
 
       // Return the Google Sign-In ID Token upon successful sign-in

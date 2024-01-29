@@ -1,3 +1,5 @@
-export 'reset_password.dart';
-export 'response.dart';
-export 'token.dart';
+export 'confirmed_password.dart';
+export 'email.dart';
+export 'name.dart';
+export 'password.dart';
+export 'phone.dart';
