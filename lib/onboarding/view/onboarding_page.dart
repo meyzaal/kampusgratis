@@ -29,7 +29,7 @@ class OnboardingPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 FilledButton(
-                  onPressed: () {},
+                  onPressed: () => const RegisterRoute().push<void>(context),
                   child: const Text('Buat akun'),
                 ),
                 TextButton(
