@@ -2,6 +2,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
 import 'package:kampusgratis/login/login.dart';
 
@@ -11,26 +12,20 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const AuthenticationAppBar(),
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
             return SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.all(16),
+              child: ConstrainedBox(
                 constraints: BoxConstraints(minHeight: constraints.maxHeight),
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    _Appbar(),
-                    SizedBox(height: 16),
                     _Header(),
-                    SizedBox(height: 32),
                     _LoginForm(),
-                    SizedBox(height: 24),
                     _LoginDivider(),
-                    SizedBox(height: 24),
-                    ContinueWithGoogleButton(),
-                    SizedBox(height: 32),
+                    _LoginWIthGoogleButton(),
                     _RegisterButton(),
                   ],
                 ),
@@ -39,6 +34,23 @@ class LoginPage extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class _LoginWIthGoogleButton extends StatelessWidget {
+  const _LoginWIthGoogleButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.only(
+        left: 16,
+        top: 12,
+        right: 16,
+        bottom: 16,
+      ),
+      child: ContinueWithGoogleButton(),
     );
   }
 }
@@ -55,45 +67,31 @@ class _LoginForm extends StatelessWidget {
   }
 }
 
-class _Appbar extends StatelessWidget {
-  const _Appbar();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Transform.translate(
-      offset: const Offset(-16, -16),
-      child: AppBar(
-        iconTheme: IconThemeData(color: theme.colorScheme.primary),
-        backgroundColor: theme.scaffoldBackgroundColor,
-      ),
-    );
-  }
-}
-
 class _RegisterButton extends StatelessWidget {
   const _RegisterButton();
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {},
-      child: RichText(
-        text: TextSpan(
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w500,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-          children: [
-            TextSpan(
-              text: 'Belum Punya Akun?',
-              style: GoogleFonts.poppins(
-                color: const Color(0xFF697586),
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: TextButton(
+        onPressed: () => const RegisterRoute().pushReplacement(context),
+        child: RichText(
+          text: TextSpan(
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w500,
+              color: Theme.of(context).colorScheme.primary,
             ),
-            const TextSpan(text: ' Daftar'),
-          ],
+            children: [
+              TextSpan(
+                text: 'Belum Punya Akun?',
+                style: GoogleFonts.poppins(
+                  color: const Color(0xFF697586),
+                ),
+              ),
+              const TextSpan(text: ' Daftar'),
+            ],
+          ),
         ),
       ),
     );
@@ -105,20 +103,23 @@ class _LoginDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        Expanded(child: Divider(endIndent: 16, color: Color(0xFF404040))),
-        Text(
-          'Atau Login Dengan',
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 12,
-            height: 18 / 12,
-            color: Color(0xFF404040),
+    return const Padding(
+      padding: EdgeInsets.only(left: 16, top: 12, right: 16, bottom: 12),
+      child: Row(
+        children: [
+          Expanded(child: Divider(endIndent: 16, color: Color(0xFF404040))),
+          Text(
+            'Atau Login Dengan',
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 12,
+              height: 18 / 12,
+              color: Color(0xFF404040),
+            ),
           ),
-        ),
-        Expanded(child: Divider(indent: 16, color: Color(0xFF404040))),
-      ],
+          Expanded(child: Divider(indent: 16, color: Color(0xFF404040))),
+        ],
+      ),
     );
   }
 }
@@ -148,10 +149,13 @@ class _Header extends StatelessWidget {
       textAlign: TextAlign.center,
     );
 
-    return const Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [titleWidget, SizedBox(height: 8), subtitleWidget],
+    return const Padding(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [titleWidget, SizedBox(height: 8), subtitleWidget],
+      ),
     );
   }
 }

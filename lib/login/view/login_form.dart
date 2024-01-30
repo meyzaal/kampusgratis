@@ -37,11 +37,8 @@ class LoginForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _EmailInput(),
-          SizedBox(height: 16),
           _PasswordInput(),
-          SizedBox(height: 16),
           _ForgotPasswordButton(),
-          SizedBox(height: 24),
           _SubmitButton(),
         ],
       ),
@@ -54,30 +51,33 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
-      builder: (context, state) {
-        return FilledButton(
-          onPressed: state.isValid
-              ? () {
-                  final focus = FocusScope.of(context);
-                  if (focus.hasFocus) focus.unfocus();
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, top: 12, right: 16, bottom: 12),
+      child: BlocBuilder<LoginBloc, LoginState>(
+        builder: (context, state) {
+          return FilledButton(
+            onPressed: state.isValid
+                ? () {
+                    final focus = FocusScope.of(context);
+                    if (focus.hasFocus) focus.unfocus();
 
-                  if (state.status.isInProgress) return;
-                  context
-                      .read<LoginBloc>()
-                      .add(const LoginEvent.formSubmitted());
-                }
-              : null,
-          child: state.status.isInProgress
-              ? const SizedBox.square(
-                  dimension: 20,
-                  child: CircularProgressIndicator.adaptive(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                  ),
-                )
-              : const Text('Masuk'),
-        );
-      },
+                    if (state.status.isInProgress) return;
+                    context
+                        .read<LoginBloc>()
+                        .add(const LoginEvent.formSubmitted());
+                  }
+                : null,
+            child: state.status.isInProgress
+                ? const SizedBox.square(
+                    dimension: 20,
+                    child: CircularProgressIndicator.adaptive(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  )
+                : const Text('Masuk'),
+          );
+        },
+      ),
     );
   }
 }
@@ -87,10 +87,9 @@ class _ForgotPasswordButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: const Offset(16, 0),
-      child: Align(
-        alignment: Alignment.centerRight,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, top: 4, right: 16, bottom: 12),
+      child: Center(
         child: TextButton(
           onPressed: () {},
           child: const Text('Lupa kata sandi?'),
@@ -105,19 +104,22 @@ class _PasswordInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
-      buildWhen: (previous, current) => previous.password != current.password,
-      builder: (context, state) {
-        return PasswordInputField(
-          labelText: 'Kata Sandi',
-          hintText: 'Masukan Kata Sandi',
-          onChanged: (password) => context
-              .read<LoginBloc>()
-              .add(LoginEvent.passwordChanged(password)),
-          errorText:
-              state.password.isPure ? null : state.password.error?.message,
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, top: 8, right: 16, bottom: 4),
+      child: BlocBuilder<LoginBloc, LoginState>(
+        buildWhen: (previous, current) => previous.password != current.password,
+        builder: (context, state) {
+          return PasswordInputField(
+            labelText: 'Kata Sandi',
+            hintText: 'Masukkan kata sandi',
+            onChanged: (password) => context
+                .read<LoginBloc>()
+                .add(LoginEvent.passwordChanged(password)),
+            errorText:
+                state.password.isPure ? null : state.password.error?.message,
+          );
+        },
+      ),
     );
   }
 }
@@ -127,20 +129,23 @@ class _EmailInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
-      buildWhen: (previous, current) => previous.email != current.email,
-      builder: (context, state) {
-        return CustomTextField(
-          labelText: 'Email',
-          decoration: InputDecoration(
-            hintText: 'Masukan Email',
-            errorText: state.email.isPure ? null : state.email.error?.message,
-          ),
-          onChanged: (email) =>
-              context.read<LoginBloc>().add(LoginEvent.emailChanged(email)),
-          textInputAction: TextInputAction.next,
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, top: 16, right: 16, bottom: 8),
+      child: BlocBuilder<LoginBloc, LoginState>(
+        buildWhen: (previous, current) => previous.email != current.email,
+        builder: (context, state) {
+          return CustomTextField(
+            labelText: 'Email',
+            decoration: InputDecoration(
+              hintText: 'Masukkan email',
+              errorText: state.email.isPure ? null : state.email.error?.message,
+            ),
+            onChanged: (email) =>
+                context.read<LoginBloc>().add(LoginEvent.emailChanged(email)),
+            textInputAction: TextInputAction.next,
+          );
+        },
+      ),
     );
   }
 }
