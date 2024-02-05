@@ -18,7 +18,6 @@ class App extends StatelessWidget {
         _routerConfig = AppRoutes(
           authenticationCubit: AuthenticationCubit(
             authenticationRepository: authenticationRepository,
-            userRepository: userRepository,
           ),
         ).router;
 
@@ -38,7 +37,6 @@ class App extends StatelessWidget {
           BlocProvider(
             create: (context) => AuthenticationCubit(
               authenticationRepository: _authenticationRepository,
-              userRepository: _userRepository,
             ),
           ),
           BlocProvider(

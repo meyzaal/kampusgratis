@@ -59,7 +59,10 @@ class KgClient {
               },
             ),
           ) {
-    Hive.registerAdapter<Token>(TokenAdapter());
+    Hive
+      ..registerAdapter<Token>(TokenAdapter())
+      ..registerAdapter<Role>(RoleAdapter())
+      ..registerAdapter<Gender>(GenderAdapter());
   }
 
   /// Dio instance for making HTTP requests.
@@ -186,8 +189,10 @@ class KgClient {
     try {
       final data = {'email': email};
 
-      await _httpClient.post<void>('/v1/email-verification/request',
-          data: data,);
+      await _httpClient.post<void>(
+        '/v1/email-verification/request',
+        data: data,
+      );
     } catch (e) {
       throw _getException(e);
     }
@@ -200,8 +205,10 @@ class KgClient {
     try {
       final data = {'otp': otpCode, 'email': email};
 
-      await _httpClient.post<void>('/v1/email-verification/verify',
-          data: data,);
+      await _httpClient.post<void>(
+        '/v1/email-verification/verify',
+        data: data,
+      );
     } catch (e) {
       throw _getException(e);
     }
@@ -211,8 +218,10 @@ class KgClient {
     try {
       final data = {'email': email};
 
-      await _httpClient.post<void>('/v1/reset-password/request',
-          data: data,);
+      await _httpClient.post<void>(
+        '/v1/reset-password/request',
+        data: data,
+      );
     } catch (e) {
       throw _getException(e);
     }

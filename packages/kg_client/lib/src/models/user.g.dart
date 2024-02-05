@@ -3,6 +3,98 @@
 part of 'user.dart';
 
 // **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
+class GenderAdapter extends TypeAdapter<Gender> {
+  @override
+  final int typeId = 2;
+
+  @override
+  Gender read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return Gender.male;
+      case 1:
+        return Gender.female;
+      default:
+        return Gender.male;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, Gender obj) {
+    switch (obj) {
+      case Gender.male:
+        writer.writeByte(0);
+        break;
+      case Gender.female:
+        writer.writeByte(1);
+        break;
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is GenderAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class RoleAdapter extends TypeAdapter<Role> {
+  @override
+  final int typeId = 1;
+
+  @override
+  Role read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 1:
+        return Role.guest;
+      case 2:
+        return Role.student;
+      case 3:
+        return Role.admin;
+      case 4:
+        return Role.teacher;
+      default:
+        return Role.guest;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, Role obj) {
+    switch (obj) {
+      case Role.guest:
+        writer.writeByte(1);
+        break;
+      case Role.student:
+        writer.writeByte(2);
+        break;
+      case Role.admin:
+        writer.writeByte(3);
+        break;
+      case Role.teacher:
+        writer.writeByte(4);
+        break;
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RoleAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 

@@ -1,8 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:hive/hive.dart';
 import 'package:kg_client/kg_client.dart';
 import 'package:user_repository/src/models/models.dart';
+
+const _userBoxName = 'user';
+const _storageKey = 'user_storage_key';
 
 /// An exception class representing a failure during the process of updating a
 /// user's avatar.
@@ -36,39 +40,34 @@ class UpdateUserAvatarFailure implements Exception {
 /// server.
 class UserRepository {
   /// Constructs a [UserRepository] instance with an optional [KgClient].
-  UserRepository({KgClient? kgClient}) : _kgClient = kgClient ?? KgClient();
+  UserRepository({KgClient? kgClient}) : _kgClient = kgClient ?? KgClient() {
+    // Register Adapter
+    Hive.registerAdapter<User>(UserAdapter());
+
+    // Listening authentication status
+    _kgClient.status.listen((status) async {
+      if (status.isAuthenticated) {
+        if (_currentUser == null) {
+          final user = await _getUserFromLocalStorage();
+          if (user != null) {
+            _currentUser = user;
+          } else {
+            await getUser();
+          }
+        }
+      }
+      if (status.isUnauthenticated) {
+        _currentUser = null;
+        await _deleteUserFromLocalStorage();
+      }
+    });
+  }
 
   final KgClient _kgClient;
 
-  User? _user;
-
-  final StreamController<User?> _controller = StreamController<User?>.broadcast(
-    onListen: () => print('Listening stream user...'),
-    onCancel: () => print('Cancelling stream user...'),
-  )..add(null);
-
-  /// A stream getter providing asynchronous access to user-related events.
-  ///
-  /// This getter returns a [Stream] of [User] objects. It first yields the
-  /// current user value, followed by any updates from the associated
-  /// [_controller] stream.
-  Stream<User?> get user async* {
-    // Yield the current user value
-    yield _user;
-
-    // Yield updates from the controller stream
-    yield* _controller.stream;
-  }
-
-  /// Clears the current user by adding a `null` value to the [_controller]
-  /// stream.
-  void clearUser() => _controller.add(null);
-
-  /// Closes the associated [_controller] stream.
-  ///
-  /// This method should be called when the stream is no longer needed to free
-  /// up resources and prevent memory leaks.
-  Future<void> closeStream() => _controller.close();
+  /// The currently signed in account, or null if the user is signed out.
+  User? get currentUser => _currentUser;
+  User? _currentUser;
 
   /// Fetches user data from the server.
   Future<User> getUser() async {
@@ -85,8 +84,8 @@ class UserRepository {
       phoneNumber: result.phoneNumber,
     );
 
-    _user = data;
-    _controller.add(data);
+    unawaited(_saveUserToLocalStorage(data));
+    _currentUser = data;
     return data;
   }
 
@@ -137,15 +136,15 @@ class UserRepository {
       phoneNumber: result.phoneNumber,
     );
 
-    _user = data;
-    _controller.add(data);
+    unawaited(_saveUserToLocalStorage(data));
+    _currentUser = data;
     return data;
   }
 
   /// Updates the user's avatar on the server using the provided image file.
   Future<User> updateUserAvatar(File image) async {
     final avatar = await _kgClient.updateUserAvatar(image);
-    var data = _user?.copyWith(avatar: avatar);
+    var data = _currentUser?.copyWith(avatar: avatar);
 
     if (data == null) {
       final result = await _kgClient.getUser();
@@ -161,9 +160,27 @@ class UserRepository {
       );
     }
 
-    _user = data;
-    _controller.add(data);
+    unawaited(_saveUserToLocalStorage(data));
+    _currentUser = data;
     return data;
+  }
+
+  Future<User?> _getUserFromLocalStorage() async {
+    print('GET USER FROM LOCAL STORAGE');
+    final box = await Hive.openBox<User>(_userBoxName);
+    return box.get(_storageKey);
+  }
+
+  Future<void> _saveUserToLocalStorage(User user) async {
+    print('SAVE USER TO LOCAL STORAGE');
+    final box = await Hive.openBox<User>(_userBoxName);
+    return box.put(_storageKey, user);
+  }
+
+  Future<void> _deleteUserFromLocalStorage() async {
+    print('DELETE USER FROM LOCAL STORAGE');
+    final box = await Hive.openBox<User>(_userBoxName);
+    return box.delete(_storageKey);
   }
 }
 

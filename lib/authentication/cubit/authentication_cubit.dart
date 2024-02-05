@@ -2,26 +2,17 @@ import 'dart:async';
 
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:user_repository/user_repository.dart';
 
 class AuthenticationCubit extends HydratedCubit<AuthenticationStatus> {
   AuthenticationCubit({
     required AuthenticationRepository authenticationRepository,
-    required UserRepository userRepository,
   })  : _authenticationRepository = authenticationRepository,
-        _userRepository = userRepository,
         super(AuthenticationStatus.initial) {
-    _subscription = _authenticationRepository.status.listen(
-      (status) {
-        if (status.isUnauthenticated) _userRepository.clearUser();
-        return emit(status);
-      },
-    );
+    _subscription = _authenticationRepository.status.listen(emit);
   }
 
   late StreamSubscription<AuthenticationStatus> _subscription;
   final AuthenticationRepository _authenticationRepository;
-  final UserRepository _userRepository;
 
   @override
   Future<void> close() {

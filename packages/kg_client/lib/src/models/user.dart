@@ -1,34 +1,43 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
 
 /// Enumeration representing different genders.
+@HiveType(typeId: 2)
 enum Gender {
   /// Represents the male gender.
+  @HiveField(0)
   @JsonValue('MALE')
   male,
 
   /// Represents the female gender.
+  @HiveField(1)
   @JsonValue('FEMALE')
   female,
 }
 
 /// Enumeration representing different roles a user can have.
+@HiveType(typeId: 1)
 enum Role {
   /// Represents the guest role.
+  @HiveField(1)
   @JsonValue('GUEST')
   guest,
 
   /// Represents the student role.
+  @HiveField(2)
   @JsonValue('STUDENT')
   student,
 
   /// Represents the admin role.
+  @HiveField(3)
   @JsonValue('ADMIN')
   admin,
 
   /// Represents the teacher role.
+  @HiveField(4)
   @JsonValue('TEACHER')
   teacher,
 }

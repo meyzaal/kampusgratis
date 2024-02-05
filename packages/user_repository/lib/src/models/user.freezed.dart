@@ -16,13 +16,21 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$User {
+  @HiveField(0)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get fullName => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get userName => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get email => throw _privateConstructorUsedError;
+  @HiveField(4)
   Role get role => throw _privateConstructorUsedError;
+  @HiveField(5)
   String? get avatar => throw _privateConstructorUsedError;
+  @HiveField(6)
   Gender? get gender => throw _privateConstructorUsedError;
+  @HiveField(7)
   String? get phoneNumber => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,14 +43,14 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {String id,
-      String fullName,
-      String userName,
-      String email,
-      Role role,
-      String? avatar,
-      Gender? gender,
-      String? phoneNumber});
+      {@HiveField(0) String id,
+      @HiveField(1) String fullName,
+      @HiveField(2) String userName,
+      @HiveField(3) String email,
+      @HiveField(4) Role role,
+      @HiveField(5) String? avatar,
+      @HiveField(6) Gender? gender,
+      @HiveField(7) String? phoneNumber});
 }
 
 /// @nodoc
@@ -112,14 +120,14 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      String fullName,
-      String userName,
-      String email,
-      Role role,
-      String? avatar,
-      Gender? gender,
-      String? phoneNumber});
+      {@HiveField(0) String id,
+      @HiveField(1) String fullName,
+      @HiveField(2) String userName,
+      @HiveField(3) String email,
+      @HiveField(4) Role role,
+      @HiveField(5) String? avatar,
+      @HiveField(6) Gender? gender,
+      @HiveField(7) String? phoneNumber});
 }
 
 /// @nodoc
@@ -182,30 +190,38 @@ class __$$UserImplCopyWithImpl<$Res>
 
 class _$UserImpl implements _User {
   const _$UserImpl(
-      {required this.id,
-      required this.fullName,
-      required this.userName,
-      required this.email,
-      required this.role,
-      this.avatar,
-      this.gender,
-      this.phoneNumber});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.fullName,
+      @HiveField(2) required this.userName,
+      @HiveField(3) required this.email,
+      @HiveField(4) required this.role,
+      @HiveField(5) this.avatar,
+      @HiveField(6) this.gender,
+      @HiveField(7) this.phoneNumber});
 
   @override
+  @HiveField(0)
   final String id;
   @override
+  @HiveField(1)
   final String fullName;
   @override
+  @HiveField(2)
   final String userName;
   @override
+  @HiveField(3)
   final String email;
   @override
+  @HiveField(4)
   final Role role;
   @override
+  @HiveField(5)
   final String? avatar;
   @override
+  @HiveField(6)
   final Gender? gender;
   @override
+  @HiveField(7)
   final String? phoneNumber;
 
   @override
@@ -244,30 +260,38 @@ class _$UserImpl implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {required final String id,
-      required final String fullName,
-      required final String userName,
-      required final String email,
-      required final Role role,
-      final String? avatar,
-      final Gender? gender,
-      final String? phoneNumber}) = _$UserImpl;
+      {@HiveField(0) required final String id,
+      @HiveField(1) required final String fullName,
+      @HiveField(2) required final String userName,
+      @HiveField(3) required final String email,
+      @HiveField(4) required final Role role,
+      @HiveField(5) final String? avatar,
+      @HiveField(6) final Gender? gender,
+      @HiveField(7) final String? phoneNumber}) = _$UserImpl;
 
   @override
+  @HiveField(0)
   String get id;
   @override
+  @HiveField(1)
   String get fullName;
   @override
+  @HiveField(2)
   String get userName;
   @override
+  @HiveField(3)
   String get email;
   @override
+  @HiveField(4)
   Role get role;
   @override
+  @HiveField(5)
   String? get avatar;
   @override
+  @HiveField(6)
   Gender? get gender;
   @override
+  @HiveField(7)
   String? get phoneNumber;
   @override
   @JsonKey(ignore: true)

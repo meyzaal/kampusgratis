@@ -2,7 +2,7 @@ import 'package:fresh_dio/fresh_dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 /// Key for storing and retrieving data in the local storage box.
-const _storageKey = 'local_storage_key';
+const _storageKey = 'token_storage_key';
 
 /// A generic class implementing the [TokenStorage] interface for local storage.
 ///

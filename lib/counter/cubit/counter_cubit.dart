@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +9,21 @@ class CounterCubit extends Cubit<int> {
   CounterCubit({
     required this.authenticationRepository,
     required this.userRepository,
-  }) : super(0);
+  }) : super(0) {
+    _subscription = authenticationRepository.status
+        .listen((event) => debugPrint('STATUS : $event'));
+  }
 
   final AuthenticationRepository authenticationRepository;
   final UserRepository userRepository;
+
+  late StreamSubscription<AuthenticationStatus> _subscription;
+
+  @override
+  Future<void> close() {
+    _subscription.cancel();
+    return super.close();
+  }
 
   Future<void> testingLogin() async {
     try {
@@ -19,7 +32,6 @@ class CounterCubit extends Cubit<int> {
         password: 'lapan8Kali',
       );
       debugPrint('SUCCESS');
-      _printStatus();
     } on SignInWithEmailAndPasswordFailure catch (e) {
       debugPrint('SIGNIN FAILURE: ${e.message}');
     } catch (e) {
@@ -27,20 +39,11 @@ class CounterCubit extends Cubit<int> {
     }
   }
 
-  void _printStatus() {
-    authenticationRepository.status
-        .listen((event) => debugPrint('STATUS : $event'));
-    userRepository.user.listen((event) {
-      debugPrint('USER : $event');
-    });
-  }
-
   Future<void> increment() async {
-    userRepository.clearUser();
     await authenticationRepository.signOut();
   }
 
   Future<void> decrement() async {
-    await userRepository.getUser();
+    print(userRepository.currentUser);
   }
 }
