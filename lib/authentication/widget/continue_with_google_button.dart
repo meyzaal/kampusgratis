@@ -8,18 +8,19 @@ class ContinueWithGoogleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final iconWidget = Assets.icons.socialGoogle.svg(
       width: 20,
-      placeholderBuilder: (context) => const Icon(
+      placeholderBuilder: (context) => Icon(
         Icons.g_mobiledata_rounded,
         size: 20,
-        color: Colors.grey,
+        color: theme.colorScheme.onSurfaceVariant,
       ),
     );
     const labelWidget = Text('Lanjutkan dengan Google');
     final buttonStyle = OutlinedButton.styleFrom(
-      foregroundColor: const Color(0xFF171717),
-      side: const BorderSide(color: Color(0xFFD4D4D4)),
+      foregroundColor: theme.colorScheme.onSurface,
+      side: BorderSide(color: theme.colorScheme.outlineVariant),
     );
 
     return OutlinedButton.icon(

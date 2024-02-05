@@ -14,6 +14,7 @@ class OnboardingPage extends StatelessWidget {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
+            final theme = Theme.of(context);
             final logoWidget = Center(
               child: Padding(
                 padding: const EdgeInsets.all(8),
@@ -38,13 +39,13 @@ class OnboardingPage extends StatelessWidget {
                     text: TextSpan(
                       style: GoogleFonts.poppins(
                         fontWeight: FontWeight.w500,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: theme.colorScheme.primary,
                       ),
                       children: [
                         TextSpan(
                           text: 'Sudah punya akun?',
                           style: GoogleFonts.poppins(
-                            color: const Color(0xFF697586),
+                            color: theme.colorScheme.onSurfaceVariant,
                           ),
                         ),
                         const TextSpan(text: ' Masuk'),
@@ -54,7 +55,7 @@ class OnboardingPage extends StatelessWidget {
                 ),
               ],
             );
-
+    
             return SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.all(16),

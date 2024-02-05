@@ -15,6 +15,7 @@ class CustomDialog extends StatelessWidget {
     this.titleTextStyle,
     this.contentTextStyle,
     this.actions,
+    this.actionsGap = 8.0,
     this.actionsDirection = Axis.vertical,
     this.actionsMainAxisAlignment = MainAxisAlignment.center,
     this.actionsCrossAxisAlignment = CrossAxisAlignment.stretch,
@@ -37,6 +38,7 @@ class CustomDialog extends StatelessWidget {
   final TextStyle? titleTextStyle;
   final TextStyle? contentTextStyle;
   final List<Widget>? actions;
+  final double actionsGap;
   final Axis actionsDirection;
   final MainAxisAlignment actionsMainAxisAlignment;
   final CrossAxisAlignment actionsCrossAxisAlignment;
@@ -97,7 +99,6 @@ class CustomDialog extends StatelessWidget {
       final defaultTitleTextStyle = GoogleFonts.poppins(
         fontWeight: FontWeight.w600,
         fontSize: 20,
-        color: const Color(0xFF242424),
       );
       titleWidget = Padding(
         padding: titlePadding,
@@ -127,7 +128,6 @@ class CustomDialog extends StatelessWidget {
       final defaultContentTextStyle = GoogleFonts.poppins(
         fontWeight: FontWeight.w400,
         fontSize: 14,
-        color: const Color(0xFF242424),
       );
       contentWidget = Padding(
         padding: contentPadding,
@@ -149,6 +149,14 @@ class CustomDialog extends StatelessWidget {
         right: 16,
         bottom: 16,
       );
+      final actionItems = <Widget>[];
+      for (var i = 0; i < actions!.length; i++) {
+        actionItems.add(actions![i]);
+
+        if (i < actions!.length - 1) {
+          actionItems.add(SizedBox(height: actionsGap));
+        }
+      }
 
       actionsWidget = Padding(
         padding: dialogTheme.actionsPadding ?? actionsPadding,
@@ -156,7 +164,7 @@ class CustomDialog extends StatelessWidget {
           mainAxisAlignment: actionsMainAxisAlignment,
           crossAxisAlignment: actionsCrossAxisAlignment,
           mainAxisSize: MainAxisSize.min,
-          children: actions!,
+          children: actionItems,
         ),
       );
     }

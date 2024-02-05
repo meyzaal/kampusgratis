@@ -2,9 +2,10 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
-import 'package:kampusgratis/components/components.dart';
 import 'package:kampusgratis/login/login.dart';
+import 'package:kampusgratis/shared/shared.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -17,18 +18,24 @@ class LoginForm extends StatelessWidget {
         if (state.status.isFailure) {
           final message = state.message ?? 'Terjadi kesalahan (message-null).';
           ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
+            ..clearSnackBars()
             ..showSnackBar(
-              SnackBar(content: Text(message)),
+              SnackBar(content: Text(message), showCloseIcon: true),
             );
         }
         if (state.status.isCanceled) {
           showDialog<bool>(
             context: context,
-            builder: (_) => const VerifyEmailDialog(),
+            builder: (_) => VerifyEmailDialog(
+              type: VerifyEmailType.login,
+              email: state.email.value,
+            ),
           ).then((value) {
             if (value != true) return;
-            // TODO(meyzaal): Add actions
+            VerifyOtpRoute(
+              email: state.email.value,
+              type: OtpVerificationType.emailVerification,
+            ).push<void>(context);
           });
         }
       },
@@ -60,7 +67,6 @@ class _SubmitButton extends StatelessWidget {
                 ? () {
                     final focus = FocusScope.of(context);
                     if (focus.hasFocus) focus.unfocus();
-
                     if (state.status.isInProgress) return;
                     context
                         .read<LoginBloc>()
@@ -91,7 +97,11 @@ class _ForgotPasswordButton extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, top: 4, right: 16, bottom: 12),
       child: Center(
         child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            final focus = FocusScope.of(context);
+            if (focus.hasFocus) focus.unfocus();
+            const ForgotPasswordRoute().push<void>(context);
+          },
           child: const Text('Lupa kata sandi?'),
         ),
       ),
@@ -143,6 +153,11 @@ class _EmailInput extends StatelessWidget {
             onChanged: (email) =>
                 context.read<LoginBloc>().add(LoginEvent.emailChanged(email)),
             textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.emailAddress,
+            inputFormatters: [
+              InputFormatters.ignoreWhiteSpaces,
+              InputFormatters.lowerCase,
+            ],
           );
         },
       ),

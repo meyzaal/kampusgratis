@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kampusgratis/components/components.dart';
+import 'package:kampusgratis/shared/shared.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 const _kIconSize = 20.0;
@@ -11,12 +11,20 @@ class PasswordInputField extends StatefulWidget {
     required this.hintText,
     super.key,
     this.errorText,
+    this.helperText,
+    this.helperMaxLines,
+    this.suffixLabelWidget,
+    this.autofocus = false,
     this.onChanged,
   });
 
   final String labelText;
   final String hintText;
   final String? errorText;
+  final String? helperText;
+  final int? helperMaxLines;
+  final Widget? suffixLabelWidget;
+  final bool autofocus;
   final ValueChanged<String>? onChanged;
 
   @override
@@ -30,6 +38,7 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
   Widget build(BuildContext context) {
     return CustomTextField(
       labelText: widget.labelText,
+      suffixLabelWidget: widget.suffixLabelWidget,
       decoration: InputDecoration(
         suffixIcon: IconButton(
           iconSize: _kIconSize,
@@ -49,7 +58,10 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
         ),
         hintText: widget.hintText,
         errorText: widget.errorText,
+        helperText: widget.helperText,
+        helperMaxLines: widget.helperMaxLines,
       ),
+      autofocus: widget.autofocus,
       textInputAction: TextInputAction.done,
       keyboardType: TextInputType.visiblePassword,
       obscureText: _hidePassword,

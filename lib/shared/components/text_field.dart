@@ -5,6 +5,7 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     required this.labelText,
     super.key,
+    this.suffixLabelWidget,
     this.controller,
     this.initialValue,
     this.focusNode,
@@ -37,6 +38,7 @@ class CustomTextField extends StatelessWidget {
   });
 
   final String labelText;
+  final Widget? suffixLabelWidget;
   final TextEditingController? controller;
   final String? initialValue;
   final FocusNode? focusNode;
@@ -69,10 +71,28 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final labelWidget = Text(
-      labelText,
-      style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+    final theme = Theme.of(context);
+    const labelStyle = TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
+      height: 21 / 14,
     );
+
+    Widget labelWidget = Text(labelText, style: labelStyle);
+    if (suffixLabelWidget != null) {
+      final iconThemeData =
+          IconThemeData(size: 20, color: theme.colorScheme.onSurfaceVariant);
+      labelWidget = IntrinsicWidth(
+        child: Row(
+          children: [
+            Flexible(child: Text(labelText, style: labelStyle)),
+            const SizedBox(width: 8),
+            IconTheme(data: iconThemeData, child: suffixLabelWidget!),
+          ],
+        ),
+      );
+    }
+
     final textFieldWidget = TextFormField(
       controller: controller,
       initialValue: initialValue,

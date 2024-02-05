@@ -2,29 +2,61 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
-import 'package:kampusgratis/components/components.dart';
+import 'package:kampusgratis/shared/shared.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
+enum VerifyEmailType { login, register }
+
 class VerifyEmailDialog extends StatelessWidget {
-  const VerifyEmailDialog({super.key});
+  const VerifyEmailDialog({
+    required this.type,
+    required this.email,
+    super.key,
+  });
+
+  final VerifyEmailType type;
+  final String email;
 
   @override
   Widget build(BuildContext context) {
+    final String title;
+    final String content;
+    final Widget icon;
+    final Color iconColor;
+
+    switch (type) {
+      case VerifyEmailType.register:
+        title = 'Berhasil mendaftar';
+        content =
+            '''Silakan verifikasi email Anda agar dapat masuk dengan akun yang telah berhasil dibuat.''';
+        icon = const PhosphorIcon(PhosphorIconsFill.checkCircle);
+        iconColor = AppColors.success;
+      case VerifyEmailType.login:
+        title = 'Email belum diverifikasi';
+        content =
+            '''Silakan verifikasi email Anda terlebih dahulu untuk melanjutkan.''';
+        icon = const PhosphorIcon(PhosphorIconsFill.warningCircle);
+        iconColor = AppColors.error;
+    }
+
     return CustomDialog(
-      icon: const PhosphorIcon(PhosphorIconsFill.warningCircle),
-      iconColor: Colors.red,
-      title: const Text('Email belum diverifikasi'),
-      content: const Text(
-        'Silakan verifikasi email Anda terlebih dahulu untuk melanjutkan',
-        textAlign: TextAlign.center,
-      ),
+      icon: icon,
+      iconColor: iconColor,
+      title: Text(title),
+      content: Text(content, textAlign: TextAlign.center),
       actions: [
         BlocProvider(
-          create: (context) => RequestEmailVerificationCubit(
-            context.read<AuthenticationRepository>(),
+          create: (context) => RequestOtpCodeCubit(
+            authenticationRepository: context.read<AuthenticationRepository>(),
+            email: email,
           ),
           child: const _SubmitButton(),
+        ),
+        OutlinedButton(
+          onPressed: () => context.pop(false),
+          child: const Text('Tutup'),
         ),
       ],
     );
@@ -36,28 +68,38 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RequestEmailVerificationCubit,
-        RequestEmailVerificationState>(
+    return BlocConsumer<RequestOtpCodeCubit,
+        RequestOtpCodeState>(
       listener: (context, state) {
-        if (state is RequestEmailVerificationFailureState) {
+        if (state is RequestOtpCodeFailureState) {
           ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
+            ..clearSnackBars()
             ..showSnackBar(
-              SnackBar(content: Text(state.message)),
+              SnackBar(content: Text(state.message), showCloseIcon: true),
             );
           context.pop(false);
         }
-        if (state is RequestEmailVerificationSuccessState) {
+        if (state is RequestOtpCodeSuccessState) {
+          ScaffoldMessenger.of(context)
+            ..clearSnackBars()
+            ..showSnackBar(
+              const SnackBar(
+                content: Text('Berhasil mengirim kode OTP.'),
+                showCloseIcon: true,
+              ),
+            );
           context.pop(true);
         }
       },
       builder: (context, state) {
         return FilledButton(
           onPressed: () {
-            if (state is RequestEmailVerificationLoadingState) return;
-            // TODO(meyzaal): Add actions
+            if (state is RequestOtpCodeLoadingState) return;
+            context
+                .read<RequestOtpCodeCubit>()
+                .otpEmailVerificationRequested();
           },
-          child: state is RequestEmailVerificationLoadingState
+          child: state is RequestOtpCodeLoadingState
               ? const SizedBox.square(
                   dimension: 20,
                   child: CircularProgressIndicator.adaptive(

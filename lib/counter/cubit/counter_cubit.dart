@@ -40,7 +40,7 @@ class CounterCubit extends Cubit<int> {
     await authenticationRepository.signOut();
   }
 
-  void decrement() async {
+  Future<void> decrement() async {
     await userRepository.getUser();
   }
 }

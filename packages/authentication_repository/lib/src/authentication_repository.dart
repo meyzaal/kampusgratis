@@ -334,6 +334,10 @@ class ResetPasswordFailure implements Exception {
         return const ResetPasswordFailure(
           'Token tidak valid.',
         );
+      case 'Expired OTP':
+        return const ResetPasswordFailure(
+          'Kode OTP kadaluarsa.',
+        );
       default:
         return ResetPasswordFailure(message);
     }

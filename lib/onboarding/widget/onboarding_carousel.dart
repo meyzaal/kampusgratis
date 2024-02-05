@@ -64,7 +64,7 @@ class _Indicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final activeColor = theme.colorScheme.primary;
-    const inactiveColor = Color(0xFFCDD5DF);
+    final inactiveColor = theme.colorScheme.inversePrimary;
 
     return BlocBuilder<OnboardingCarouselCubit, int>(
       buildWhen: (previous, current) => previous != current,
@@ -133,11 +133,12 @@ class _Content extends StatelessWidget {
         Expanded(
           child: LayoutBuilder(
             builder: (context, constraints) {
-              const style = TextStyle(
+              final theme = Theme.of(context);
+              final style = TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 16,
                 height: 24 / 16,
-                color: Color(0xFF697586),
+                color: theme.colorScheme.onSurfaceVariant,
               );
               final fontSize = style.fontSize ?? 16.0;
               final maxLines =
@@ -145,12 +146,7 @@ class _Content extends StatelessWidget {
 
               return Text(
                 content,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                  height: 24 / 16,
-                  color: Color(0xFF697586),
-                ),
+                style: style,
                 maxLines: maxLines,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,

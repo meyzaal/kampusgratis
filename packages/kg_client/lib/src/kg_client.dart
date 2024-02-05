@@ -8,7 +8,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:kg_client/src/exception/network_exception.dart';
 import 'package:kg_client/src/local_storage.dart';
-import 'package:kg_client/src/models/leaderboard.dart';
 import 'package:kg_client/src/models/models.dart';
 import 'package:mime/mime.dart';
 import 'package:path/path.dart';
@@ -187,7 +186,8 @@ class KgClient {
     try {
       final data = {'email': email};
 
-      await _httpClient.post<void>('/email-verification/request', data: data);
+      await _httpClient.post<void>('/v1/email-verification/request',
+          data: data,);
     } catch (e) {
       throw _getException(e);
     }
@@ -200,7 +200,8 @@ class KgClient {
     try {
       final data = {'otp': otpCode, 'email': email};
 
-      await _httpClient.post<void>('/email-verification/verify', data: data);
+      await _httpClient.post<void>('/v1/email-verification/verify',
+          data: data,);
     } catch (e) {
       throw _getException(e);
     }
@@ -210,7 +211,8 @@ class KgClient {
     try {
       final data = {'email': email};
 
-      await _httpClient.post<void>('/reset-password/request', data: data);
+      await _httpClient.post<void>('/v1/reset-password/request',
+          data: data,);
     } catch (e) {
       throw _getException(e);
     }
@@ -223,7 +225,7 @@ class KgClient {
     try {
       final data = {'otp': otpCode, 'email': email};
       final response = await _httpClient.post<dynamic>(
-        '/reset-password/verify',
+        '/v1/reset-password/verify',
         data: data,
       );
 

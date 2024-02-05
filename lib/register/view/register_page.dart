@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
-import 'package:kampusgratis/login/login.dart';
+import 'package:kampusgratis/register/register.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +23,10 @@ class LoginPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     _Header(),
-                    _LoginForm(),
-                    _LoginDivider(),
-                    _LoginWIthGoogleButton(),
-                    _RegisterButton(),
+                    _RegisterForm(),
+                    _RegisterDivider(),
+                    _RegisterWithGoogleButton(),
+                    _LoginButton(),
                   ],
                 ),
               ),
@@ -38,8 +38,45 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class _LoginWIthGoogleButton extends StatelessWidget {
-  const _LoginWIthGoogleButton();
+class _LoginButton extends StatelessWidget {
+  const _LoginButton();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: TextButton(
+        onPressed: () {
+          final focus = FocusScope.of(context);
+          if (focus.hasFocus) focus.unfocus();
+          const LoginRoute().pushReplacement(context);
+        },
+        child: RichText(
+          text: TextSpan(
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.w500,
+              color: theme.colorScheme.primary,
+            ),
+            children: [
+              TextSpan(
+                text: 'Sudah Punya Akun?',
+                style: GoogleFonts.poppins(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const TextSpan(text: ' Masuk'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _RegisterWithGoogleButton extends StatelessWidget {
+  const _RegisterWithGoogleButton();
 
   @override
   Widget build(BuildContext context) {
@@ -55,57 +92,8 @@ class _LoginWIthGoogleButton extends StatelessWidget {
   }
 }
 
-class _LoginForm extends StatelessWidget {
-  const _LoginForm();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginBloc(context.read<AuthenticationRepository>()),
-      child: const LoginForm(),
-    );
-  }
-}
-
-class _RegisterButton extends StatelessWidget {
-  const _RegisterButton();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: TextButton(
-        onPressed: () {
-          final focus = FocusScope.of(context);
-          if (focus.hasFocus) focus.unfocus();
-          const RegisterRoute().pushReplacement(context);
-        },
-        child: RichText(
-          text: TextSpan(
-            style: GoogleFonts.poppins(
-              fontWeight: FontWeight.w500,
-              color: theme.colorScheme.primary,
-            ),
-            children: [
-              TextSpan(
-                text: 'Belum Punya Akun?',
-                style: GoogleFonts.poppins(
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
-              ),
-              const TextSpan(text: ' Daftar'),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _LoginDivider extends StatelessWidget {
-  const _LoginDivider();
+class _RegisterDivider extends StatelessWidget {
+  const _RegisterDivider();
 
   @override
   Widget build(BuildContext context) {
@@ -115,14 +103,9 @@ class _LoginDivider extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, top: 12, right: 16, bottom: 12),
       child: Row(
         children: [
-          Expanded(
-            child: Divider(
-              endIndent: 16,
-              color: color,
-            ),
-          ),
+          Expanded(child: Divider(endIndent: 16, color: color)),
           Text(
-            'Atau Login Dengan',
+            'Atau Daftar Dengan',
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 12,
@@ -137,6 +120,19 @@ class _LoginDivider extends StatelessWidget {
   }
 }
 
+class _RegisterForm extends StatelessWidget {
+  const _RegisterForm();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) =>
+          RegisterBloc(context.read<AuthenticationRepository>()),
+      child: const RegisterForm(),
+    );
+  }
+}
+
 class _Header extends StatelessWidget {
   const _Header();
 
@@ -144,7 +140,7 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final titleWidget = Text(
-      'Masuk',
+      'Daftar',
       style: TextStyle(
         fontWeight: FontWeight.w600,
         fontSize: 20,
@@ -154,7 +150,7 @@ class _Header extends StatelessWidget {
       textAlign: TextAlign.center,
     );
     final subtitleWidget = Text(
-      'Masukkan Akun Kamu',
+      'Daftar Akun Kamu',
       style: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 16,
