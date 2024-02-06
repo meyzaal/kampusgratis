@@ -4,21 +4,26 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kampusgratis/assignment/assignment.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
-import 'package:kampusgratis/counter/counter.dart';
 import 'package:kampusgratis/forgot_password/forgot_password.dart';
+import 'package:kampusgratis/home/home.dart';
 import 'package:kampusgratis/login/login.dart';
+import 'package:kampusgratis/main/main.dart';
+import 'package:kampusgratis/my_calendar/my_calendar.dart';
+import 'package:kampusgratis/my_study/my_study.dart';
 import 'package:kampusgratis/onboarding/onboarding.dart';
 import 'package:kampusgratis/otp_verification/otp_verification.dart';
+import 'package:kampusgratis/profile/profile.dart';
 import 'package:kampusgratis/register/register.dart';
 import 'package:stream_listener/stream_listener.dart';
 
 part 'routes.g.dart';
 
-final GlobalKey<NavigatorState> _rootNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'root');
-final GlobalKey<NavigatorState> _shellNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'shell');
+// final GlobalKey<NavigatorState> _rootNavigatorKey =
+//     GlobalKey<NavigatorState>(debugLabel: 'root');
+// final GlobalKey<NavigatorState> _shellNavigatorKey =
+//     GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 enum OtpVerificationType { emailVerification, resetPassword }
 
@@ -31,7 +36,7 @@ class AppRoutes {
   GoRouter get router {
     return GoRouter(
       debugLogDiagnostics: kDebugMode,
-      initialLocation: '/dashboard',
+      initialLocation: '/home',
       redirect: (context, state) {
         final loggedIn = _authenticationCubit.state.isAuthenticated;
         final onOnboardingPage = state.matchedLocation == '/onboarding';
@@ -45,7 +50,7 @@ class AppRoutes {
 
         // if the user is logged in but still on the login page, send them
         // to the home page
-        if (loggedIn && (onAuthPage || onOnboardingPage)) return '/dashboard';
+        if (loggedIn && (onAuthPage || onOnboardingPage)) return '/home';
 
         // no need to redirect at all
         return null;
@@ -122,13 +127,59 @@ class ForgotPasswordRoute extends GoRouteData {
       const ForgotPasswordPage();
 }
 
-@TypedGoRoute<DashboardRoute>(
-  path: '/dashboard',
+@TypedShellRoute<MainRoute>(
+  routes: <TypedRoute<RouteData>>[
+    TypedGoRoute<HomeRoute>(path: '/home'),
+    TypedGoRoute<MyStudyRoute>(path: '/my-study'),
+    TypedGoRoute<AssignmentRoute>(path: '/assignment'),
+    TypedGoRoute<MyCalendarRoute>(path: '/my-calendar'),
+    TypedGoRoute<ProfileRoute>(path: '/profile'),
+  ],
 )
-class DashboardRoute extends GoRouteData {
-  const DashboardRoute();
+class MainRoute extends ShellRouteData {
+  const MainRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const CounterPage(pageName: 'DASHBOARD');
+  Widget builder(BuildContext context, GoRouterState state, Widget navigator) =>
+      MainPage(child: navigator);
+}
+
+class HomeRoute extends GoRouteData {
+  const HomeRoute();
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage<void>(child: HomePage());
+}
+
+class MyStudyRoute extends GoRouteData {
+  const MyStudyRoute();
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage<void>(child: MyStudyPage());
+}
+
+class AssignmentRoute extends GoRouteData {
+  const AssignmentRoute();
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage<void>(child: AssignmentPage());
+}
+
+class MyCalendarRoute extends GoRouteData {
+  const MyCalendarRoute();
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage<void>(child: MyCalendarPage());
+}
+
+class ProfileRoute extends GoRouteData {
+  const ProfileRoute();
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const NoTransitionPage<void>(child: ProfilePage());
 }

@@ -9,7 +9,7 @@ part of 'routes.dart';
 List<RouteBase> get $appRoutes => [
       $onboardingRoute,
       $authRoute,
-      $dashboardRoute,
+      $mainRoute,
     ];
 
 RouteBase get $onboardingRoute => GoRouteData.$route(
@@ -158,17 +158,111 @@ extension<T extends Enum> on Map<T, String> {
       entries.singleWhere((element) => element.value == value).key;
 }
 
-RouteBase get $dashboardRoute => GoRouteData.$route(
-      path: '/dashboard',
-      factory: $DashboardRouteExtension._fromState,
+RouteBase get $mainRoute => ShellRouteData.$route(
+      factory: $MainRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: '/home',
+          factory: $HomeRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/my-study',
+          factory: $MyStudyRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/assignment',
+          factory: $AssignmentRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/my-calendar',
+          factory: $MyCalendarRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/profile',
+          factory: $ProfileRouteExtension._fromState,
+        ),
+      ],
     );
 
-extension $DashboardRouteExtension on DashboardRoute {
-  static DashboardRoute _fromState(GoRouterState state) =>
-      const DashboardRoute();
+extension $MainRouteExtension on MainRoute {
+  static MainRoute _fromState(GoRouterState state) => const MainRoute();
+}
+
+extension $HomeRouteExtension on HomeRoute {
+  static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
 
   String get location => GoRouteData.$location(
-        '/dashboard',
+        '/home',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $MyStudyRouteExtension on MyStudyRoute {
+  static MyStudyRoute _fromState(GoRouterState state) => const MyStudyRoute();
+
+  String get location => GoRouteData.$location(
+        '/my-study',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $AssignmentRouteExtension on AssignmentRoute {
+  static AssignmentRoute _fromState(GoRouterState state) =>
+      const AssignmentRoute();
+
+  String get location => GoRouteData.$location(
+        '/assignment',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $MyCalendarRouteExtension on MyCalendarRoute {
+  static MyCalendarRoute _fromState(GoRouterState state) =>
+      const MyCalendarRoute();
+
+  String get location => GoRouteData.$location(
+        '/my-calendar',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ProfileRouteExtension on ProfileRoute {
+  static ProfileRoute _fromState(GoRouterState state) => const ProfileRoute();
+
+  String get location => GoRouteData.$location(
+        '/profile',
       );
 
   void go(BuildContext context) => context.go(location);

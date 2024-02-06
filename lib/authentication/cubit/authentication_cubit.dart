@@ -8,7 +8,14 @@ class AuthenticationCubit extends HydratedCubit<AuthenticationStatus> {
     required AuthenticationRepository authenticationRepository,
   })  : _authenticationRepository = authenticationRepository,
         super(AuthenticationStatus.initial) {
-    _subscription = _authenticationRepository.status.listen(emit);
+    _subscription = _authenticationRepository.status.listen(
+      (status) {
+        if (!state.isInitial) {
+          if (status.isInitial) return;
+        }
+        emit(status);
+      },
+    );
   }
 
   late StreamSubscription<AuthenticationStatus> _subscription;
