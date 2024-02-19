@@ -51,9 +51,11 @@ class _SuccessDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return CustomDialog(
       icon: const PhosphorIcon(PhosphorIconsFill.checkCircle),
-      iconColor: AppColors.success,
+      iconColor: theme.extension<CustomColors>()?.sourceSuccess,
       title: const Text('Akun anda berhasil di daftarkan'),
       content: const Text('Silakan masuk untuk melanjutkan.'),
       actions: [

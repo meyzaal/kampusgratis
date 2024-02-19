@@ -15,6 +15,7 @@ import 'package:kampusgratis/my_study/my_study.dart';
 import 'package:kampusgratis/onboarding/onboarding.dart';
 import 'package:kampusgratis/otp_verification/otp_verification.dart';
 import 'package:kampusgratis/profile/profile.dart';
+import 'package:kampusgratis/profile_details/profile_details.dart';
 import 'package:kampusgratis/register/register.dart';
 import 'package:stream_listener/stream_listener.dart';
 
@@ -133,7 +134,12 @@ class ForgotPasswordRoute extends GoRouteData {
     TypedGoRoute<MyStudyRoute>(path: '/my-study'),
     TypedGoRoute<AssignmentRoute>(path: '/assignment'),
     TypedGoRoute<MyCalendarRoute>(path: '/my-calendar'),
-    TypedGoRoute<ProfileRoute>(path: '/profile'),
+    TypedGoRoute<ProfileRoute>(
+      path: '/profile',
+      routes: [
+        TypedGoRoute<ProfileDetailsRoute>(path: 'details'),
+      ],
+    ),
   ],
 )
 class MainRoute extends ShellRouteData {
@@ -182,4 +188,12 @@ class ProfileRoute extends GoRouteData {
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
       const NoTransitionPage<void>(child: ProfilePage());
+}
+
+class ProfileDetailsRoute extends GoRouteData {
+  const ProfileDetailsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ProfileDetailsPage();
 }

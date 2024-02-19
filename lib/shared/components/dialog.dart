@@ -14,6 +14,7 @@ class CustomDialog extends StatelessWidget {
     this.iconColor,
     this.titleTextStyle,
     this.contentTextStyle,
+    this.contentPadding,
     this.actions,
     this.actionsGap = 8.0,
     this.actionsDirection = Axis.vertical,
@@ -37,6 +38,7 @@ class CustomDialog extends StatelessWidget {
   final Color? iconColor;
   final TextStyle? titleTextStyle;
   final TextStyle? contentTextStyle;
+  final EdgeInsets? contentPadding;
   final List<Widget>? actions;
   final double actionsGap;
   final Axis actionsDirection;
@@ -99,6 +101,7 @@ class CustomDialog extends StatelessWidget {
       final defaultTitleTextStyle = GoogleFonts.poppins(
         fontWeight: FontWeight.w600,
         fontSize: 20,
+        color: theme.colorScheme.onSurface,
       );
       titleWidget = Padding(
         padding: titlePadding,
@@ -119,7 +122,7 @@ class CustomDialog extends StatelessWidget {
     }
 
     if (content != null) {
-      const contentPadding = EdgeInsets.only(
+      const defaultContentPadding = EdgeInsets.only(
         left: 24,
         top: 16,
         right: 24,
@@ -130,7 +133,7 @@ class CustomDialog extends StatelessWidget {
         fontSize: 14,
       );
       contentWidget = Padding(
-        padding: contentPadding,
+        padding: contentPadding ?? defaultContentPadding,
         child: DefaultTextStyle(
           style: contentTextStyle ??
               dialogTheme.contentTextStyle ??

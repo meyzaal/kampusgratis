@@ -17,6 +17,7 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(left: 16, top: 12, right: 16, bottom: 12),
       child: BlocConsumer<ForgotPasswordBloc, ForgotPasswordState>(
@@ -70,10 +71,12 @@ class _SubmitButton extends StatelessWidget {
                   }
                 : null,
             child: currentState.status.isInProgress
-                ? const SizedBox.square(
+                ? SizedBox.square(
                     dimension: 20,
                     child: CircularProgressIndicator.adaptive(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        theme.colorScheme.onPrimary,
+                      ),
                     ),
                   )
                 : const Text('Kirim'),

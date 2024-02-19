@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kampusgratis/app/app.dart';
-import 'package:kampusgratis/app/theme/theme.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
 import 'package:kampusgratis/l10n/l10n.dart';
 import 'package:user_repository/user_repository.dart';
@@ -39,9 +38,7 @@ class App extends StatelessWidget {
               authenticationRepository: _authenticationRepository,
             ),
           ),
-          BlocProvider(
-            create: (context) => ThemeCubit(),
-          ),
+          BlocProvider(create: (context) => ThemeCubit()),
         ],
         child: AppView(routerConfig: _routerConfig),
       ),
@@ -56,14 +53,19 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultBrightness = MediaQuery.platformBrightnessOf(context);
-    final brightness = context.select((ThemeCubit bloc) => bloc.state);
+    // final defaultBrightness = MediaQuery.platformBrightnessOf(context);
 
-    return MaterialApp.router(
-      theme: AppTheme.fromBrightness(brightness ?? defaultBrightness),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      routerConfig: routerConfig,
+    return BlocBuilder<ThemeCubit, ThemeMode>(
+      builder: (context, state) {
+        return MaterialApp.router(
+          theme: AppTheme.light(),
+          darkTheme: AppTheme.dark(),
+          themeMode: state,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          routerConfig: routerConfig,
+        );
+      },
     );
   }
 }

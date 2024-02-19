@@ -66,6 +66,7 @@ class _ResendOtp extends StatelessWidget {
             TextButton(
               onPressed: state.timer.isComplete
                   ? () {
+                      if (requestOtpIsLoading) return;
                       context
                           .read<RequestOtpCodeCubit>()
                           .otpEmailVerificationRequested();

@@ -25,6 +25,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/avatar-placeholder.png
+  AssetGenImage get avatarPlaceholder =>
+      const AssetGenImage('assets/images/avatar-placeholder.png');
+
   /// File path: assets/images/ilustrasi_1_onboarding.svg
   SvgGenImage get ilustrasi1Onboarding =>
       const SvgGenImage('assets/images/ilustrasi_1_onboarding.svg');
@@ -42,6 +46,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
+        avatarPlaceholder,
         ilustrasi1Onboarding,
         ilustrasi2Onboarding,
         ilustrasi3Onboarding,

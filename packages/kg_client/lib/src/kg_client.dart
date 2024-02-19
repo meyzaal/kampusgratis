@@ -175,14 +175,15 @@ class KgClient {
   }
 
   Future<void> signOut() async {
-    final token = await _fresh.token;
-
-    if (token?.refreshToken == null) return _unauthenticate();
-
-    final data = {'refresh_token': token?.refreshToken};
-    await _httpClient.post<void>('/v1/auth/logout', data: data);
-
-    return _unauthenticate();
+    try {
+      final token = await _fresh.token;
+      if (token?.refreshToken == null) return _unauthenticate();
+      final data = {'refresh_token': token?.refreshToken};
+      await _httpClient.post<void>('/v1/auth/logout', data: data);
+      await _unauthenticate();
+    } catch (_) {
+      await _unauthenticate();
+    }
   }
 
   Future<void> requestOtpEmailVerification(String email) async {

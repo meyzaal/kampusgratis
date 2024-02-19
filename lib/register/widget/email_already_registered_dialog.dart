@@ -9,9 +9,10 @@ class EmailAlreadyRegisteredDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return CustomDialog(
       icon: const PhosphorIcon(PhosphorIconsFill.warning),
-      iconColor: AppColors.warning,
+      iconColor: theme.extension<CustomColors>()?.sourceWarning,
       title: const Text('Email sudah terdaftar'),
       content: const Text(
         'Silakan masuk dengan email yang sudah terdaftar',

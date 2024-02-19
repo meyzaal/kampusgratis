@@ -8,6 +8,7 @@ import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
 import 'package:kampusgratis/register/register.dart';
 import 'package:kampusgratis/shared/shared.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RegisterForm extends StatelessWidget {
@@ -61,6 +62,7 @@ class RegisterForm extends StatelessWidget {
           _NameInput(),
           _EmailInput(),
           // _PhoneInput(),
+          _PasswordTip(),
           _PasswordInput(),
           _ConfirmedPasswordInput(),
           _TermsAndConditionsCheckBox(),
@@ -76,6 +78,7 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(left: 16, top: 12, right: 16, bottom: 12),
       child: BlocBuilder<RegisterBloc, RegisterState>(
@@ -92,10 +95,12 @@ class _SubmitButton extends StatelessWidget {
                   }
                 : null,
             child: state.status.isInProgress
-                ? const SizedBox.square(
+                ? SizedBox.square(
                     dimension: 20,
                     child: CircularProgressIndicator.adaptive(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        theme.colorScheme.onPrimary,
+                      ),
                     ),
                   )
                 : const Text('Daftar'),
@@ -306,10 +311,10 @@ class _PasswordInput extends StatelessWidget {
           return PasswordInputField(
             labelText: 'Kata Sandi',
             hintText: 'Masukkan kata sandi',
-            helperText: state.password.isValid
-                ? null
-                : '''Harus terdiri dari 8 karakter atau lebih dan mengandung setidaknya 1 angka dan 1 huruf kapital.''',
-            helperMaxLines: 3,
+            // helperText: state.password.isValid
+            //     ? null
+            //     : '''Harus terdiri dari 8 karakter atau lebih dan mengandung setidaknya 1 angka dan 1 huruf kapital.''',
+            // helperMaxLines: 3,
             onChanged: (password) => context
                 .read<RegisterBloc>()
                 .add(RegisterEvent.passwordChanged(password)),
@@ -317,6 +322,43 @@ class _PasswordInput extends StatelessWidget {
                 state.password.isPure ? null : state.password.error?.message,
           );
         },
+      ),
+    );
+  }
+}
+
+class _PasswordTip extends StatelessWidget {
+  const _PasswordTip({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Card(
+      margin: const EdgeInsets.only(left: 16, top: 8, right: 16, bottom: 8),
+      elevation: 0,
+      color: theme.extension<CustomColors>()?.warningContainer,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            PhosphorIcon(
+              PhosphorIconsFill.warning,
+              color: theme.extension<CustomColors>()?.onWarningContainer,
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                '''Kata sandi harus terdiri dari 8 karakter atau lebih, serta mengandung setidaknya 1 angka dan 1 huruf kapital.''',
+                style: TextStyle(
+                  fontSize: 12,
+                  height: 18 / 12,
+                  color: theme.extension<CustomColors>()?.onWarningContainer,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

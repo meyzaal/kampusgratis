@@ -6,5 +6,5 @@
 /// verify OTP (One-Time Password), and verify email.
 library authentication_repository;
 
-export 'src/authentication_repository.dart';
+export 'src/authentication_repository.dart' hide Role;
 export 'src/models/models.dart';

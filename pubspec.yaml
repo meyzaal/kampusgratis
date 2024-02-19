@@ -10,7 +10,9 @@ dependencies:
   authentication_repository:
     path: packages/authentication_repository
   bloc: ^8.1.2
+  cached_network_image: ^3.3.1
   carousel_slider: ^4.2.1
+  dynamic_color: ^1.6.9
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3

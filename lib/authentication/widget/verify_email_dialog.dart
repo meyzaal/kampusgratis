@@ -21,10 +21,12 @@ class VerifyEmailDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String title;
-    final String content;
-    final Widget icon;
-    final Color iconColor;
+    final theme = Theme.of(context);
+
+    String title;
+    String content;
+    Widget icon;
+    Color? iconColor;
 
     switch (type) {
       case VerifyEmailType.register:
@@ -32,13 +34,13 @@ class VerifyEmailDialog extends StatelessWidget {
         content =
             '''Silakan verifikasi email Anda agar dapat masuk dengan akun yang telah berhasil dibuat.''';
         icon = const PhosphorIcon(PhosphorIconsFill.checkCircle);
-        iconColor = AppColors.success;
+        iconColor = theme.extension<CustomColors>()?.sourceSuccess;
       case VerifyEmailType.login:
         title = 'Email belum diverifikasi';
         content =
             '''Silakan verifikasi email Anda terlebih dahulu untuk melanjutkan.''';
         icon = const PhosphorIcon(PhosphorIconsFill.warningCircle);
-        iconColor = AppColors.error;
+        iconColor = theme.extension<CustomColors>()?.sourceDanger;
     }
 
     return CustomDialog(
@@ -68,8 +70,8 @@ class _SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RequestOtpCodeCubit,
-        RequestOtpCodeState>(
+    final theme = Theme.of(context);
+    return BlocConsumer<RequestOtpCodeCubit, RequestOtpCodeState>(
       listener: (context, state) {
         if (state is RequestOtpCodeFailureState) {
           ScaffoldMessenger.of(context)
@@ -95,15 +97,15 @@ class _SubmitButton extends StatelessWidget {
         return FilledButton(
           onPressed: () {
             if (state is RequestOtpCodeLoadingState) return;
-            context
-                .read<RequestOtpCodeCubit>()
-                .otpEmailVerificationRequested();
+            context.read<RequestOtpCodeCubit>().otpEmailVerificationRequested();
           },
           child: state is RequestOtpCodeLoadingState
-              ? const SizedBox.square(
+              ? SizedBox.square(
                   dimension: 20,
                   child: CircularProgressIndicator.adaptive(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      theme.colorScheme.onPrimary,
+                    ),
                   ),
                 )
               : const Text('Verifikasi email'),
