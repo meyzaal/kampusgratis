@@ -1,6 +1,7 @@
 export 'components/avatar.dart';
 export 'components/back_button.dart';
 export 'components/dialog.dart';
+export 'components/error.dart';
 export 'components/text_field.dart';
 export 'extensions/role.dart';
 export 'extensions/string.dart';

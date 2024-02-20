@@ -29,6 +29,10 @@ class $AssetsImagesGen {
   AssetGenImage get avatarPlaceholder =>
       const AssetGenImage('assets/images/avatar-placeholder.png');
 
+  /// File path: assets/images/exception_figure.svg
+  SvgGenImage get exceptionFigure =>
+      const SvgGenImage('assets/images/exception_figure.svg');
+
   /// File path: assets/images/ilustrasi_1_onboarding.svg
   SvgGenImage get ilustrasi1Onboarding =>
       const SvgGenImage('assets/images/ilustrasi_1_onboarding.svg');
@@ -47,6 +51,7 @@ class $AssetsImagesGen {
   /// List of all assets
   List<dynamic> get values => [
         avatarPlaceholder,
+        exceptionFigure,
         ilustrasi1Onboarding,
         ilustrasi2Onboarding,
         ilustrasi3Onboarding,

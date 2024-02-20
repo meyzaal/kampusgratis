@@ -159,6 +159,7 @@ extension<T extends Enum> on Map<T, String> {
 }
 
 RouteBase get $mainRoute => ShellRouteData.$route(
+      navigatorKey: MainRoute.$navigatorKey,
       factory: $MainRouteExtension._fromState,
       routes: [
         GoRouteData.$route(
@@ -183,6 +184,7 @@ RouteBase get $mainRoute => ShellRouteData.$route(
           routes: [
             GoRouteData.$route(
               path: 'details',
+              parentNavigatorKey: ProfileDetailsRoute.$parentNavigatorKey,
               factory: $ProfileDetailsRouteExtension._fromState,
             ),
           ],

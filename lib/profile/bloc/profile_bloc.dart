@@ -1,6 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kg_client/kg_client.dart';
 import 'package:user_repository/user_repository.dart';
 
 part 'profile_event.dart';
@@ -37,13 +38,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           user: user,
         ),
       );
-    } catch (e) {
-      var errorMessage = 'Terjadi kesalahan (unknown-error).';
-      if (e is String) errorMessage = e;
+    } on NetworkException catch (e) {
       emit(
         state.copyWith(
           fetchStatus: ProfileStatus.failure,
-          message: errorMessage,
+          message: e.message,
         ),
       );
     }

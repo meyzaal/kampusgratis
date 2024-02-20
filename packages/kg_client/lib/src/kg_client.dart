@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -1109,6 +1110,7 @@ NetworkException _getException(dynamic e) {
   } else {
     exception = UnknownException('Terjadi kesalahan yang tidak diketahui.');
   }
+  log('EXCEPTION CAUGHT: $exception');
   return exception;
 }
 

@@ -21,10 +21,10 @@ import 'package:stream_listener/stream_listener.dart';
 
 part 'routes.g.dart';
 
-// final GlobalKey<NavigatorState> _rootNavigatorKey =
-//     GlobalKey<NavigatorState>(debugLabel: 'root');
-// final GlobalKey<NavigatorState> _shellNavigatorKey =
-//     GlobalKey<NavigatorState>(debugLabel: 'shell');
+final GlobalKey<NavigatorState> _rootNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'root');
+final GlobalKey<NavigatorState> _shellNavigatorKey =
+    GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 enum OtpVerificationType { emailVerification, resetPassword }
 
@@ -38,6 +38,7 @@ class AppRoutes {
     return GoRouter(
       debugLogDiagnostics: kDebugMode,
       initialLocation: '/home',
+      navigatorKey: _rootNavigatorKey,
       redirect: (context, state) {
         final loggedIn = _authenticationCubit.state.isAuthenticated;
         final onOnboardingPage = state.matchedLocation == '/onboarding';
@@ -145,6 +146,8 @@ class ForgotPasswordRoute extends GoRouteData {
 class MainRoute extends ShellRouteData {
   const MainRoute();
 
+  static final GlobalKey<NavigatorState> $navigatorKey = _shellNavigatorKey;
+
   @override
   Widget builder(BuildContext context, GoRouterState state, Widget navigator) =>
       MainPage(child: navigator);
@@ -192,6 +195,9 @@ class ProfileRoute extends GoRouteData {
 
 class ProfileDetailsRoute extends GoRouteData {
   const ProfileDetailsRoute();
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey =
+      _rootNavigatorKey;
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>

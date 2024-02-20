@@ -44,10 +44,10 @@ class ProfileButton extends StatelessWidget {
     }
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: theme.colorScheme.primaryContainer,
+        backgroundColor: theme.colorScheme.secondaryContainer,
         child: IconTheme(
           data: IconThemeData(
-            color: theme.colorScheme.onPrimaryContainer,
+            color: theme.colorScheme.onSecondaryContainer,
             size: 20,
           ),
           child: leadingIcon,

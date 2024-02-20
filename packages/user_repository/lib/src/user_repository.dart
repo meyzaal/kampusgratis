@@ -93,6 +93,11 @@ class UserRepository {
   Future<Profile> getProfile() async {
     final result = await _kgClient.getProfile();
 
+    var faculty = result.faculty;
+    var major = result.major;
+    if (faculty == 'none') faculty = 'Tidak terdaftar';
+    if (major == 'UNENROLLED') major = 'Tidak terdaftar';
+
     return Profile(
       currentSubjects: result.currentSubjects ?? 0,
       discussionLikes: result.discussionLikes ?? 0,
@@ -104,9 +109,9 @@ class UserRepository {
       totalCertificates: result.totalCertificates ?? 0,
       userName: result.userName ?? '',
       avatar: result.avatar,
-      faculty: result.faculty,
+      faculty: faculty,
       ipk: result.ipk,
-      major: result.major,
+      major: major,
       semester: result.semester,
     );
   }

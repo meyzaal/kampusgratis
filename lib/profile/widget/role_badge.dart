@@ -17,7 +17,8 @@ class RoleBadge extends StatelessWidget {
 
     return Card(
       elevation: 0,
-      color: theme.colorScheme.secondary,
+      color: theme.colorScheme.tertiary,
+      margin: EdgeInsets.zero,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         child: Row(
@@ -26,7 +27,7 @@ class RoleBadge extends StatelessWidget {
             PhosphorIcon(
               iconData,
               size: 18,
-              color: theme.colorScheme.onSecondary,
+              color: theme.colorScheme.onTertiary,
             ),
             const SizedBox(width: 8),
             Text(
@@ -34,7 +35,7 @@ class RoleBadge extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 height: 18 / 12,
-                color: theme.colorScheme.onSecondary,
+                color: theme.colorScheme.onTertiary,
               ),
             ),
           ],

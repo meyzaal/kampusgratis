@@ -34,7 +34,7 @@ class ProfileBody extends StatelessWidget {
                   return Center(
                     child: Padding(
                       padding: const EdgeInsets.all(32),
-                      child: Text(message),
+                      child: ErrorStateWidget(message: message),
                     ),
                   );
                 case ProfileStatus.success:
@@ -167,7 +167,7 @@ class _UserInfo extends StatelessWidget {
             tag: 'profile-hero-avatar',
             child: CustomAvatar(
               avatarUrl: user.avatar,
-              radius: 48,
+              radius: 40,
             ),
           ),
           const SizedBox(height: 8),
