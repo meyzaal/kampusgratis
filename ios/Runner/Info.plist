@@ -52,5 +52,13 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- start Image Picker -->  
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs access to the photo library to select photos</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs access to the camera to take photos</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app does not require microphone access</string>
+	<!-- end Image Picker -->  
 </dict>
 </plist>

@@ -33,7 +33,7 @@ class ProfileBody extends StatelessWidget {
                       state.message ?? 'Terjadi kesalahan (message-null).';
                   return Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(32),
+                      padding: const EdgeInsets.all(24),
                       child: ErrorStateWidget(message: message),
                     ),
                   );
@@ -68,6 +68,14 @@ class ProfileBody extends StatelessWidget {
                     leadingIcon: ProfileButton.editUser,
                     title: const Text('Edit Profil'),
                     trailing: ProfileButton.arrowRight,
+                    onTap: () => const EditProfileRoute()
+                        .push<bool>(context)
+                        .then((value) {
+                      if (value != true) return;
+                      context
+                          .read<ProfileBloc>()
+                          .add(const ProfileEvent.reloadUserRequested());
+                    }),
                   ),
                   ProfileButton(
                     leadingIcon: ProfileButton.gradesAndCertificates,
@@ -83,6 +91,8 @@ class ProfileBody extends StatelessWidget {
                     leadingIcon: ProfileButton.about,
                     title: const Text('Tentang'),
                     trailing: ProfileButton.arrowRight,
+                     onTap: () =>
+                        const AboutRoute().push<void>(context),
                   ),
                   BlocProvider.value(
                     value: BlocProvider.of<ThemeCubit>(context),
@@ -160,16 +170,10 @@ class _UserInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(24),
       child: Column(
         children: [
-          Hero(
-            tag: 'profile-hero-avatar',
-            child: CustomAvatar(
-              avatarUrl: user.avatar,
-              radius: 40,
-            ),
-          ),
+          ProfileAvatar(avatarUrl: user.avatar),
           const SizedBox(height: 8),
           Text(
             user.fullName,

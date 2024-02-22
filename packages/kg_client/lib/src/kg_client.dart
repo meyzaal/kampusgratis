@@ -345,6 +345,7 @@ class KgClient {
     String? fullName,
     String? username,
     String? phone,
+    String? gender,
   }) async {
     try {
       if (fullName == null && username == null && phone == null) {
@@ -355,6 +356,7 @@ class KgClient {
         if (fullName != null) 'full_name': fullName,
         if (username != null) 'user_name': username,
         if (phone != null) 'phone_number': phone,
+        if (gender != null) 'gender': gender,
       };
       final response = await _httpClient.put<dynamic>(
         '/v1/user/profile/me',
@@ -377,26 +379,34 @@ class KgClient {
     }
   }
 
-  Future<String> updateUserAvatar(File image) async {
+  Future<String> updateUserAvatar(File? image) async {
     try {
-      if (await image.fileSizeInMB > 2.0) {
-        throw RequestPayloadException('Ukuran file tidak boleh lebih dari 2mb');
-      }
+      MultipartFile? avatarFile;
+      if (image != null) {
+        if (await image.fileSizeInMB > 2.0) {
+          throw RequestPayloadException(
+            'Ukuran file tidak boleh lebih dari 2mb',
+          );
+        }
 
-      final avatarFile = await MultipartFile.fromFile(
-        image.path,
-        filename: basename(image.path),
-        contentType: image.mediaType,
-      );
+        avatarFile = await MultipartFile.fromFile(
+          image.path,
+          filename: basename(image.path),
+          contentType: image.mediaType,
+        );
+      }
       final data = FormData.fromMap({'avatar': avatarFile});
       final response = await _httpClient.put<dynamic>(
         '/v1/user/profile/avatar',
         data: data,
       );
 
-      final result = response.data as JSON;
+      final result = Result<User>.fromJson(
+        response.data as JSON,
+        (json) => User.fromJson(json as JSON? ?? {}),
+      );
 
-      final avatar = result['avatar'] as String?;
+      final avatar = result.data?.avatar;
       if (avatar == null) {
         throw ParsingFailedException(
           'Gagal mendapatkan data respon (data-null).',
@@ -1076,6 +1086,7 @@ Future<void> _authenticate({
 Future<void> _unauthenticate() => _fresh.setToken(null);
 
 NetworkException _getException(dynamic e) {
+  log(e.toString());
   NetworkException exception;
   if (e is DioException) {
     final statusCode = e.response?.statusCode;
@@ -1107,6 +1118,8 @@ NetworkException _getException(dynamic e) {
     );
   } else if (e.toString().contains('is not a subtype of')) {
     exception = ParsingFailedException('Gagal memparsing respon.');
+  } else if (e is NetworkException) {
+    exception = e;
   } else {
     exception = UnknownException('Terjadi kesalahan yang tidak diketahui.');
   }

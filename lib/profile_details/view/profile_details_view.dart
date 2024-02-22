@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/profile/profile.dart';
 import 'package:kampusgratis/profile_details/profile_details.dart';
 import 'package:kampusgratis/shared/shared.dart';
@@ -85,7 +86,6 @@ class ProfileDetailsView extends StatelessWidget {
                       (e) => ListTile(
                         leading: e.leading,
                         title: e.title,
-                        subtitle: e.subtitle,
                       ),
                     ),
                   ],
@@ -166,7 +166,7 @@ class _UserDetails extends StatelessWidget {
     final role = user.role;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+      padding: const EdgeInsets.fromLTRB(16, 16, 4, 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -215,6 +215,16 @@ class _UserDetails extends StatelessWidget {
               ],
             ),
           ),
+          IconButton(
+            onPressed: () {
+              const EditProfileRoute().push<bool>(context).then((updated) {
+                if (updated != true) return;
+                context.read<ProfileDetailsCubit>().userUpdated();
+              });
+            },
+            iconSize: 20,
+            icon: const PhosphorIcon(PhosphorIconsFill.pencilLine),
+          ),
         ],
       ),
     );
@@ -225,14 +235,10 @@ class _TileComponent {
   const _TileComponent({
     required this.leading,
     required this.title,
-    this.subtitle,
-    this.trailing,
   });
 
   final Widget leading;
   final Widget title;
-  final Widget? subtitle;
-  final Widget? trailing;
 }
 
 extension on Profile {

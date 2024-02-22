@@ -169,6 +169,10 @@ ThemeData _getTheme(Brightness brightness) {
       showUnselectedLabels: true,
       selectedItemColor: colorScheme.primary,
     ),
+    bottomSheetTheme: BottomSheetThemeData(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      showDragHandle: true,
+    ),
     textTheme: GoogleFonts.poppinsTextTheme(theme.textTheme),
     cardTheme: CardTheme(
       shape: RoundedRectangleBorder(

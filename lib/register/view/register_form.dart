@@ -1,4 +1,3 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -184,11 +183,7 @@ class _TermsAndConditionsCheckBoxState
                     ),
                     recognizer: _termsRecognizer
                       ..onTap = () {
-                        final url = Uri(
-                          scheme: 'https',
-                          host: 'kampusgratis.id',
-                          path: 'syarat-ketentuan',
-                        );
+                        final url = Constants.termsAndConditionsUrl;
                         launchUrl(url).then((canLaunch) {
                           if (!canLaunch) {
                             ScaffoldMessenger.of(context)
@@ -221,11 +216,7 @@ class _TermsAndConditionsCheckBoxState
                     ),
                     recognizer: _conditionsRecognizer
                       ..onTap = () {
-                        final url = Uri(
-                          scheme: 'https',
-                          host: 'kampusgratis.id',
-                          path: 'kebijakan-privasi',
-                        );
+                        final url = Constants.privacyPolicyUrl;
                         launchUrl(url).then((canLaunch) {
                           if (!canLaunch) {
                             ScaffoldMessenger.of(context)
@@ -328,7 +319,7 @@ class _PasswordInput extends StatelessWidget {
 }
 
 class _PasswordTip extends StatelessWidget {
-  const _PasswordTip({super.key});
+  const _PasswordTip();
 
   @override
   Widget build(BuildContext context) {

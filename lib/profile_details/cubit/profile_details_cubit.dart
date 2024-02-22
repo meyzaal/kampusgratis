@@ -23,5 +23,16 @@ class ProfileDetailsCubit extends Cubit<ProfileDetailsState> {
     }
   }
 
+  Future<void> userUpdated() async {
+    if (state is ProfileDetailsSuccessState) {
+      final currenState = state as ProfileDetailsSuccessState;
+      emit(
+        currenState.copyWith(
+          user: _userRepository.currentUser ?? currenState.user,
+        ),
+      );
+    }
+  }
+
   final UserRepository _userRepository;
 }

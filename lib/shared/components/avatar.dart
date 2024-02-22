@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:kampusgratis/gen/gen.dart';
 
 class CustomAvatar extends StatelessWidget {
-  const CustomAvatar({super.key, this.radius, this.avatarUrl});
+  const CustomAvatar({super.key, this.radius, this.avatarUrl, this.child});
 
   final double? radius;
   final String? avatarUrl;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +18,10 @@ class CustomAvatar extends StatelessWidget {
 
     return CircleAvatar(
       radius: radius,
-      backgroundImage: Assets.images.avatarPlaceholder.provider(),
-      foregroundImage: foregroundImage,
+      backgroundImage:
+          child != null ? null : Assets.images.avatarPlaceholder.provider(),
+      foregroundImage: child != null ? null : foregroundImage,
+      child: child,
     );
   }
 }

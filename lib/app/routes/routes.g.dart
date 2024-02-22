@@ -187,6 +187,21 @@ RouteBase get $mainRoute => ShellRouteData.$route(
               parentNavigatorKey: ProfileDetailsRoute.$parentNavigatorKey,
               factory: $ProfileDetailsRouteExtension._fromState,
             ),
+            GoRouteData.$route(
+              path: 'edit',
+              parentNavigatorKey: EditProfileRoute.$parentNavigatorKey,
+              factory: $EditProfileRouteExtension._fromState,
+            ),
+            GoRouteData.$route(
+              path: 'about',
+              parentNavigatorKey: AboutRoute.$parentNavigatorKey,
+              factory: $AboutRouteExtension._fromState,
+            ),
+            GoRouteData.$route(
+              path: 'change-password',
+              parentNavigatorKey: ChangePasswordRoute.$parentNavigatorKey,
+              factory: $ChangePasswordRouteExtension._fromState,
+            ),
           ],
         ),
       ],
@@ -289,6 +304,59 @@ extension $ProfileDetailsRouteExtension on ProfileDetailsRoute {
 
   String get location => GoRouteData.$location(
         '/profile/details',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $EditProfileRouteExtension on EditProfileRoute {
+  static EditProfileRoute _fromState(GoRouterState state) =>
+      const EditProfileRoute();
+
+  String get location => GoRouteData.$location(
+        '/profile/edit',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $AboutRouteExtension on AboutRoute {
+  static AboutRoute _fromState(GoRouterState state) => const AboutRoute();
+
+  String get location => GoRouteData.$location(
+        '/profile/about',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ChangePasswordRouteExtension on ChangePasswordRoute {
+  static ChangePasswordRoute _fromState(GoRouterState state) =>
+      const ChangePasswordRoute();
+
+  String get location => GoRouteData.$location(
+        '/profile/change-password',
       );
 
   void go(BuildContext context) => context.go(location);

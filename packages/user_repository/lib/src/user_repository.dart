@@ -123,11 +123,13 @@ class UserRepository {
     String? fullName,
     String? username,
     String? phone,
+    Gender? gender,
   }) async {
     final result = await _kgClient.updateUserInfo(
       fullName: fullName,
       username: username,
       phone: phone,
+      gender: gender?.name.toUpperCase(),
     );
 
     final data = User(
@@ -146,8 +148,8 @@ class UserRepository {
     return data;
   }
 
-  /// Updates the user's avatar on the server using the provided image file.
-  Future<User> updateUserAvatar(File image) async {
+  /// Upload the user's avatar on the server using the provided image file.
+  Future<User> uploadUserAvatar(File image) async {
     final avatar = await _kgClient.updateUserAvatar(image);
     var data = _currentUser?.copyWith(avatar: avatar);
 
@@ -169,6 +171,29 @@ class UserRepository {
     _currentUser = data;
     return data;
   }
+  /// Delete the user's avatar on the server.
+  // Future<User> deleteUserAvatar() async {
+  //   final avatar = await _kgClient.updateUserAvatar(null);
+  //   var data = _currentUser?.copyWith(avatar: avatar);
+
+  //   if (data == null) {
+  //     final result = await _kgClient.getUser();
+  //     data = User(
+  //       email: result.email ?? '',
+  //       fullName: result.fullName ?? '',
+  //       id: result.id ?? '',
+  //       role: result.role ?? Role.guest,
+  //       userName: result.userName ?? '',
+  //       avatar: result.avatar,
+  //       gender: result.gender,
+  //       phoneNumber: result.phoneNumber,
+  //     );
+  //   }
+
+  //   unawaited(_saveUserToLocalStorage(data));
+  //   _currentUser = data;
+  //   return data;
+  // }
 
   Future<User?> _getUserFromLocalStorage() async {
     print('GET USER FROM LOCAL STORAGE');

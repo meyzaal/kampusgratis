@@ -4,8 +4,11 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kampusgratis/about/about.dart';
 import 'package:kampusgratis/assignment/assignment.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
+import 'package:kampusgratis/change_password/change_password.dart';
+import 'package:kampusgratis/edit_profile/edit_profile.dart';
 import 'package:kampusgratis/forgot_password/forgot_password.dart';
 import 'package:kampusgratis/home/home.dart';
 import 'package:kampusgratis/login/login.dart';
@@ -139,6 +142,9 @@ class ForgotPasswordRoute extends GoRouteData {
       path: '/profile',
       routes: [
         TypedGoRoute<ProfileDetailsRoute>(path: 'details'),
+        TypedGoRoute<EditProfileRoute>(path: 'edit'),
+        TypedGoRoute<AboutRoute>(path: 'about'),
+        TypedGoRoute<ChangePasswordRoute>(path: 'change-password'),
       ],
     ),
   ],
@@ -202,4 +208,36 @@ class ProfileDetailsRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ProfileDetailsPage();
+}
+
+class EditProfileRoute extends GoRouteData {
+  const EditProfileRoute();
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey =
+      _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const EditProfilePage();
+}
+
+class AboutRoute extends GoRouteData {
+  const AboutRoute();
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey =
+      _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const AboutPage();
+}
+
+class ChangePasswordRoute extends GoRouteData {
+  const ChangePasswordRoute();
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey =
+      _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ChangePasswordPage();
 }
