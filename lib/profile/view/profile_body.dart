@@ -86,13 +86,14 @@ class ProfileBody extends StatelessWidget {
                     leadingIcon: ProfileButton.changePassword,
                     title: const Text('Ubah Kata Sandi'),
                     trailing: ProfileButton.arrowRight,
+                    onTap: () =>
+                        const ChangePasswordRoute().push<void>(context),
                   ),
                   ProfileButton(
                     leadingIcon: ProfileButton.about,
                     title: const Text('Tentang'),
                     trailing: ProfileButton.arrowRight,
-                     onTap: () =>
-                        const AboutRoute().push<void>(context),
+                    onTap: () => const AboutRoute().push<void>(context),
                   ),
                   BlocProvider.value(
                     value: BlocProvider.of<ThemeCubit>(context),
