@@ -38,7 +38,7 @@ dependencies:
   stream_listener:
     path: packages/stream_listener
   transparent_image: ^2.0.1
-  url_launcher: ^6.2.4
+  url_launcher: ^6.2.5
   user_repository:
     path: packages/user_repository
 
