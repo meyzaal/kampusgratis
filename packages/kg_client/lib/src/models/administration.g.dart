@@ -8,48 +8,63 @@ part of 'administration.dart';
 
 _$AdministrationImpl _$$AdministrationImplFromJson(Map<String, dynamic> json) =>
     _$AdministrationImpl(
-      id: json['id'] as String?,
-      userId: json['user_id'] as String?,
-      status: $enumDecodeNullable(_$StatusEnumMap, json['status']),
-      type: json['type'] as String?,
-      reason: json['reason'] as String?,
-      actionBy: json['action_by'] as String?,
-      biodata: json['biodata'] == null
+      details: json['details'] == null
           ? null
-          : Biodata.fromJson(json['biodata'] as Map<String, dynamic>),
-      familial: json['familial'] == null
+          : Details.fromJson(json['details'] as Map<String, dynamic>),
+      biodatas: json['biodatas'] == null
           ? null
-          : Familial.fromJson(json['familial'] as Map<String, dynamic>),
-      file: json['file'] == null
+          : Biodatas.fromJson(json['biodatas'] as Map<String, dynamic>),
+      familials: json['familials'] == null
           ? null
-          : Documents.fromJson(json['file'] as Map<String, dynamic>),
+          : Familials.fromJson(json['familials'] as Map<String, dynamic>),
+      files: json['files'] == null
+          ? null
+          : Files.fromJson(json['files'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AdministrationImplToJson(
         _$AdministrationImpl instance) =>
     <String, dynamic>{
+      'details': instance.details,
+      'biodatas': instance.biodatas,
+      'familials': instance.familials,
+      'files': instance.files,
+    };
+
+_$DetailsImpl _$$DetailsImplFromJson(Map<String, dynamic> json) =>
+    _$DetailsImpl(
+      id: json['id'] as String?,
+      userId: json['user_id'] as String?,
+      status:
+          $enumDecodeNullable(_$AdministrationStatusEnumMap, json['status']),
+      type: json['type'] as String?,
+      reason: json['reason'] as String?,
+      actionBy: json['action_by'] as String?,
+      createdAt: json['created_at'] as String?,
+      updatedAt: json['updated_at'] as String?,
+    );
+
+Map<String, dynamic> _$$DetailsImplToJson(_$DetailsImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,
-      'status': _$StatusEnumMap[instance.status],
+      'status': _$AdministrationStatusEnumMap[instance.status],
       'type': instance.type,
       'reason': instance.reason,
       'action_by': instance.actionBy,
-      'biodata': instance.biodata,
-      'familial': instance.familial,
-      'file': instance.file,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
     };
 
-const _$StatusEnumMap = {
-  Status.pending: 'PENDING',
-  Status.accepted: 'ACCEPTED',
-  Status.rejected: 'REJECTED',
-  Status.notSubmitted: 'NOT_SUBMITTED',
+const _$AdministrationStatusEnumMap = {
+  AdministrationStatus.pending: 'PENDING',
+  AdministrationStatus.accepted: 'ACCEPTED',
+  AdministrationStatus.rejected: 'REJECTED',
+  AdministrationStatus.notSubmitted: 'NOT_SUBMITTED',
 };
 
-_$BiodataImpl _$$BiodataImplFromJson(Map<String, dynamic> json) =>
-    _$BiodataImpl(
-      id: json['id'] as String?,
-      administrationId: json['administration_id'] as String?,
+_$BiodatasImpl _$$BiodatasImplFromJson(Map<String, dynamic> json) =>
+    _$BiodatasImpl(
       fullName: json['full_name'] as String?,
       gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
       phoneNumber: json['phone_number'] as String?,
@@ -73,10 +88,8 @@ _$BiodataImpl _$$BiodataImplFromJson(Map<String, dynamic> json) =>
       postalCode: json['postal_code'] as String?,
     );
 
-Map<String, dynamic> _$$BiodataImplToJson(_$BiodataImpl instance) =>
+Map<String, dynamic> _$$BiodatasImplToJson(_$BiodatasImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'administration_id': instance.administrationId,
       'full_name': instance.fullName,
       'gender': _$GenderEnumMap[instance.gender],
       'phone_number': instance.phoneNumber,
@@ -105,10 +118,8 @@ const _$GenderEnumMap = {
   Gender.female: 'FEMALE',
 };
 
-_$FamilialImpl _$$FamilialImplFromJson(Map<String, dynamic> json) =>
-    _$FamilialImpl(
-      id: json['id'] as String?,
-      administrationId: json['administration_id'] as String?,
+_$FamilialsImpl _$$FamilialsImplFromJson(Map<String, dynamic> json) =>
+    _$FamilialsImpl(
       fatherName: json['father_name'] as String?,
       fatherOccupation: json['father_occupation'] as String?,
       fatherSalary: json['father_salary'] as String?,
@@ -121,10 +132,8 @@ _$FamilialImpl _$$FamilialImplFromJson(Map<String, dynamic> json) =>
       tuitionPayer: json['tuition_payer'] as String?,
     );
 
-Map<String, dynamic> _$$FamilialImplToJson(_$FamilialImpl instance) =>
+Map<String, dynamic> _$$FamilialsImplToJson(_$FamilialsImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'administration_id': instance.administrationId,
       'father_name': instance.fatherName,
       'father_occupation': instance.fatherOccupation,
       'father_salary': instance.fatherSalary,
@@ -137,44 +146,40 @@ Map<String, dynamic> _$$FamilialImplToJson(_$FamilialImpl instance) =>
       'tuition_payer': instance.tuitionPayer,
     };
 
-_$DocumentsImpl _$$DocumentsImplFromJson(Map<String, dynamic> json) =>
-    _$DocumentsImpl(
-      id: json['id'] as String?,
-      administrationId: json['administration_id'] as String?,
-      idCardId: json['id_card_id'] as int?,
-      idCard: json['id_card'] as String?,
-      diplomaCertificateId: json['diploma_certificate_id'] as int?,
+_$FilesImpl _$$FilesImplFromJson(Map<String, dynamic> json) => _$FilesImpl(
       diplomaCertificate: json['diploma_certificate'] as String?,
-      familyCardId: json['family_card_id'] as int?,
+      diplomaCertificateName: json['diploma_certificate_name'] as String?,
       familyCard: json['family_card'] as String?,
-      photoId: json['photo_id'] as int?,
-      photo: json['photo'] as String?,
-      transcriptId: json['transcript_id'] as int?,
-      transcript: json['transcript'] as String?,
-      letterOfRecommendationId: json['letter_of_recommendation_id'] as int?,
+      familyCardName: json['family_card_name'] as String?,
+      idCard: json['id_card'] as String?,
+      idCardName: json['id_card_name'] as String?,
       letterOfRecommendation: json['letter_of_recommendation'] as String?,
-      studentCardId: json['student_card_id'] as int?,
+      letterOfRecommendationName:
+          json['letter_of_recommendation_name'] as String?,
+      photo: json['photo'] as String?,
+      photoName: json['photo_name'] as String?,
       studentCard: json['student_card'] as String?,
+      studentCardName: json['student_card_name'] as String?,
+      transcript: json['transcript'] as String?,
+      transcriptName: json['transcript_name'] as String?,
     );
 
-Map<String, dynamic> _$$DocumentsImplToJson(_$DocumentsImpl instance) =>
+Map<String, dynamic> _$$FilesImplToJson(_$FilesImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'administration_id': instance.administrationId,
-      'id_card_id': instance.idCardId,
-      'id_card': instance.idCard,
-      'diploma_certificate_id': instance.diplomaCertificateId,
       'diploma_certificate': instance.diplomaCertificate,
-      'family_card_id': instance.familyCardId,
+      'diploma_certificate_name': instance.diplomaCertificateName,
       'family_card': instance.familyCard,
-      'photo_id': instance.photoId,
-      'photo': instance.photo,
-      'transcript_id': instance.transcriptId,
-      'transcript': instance.transcript,
-      'letter_of_recommendation_id': instance.letterOfRecommendationId,
+      'family_card_name': instance.familyCardName,
+      'id_card': instance.idCard,
+      'id_card_name': instance.idCardName,
       'letter_of_recommendation': instance.letterOfRecommendation,
-      'student_card_id': instance.studentCardId,
+      'letter_of_recommendation_name': instance.letterOfRecommendationName,
+      'photo': instance.photo,
+      'photo_name': instance.photoName,
       'student_card': instance.studentCard,
+      'student_card_name': instance.studentCardName,
+      'transcript': instance.transcript,
+      'transcript_name': instance.transcriptName,
     };
 
 _$AdministrationConstantsImpl _$$AdministrationConstantsImplFromJson(

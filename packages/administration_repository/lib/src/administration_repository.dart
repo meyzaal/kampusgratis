@@ -2,28 +2,22 @@ import 'dart:io';
 
 import 'package:administration_repository/src/models/models.dart';
 import 'package:kg_client/kg_client.dart';
-import 'package:path/path.dart';
 
-const _defaultGender = Gender.male;
-const _defaultLastEducation = 'NA';
-const _defaultOccupation = 'BELUM_TIDAK_BEKERJA';
-const _defaultSalary = 'TANPA_PENGHASILAN';
-const _defaultLiveWith = 'PARENT';
-const _defaultTuitionPayer = 'PARENT';
+const _defaultStatus = AdministrationStatus.notSubmitted;
 
-class UploadAdministrationDocumentsFailure implements Exception {
-  const UploadAdministrationDocumentsFailure([
+class UploadAdministrationFilesFailure implements Exception {
+  const UploadAdministrationFilesFailure([
     this.message = 'Terjadi kesalahan.',
   ]);
 
-  factory UploadAdministrationDocumentsFailure.fromMessage(String message) {
+  factory UploadAdministrationFilesFailure.fromMessage(String message) {
     switch (message) {
       case 'Only JPEG, JPG, PNG, and PDF files are allowed':
-        return const UploadAdministrationDocumentsFailure(
+        return const UploadAdministrationFilesFailure(
           'Format file hanya .jpeg, .jpg, .png dan .pdf yang diperbolehkan.',
         );
       default:
-        return UploadAdministrationDocumentsFailure(message);
+        return UploadAdministrationFilesFailure(message);
     }
   }
   final String message;
@@ -37,86 +31,90 @@ class AdministrationRepository {
 
   Future<Administration> getAdministration() async {
     final result = await _kgClient.getAdministration();
-    final resultBiodata = result.biodata;
-    final resultFamilial = result.familial;
-    final resultFile = result.file;
+    final resultDetails = result.details;
+    final resultBiodatas = result.biodatas;
+    final resultFamilials = result.familials;
+    final resultFiles = result.files;
 
-    Biodata? biodata;
-    if (resultBiodata != null) {
-      biodata = Biodata(
-        address: resultBiodata.address ?? '',
-        administrationId: resultBiodata.administrationId ?? '',
-        birthdate: resultBiodata.birthdate ?? '',
-        birthplace: resultBiodata.birthplace ?? '',
-        district: resultBiodata.district ?? '',
-        districtId: resultBiodata.districtId ?? '',
-        fullName: resultBiodata.fullName ?? '',
-        gender: resultBiodata.gender ?? _defaultGender,
-        id: resultBiodata.id ?? '',
-        identityNumber: resultBiodata.identityNumber ?? '',
-        lastEducation: resultBiodata.lastEducation ?? _defaultLastEducation,
-        phoneNumber: resultBiodata.phoneNumber ?? '',
-        postalCode: resultBiodata.postalCode ?? '',
-        province: resultBiodata.province ?? '',
-        provinceId: resultBiodata.provinceId ?? '',
-        regency: resultBiodata.regency ?? '',
-        regencyId: resultBiodata.regencyId ?? '',
-        village: resultBiodata.village ?? '',
-        villageId: resultBiodata.villageId ?? '',
-        major: resultBiodata.major,
-        nim: resultBiodata.nim,
-        semester: resultBiodata.semester,
-        university: resultBiodata.university,
+    Details? details;
+    if (resultDetails != null) {
+      details = Details(
+        id: resultDetails.id ?? '',
+        userId: resultDetails.userId ?? '',
+        status: resultDetails.status ?? _defaultStatus,
+        actionBy: resultDetails.actionBy,
+        createdAt: resultDetails.createdAt,
+        reason: resultDetails.reason,
+        type: resultDetails.type,
+        updatedAt: resultDetails.updatedAt,
       );
     }
-    Familial? familial;
-    if (resultFamilial != null) {
-      familial = Familial(
-        administrationId: resultFamilial.administrationId ?? '',
-        fatherName: resultFamilial.fatherName ?? '',
-        fatherOccupation: resultFamilial.fatherOccupation ?? _defaultOccupation,
-        fatherSalary: resultFamilial.fatherSalary ?? _defaultSalary,
-        id: resultFamilial.id ?? '',
-        liveWith: resultFamilial.liveWith ?? _defaultLiveWith,
-        motherName: resultFamilial.motherName ?? '',
-        motherOccupation: resultFamilial.motherOccupation ?? _defaultOccupation,
-        motherSalary: resultFamilial.motherSalary ?? _defaultSalary,
-        selfOccupation: resultFamilial.selfOccupation ?? _defaultOccupation,
-        selfSalary: resultFamilial.selfSalary ?? _defaultSalary,
-        tuitionPayer: resultFamilial.tuitionPayer ?? _defaultTuitionPayer,
+    Biodatas? biodatas;
+    if (resultBiodatas != null) {
+      biodatas = Biodatas(
+        address: resultBiodatas.address,
+        birthdate: resultBiodatas.birthdate,
+        birthplace: resultBiodatas.birthplace,
+        district: resultBiodatas.district,
+        districtId: resultBiodatas.districtId,
+        fullName: resultBiodatas.fullName,
+        gender: resultBiodatas.gender,
+        identityNumber: resultBiodatas.identityNumber,
+        lastEducation: resultBiodatas.lastEducation,
+        phoneNumber: resultBiodatas.phoneNumber,
+        postalCode: resultBiodatas.postalCode,
+        province: resultBiodatas.province,
+        provinceId: resultBiodatas.provinceId,
+        regency: resultBiodatas.regency,
+        regencyId: resultBiodatas.regencyId,
+        village: resultBiodatas.village,
+        villageId: resultBiodatas.villageId,
+        major: resultBiodatas.major,
+        nim: resultBiodatas.nim,
+        semester: resultBiodatas.semester,
+        university: resultBiodatas.university,
       );
     }
-    Documents? file;
-    if (resultFile != null) {
-      file = Documents(
-        administrationId: resultFile.administrationId ?? '',
-        id: resultFile.id ?? '',
-        idCard: resultFile.idCard ?? '',
-        idCardId: resultFile.idCardId ?? -1,
-        photo: resultFile.photo ?? '',
-        photoId: resultFile.photoId ?? -1,
-        diplomaCertificate: resultFile.diplomaCertificate,
-        diplomaCertificateId: resultFile.diplomaCertificateId,
-        familyCard: resultFile.familyCard,
-        familyCardId: resultFile.familyCardId,
-        letterOfRecommendation: resultFile.letterOfRecommendation,
-        letterOfRecommendationId: resultFile.letterOfRecommendationId,
-        studentCard: resultFile.studentCard,
-        studentCardId: resultFile.studentCardId,
-        transcript: resultFile.transcript,
-        transcriptId: resultFile.transcriptId,
+    Familials? familials;
+    if (resultFamilials != null) {
+      familials = Familials(
+        fatherName: resultFamilials.fatherName,
+        fatherOccupation: resultFamilials.fatherOccupation,
+        fatherSalary: resultFamilials.fatherSalary,
+        liveWith: resultFamilials.liveWith,
+        motherName: resultFamilials.motherName,
+        motherOccupation: resultFamilials.motherOccupation,
+        motherSalary: resultFamilials.motherSalary,
+        selfOccupation: resultFamilials.selfOccupation,
+        selfSalary: resultFamilials.selfSalary,
+        tuitionPayer: resultFamilials.tuitionPayer,
+      );
+    }
+    Files? files;
+    if (resultFiles != null) {
+      files = Files(
+        idCard: resultFiles.idCard,
+        idCardName: resultFiles.idCardName,
+        photo: resultFiles.photo,
+        photoName: resultFiles.photoName,
+        diplomaCertificate: resultFiles.diplomaCertificate,
+        diplomaCertificateName: resultFiles.diplomaCertificateName,
+        familyCard: resultFiles.familyCard,
+        familyCardName: resultFiles.familyCardName,
+        letterOfRecommendation: resultFiles.letterOfRecommendation,
+        letterOfRecommendationName: resultFiles.letterOfRecommendationName,
+        studentCard: resultFiles.studentCard,
+        studentCardName: resultFiles.studentCardName,
+        transcript: resultFiles.transcript,
+        transcriptName: resultFiles.transcriptName,
       );
     }
 
     return Administration(
-      id: result.id ?? '',
-      userId: result.userId ?? '',
-      status: result.status ?? Status.notSubmitted,
-      reason: result.reason,
-      actionBy: result.actionBy,
-      biodata: biodata,
-      familial: familial,
-      file: file,
+      details: details,
+      biodatas: biodatas,
+      familials: familials,
+      files: files,
     );
   }
 
@@ -158,7 +156,7 @@ class AdministrationRepository {
     );
   }
 
-  Future<Biodata> submitBiodata({
+  Future<Biodatas> submitBiodatas({
     required String fullName,
     required Gender gender,
     required String phoneNumber,
@@ -177,7 +175,7 @@ class AdministrationRepository {
     int? semester,
     String? nim,
   }) async {
-    final result = await _kgClient.submitAdministrationBiodata(
+    final result = await _kgClient.submitAdministrationBiodatas(
       fullName: fullName,
       gender: gender.name.toUpperCase(),
       phoneNumber: phoneNumber,
@@ -197,26 +195,24 @@ class AdministrationRepository {
       university: university,
     );
 
-    return Biodata(
-      address: result.address ?? '',
-      administrationId: result.administrationId ?? '',
-      birthdate: result.birthdate ?? '',
-      birthplace: result.birthplace ?? '',
-      district: result.district ?? '',
-      districtId: result.districtId ?? '',
-      fullName: result.fullName ?? '',
-      gender: result.gender ?? _defaultGender,
-      id: result.id ?? '',
-      identityNumber: result.identityNumber ?? '',
-      lastEducation: result.lastEducation ?? _defaultLastEducation,
-      phoneNumber: result.phoneNumber ?? '',
-      postalCode: result.postalCode ?? '',
-      province: result.province ?? '',
-      provinceId: result.provinceId ?? '',
-      regency: result.regency ?? '',
-      regencyId: result.regencyId ?? '',
-      village: result.village ?? '',
-      villageId: result.villageId ?? '',
+    return Biodatas(
+      address: result.address,
+      birthdate: result.birthdate,
+      birthplace: result.birthplace,
+      district: result.district,
+      districtId: result.districtId,
+      fullName: result.fullName,
+      gender: result.gender,
+      identityNumber: result.identityNumber,
+      lastEducation: result.lastEducation,
+      phoneNumber: result.phoneNumber,
+      postalCode: result.postalCode,
+      province: result.province,
+      provinceId: result.provinceId,
+      regency: result.regency,
+      regencyId: result.regencyId,
+      village: result.village,
+      villageId: result.villageId,
       major: result.major,
       nim: result.nim,
       semester: result.semester,
@@ -224,7 +220,7 @@ class AdministrationRepository {
     );
   }
 
-  Future<Familial> submitFamilial({
+  Future<Familials> submitFamilials({
     required String fatherName,
     required String fatherOccupation,
     required String fatherSalary,
@@ -236,36 +232,34 @@ class AdministrationRepository {
     required String liveWith,
     required String tuitionPayer,
   }) async {
-    final result = await _kgClient.submitAdministrationFamilial(
+    final result = await _kgClient.submitAdministrationFamilials(
       fatherName: fatherName,
       fatherOccupation: fatherOccupation,
       fatherSalary: fatherSalary,
+      liveWith: liveWith,
       motherName: motherName,
       motherOccupation: motherOccupation,
       motherSalary: motherSalary,
       selfOccupation: selfOccupation,
       selfSalary: selfSalary,
-      liveWith: liveWith,
       tuitionPayer: tuitionPayer,
     );
 
-    return Familial(
-      administrationId: result.administrationId ?? '',
-      fatherName: result.fatherName ?? '',
-      fatherOccupation: result.fatherOccupation ?? _defaultOccupation,
-      fatherSalary: result.fatherSalary ?? _defaultSalary,
-      id: result.id ?? '',
-      liveWith: result.liveWith ?? _defaultLiveWith,
-      motherName: result.motherName ?? '',
-      motherOccupation: result.motherOccupation ?? _defaultOccupation,
-      motherSalary: result.motherSalary ?? _defaultSalary,
-      selfOccupation: result.selfOccupation ?? _defaultOccupation,
-      selfSalary: result.selfSalary ?? _defaultSalary,
-      tuitionPayer: result.tuitionPayer ?? _defaultTuitionPayer,
+    return Familials(
+      fatherName: result.fatherName,
+      fatherOccupation: result.fatherOccupation,
+      fatherSalary: result.fatherSalary,
+      liveWith: result.liveWith,
+      motherName: result.motherName,
+      motherOccupation: result.motherOccupation,
+      motherSalary: result.motherSalary,
+      selfOccupation: result.selfOccupation,
+      selfSalary: result.selfSalary,
+      tuitionPayer: result.tuitionPayer,
     );
   }
 
-  Future<Documents> submitDocuments({
+  Future<Files> submitFiles({
     required File idCardFile,
     required File photoFile,
     File? familyCardFile,
@@ -274,7 +268,7 @@ class AdministrationRepository {
     File? studentCardFile,
     File? letterOfRecommendationFile,
   }) async {
-    final result = await _kgClient.submitAdministrationDocuments(
+    final result = await _kgClient.submitAdministrationFiles(
       idCardFile: idCardFile,
       photoFile: photoFile,
       diplomaCertificateFile: diplomaCertificateFile,
@@ -284,23 +278,21 @@ class AdministrationRepository {
       transcriptFile: transcriptFile,
     );
 
-    return Documents(
-      administrationId: result.administrationId ?? '',
-      id: result.id ?? '',
-      idCard: _getFileName(result.idCard) ?? '',
-      idCardId: result.idCardId ?? -1,
-      photo: _getFileName(result.photo) ?? '',
-      photoId: result.photoId ?? -1,
-      diplomaCertificate: _getFileName(result.diplomaCertificate),
-      diplomaCertificateId: result.diplomaCertificateId,
-      familyCard: _getFileName(result.familyCard),
-      familyCardId: result.familyCardId,
-      letterOfRecommendation: _getFileName(result.letterOfRecommendation),
-      letterOfRecommendationId: result.letterOfRecommendationId,
-      studentCard: _getFileName(result.studentCard),
-      studentCardId: result.studentCardId,
-      transcript: _getFileName(result.transcript),
-      transcriptId: result.transcriptId,
+    return Files(
+      diplomaCertificate: result.diplomaCertificate,
+      diplomaCertificateName: result.diplomaCertificateName,
+      familyCard: result.familyCard,
+      familyCardName: result.familyCardName,
+      idCard: result.idCard,
+      idCardName: result.idCardName,
+      letterOfRecommendation: result.letterOfRecommendation,
+      letterOfRecommendationName: result.letterOfRecommendationName,
+      photo: result.photo,
+      photoName: result.photoName,
+      studentCard: result.studentCard,
+      studentCardName: result.studentCardName,
+      transcript: result.transcript,
+      transcriptName: result.transcriptName,
     );
   }
 
@@ -356,10 +348,4 @@ class AdministrationRepository {
         )
         .toList();
   }
-}
-
-String? _getFileName(String? path) {
-  if (path == null) return null;
-
-  return basename(path);
 }

@@ -4,7 +4,7 @@ import 'package:kg_client/src/models/models.dart';
 part 'administration.freezed.dart';
 part 'administration.g.dart';
 
-enum Status {
+enum AdministrationStatus {
   @JsonValue('PENDING')
   pending,
 
@@ -21,15 +21,10 @@ enum Status {
 @freezed
 class Administration with _$Administration {
   const factory Administration({
-    @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'user_id') String? userId,
-    @JsonKey(name: 'status') Status? status,
-    @JsonKey(name: 'type') String? type,
-    @JsonKey(name: 'reason') String? reason,
-    @JsonKey(name: 'action_by') String? actionBy,
-    @JsonKey(name: 'biodata') Biodata? biodata,
-    @JsonKey(name: 'familial') Familial? familial,
-    @JsonKey(name: 'file') Documents? file,
+    @JsonKey(name: 'details') Details? details,
+    @JsonKey(name: 'biodatas') Biodatas? biodatas,
+    @JsonKey(name: 'familials') Familials? familials,
+    @JsonKey(name: 'files') Files? files,
   }) = _Administration;
 
   factory Administration.fromJson(Map<String, Object?> json) =>
@@ -37,10 +32,25 @@ class Administration with _$Administration {
 }
 
 @freezed
-class Biodata with _$Biodata {
-  const factory Biodata({
+class Details with _$Details {
+  const factory Details({
     @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'administration_id') String? administrationId,
+    @JsonKey(name: 'user_id') String? userId,
+    @JsonKey(name: 'status') AdministrationStatus? status,
+    @JsonKey(name: 'type') String? type,
+    @JsonKey(name: 'reason') String? reason,
+    @JsonKey(name: 'action_by') String? actionBy,
+    @JsonKey(name: 'created_at') String? createdAt,
+    @JsonKey(name: 'updated_at') String? updatedAt,
+  }) = _Details;
+
+  factory Details.fromJson(Map<String, Object?> json) =>
+      _$DetailsFromJson(json);
+}
+
+@freezed
+class Biodatas with _$Biodatas {
+  const factory Biodatas({
     @JsonKey(name: 'full_name') String? fullName,
     @JsonKey(name: 'gender') Gender? gender,
     @JsonKey(name: 'phone_number') String? phoneNumber,
@@ -62,17 +72,15 @@ class Biodata with _$Biodata {
     @JsonKey(name: 'village') String? village,
     @JsonKey(name: 'village_id') String? villageId,
     @JsonKey(name: 'postal_code') String? postalCode,
-  }) = _Biodata;
+  }) = _Biodatas;
 
-  factory Biodata.fromJson(Map<String, Object?> json) =>
-      _$BiodataFromJson(json);
+  factory Biodatas.fromJson(Map<String, Object?> json) =>
+      _$BiodatasFromJson(json);
 }
 
 @freezed
-class Familial with _$Familial {
-  const factory Familial({
-    @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'administration_id') String? administrationId,
+class Familials with _$Familials {
+  const factory Familials({
     @JsonKey(name: 'father_name') String? fatherName,
     @JsonKey(name: 'father_occupation') String? fatherOccupation,
     @JsonKey(name: 'father_salary') String? fatherSalary,
@@ -83,35 +91,33 @@ class Familial with _$Familial {
     @JsonKey(name: 'self_occupation') String? selfOccupation,
     @JsonKey(name: 'live_with') String? liveWith,
     @JsonKey(name: 'tuition_payer') String? tuitionPayer,
-  }) = _Familial;
+  }) = _Familials;
 
-  factory Familial.fromJson(Map<String, Object?> json) =>
-      _$FamilialFromJson(json);
+  factory Familials.fromJson(Map<String, Object?> json) =>
+      _$FamilialsFromJson(json);
 }
 
 @freezed
-class Documents with _$Documents {
-  const factory Documents({
-    @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'administration_id') String? administrationId,
-    @JsonKey(name: 'id_card_id') int? idCardId,
-    @JsonKey(name: 'id_card') String? idCard,
-    @JsonKey(name: 'diploma_certificate_id') int? diplomaCertificateId,
+class Files with _$Files {
+  const factory Files({
     @JsonKey(name: 'diploma_certificate') String? diplomaCertificate,
-    @JsonKey(name: 'family_card_id') int? familyCardId,
+    @JsonKey(name: 'diploma_certificate_name') String? diplomaCertificateName,
     @JsonKey(name: 'family_card') String? familyCard,
-    @JsonKey(name: 'photo_id') int? photoId,
-    @JsonKey(name: 'photo') String? photo,
-    @JsonKey(name: 'transcript_id') int? transcriptId,
-    @JsonKey(name: 'transcript') String? transcript,
-    @JsonKey(name: 'letter_of_recommendation_id') int? letterOfRecommendationId,
+    @JsonKey(name: 'family_card_name') String? familyCardName,
+    @JsonKey(name: 'id_card') String? idCard,
+    @JsonKey(name: 'id_card_name') String? idCardName,
     @JsonKey(name: 'letter_of_recommendation') String? letterOfRecommendation,
-    @JsonKey(name: 'student_card_id') int? studentCardId,
+    @JsonKey(name: 'letter_of_recommendation_name')
+    String? letterOfRecommendationName,
+    @JsonKey(name: 'photo') String? photo,
+    @JsonKey(name: 'photo_name') String? photoName,
     @JsonKey(name: 'student_card') String? studentCard,
-  }) = _Documents;
+    @JsonKey(name: 'student_card_name') String? studentCardName,
+    @JsonKey(name: 'transcript') String? transcript,
+    @JsonKey(name: 'transcript_name') String? transcriptName,
+  }) = _Files;
 
-  factory Documents.fromJson(Map<String, Object?> json) =>
-      _$DocumentsFromJson(json);
+  factory Files.fromJson(Map<String, Object?> json) => _$FilesFromJson(json);
 }
 
 @freezed

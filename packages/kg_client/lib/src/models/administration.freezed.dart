@@ -20,24 +20,14 @@ Administration _$AdministrationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Administration {
-  @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_id')
-  String? get userId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'status')
-  Status? get status => throw _privateConstructorUsedError;
-  @JsonKey(name: 'type')
-  String? get type => throw _privateConstructorUsedError;
-  @JsonKey(name: 'reason')
-  String? get reason => throw _privateConstructorUsedError;
-  @JsonKey(name: 'action_by')
-  String? get actionBy => throw _privateConstructorUsedError;
-  @JsonKey(name: 'biodata')
-  Biodata? get biodata => throw _privateConstructorUsedError;
-  @JsonKey(name: 'familial')
-  Familial? get familial => throw _privateConstructorUsedError;
-  @JsonKey(name: 'file')
-  Documents? get file => throw _privateConstructorUsedError;
+  @JsonKey(name: 'details')
+  Details? get details => throw _privateConstructorUsedError;
+  @JsonKey(name: 'biodatas')
+  Biodatas? get biodatas => throw _privateConstructorUsedError;
+  @JsonKey(name: 'familials')
+  Familials? get familials => throw _privateConstructorUsedError;
+  @JsonKey(name: 'files')
+  Files? get files => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,19 +42,15 @@ abstract class $AdministrationCopyWith<$Res> {
       _$AdministrationCopyWithImpl<$Res, Administration>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'user_id') String? userId,
-      @JsonKey(name: 'status') Status? status,
-      @JsonKey(name: 'type') String? type,
-      @JsonKey(name: 'reason') String? reason,
-      @JsonKey(name: 'action_by') String? actionBy,
-      @JsonKey(name: 'biodata') Biodata? biodata,
-      @JsonKey(name: 'familial') Familial? familial,
-      @JsonKey(name: 'file') Documents? file});
+      {@JsonKey(name: 'details') Details? details,
+      @JsonKey(name: 'biodatas') Biodatas? biodatas,
+      @JsonKey(name: 'familials') Familials? familials,
+      @JsonKey(name: 'files') Files? files});
 
-  $BiodataCopyWith<$Res>? get biodata;
-  $FamilialCopyWith<$Res>? get familial;
-  $DocumentsCopyWith<$Res>? get file;
+  $DetailsCopyWith<$Res>? get details;
+  $BiodatasCopyWith<$Res>? get biodatas;
+  $FamilialsCopyWith<$Res>? get familials;
+  $FilesCopyWith<$Res>? get files;
 }
 
 /// @nodoc
@@ -80,89 +66,76 @@ class _$AdministrationCopyWithImpl<$Res, $Val extends Administration>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = freezed,
-    Object? status = freezed,
-    Object? type = freezed,
-    Object? reason = freezed,
-    Object? actionBy = freezed,
-    Object? biodata = freezed,
-    Object? familial = freezed,
-    Object? file = freezed,
+    Object? details = freezed,
+    Object? biodatas = freezed,
+    Object? familials = freezed,
+    Object? files = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as Status?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      reason: freezed == reason
-          ? _value.reason
-          : reason // ignore: cast_nullable_to_non_nullable
-              as String?,
-      actionBy: freezed == actionBy
-          ? _value.actionBy
-          : actionBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      biodata: freezed == biodata
-          ? _value.biodata
-          : biodata // ignore: cast_nullable_to_non_nullable
-              as Biodata?,
-      familial: freezed == familial
-          ? _value.familial
-          : familial // ignore: cast_nullable_to_non_nullable
-              as Familial?,
-      file: freezed == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as Documents?,
+      details: freezed == details
+          ? _value.details
+          : details // ignore: cast_nullable_to_non_nullable
+              as Details?,
+      biodatas: freezed == biodatas
+          ? _value.biodatas
+          : biodatas // ignore: cast_nullable_to_non_nullable
+              as Biodatas?,
+      familials: freezed == familials
+          ? _value.familials
+          : familials // ignore: cast_nullable_to_non_nullable
+              as Familials?,
+      files: freezed == files
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as Files?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $BiodataCopyWith<$Res>? get biodata {
-    if (_value.biodata == null) {
+  $DetailsCopyWith<$Res>? get details {
+    if (_value.details == null) {
       return null;
     }
 
-    return $BiodataCopyWith<$Res>(_value.biodata!, (value) {
-      return _then(_value.copyWith(biodata: value) as $Val);
+    return $DetailsCopyWith<$Res>(_value.details!, (value) {
+      return _then(_value.copyWith(details: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $FamilialCopyWith<$Res>? get familial {
-    if (_value.familial == null) {
+  $BiodatasCopyWith<$Res>? get biodatas {
+    if (_value.biodatas == null) {
       return null;
     }
 
-    return $FamilialCopyWith<$Res>(_value.familial!, (value) {
-      return _then(_value.copyWith(familial: value) as $Val);
+    return $BiodatasCopyWith<$Res>(_value.biodatas!, (value) {
+      return _then(_value.copyWith(biodatas: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DocumentsCopyWith<$Res>? get file {
-    if (_value.file == null) {
+  $FamilialsCopyWith<$Res>? get familials {
+    if (_value.familials == null) {
       return null;
     }
 
-    return $DocumentsCopyWith<$Res>(_value.file!, (value) {
-      return _then(_value.copyWith(file: value) as $Val);
+    return $FamilialsCopyWith<$Res>(_value.familials!, (value) {
+      return _then(_value.copyWith(familials: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FilesCopyWith<$Res>? get files {
+    if (_value.files == null) {
+      return null;
+    }
+
+    return $FilesCopyWith<$Res>(_value.files!, (value) {
+      return _then(_value.copyWith(files: value) as $Val);
     });
   }
 }
@@ -176,22 +149,19 @@ abstract class _$$AdministrationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'user_id') String? userId,
-      @JsonKey(name: 'status') Status? status,
-      @JsonKey(name: 'type') String? type,
-      @JsonKey(name: 'reason') String? reason,
-      @JsonKey(name: 'action_by') String? actionBy,
-      @JsonKey(name: 'biodata') Biodata? biodata,
-      @JsonKey(name: 'familial') Familial? familial,
-      @JsonKey(name: 'file') Documents? file});
+      {@JsonKey(name: 'details') Details? details,
+      @JsonKey(name: 'biodatas') Biodatas? biodatas,
+      @JsonKey(name: 'familials') Familials? familials,
+      @JsonKey(name: 'files') Files? files});
 
   @override
-  $BiodataCopyWith<$Res>? get biodata;
+  $DetailsCopyWith<$Res>? get details;
   @override
-  $FamilialCopyWith<$Res>? get familial;
+  $BiodatasCopyWith<$Res>? get biodatas;
   @override
-  $DocumentsCopyWith<$Res>? get file;
+  $FamilialsCopyWith<$Res>? get familials;
+  @override
+  $FilesCopyWith<$Res>? get files;
 }
 
 /// @nodoc
@@ -205,53 +175,28 @@ class __$$AdministrationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = freezed,
-    Object? status = freezed,
-    Object? type = freezed,
-    Object? reason = freezed,
-    Object? actionBy = freezed,
-    Object? biodata = freezed,
-    Object? familial = freezed,
-    Object? file = freezed,
+    Object? details = freezed,
+    Object? biodatas = freezed,
+    Object? familials = freezed,
+    Object? files = freezed,
   }) {
     return _then(_$AdministrationImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as Status?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      reason: freezed == reason
-          ? _value.reason
-          : reason // ignore: cast_nullable_to_non_nullable
-              as String?,
-      actionBy: freezed == actionBy
-          ? _value.actionBy
-          : actionBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      biodata: freezed == biodata
-          ? _value.biodata
-          : biodata // ignore: cast_nullable_to_non_nullable
-              as Biodata?,
-      familial: freezed == familial
-          ? _value.familial
-          : familial // ignore: cast_nullable_to_non_nullable
-              as Familial?,
-      file: freezed == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as Documents?,
+      details: freezed == details
+          ? _value.details
+          : details // ignore: cast_nullable_to_non_nullable
+              as Details?,
+      biodatas: freezed == biodatas
+          ? _value.biodatas
+          : biodatas // ignore: cast_nullable_to_non_nullable
+              as Biodatas?,
+      familials: freezed == familials
+          ? _value.familials
+          : familials // ignore: cast_nullable_to_non_nullable
+              as Familials?,
+      files: freezed == files
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as Files?,
     ));
   }
 }
@@ -260,50 +205,30 @@ class __$$AdministrationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AdministrationImpl implements _Administration {
   const _$AdministrationImpl(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'user_id') this.userId,
-      @JsonKey(name: 'status') this.status,
-      @JsonKey(name: 'type') this.type,
-      @JsonKey(name: 'reason') this.reason,
-      @JsonKey(name: 'action_by') this.actionBy,
-      @JsonKey(name: 'biodata') this.biodata,
-      @JsonKey(name: 'familial') this.familial,
-      @JsonKey(name: 'file') this.file});
+      {@JsonKey(name: 'details') this.details,
+      @JsonKey(name: 'biodatas') this.biodatas,
+      @JsonKey(name: 'familials') this.familials,
+      @JsonKey(name: 'files') this.files});
 
   factory _$AdministrationImpl.fromJson(Map<String, dynamic> json) =>
       _$$AdministrationImplFromJson(json);
 
   @override
-  @JsonKey(name: 'id')
-  final String? id;
+  @JsonKey(name: 'details')
+  final Details? details;
   @override
-  @JsonKey(name: 'user_id')
-  final String? userId;
+  @JsonKey(name: 'biodatas')
+  final Biodatas? biodatas;
   @override
-  @JsonKey(name: 'status')
-  final Status? status;
+  @JsonKey(name: 'familials')
+  final Familials? familials;
   @override
-  @JsonKey(name: 'type')
-  final String? type;
-  @override
-  @JsonKey(name: 'reason')
-  final String? reason;
-  @override
-  @JsonKey(name: 'action_by')
-  final String? actionBy;
-  @override
-  @JsonKey(name: 'biodata')
-  final Biodata? biodata;
-  @override
-  @JsonKey(name: 'familial')
-  final Familial? familial;
-  @override
-  @JsonKey(name: 'file')
-  final Documents? file;
+  @JsonKey(name: 'files')
+  final Files? files;
 
   @override
   String toString() {
-    return 'Administration(id: $id, userId: $userId, status: $status, type: $type, reason: $reason, actionBy: $actionBy, biodata: $biodata, familial: $familial, file: $file)';
+    return 'Administration(details: $details, biodatas: $biodatas, familials: $familials, files: $files)';
   }
 
   @override
@@ -311,23 +236,18 @@ class _$AdministrationImpl implements _Administration {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AdministrationImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.reason, reason) || other.reason == reason) &&
-            (identical(other.actionBy, actionBy) ||
-                other.actionBy == actionBy) &&
-            (identical(other.biodata, biodata) || other.biodata == biodata) &&
-            (identical(other.familial, familial) ||
-                other.familial == familial) &&
-            (identical(other.file, file) || other.file == file));
+            (identical(other.details, details) || other.details == details) &&
+            (identical(other.biodatas, biodatas) ||
+                other.biodatas == biodatas) &&
+            (identical(other.familials, familials) ||
+                other.familials == familials) &&
+            (identical(other.files, files) || other.files == files));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, status, type, reason,
-      actionBy, biodata, familial, file);
+  int get hashCode =>
+      Object.hash(runtimeType, details, biodatas, familials, files);
 
   @JsonKey(ignore: true)
   @override
@@ -346,18 +266,305 @@ class _$AdministrationImpl implements _Administration {
 
 abstract class _Administration implements Administration {
   const factory _Administration(
-      {@JsonKey(name: 'id') final String? id,
-      @JsonKey(name: 'user_id') final String? userId,
-      @JsonKey(name: 'status') final Status? status,
-      @JsonKey(name: 'type') final String? type,
-      @JsonKey(name: 'reason') final String? reason,
-      @JsonKey(name: 'action_by') final String? actionBy,
-      @JsonKey(name: 'biodata') final Biodata? biodata,
-      @JsonKey(name: 'familial') final Familial? familial,
-      @JsonKey(name: 'file') final Documents? file}) = _$AdministrationImpl;
+      {@JsonKey(name: 'details') final Details? details,
+      @JsonKey(name: 'biodatas') final Biodatas? biodatas,
+      @JsonKey(name: 'familials') final Familials? familials,
+      @JsonKey(name: 'files') final Files? files}) = _$AdministrationImpl;
 
   factory _Administration.fromJson(Map<String, dynamic> json) =
       _$AdministrationImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'details')
+  Details? get details;
+  @override
+  @JsonKey(name: 'biodatas')
+  Biodatas? get biodatas;
+  @override
+  @JsonKey(name: 'familials')
+  Familials? get familials;
+  @override
+  @JsonKey(name: 'files')
+  Files? get files;
+  @override
+  @JsonKey(ignore: true)
+  _$$AdministrationImplCopyWith<_$AdministrationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Details _$DetailsFromJson(Map<String, dynamic> json) {
+  return _Details.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Details {
+  @JsonKey(name: 'id')
+  String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
+  String? get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  AdministrationStatus? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'type')
+  String? get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'reason')
+  String? get reason => throw _privateConstructorUsedError;
+  @JsonKey(name: 'action_by')
+  String? get actionBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  String? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
+  String? get updatedAt => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DetailsCopyWith<Details> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DetailsCopyWith<$Res> {
+  factory $DetailsCopyWith(Details value, $Res Function(Details) then) =
+      _$DetailsCopyWithImpl<$Res, Details>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'user_id') String? userId,
+      @JsonKey(name: 'status') AdministrationStatus? status,
+      @JsonKey(name: 'type') String? type,
+      @JsonKey(name: 'reason') String? reason,
+      @JsonKey(name: 'action_by') String? actionBy,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'updated_at') String? updatedAt});
+}
+
+/// @nodoc
+class _$DetailsCopyWithImpl<$Res, $Val extends Details>
+    implements $DetailsCopyWith<$Res> {
+  _$DetailsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? status = freezed,
+    Object? type = freezed,
+    Object? reason = freezed,
+    Object? actionBy = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as AdministrationStatus?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      actionBy: freezed == actionBy
+          ? _value.actionBy
+          : actionBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DetailsImplCopyWith<$Res> implements $DetailsCopyWith<$Res> {
+  factory _$$DetailsImplCopyWith(
+          _$DetailsImpl value, $Res Function(_$DetailsImpl) then) =
+      __$$DetailsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'user_id') String? userId,
+      @JsonKey(name: 'status') AdministrationStatus? status,
+      @JsonKey(name: 'type') String? type,
+      @JsonKey(name: 'reason') String? reason,
+      @JsonKey(name: 'action_by') String? actionBy,
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'updated_at') String? updatedAt});
+}
+
+/// @nodoc
+class __$$DetailsImplCopyWithImpl<$Res>
+    extends _$DetailsCopyWithImpl<$Res, _$DetailsImpl>
+    implements _$$DetailsImplCopyWith<$Res> {
+  __$$DetailsImplCopyWithImpl(
+      _$DetailsImpl _value, $Res Function(_$DetailsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? status = freezed,
+    Object? type = freezed,
+    Object? reason = freezed,
+    Object? actionBy = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
+  }) {
+    return _then(_$DetailsImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as AdministrationStatus?,
+      type: freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      reason: freezed == reason
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
+      actionBy: freezed == actionBy
+          ? _value.actionBy
+          : actionBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$DetailsImpl implements _Details {
+  const _$DetailsImpl(
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'user_id') this.userId,
+      @JsonKey(name: 'status') this.status,
+      @JsonKey(name: 'type') this.type,
+      @JsonKey(name: 'reason') this.reason,
+      @JsonKey(name: 'action_by') this.actionBy,
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'updated_at') this.updatedAt});
+
+  factory _$DetailsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DetailsImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'id')
+  final String? id;
+  @override
+  @JsonKey(name: 'user_id')
+  final String? userId;
+  @override
+  @JsonKey(name: 'status')
+  final AdministrationStatus? status;
+  @override
+  @JsonKey(name: 'type')
+  final String? type;
+  @override
+  @JsonKey(name: 'reason')
+  final String? reason;
+  @override
+  @JsonKey(name: 'action_by')
+  final String? actionBy;
+  @override
+  @JsonKey(name: 'created_at')
+  final String? createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  final String? updatedAt;
+
+  @override
+  String toString() {
+    return 'Details(id: $id, userId: $userId, status: $status, type: $type, reason: $reason, actionBy: $actionBy, createdAt: $createdAt, updatedAt: $updatedAt)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DetailsImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.reason, reason) || other.reason == reason) &&
+            (identical(other.actionBy, actionBy) ||
+                other.actionBy == actionBy) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, userId, status, type, reason,
+      actionBy, createdAt, updatedAt);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DetailsImplCopyWith<_$DetailsImpl> get copyWith =>
+      __$$DetailsImplCopyWithImpl<_$DetailsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$DetailsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Details implements Details {
+  const factory _Details(
+      {@JsonKey(name: 'id') final String? id,
+      @JsonKey(name: 'user_id') final String? userId,
+      @JsonKey(name: 'status') final AdministrationStatus? status,
+      @JsonKey(name: 'type') final String? type,
+      @JsonKey(name: 'reason') final String? reason,
+      @JsonKey(name: 'action_by') final String? actionBy,
+      @JsonKey(name: 'created_at') final String? createdAt,
+      @JsonKey(name: 'updated_at') final String? updatedAt}) = _$DetailsImpl;
+
+  factory _Details.fromJson(Map<String, dynamic> json) = _$DetailsImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
@@ -367,7 +574,7 @@ abstract class _Administration implements Administration {
   String? get userId;
   @override
   @JsonKey(name: 'status')
-  Status? get status;
+  AdministrationStatus? get status;
   @override
   @JsonKey(name: 'type')
   String? get type;
@@ -378,30 +585,23 @@ abstract class _Administration implements Administration {
   @JsonKey(name: 'action_by')
   String? get actionBy;
   @override
-  @JsonKey(name: 'biodata')
-  Biodata? get biodata;
+  @JsonKey(name: 'created_at')
+  String? get createdAt;
   @override
-  @JsonKey(name: 'familial')
-  Familial? get familial;
-  @override
-  @JsonKey(name: 'file')
-  Documents? get file;
+  @JsonKey(name: 'updated_at')
+  String? get updatedAt;
   @override
   @JsonKey(ignore: true)
-  _$$AdministrationImplCopyWith<_$AdministrationImpl> get copyWith =>
+  _$$DetailsImplCopyWith<_$DetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Biodata _$BiodataFromJson(Map<String, dynamic> json) {
-  return _Biodata.fromJson(json);
+Biodatas _$BiodatasFromJson(Map<String, dynamic> json) {
+  return _Biodatas.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Biodata {
-  @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'administration_id')
-  String? get administrationId => throw _privateConstructorUsedError;
+mixin _$Biodatas {
   @JsonKey(name: 'full_name')
   String? get fullName => throw _privateConstructorUsedError;
   @JsonKey(name: 'gender')
@@ -447,18 +647,17 @@ mixin _$Biodata {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BiodataCopyWith<Biodata> get copyWith => throw _privateConstructorUsedError;
+  $BiodatasCopyWith<Biodatas> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BiodataCopyWith<$Res> {
-  factory $BiodataCopyWith(Biodata value, $Res Function(Biodata) then) =
-      _$BiodataCopyWithImpl<$Res, Biodata>;
+abstract class $BiodatasCopyWith<$Res> {
+  factory $BiodatasCopyWith(Biodatas value, $Res Function(Biodatas) then) =
+      _$BiodatasCopyWithImpl<$Res, Biodatas>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'administration_id') String? administrationId,
-      @JsonKey(name: 'full_name') String? fullName,
+      {@JsonKey(name: 'full_name') String? fullName,
       @JsonKey(name: 'gender') Gender? gender,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'birthdate') String? birthdate,
@@ -482,9 +681,9 @@ abstract class $BiodataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BiodataCopyWithImpl<$Res, $Val extends Biodata>
-    implements $BiodataCopyWith<$Res> {
-  _$BiodataCopyWithImpl(this._value, this._then);
+class _$BiodatasCopyWithImpl<$Res, $Val extends Biodatas>
+    implements $BiodatasCopyWith<$Res> {
+  _$BiodatasCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -494,8 +693,6 @@ class _$BiodataCopyWithImpl<$Res, $Val extends Biodata>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? administrationId = freezed,
     Object? fullName = freezed,
     Object? gender = freezed,
     Object? phoneNumber = freezed,
@@ -519,14 +716,6 @@ class _$BiodataCopyWithImpl<$Res, $Val extends Biodata>
     Object? postalCode = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      administrationId: freezed == administrationId
-          ? _value.administrationId
-          : administrationId // ignore: cast_nullable_to_non_nullable
-              as String?,
       fullName: freezed == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -616,16 +805,15 @@ class _$BiodataCopyWithImpl<$Res, $Val extends Biodata>
 }
 
 /// @nodoc
-abstract class _$$BiodataImplCopyWith<$Res> implements $BiodataCopyWith<$Res> {
-  factory _$$BiodataImplCopyWith(
-          _$BiodataImpl value, $Res Function(_$BiodataImpl) then) =
-      __$$BiodataImplCopyWithImpl<$Res>;
+abstract class _$$BiodatasImplCopyWith<$Res>
+    implements $BiodatasCopyWith<$Res> {
+  factory _$$BiodatasImplCopyWith(
+          _$BiodatasImpl value, $Res Function(_$BiodatasImpl) then) =
+      __$$BiodatasImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'administration_id') String? administrationId,
-      @JsonKey(name: 'full_name') String? fullName,
+      {@JsonKey(name: 'full_name') String? fullName,
       @JsonKey(name: 'gender') Gender? gender,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'birthdate') String? birthdate,
@@ -649,18 +837,16 @@ abstract class _$$BiodataImplCopyWith<$Res> implements $BiodataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$BiodataImplCopyWithImpl<$Res>
-    extends _$BiodataCopyWithImpl<$Res, _$BiodataImpl>
-    implements _$$BiodataImplCopyWith<$Res> {
-  __$$BiodataImplCopyWithImpl(
-      _$BiodataImpl _value, $Res Function(_$BiodataImpl) _then)
+class __$$BiodatasImplCopyWithImpl<$Res>
+    extends _$BiodatasCopyWithImpl<$Res, _$BiodatasImpl>
+    implements _$$BiodatasImplCopyWith<$Res> {
+  __$$BiodatasImplCopyWithImpl(
+      _$BiodatasImpl _value, $Res Function(_$BiodatasImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? administrationId = freezed,
     Object? fullName = freezed,
     Object? gender = freezed,
     Object? phoneNumber = freezed,
@@ -683,15 +869,7 @@ class __$$BiodataImplCopyWithImpl<$Res>
     Object? villageId = freezed,
     Object? postalCode = freezed,
   }) {
-    return _then(_$BiodataImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      administrationId: freezed == administrationId
-          ? _value.administrationId
-          : administrationId // ignore: cast_nullable_to_non_nullable
-              as String?,
+    return _then(_$BiodatasImpl(
       fullName: freezed == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -782,11 +960,9 @@ class __$$BiodataImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BiodataImpl implements _Biodata {
-  const _$BiodataImpl(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'administration_id') this.administrationId,
-      @JsonKey(name: 'full_name') this.fullName,
+class _$BiodatasImpl implements _Biodatas {
+  const _$BiodatasImpl(
+      {@JsonKey(name: 'full_name') this.fullName,
       @JsonKey(name: 'gender') this.gender,
       @JsonKey(name: 'phone_number') this.phoneNumber,
       @JsonKey(name: 'birthdate') this.birthdate,
@@ -808,15 +984,9 @@ class _$BiodataImpl implements _Biodata {
       @JsonKey(name: 'village_id') this.villageId,
       @JsonKey(name: 'postal_code') this.postalCode});
 
-  factory _$BiodataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BiodataImplFromJson(json);
+  factory _$BiodatasImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BiodatasImplFromJson(json);
 
-  @override
-  @JsonKey(name: 'id')
-  final String? id;
-  @override
-  @JsonKey(name: 'administration_id')
-  final String? administrationId;
   @override
   @JsonKey(name: 'full_name')
   final String? fullName;
@@ -883,17 +1053,14 @@ class _$BiodataImpl implements _Biodata {
 
   @override
   String toString() {
-    return 'Biodata(id: $id, administrationId: $administrationId, fullName: $fullName, gender: $gender, phoneNumber: $phoneNumber, birthdate: $birthdate, birthplace: $birthplace, address: $address, lastEducation: $lastEducation, nim: $nim, university: $university, major: $major, semester: $semester, identityNumber: $identityNumber, province: $province, provinceId: $provinceId, regency: $regency, regencyId: $regencyId, district: $district, districtId: $districtId, village: $village, villageId: $villageId, postalCode: $postalCode)';
+    return 'Biodatas(fullName: $fullName, gender: $gender, phoneNumber: $phoneNumber, birthdate: $birthdate, birthplace: $birthplace, address: $address, lastEducation: $lastEducation, nim: $nim, university: $university, major: $major, semester: $semester, identityNumber: $identityNumber, province: $province, provinceId: $provinceId, regency: $regency, regencyId: $regencyId, district: $district, districtId: $districtId, village: $village, villageId: $villageId, postalCode: $postalCode)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BiodataImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.administrationId, administrationId) ||
-                other.administrationId == administrationId) &&
+            other is _$BiodatasImpl &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
             (identical(other.gender, gender) || other.gender == gender) &&
@@ -936,8 +1103,6 @@ class _$BiodataImpl implements _Biodata {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        id,
-        administrationId,
         fullName,
         gender,
         phoneNumber,
@@ -964,22 +1129,20 @@ class _$BiodataImpl implements _Biodata {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BiodataImplCopyWith<_$BiodataImpl> get copyWith =>
-      __$$BiodataImplCopyWithImpl<_$BiodataImpl>(this, _$identity);
+  _$$BiodatasImplCopyWith<_$BiodatasImpl> get copyWith =>
+      __$$BiodatasImplCopyWithImpl<_$BiodatasImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BiodataImplToJson(
+    return _$$BiodatasImplToJson(
       this,
     );
   }
 }
 
-abstract class _Biodata implements Biodata {
-  const factory _Biodata(
-      {@JsonKey(name: 'id') final String? id,
-      @JsonKey(name: 'administration_id') final String? administrationId,
-      @JsonKey(name: 'full_name') final String? fullName,
+abstract class _Biodatas implements Biodatas {
+  const factory _Biodatas(
+      {@JsonKey(name: 'full_name') final String? fullName,
       @JsonKey(name: 'gender') final Gender? gender,
       @JsonKey(name: 'phone_number') final String? phoneNumber,
       @JsonKey(name: 'birthdate') final String? birthdate,
@@ -999,16 +1162,11 @@ abstract class _Biodata implements Biodata {
       @JsonKey(name: 'district_id') final String? districtId,
       @JsonKey(name: 'village') final String? village,
       @JsonKey(name: 'village_id') final String? villageId,
-      @JsonKey(name: 'postal_code') final String? postalCode}) = _$BiodataImpl;
+      @JsonKey(name: 'postal_code') final String? postalCode}) = _$BiodatasImpl;
 
-  factory _Biodata.fromJson(Map<String, dynamic> json) = _$BiodataImpl.fromJson;
+  factory _Biodatas.fromJson(Map<String, dynamic> json) =
+      _$BiodatasImpl.fromJson;
 
-  @override
-  @JsonKey(name: 'id')
-  String? get id;
-  @override
-  @JsonKey(name: 'administration_id')
-  String? get administrationId;
   @override
   @JsonKey(name: 'full_name')
   String? get fullName;
@@ -1074,20 +1232,16 @@ abstract class _Biodata implements Biodata {
   String? get postalCode;
   @override
   @JsonKey(ignore: true)
-  _$$BiodataImplCopyWith<_$BiodataImpl> get copyWith =>
+  _$$BiodatasImplCopyWith<_$BiodatasImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Familial _$FamilialFromJson(Map<String, dynamic> json) {
-  return _Familial.fromJson(json);
+Familials _$FamilialsFromJson(Map<String, dynamic> json) {
+  return _Familials.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Familial {
-  @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'administration_id')
-  String? get administrationId => throw _privateConstructorUsedError;
+mixin _$Familials {
   @JsonKey(name: 'father_name')
   String? get fatherName => throw _privateConstructorUsedError;
   @JsonKey(name: 'father_occupation')
@@ -1111,19 +1265,17 @@ mixin _$Familial {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FamilialCopyWith<Familial> get copyWith =>
+  $FamilialsCopyWith<Familials> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $FamilialCopyWith<$Res> {
-  factory $FamilialCopyWith(Familial value, $Res Function(Familial) then) =
-      _$FamilialCopyWithImpl<$Res, Familial>;
+abstract class $FamilialsCopyWith<$Res> {
+  factory $FamilialsCopyWith(Familials value, $Res Function(Familials) then) =
+      _$FamilialsCopyWithImpl<$Res, Familials>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'administration_id') String? administrationId,
-      @JsonKey(name: 'father_name') String? fatherName,
+      {@JsonKey(name: 'father_name') String? fatherName,
       @JsonKey(name: 'father_occupation') String? fatherOccupation,
       @JsonKey(name: 'father_salary') String? fatherSalary,
       @JsonKey(name: 'mother_name') String? motherName,
@@ -1136,9 +1288,9 @@ abstract class $FamilialCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FamilialCopyWithImpl<$Res, $Val extends Familial>
-    implements $FamilialCopyWith<$Res> {
-  _$FamilialCopyWithImpl(this._value, this._then);
+class _$FamilialsCopyWithImpl<$Res, $Val extends Familials>
+    implements $FamilialsCopyWith<$Res> {
+  _$FamilialsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1148,8 +1300,6 @@ class _$FamilialCopyWithImpl<$Res, $Val extends Familial>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? administrationId = freezed,
     Object? fatherName = freezed,
     Object? fatherOccupation = freezed,
     Object? fatherSalary = freezed,
@@ -1162,14 +1312,6 @@ class _$FamilialCopyWithImpl<$Res, $Val extends Familial>
     Object? tuitionPayer = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      administrationId: freezed == administrationId
-          ? _value.administrationId
-          : administrationId // ignore: cast_nullable_to_non_nullable
-              as String?,
       fatherName: freezed == fatherName
           ? _value.fatherName
           : fatherName // ignore: cast_nullable_to_non_nullable
@@ -1215,17 +1357,15 @@ class _$FamilialCopyWithImpl<$Res, $Val extends Familial>
 }
 
 /// @nodoc
-abstract class _$$FamilialImplCopyWith<$Res>
-    implements $FamilialCopyWith<$Res> {
-  factory _$$FamilialImplCopyWith(
-          _$FamilialImpl value, $Res Function(_$FamilialImpl) then) =
-      __$$FamilialImplCopyWithImpl<$Res>;
+abstract class _$$FamilialsImplCopyWith<$Res>
+    implements $FamilialsCopyWith<$Res> {
+  factory _$$FamilialsImplCopyWith(
+          _$FamilialsImpl value, $Res Function(_$FamilialsImpl) then) =
+      __$$FamilialsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'administration_id') String? administrationId,
-      @JsonKey(name: 'father_name') String? fatherName,
+      {@JsonKey(name: 'father_name') String? fatherName,
       @JsonKey(name: 'father_occupation') String? fatherOccupation,
       @JsonKey(name: 'father_salary') String? fatherSalary,
       @JsonKey(name: 'mother_name') String? motherName,
@@ -1238,18 +1378,16 @@ abstract class _$$FamilialImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$FamilialImplCopyWithImpl<$Res>
-    extends _$FamilialCopyWithImpl<$Res, _$FamilialImpl>
-    implements _$$FamilialImplCopyWith<$Res> {
-  __$$FamilialImplCopyWithImpl(
-      _$FamilialImpl _value, $Res Function(_$FamilialImpl) _then)
+class __$$FamilialsImplCopyWithImpl<$Res>
+    extends _$FamilialsCopyWithImpl<$Res, _$FamilialsImpl>
+    implements _$$FamilialsImplCopyWith<$Res> {
+  __$$FamilialsImplCopyWithImpl(
+      _$FamilialsImpl _value, $Res Function(_$FamilialsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? administrationId = freezed,
     Object? fatherName = freezed,
     Object? fatherOccupation = freezed,
     Object? fatherSalary = freezed,
@@ -1261,15 +1399,7 @@ class __$$FamilialImplCopyWithImpl<$Res>
     Object? liveWith = freezed,
     Object? tuitionPayer = freezed,
   }) {
-    return _then(_$FamilialImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      administrationId: freezed == administrationId
-          ? _value.administrationId
-          : administrationId // ignore: cast_nullable_to_non_nullable
-              as String?,
+    return _then(_$FamilialsImpl(
       fatherName: freezed == fatherName
           ? _value.fatherName
           : fatherName // ignore: cast_nullable_to_non_nullable
@@ -1316,11 +1446,9 @@ class __$$FamilialImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FamilialImpl implements _Familial {
-  const _$FamilialImpl(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'administration_id') this.administrationId,
-      @JsonKey(name: 'father_name') this.fatherName,
+class _$FamilialsImpl implements _Familials {
+  const _$FamilialsImpl(
+      {@JsonKey(name: 'father_name') this.fatherName,
       @JsonKey(name: 'father_occupation') this.fatherOccupation,
       @JsonKey(name: 'father_salary') this.fatherSalary,
       @JsonKey(name: 'mother_name') this.motherName,
@@ -1331,15 +1459,9 @@ class _$FamilialImpl implements _Familial {
       @JsonKey(name: 'live_with') this.liveWith,
       @JsonKey(name: 'tuition_payer') this.tuitionPayer});
 
-  factory _$FamilialImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FamilialImplFromJson(json);
+  factory _$FamilialsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FamilialsImplFromJson(json);
 
-  @override
-  @JsonKey(name: 'id')
-  final String? id;
-  @override
-  @JsonKey(name: 'administration_id')
-  final String? administrationId;
   @override
   @JsonKey(name: 'father_name')
   final String? fatherName;
@@ -1373,17 +1495,14 @@ class _$FamilialImpl implements _Familial {
 
   @override
   String toString() {
-    return 'Familial(id: $id, administrationId: $administrationId, fatherName: $fatherName, fatherOccupation: $fatherOccupation, fatherSalary: $fatherSalary, motherName: $motherName, motherOccupation: $motherOccupation, motherSalary: $motherSalary, selfSalary: $selfSalary, selfOccupation: $selfOccupation, liveWith: $liveWith, tuitionPayer: $tuitionPayer)';
+    return 'Familials(fatherName: $fatherName, fatherOccupation: $fatherOccupation, fatherSalary: $fatherSalary, motherName: $motherName, motherOccupation: $motherOccupation, motherSalary: $motherSalary, selfSalary: $selfSalary, selfOccupation: $selfOccupation, liveWith: $liveWith, tuitionPayer: $tuitionPayer)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FamilialImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.administrationId, administrationId) ||
-                other.administrationId == administrationId) &&
+            other is _$FamilialsImpl &&
             (identical(other.fatherName, fatherName) ||
                 other.fatherName == fatherName) &&
             (identical(other.fatherOccupation, fatherOccupation) ||
@@ -1410,8 +1529,6 @@ class _$FamilialImpl implements _Familial {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      administrationId,
       fatherName,
       fatherOccupation,
       fatherSalary,
@@ -1426,22 +1543,20 @@ class _$FamilialImpl implements _Familial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FamilialImplCopyWith<_$FamilialImpl> get copyWith =>
-      __$$FamilialImplCopyWithImpl<_$FamilialImpl>(this, _$identity);
+  _$$FamilialsImplCopyWith<_$FamilialsImpl> get copyWith =>
+      __$$FamilialsImplCopyWithImpl<_$FamilialsImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$FamilialImplToJson(
+    return _$$FamilialsImplToJson(
       this,
     );
   }
 }
 
-abstract class _Familial implements Familial {
-  const factory _Familial(
-          {@JsonKey(name: 'id') final String? id,
-          @JsonKey(name: 'administration_id') final String? administrationId,
-          @JsonKey(name: 'father_name') final String? fatherName,
+abstract class _Familials implements Familials {
+  const factory _Familials(
+          {@JsonKey(name: 'father_name') final String? fatherName,
           @JsonKey(name: 'father_occupation') final String? fatherOccupation,
           @JsonKey(name: 'father_salary') final String? fatherSalary,
           @JsonKey(name: 'mother_name') final String? motherName,
@@ -1451,17 +1566,11 @@ abstract class _Familial implements Familial {
           @JsonKey(name: 'self_occupation') final String? selfOccupation,
           @JsonKey(name: 'live_with') final String? liveWith,
           @JsonKey(name: 'tuition_payer') final String? tuitionPayer}) =
-      _$FamilialImpl;
+      _$FamilialsImpl;
 
-  factory _Familial.fromJson(Map<String, dynamic> json) =
-      _$FamilialImpl.fromJson;
+  factory _Familials.fromJson(Map<String, dynamic> json) =
+      _$FamilialsImpl.fromJson;
 
-  @override
-  @JsonKey(name: 'id')
-  String? get id;
-  @override
-  @JsonKey(name: 'administration_id')
-  String? get administrationId;
   @override
   @JsonKey(name: 'father_name')
   String? get fatherName;
@@ -1494,84 +1603,77 @@ abstract class _Familial implements Familial {
   String? get tuitionPayer;
   @override
   @JsonKey(ignore: true)
-  _$$FamilialImplCopyWith<_$FamilialImpl> get copyWith =>
+  _$$FamilialsImplCopyWith<_$FamilialsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Documents _$DocumentsFromJson(Map<String, dynamic> json) {
-  return _Documents.fromJson(json);
+Files _$FilesFromJson(Map<String, dynamic> json) {
+  return _Files.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Documents {
-  @JsonKey(name: 'id')
-  String? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'administration_id')
-  String? get administrationId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'id_card_id')
-  int? get idCardId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'id_card')
-  String? get idCard => throw _privateConstructorUsedError;
-  @JsonKey(name: 'diploma_certificate_id')
-  int? get diplomaCertificateId => throw _privateConstructorUsedError;
+mixin _$Files {
   @JsonKey(name: 'diploma_certificate')
   String? get diplomaCertificate => throw _privateConstructorUsedError;
-  @JsonKey(name: 'family_card_id')
-  int? get familyCardId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'diploma_certificate_name')
+  String? get diplomaCertificateName => throw _privateConstructorUsedError;
   @JsonKey(name: 'family_card')
   String? get familyCard => throw _privateConstructorUsedError;
-  @JsonKey(name: 'photo_id')
-  int? get photoId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'photo')
-  String? get photo => throw _privateConstructorUsedError;
-  @JsonKey(name: 'transcript_id')
-  int? get transcriptId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'transcript')
-  String? get transcript => throw _privateConstructorUsedError;
-  @JsonKey(name: 'letter_of_recommendation_id')
-  int? get letterOfRecommendationId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'family_card_name')
+  String? get familyCardName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id_card')
+  String? get idCard => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id_card_name')
+  String? get idCardName => throw _privateConstructorUsedError;
   @JsonKey(name: 'letter_of_recommendation')
   String? get letterOfRecommendation => throw _privateConstructorUsedError;
-  @JsonKey(name: 'student_card_id')
-  int? get studentCardId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'letter_of_recommendation_name')
+  String? get letterOfRecommendationName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'photo')
+  String? get photo => throw _privateConstructorUsedError;
+  @JsonKey(name: 'photo_name')
+  String? get photoName => throw _privateConstructorUsedError;
   @JsonKey(name: 'student_card')
   String? get studentCard => throw _privateConstructorUsedError;
+  @JsonKey(name: 'student_card_name')
+  String? get studentCardName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'transcript')
+  String? get transcript => throw _privateConstructorUsedError;
+  @JsonKey(name: 'transcript_name')
+  String? get transcriptName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DocumentsCopyWith<Documents> get copyWith =>
-      throw _privateConstructorUsedError;
+  $FilesCopyWith<Files> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DocumentsCopyWith<$Res> {
-  factory $DocumentsCopyWith(Documents value, $Res Function(Documents) then) =
-      _$DocumentsCopyWithImpl<$Res, Documents>;
+abstract class $FilesCopyWith<$Res> {
+  factory $FilesCopyWith(Files value, $Res Function(Files) then) =
+      _$FilesCopyWithImpl<$Res, Files>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'administration_id') String? administrationId,
-      @JsonKey(name: 'id_card_id') int? idCardId,
-      @JsonKey(name: 'id_card') String? idCard,
-      @JsonKey(name: 'diploma_certificate_id') int? diplomaCertificateId,
-      @JsonKey(name: 'diploma_certificate') String? diplomaCertificate,
-      @JsonKey(name: 'family_card_id') int? familyCardId,
+      {@JsonKey(name: 'diploma_certificate') String? diplomaCertificate,
+      @JsonKey(name: 'diploma_certificate_name') String? diplomaCertificateName,
       @JsonKey(name: 'family_card') String? familyCard,
-      @JsonKey(name: 'photo_id') int? photoId,
-      @JsonKey(name: 'photo') String? photo,
-      @JsonKey(name: 'transcript_id') int? transcriptId,
-      @JsonKey(name: 'transcript') String? transcript,
-      @JsonKey(name: 'letter_of_recommendation_id')
-      int? letterOfRecommendationId,
+      @JsonKey(name: 'family_card_name') String? familyCardName,
+      @JsonKey(name: 'id_card') String? idCard,
+      @JsonKey(name: 'id_card_name') String? idCardName,
       @JsonKey(name: 'letter_of_recommendation') String? letterOfRecommendation,
-      @JsonKey(name: 'student_card_id') int? studentCardId,
-      @JsonKey(name: 'student_card') String? studentCard});
+      @JsonKey(name: 'letter_of_recommendation_name')
+      String? letterOfRecommendationName,
+      @JsonKey(name: 'photo') String? photo,
+      @JsonKey(name: 'photo_name') String? photoName,
+      @JsonKey(name: 'student_card') String? studentCard,
+      @JsonKey(name: 'student_card_name') String? studentCardName,
+      @JsonKey(name: 'transcript') String? transcript,
+      @JsonKey(name: 'transcript_name') String? transcriptName});
 }
 
 /// @nodoc
-class _$DocumentsCopyWithImpl<$Res, $Val extends Documents>
-    implements $DocumentsCopyWith<$Res> {
-  _$DocumentsCopyWithImpl(this._value, this._then);
+class _$FilesCopyWithImpl<$Res, $Val extends Files>
+    implements $FilesCopyWith<$Res> {
+  _$FilesCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1581,212 +1683,189 @@ class _$DocumentsCopyWithImpl<$Res, $Val extends Documents>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? administrationId = freezed,
-    Object? idCardId = freezed,
-    Object? idCard = freezed,
-    Object? diplomaCertificateId = freezed,
     Object? diplomaCertificate = freezed,
-    Object? familyCardId = freezed,
+    Object? diplomaCertificateName = freezed,
     Object? familyCard = freezed,
-    Object? photoId = freezed,
-    Object? photo = freezed,
-    Object? transcriptId = freezed,
-    Object? transcript = freezed,
-    Object? letterOfRecommendationId = freezed,
+    Object? familyCardName = freezed,
+    Object? idCard = freezed,
+    Object? idCardName = freezed,
     Object? letterOfRecommendation = freezed,
-    Object? studentCardId = freezed,
+    Object? letterOfRecommendationName = freezed,
+    Object? photo = freezed,
+    Object? photoName = freezed,
     Object? studentCard = freezed,
+    Object? studentCardName = freezed,
+    Object? transcript = freezed,
+    Object? transcriptName = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      administrationId: freezed == administrationId
-          ? _value.administrationId
-          : administrationId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      idCardId: freezed == idCardId
-          ? _value.idCardId
-          : idCardId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      idCard: freezed == idCard
-          ? _value.idCard
-          : idCard // ignore: cast_nullable_to_non_nullable
-              as String?,
-      diplomaCertificateId: freezed == diplomaCertificateId
-          ? _value.diplomaCertificateId
-          : diplomaCertificateId // ignore: cast_nullable_to_non_nullable
-              as int?,
       diplomaCertificate: freezed == diplomaCertificate
           ? _value.diplomaCertificate
           : diplomaCertificate // ignore: cast_nullable_to_non_nullable
               as String?,
-      familyCardId: freezed == familyCardId
-          ? _value.familyCardId
-          : familyCardId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      diplomaCertificateName: freezed == diplomaCertificateName
+          ? _value.diplomaCertificateName
+          : diplomaCertificateName // ignore: cast_nullable_to_non_nullable
+              as String?,
       familyCard: freezed == familyCard
           ? _value.familyCard
           : familyCard // ignore: cast_nullable_to_non_nullable
               as String?,
-      photoId: freezed == photoId
-          ? _value.photoId
-          : photoId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      photo: freezed == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
+      familyCardName: freezed == familyCardName
+          ? _value.familyCardName
+          : familyCardName // ignore: cast_nullable_to_non_nullable
               as String?,
-      transcriptId: freezed == transcriptId
-          ? _value.transcriptId
-          : transcriptId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      transcript: freezed == transcript
-          ? _value.transcript
-          : transcript // ignore: cast_nullable_to_non_nullable
+      idCard: freezed == idCard
+          ? _value.idCard
+          : idCard // ignore: cast_nullable_to_non_nullable
               as String?,
-      letterOfRecommendationId: freezed == letterOfRecommendationId
-          ? _value.letterOfRecommendationId
-          : letterOfRecommendationId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      idCardName: freezed == idCardName
+          ? _value.idCardName
+          : idCardName // ignore: cast_nullable_to_non_nullable
+              as String?,
       letterOfRecommendation: freezed == letterOfRecommendation
           ? _value.letterOfRecommendation
           : letterOfRecommendation // ignore: cast_nullable_to_non_nullable
               as String?,
-      studentCardId: freezed == studentCardId
-          ? _value.studentCardId
-          : studentCardId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      letterOfRecommendationName: freezed == letterOfRecommendationName
+          ? _value.letterOfRecommendationName
+          : letterOfRecommendationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photo: freezed == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoName: freezed == photoName
+          ? _value.photoName
+          : photoName // ignore: cast_nullable_to_non_nullable
+              as String?,
       studentCard: freezed == studentCard
           ? _value.studentCard
           : studentCard // ignore: cast_nullable_to_non_nullable
+              as String?,
+      studentCardName: freezed == studentCardName
+          ? _value.studentCardName
+          : studentCardName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transcript: freezed == transcript
+          ? _value.transcript
+          : transcript // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transcriptName: freezed == transcriptName
+          ? _value.transcriptName
+          : transcriptName // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$DocumentsImplCopyWith<$Res>
-    implements $DocumentsCopyWith<$Res> {
-  factory _$$DocumentsImplCopyWith(
-          _$DocumentsImpl value, $Res Function(_$DocumentsImpl) then) =
-      __$$DocumentsImplCopyWithImpl<$Res>;
+abstract class _$$FilesImplCopyWith<$Res> implements $FilesCopyWith<$Res> {
+  factory _$$FilesImplCopyWith(
+          _$FilesImpl value, $Res Function(_$FilesImpl) then) =
+      __$$FilesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'administration_id') String? administrationId,
-      @JsonKey(name: 'id_card_id') int? idCardId,
-      @JsonKey(name: 'id_card') String? idCard,
-      @JsonKey(name: 'diploma_certificate_id') int? diplomaCertificateId,
-      @JsonKey(name: 'diploma_certificate') String? diplomaCertificate,
-      @JsonKey(name: 'family_card_id') int? familyCardId,
+      {@JsonKey(name: 'diploma_certificate') String? diplomaCertificate,
+      @JsonKey(name: 'diploma_certificate_name') String? diplomaCertificateName,
       @JsonKey(name: 'family_card') String? familyCard,
-      @JsonKey(name: 'photo_id') int? photoId,
-      @JsonKey(name: 'photo') String? photo,
-      @JsonKey(name: 'transcript_id') int? transcriptId,
-      @JsonKey(name: 'transcript') String? transcript,
-      @JsonKey(name: 'letter_of_recommendation_id')
-      int? letterOfRecommendationId,
+      @JsonKey(name: 'family_card_name') String? familyCardName,
+      @JsonKey(name: 'id_card') String? idCard,
+      @JsonKey(name: 'id_card_name') String? idCardName,
       @JsonKey(name: 'letter_of_recommendation') String? letterOfRecommendation,
-      @JsonKey(name: 'student_card_id') int? studentCardId,
-      @JsonKey(name: 'student_card') String? studentCard});
+      @JsonKey(name: 'letter_of_recommendation_name')
+      String? letterOfRecommendationName,
+      @JsonKey(name: 'photo') String? photo,
+      @JsonKey(name: 'photo_name') String? photoName,
+      @JsonKey(name: 'student_card') String? studentCard,
+      @JsonKey(name: 'student_card_name') String? studentCardName,
+      @JsonKey(name: 'transcript') String? transcript,
+      @JsonKey(name: 'transcript_name') String? transcriptName});
 }
 
 /// @nodoc
-class __$$DocumentsImplCopyWithImpl<$Res>
-    extends _$DocumentsCopyWithImpl<$Res, _$DocumentsImpl>
-    implements _$$DocumentsImplCopyWith<$Res> {
-  __$$DocumentsImplCopyWithImpl(
-      _$DocumentsImpl _value, $Res Function(_$DocumentsImpl) _then)
+class __$$FilesImplCopyWithImpl<$Res>
+    extends _$FilesCopyWithImpl<$Res, _$FilesImpl>
+    implements _$$FilesImplCopyWith<$Res> {
+  __$$FilesImplCopyWithImpl(
+      _$FilesImpl _value, $Res Function(_$FilesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? administrationId = freezed,
-    Object? idCardId = freezed,
-    Object? idCard = freezed,
-    Object? diplomaCertificateId = freezed,
     Object? diplomaCertificate = freezed,
-    Object? familyCardId = freezed,
+    Object? diplomaCertificateName = freezed,
     Object? familyCard = freezed,
-    Object? photoId = freezed,
-    Object? photo = freezed,
-    Object? transcriptId = freezed,
-    Object? transcript = freezed,
-    Object? letterOfRecommendationId = freezed,
+    Object? familyCardName = freezed,
+    Object? idCard = freezed,
+    Object? idCardName = freezed,
     Object? letterOfRecommendation = freezed,
-    Object? studentCardId = freezed,
+    Object? letterOfRecommendationName = freezed,
+    Object? photo = freezed,
+    Object? photoName = freezed,
     Object? studentCard = freezed,
+    Object? studentCardName = freezed,
+    Object? transcript = freezed,
+    Object? transcriptName = freezed,
   }) {
-    return _then(_$DocumentsImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      administrationId: freezed == administrationId
-          ? _value.administrationId
-          : administrationId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      idCardId: freezed == idCardId
-          ? _value.idCardId
-          : idCardId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      idCard: freezed == idCard
-          ? _value.idCard
-          : idCard // ignore: cast_nullable_to_non_nullable
-              as String?,
-      diplomaCertificateId: freezed == diplomaCertificateId
-          ? _value.diplomaCertificateId
-          : diplomaCertificateId // ignore: cast_nullable_to_non_nullable
-              as int?,
+    return _then(_$FilesImpl(
       diplomaCertificate: freezed == diplomaCertificate
           ? _value.diplomaCertificate
           : diplomaCertificate // ignore: cast_nullable_to_non_nullable
               as String?,
-      familyCardId: freezed == familyCardId
-          ? _value.familyCardId
-          : familyCardId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      diplomaCertificateName: freezed == diplomaCertificateName
+          ? _value.diplomaCertificateName
+          : diplomaCertificateName // ignore: cast_nullable_to_non_nullable
+              as String?,
       familyCard: freezed == familyCard
           ? _value.familyCard
           : familyCard // ignore: cast_nullable_to_non_nullable
               as String?,
-      photoId: freezed == photoId
-          ? _value.photoId
-          : photoId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      photo: freezed == photo
-          ? _value.photo
-          : photo // ignore: cast_nullable_to_non_nullable
+      familyCardName: freezed == familyCardName
+          ? _value.familyCardName
+          : familyCardName // ignore: cast_nullable_to_non_nullable
               as String?,
-      transcriptId: freezed == transcriptId
-          ? _value.transcriptId
-          : transcriptId // ignore: cast_nullable_to_non_nullable
-              as int?,
-      transcript: freezed == transcript
-          ? _value.transcript
-          : transcript // ignore: cast_nullable_to_non_nullable
+      idCard: freezed == idCard
+          ? _value.idCard
+          : idCard // ignore: cast_nullable_to_non_nullable
               as String?,
-      letterOfRecommendationId: freezed == letterOfRecommendationId
-          ? _value.letterOfRecommendationId
-          : letterOfRecommendationId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      idCardName: freezed == idCardName
+          ? _value.idCardName
+          : idCardName // ignore: cast_nullable_to_non_nullable
+              as String?,
       letterOfRecommendation: freezed == letterOfRecommendation
           ? _value.letterOfRecommendation
           : letterOfRecommendation // ignore: cast_nullable_to_non_nullable
               as String?,
-      studentCardId: freezed == studentCardId
-          ? _value.studentCardId
-          : studentCardId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      letterOfRecommendationName: freezed == letterOfRecommendationName
+          ? _value.letterOfRecommendationName
+          : letterOfRecommendationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photo: freezed == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoName: freezed == photoName
+          ? _value.photoName
+          : photoName // ignore: cast_nullable_to_non_nullable
+              as String?,
       studentCard: freezed == studentCard
           ? _value.studentCard
           : studentCard // ignore: cast_nullable_to_non_nullable
+              as String?,
+      studentCardName: freezed == studentCardName
+          ? _value.studentCardName
+          : studentCardName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transcript: freezed == transcript
+          ? _value.transcript
+          : transcript // ignore: cast_nullable_to_non_nullable
+              as String?,
+      transcriptName: freezed == transcriptName
+          ? _value.transcriptName
+          : transcriptName // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -1794,230 +1873,211 @@ class __$$DocumentsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$DocumentsImpl implements _Documents {
-  const _$DocumentsImpl(
-      {@JsonKey(name: 'id') this.id,
-      @JsonKey(name: 'administration_id') this.administrationId,
-      @JsonKey(name: 'id_card_id') this.idCardId,
-      @JsonKey(name: 'id_card') this.idCard,
-      @JsonKey(name: 'diploma_certificate_id') this.diplomaCertificateId,
-      @JsonKey(name: 'diploma_certificate') this.diplomaCertificate,
-      @JsonKey(name: 'family_card_id') this.familyCardId,
+class _$FilesImpl implements _Files {
+  const _$FilesImpl(
+      {@JsonKey(name: 'diploma_certificate') this.diplomaCertificate,
+      @JsonKey(name: 'diploma_certificate_name') this.diplomaCertificateName,
       @JsonKey(name: 'family_card') this.familyCard,
-      @JsonKey(name: 'photo_id') this.photoId,
-      @JsonKey(name: 'photo') this.photo,
-      @JsonKey(name: 'transcript_id') this.transcriptId,
-      @JsonKey(name: 'transcript') this.transcript,
-      @JsonKey(name: 'letter_of_recommendation_id')
-      this.letterOfRecommendationId,
+      @JsonKey(name: 'family_card_name') this.familyCardName,
+      @JsonKey(name: 'id_card') this.idCard,
+      @JsonKey(name: 'id_card_name') this.idCardName,
       @JsonKey(name: 'letter_of_recommendation') this.letterOfRecommendation,
-      @JsonKey(name: 'student_card_id') this.studentCardId,
-      @JsonKey(name: 'student_card') this.studentCard});
+      @JsonKey(name: 'letter_of_recommendation_name')
+      this.letterOfRecommendationName,
+      @JsonKey(name: 'photo') this.photo,
+      @JsonKey(name: 'photo_name') this.photoName,
+      @JsonKey(name: 'student_card') this.studentCard,
+      @JsonKey(name: 'student_card_name') this.studentCardName,
+      @JsonKey(name: 'transcript') this.transcript,
+      @JsonKey(name: 'transcript_name') this.transcriptName});
 
-  factory _$DocumentsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DocumentsImplFromJson(json);
+  factory _$FilesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FilesImplFromJson(json);
 
-  @override
-  @JsonKey(name: 'id')
-  final String? id;
-  @override
-  @JsonKey(name: 'administration_id')
-  final String? administrationId;
-  @override
-  @JsonKey(name: 'id_card_id')
-  final int? idCardId;
-  @override
-  @JsonKey(name: 'id_card')
-  final String? idCard;
-  @override
-  @JsonKey(name: 'diploma_certificate_id')
-  final int? diplomaCertificateId;
   @override
   @JsonKey(name: 'diploma_certificate')
   final String? diplomaCertificate;
   @override
-  @JsonKey(name: 'family_card_id')
-  final int? familyCardId;
+  @JsonKey(name: 'diploma_certificate_name')
+  final String? diplomaCertificateName;
   @override
   @JsonKey(name: 'family_card')
   final String? familyCard;
   @override
-  @JsonKey(name: 'photo_id')
-  final int? photoId;
+  @JsonKey(name: 'family_card_name')
+  final String? familyCardName;
   @override
-  @JsonKey(name: 'photo')
-  final String? photo;
+  @JsonKey(name: 'id_card')
+  final String? idCard;
   @override
-  @JsonKey(name: 'transcript_id')
-  final int? transcriptId;
-  @override
-  @JsonKey(name: 'transcript')
-  final String? transcript;
-  @override
-  @JsonKey(name: 'letter_of_recommendation_id')
-  final int? letterOfRecommendationId;
+  @JsonKey(name: 'id_card_name')
+  final String? idCardName;
   @override
   @JsonKey(name: 'letter_of_recommendation')
   final String? letterOfRecommendation;
   @override
-  @JsonKey(name: 'student_card_id')
-  final int? studentCardId;
+  @JsonKey(name: 'letter_of_recommendation_name')
+  final String? letterOfRecommendationName;
+  @override
+  @JsonKey(name: 'photo')
+  final String? photo;
+  @override
+  @JsonKey(name: 'photo_name')
+  final String? photoName;
   @override
   @JsonKey(name: 'student_card')
   final String? studentCard;
+  @override
+  @JsonKey(name: 'student_card_name')
+  final String? studentCardName;
+  @override
+  @JsonKey(name: 'transcript')
+  final String? transcript;
+  @override
+  @JsonKey(name: 'transcript_name')
+  final String? transcriptName;
 
   @override
   String toString() {
-    return 'Documents(id: $id, administrationId: $administrationId, idCardId: $idCardId, idCard: $idCard, diplomaCertificateId: $diplomaCertificateId, diplomaCertificate: $diplomaCertificate, familyCardId: $familyCardId, familyCard: $familyCard, photoId: $photoId, photo: $photo, transcriptId: $transcriptId, transcript: $transcript, letterOfRecommendationId: $letterOfRecommendationId, letterOfRecommendation: $letterOfRecommendation, studentCardId: $studentCardId, studentCard: $studentCard)';
+    return 'Files(diplomaCertificate: $diplomaCertificate, diplomaCertificateName: $diplomaCertificateName, familyCard: $familyCard, familyCardName: $familyCardName, idCard: $idCard, idCardName: $idCardName, letterOfRecommendation: $letterOfRecommendation, letterOfRecommendationName: $letterOfRecommendationName, photo: $photo, photoName: $photoName, studentCard: $studentCard, studentCardName: $studentCardName, transcript: $transcript, transcriptName: $transcriptName)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DocumentsImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.administrationId, administrationId) ||
-                other.administrationId == administrationId) &&
-            (identical(other.idCardId, idCardId) ||
-                other.idCardId == idCardId) &&
-            (identical(other.idCard, idCard) || other.idCard == idCard) &&
-            (identical(other.diplomaCertificateId, diplomaCertificateId) ||
-                other.diplomaCertificateId == diplomaCertificateId) &&
+            other is _$FilesImpl &&
             (identical(other.diplomaCertificate, diplomaCertificate) ||
                 other.diplomaCertificate == diplomaCertificate) &&
-            (identical(other.familyCardId, familyCardId) ||
-                other.familyCardId == familyCardId) &&
+            (identical(other.diplomaCertificateName, diplomaCertificateName) ||
+                other.diplomaCertificateName == diplomaCertificateName) &&
             (identical(other.familyCard, familyCard) ||
                 other.familyCard == familyCard) &&
-            (identical(other.photoId, photoId) || other.photoId == photoId) &&
-            (identical(other.photo, photo) || other.photo == photo) &&
-            (identical(other.transcriptId, transcriptId) ||
-                other.transcriptId == transcriptId) &&
-            (identical(other.transcript, transcript) ||
-                other.transcript == transcript) &&
-            (identical(
-                    other.letterOfRecommendationId, letterOfRecommendationId) ||
-                other.letterOfRecommendationId == letterOfRecommendationId) &&
+            (identical(other.familyCardName, familyCardName) ||
+                other.familyCardName == familyCardName) &&
+            (identical(other.idCard, idCard) || other.idCard == idCard) &&
+            (identical(other.idCardName, idCardName) ||
+                other.idCardName == idCardName) &&
             (identical(other.letterOfRecommendation, letterOfRecommendation) ||
                 other.letterOfRecommendation == letterOfRecommendation) &&
-            (identical(other.studentCardId, studentCardId) ||
-                other.studentCardId == studentCardId) &&
+            (identical(other.letterOfRecommendationName,
+                    letterOfRecommendationName) ||
+                other.letterOfRecommendationName ==
+                    letterOfRecommendationName) &&
+            (identical(other.photo, photo) || other.photo == photo) &&
+            (identical(other.photoName, photoName) ||
+                other.photoName == photoName) &&
             (identical(other.studentCard, studentCard) ||
-                other.studentCard == studentCard));
+                other.studentCard == studentCard) &&
+            (identical(other.studentCardName, studentCardName) ||
+                other.studentCardName == studentCardName) &&
+            (identical(other.transcript, transcript) ||
+                other.transcript == transcript) &&
+            (identical(other.transcriptName, transcriptName) ||
+                other.transcriptName == transcriptName));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      administrationId,
-      idCardId,
-      idCard,
-      diplomaCertificateId,
       diplomaCertificate,
-      familyCardId,
+      diplomaCertificateName,
       familyCard,
-      photoId,
-      photo,
-      transcriptId,
-      transcript,
-      letterOfRecommendationId,
+      familyCardName,
+      idCard,
+      idCardName,
       letterOfRecommendation,
-      studentCardId,
-      studentCard);
+      letterOfRecommendationName,
+      photo,
+      photoName,
+      studentCard,
+      studentCardName,
+      transcript,
+      transcriptName);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DocumentsImplCopyWith<_$DocumentsImpl> get copyWith =>
-      __$$DocumentsImplCopyWithImpl<_$DocumentsImpl>(this, _$identity);
+  _$$FilesImplCopyWith<_$FilesImpl> get copyWith =>
+      __$$FilesImplCopyWithImpl<_$FilesImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DocumentsImplToJson(
+    return _$$FilesImplToJson(
       this,
     );
   }
 }
 
-abstract class _Documents implements Documents {
-  const factory _Documents(
-      {@JsonKey(name: 'id') final String? id,
-      @JsonKey(name: 'administration_id') final String? administrationId,
-      @JsonKey(name: 'id_card_id') final int? idCardId,
-      @JsonKey(name: 'id_card') final String? idCard,
-      @JsonKey(name: 'diploma_certificate_id') final int? diplomaCertificateId,
-      @JsonKey(name: 'diploma_certificate') final String? diplomaCertificate,
-      @JsonKey(name: 'family_card_id') final int? familyCardId,
+abstract class _Files implements Files {
+  const factory _Files(
+      {@JsonKey(name: 'diploma_certificate') final String? diplomaCertificate,
+      @JsonKey(name: 'diploma_certificate_name')
+      final String? diplomaCertificateName,
       @JsonKey(name: 'family_card') final String? familyCard,
-      @JsonKey(name: 'photo_id') final int? photoId,
-      @JsonKey(name: 'photo') final String? photo,
-      @JsonKey(name: 'transcript_id') final int? transcriptId,
-      @JsonKey(name: 'transcript') final String? transcript,
-      @JsonKey(name: 'letter_of_recommendation_id')
-      final int? letterOfRecommendationId,
+      @JsonKey(name: 'family_card_name') final String? familyCardName,
+      @JsonKey(name: 'id_card') final String? idCard,
+      @JsonKey(name: 'id_card_name') final String? idCardName,
       @JsonKey(name: 'letter_of_recommendation')
       final String? letterOfRecommendation,
-      @JsonKey(name: 'student_card_id') final int? studentCardId,
-      @JsonKey(name: 'student_card')
-      final String? studentCard}) = _$DocumentsImpl;
+      @JsonKey(name: 'letter_of_recommendation_name')
+      final String? letterOfRecommendationName,
+      @JsonKey(name: 'photo') final String? photo,
+      @JsonKey(name: 'photo_name') final String? photoName,
+      @JsonKey(name: 'student_card') final String? studentCard,
+      @JsonKey(name: 'student_card_name') final String? studentCardName,
+      @JsonKey(name: 'transcript') final String? transcript,
+      @JsonKey(name: 'transcript_name')
+      final String? transcriptName}) = _$FilesImpl;
 
-  factory _Documents.fromJson(Map<String, dynamic> json) =
-      _$DocumentsImpl.fromJson;
+  factory _Files.fromJson(Map<String, dynamic> json) = _$FilesImpl.fromJson;
 
-  @override
-  @JsonKey(name: 'id')
-  String? get id;
-  @override
-  @JsonKey(name: 'administration_id')
-  String? get administrationId;
-  @override
-  @JsonKey(name: 'id_card_id')
-  int? get idCardId;
-  @override
-  @JsonKey(name: 'id_card')
-  String? get idCard;
-  @override
-  @JsonKey(name: 'diploma_certificate_id')
-  int? get diplomaCertificateId;
   @override
   @JsonKey(name: 'diploma_certificate')
   String? get diplomaCertificate;
   @override
-  @JsonKey(name: 'family_card_id')
-  int? get familyCardId;
+  @JsonKey(name: 'diploma_certificate_name')
+  String? get diplomaCertificateName;
   @override
   @JsonKey(name: 'family_card')
   String? get familyCard;
   @override
-  @JsonKey(name: 'photo_id')
-  int? get photoId;
+  @JsonKey(name: 'family_card_name')
+  String? get familyCardName;
   @override
-  @JsonKey(name: 'photo')
-  String? get photo;
+  @JsonKey(name: 'id_card')
+  String? get idCard;
   @override
-  @JsonKey(name: 'transcript_id')
-  int? get transcriptId;
-  @override
-  @JsonKey(name: 'transcript')
-  String? get transcript;
-  @override
-  @JsonKey(name: 'letter_of_recommendation_id')
-  int? get letterOfRecommendationId;
+  @JsonKey(name: 'id_card_name')
+  String? get idCardName;
   @override
   @JsonKey(name: 'letter_of_recommendation')
   String? get letterOfRecommendation;
   @override
-  @JsonKey(name: 'student_card_id')
-  int? get studentCardId;
+  @JsonKey(name: 'letter_of_recommendation_name')
+  String? get letterOfRecommendationName;
+  @override
+  @JsonKey(name: 'photo')
+  String? get photo;
+  @override
+  @JsonKey(name: 'photo_name')
+  String? get photoName;
   @override
   @JsonKey(name: 'student_card')
   String? get studentCard;
   @override
+  @JsonKey(name: 'student_card_name')
+  String? get studentCardName;
+  @override
+  @JsonKey(name: 'transcript')
+  String? get transcript;
+  @override
+  @JsonKey(name: 'transcript_name')
+  String? get transcriptName;
+  @override
   @JsonKey(ignore: true)
-  _$$DocumentsImplCopyWith<_$DocumentsImpl> get copyWith =>
+  _$$FilesImplCopyWith<_$FilesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

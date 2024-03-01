@@ -612,7 +612,7 @@ class KgClient {
 
   Future<Administration> getAdministration() async {
     try {
-      final response = await _httpClient.get<dynamic>('/v1/administration');
+      final response = await _httpClient.get<dynamic>('/v2/administration');
       final result = Result<Administration>.fromJson(
         response.data as JSON,
         (json) => Administration.fromJson(json as JSON? ?? {}),
@@ -633,7 +633,7 @@ class KgClient {
   Future<AdministrationConstants> getAdministrationConstants() async {
     try {
       final response =
-          await _httpClient.get<dynamic>('/v1/administration/constants');
+          await _httpClient.get<dynamic>('/v/administration/constants');
       final result = Result<AdministrationConstants>.fromJson(
         response.data as JSON,
         (json) => AdministrationConstants.fromJson(json as JSON? ?? {}),
@@ -651,7 +651,7 @@ class KgClient {
     }
   }
 
-  Future<Biodata> submitAdministrationBiodata({
+  Future<Biodatas> submitAdministrationBiodatas({
     required String fullName,
     required String gender,
     required String phoneNumber,
@@ -693,25 +693,25 @@ class KgClient {
         if (nim != null) 'nim': nim,
       };
       final response = await _httpClient
-          .post<dynamic>('/administration/biodata', data: data);
-      final result = Result<Biodata>.fromJson(
+          .put<dynamic>('/v2/administration/biodatas', data: data);
+      final result = Result<Biodatas>.fromJson(
         response.data as JSON,
-        (json) => Biodata.fromJson(json as JSON? ?? {}),
+        (json) => Biodatas.fromJson(json as JSON? ?? {}),
       );
 
-      final biodata = result.data;
-      if (biodata == null) {
+      final biodatas = result.data;
+      if (biodatas == null) {
         throw ParsingFailedException(
           'Gagal mendapatkan data respon (data-null).',
         );
       }
-      return biodata;
+      return biodatas;
     } catch (e) {
       throw _getException(e);
     }
   }
 
-  Future<Familial> submitAdministrationFamilial({
+  Future<Familials> submitAdministrationFamilials({
     required String fatherName,
     required String fatherOccupation,
     required String fatherSalary,
@@ -737,25 +737,25 @@ class KgClient {
         'tuition_payer': tuitionPayer,
       };
       final response = await _httpClient
-          .post<dynamic>('/administration/biodata', data: data);
-      final result = Result<Familial>.fromJson(
+          .put<dynamic>('/v2/administration/familials', data: data);
+      final result = Result<Familials>.fromJson(
         response.data as JSON,
-        (json) => Familial.fromJson(json as JSON? ?? {}),
+        (json) => Familials.fromJson(json as JSON? ?? {}),
       );
 
-      final familial = result.data;
-      if (familial == null) {
+      final familials = result.data;
+      if (familials == null) {
         throw ParsingFailedException(
           'Gagal mendapatkan data respon (data-null).',
         );
       }
-      return familial;
+      return familials;
     } catch (e) {
       throw _getException(e);
     }
   }
 
-  Future<Documents> submitAdministrationDocuments({
+  Future<Files> submitAdministrationFiles({
     required File idCardFile,
     required File photoFile,
     File? familyCardFile,
@@ -847,9 +847,9 @@ class KgClient {
       });
       final response =
           await _httpClient.post<dynamic>('/administration/file', data: data);
-      final result = Result<Documents>.fromJson(
+      final result = Result<Files>.fromJson(
         response.data as JSON,
-        (json) => Documents.fromJson(json as JSON? ?? {}),
+        (json) => Files.fromJson(json as JSON? ?? {}),
       );
 
       final documents = result.data;
@@ -1123,7 +1123,6 @@ NetworkException _getException(dynamic e) {
   } else {
     exception = UnknownException('Terjadi kesalahan yang tidak diketahui.');
   }
-  log('EXCEPTION CAUGHT: $exception');
   return exception;
 }
 

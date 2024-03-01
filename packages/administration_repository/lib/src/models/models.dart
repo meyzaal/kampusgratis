@@ -1,9 +1,10 @@
 export 'administration.dart';
-export 'biodata.dart';
+export 'biodatas.dart';
 export 'constants.dart';
+export 'details.dart';
 export 'district.dart';
-export 'documents.dart';
-export 'familial.dart';
+export 'files.dart';
+export 'familials.dart';
 export 'province.dart';
 export 'regency.dart';
 export 'village.dart';

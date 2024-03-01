@@ -16,15 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Administration {
-  String get id => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  Status get status =>
-      throw _privateConstructorUsedError; // required String type,
-  String? get reason => throw _privateConstructorUsedError;
-  String? get actionBy => throw _privateConstructorUsedError;
-  Biodata? get biodata => throw _privateConstructorUsedError;
-  Familial? get familial => throw _privateConstructorUsedError;
-  Documents? get file => throw _privateConstructorUsedError;
+  Details? get details => throw _privateConstructorUsedError;
+  Biodatas? get biodatas => throw _privateConstructorUsedError;
+  Familials? get familials => throw _privateConstructorUsedError;
+  Files? get files => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AdministrationCopyWith<Administration> get copyWith =>
@@ -38,18 +33,15 @@ abstract class $AdministrationCopyWith<$Res> {
       _$AdministrationCopyWithImpl<$Res, Administration>;
   @useResult
   $Res call(
-      {String id,
-      String userId,
-      Status status,
-      String? reason,
-      String? actionBy,
-      Biodata? biodata,
-      Familial? familial,
-      Documents? file});
+      {Details? details,
+      Biodatas? biodatas,
+      Familials? familials,
+      Files? files});
 
-  $BiodataCopyWith<$Res>? get biodata;
-  $FamilialCopyWith<$Res>? get familial;
-  $DocumentsCopyWith<$Res>? get file;
+  $DetailsCopyWith<$Res>? get details;
+  $BiodatasCopyWith<$Res>? get biodatas;
+  $FamilialsCopyWith<$Res>? get familials;
+  $FilesCopyWith<$Res>? get files;
 }
 
 /// @nodoc
@@ -65,84 +57,76 @@ class _$AdministrationCopyWithImpl<$Res, $Val extends Administration>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? userId = null,
-    Object? status = null,
-    Object? reason = freezed,
-    Object? actionBy = freezed,
-    Object? biodata = freezed,
-    Object? familial = freezed,
-    Object? file = freezed,
+    Object? details = freezed,
+    Object? biodatas = freezed,
+    Object? familials = freezed,
+    Object? files = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as Status,
-      reason: freezed == reason
-          ? _value.reason
-          : reason // ignore: cast_nullable_to_non_nullable
-              as String?,
-      actionBy: freezed == actionBy
-          ? _value.actionBy
-          : actionBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      biodata: freezed == biodata
-          ? _value.biodata
-          : biodata // ignore: cast_nullable_to_non_nullable
-              as Biodata?,
-      familial: freezed == familial
-          ? _value.familial
-          : familial // ignore: cast_nullable_to_non_nullable
-              as Familial?,
-      file: freezed == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as Documents?,
+      details: freezed == details
+          ? _value.details
+          : details // ignore: cast_nullable_to_non_nullable
+              as Details?,
+      biodatas: freezed == biodatas
+          ? _value.biodatas
+          : biodatas // ignore: cast_nullable_to_non_nullable
+              as Biodatas?,
+      familials: freezed == familials
+          ? _value.familials
+          : familials // ignore: cast_nullable_to_non_nullable
+              as Familials?,
+      files: freezed == files
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as Files?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $BiodataCopyWith<$Res>? get biodata {
-    if (_value.biodata == null) {
+  $DetailsCopyWith<$Res>? get details {
+    if (_value.details == null) {
       return null;
     }
 
-    return $BiodataCopyWith<$Res>(_value.biodata!, (value) {
-      return _then(_value.copyWith(biodata: value) as $Val);
+    return $DetailsCopyWith<$Res>(_value.details!, (value) {
+      return _then(_value.copyWith(details: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $FamilialCopyWith<$Res>? get familial {
-    if (_value.familial == null) {
+  $BiodatasCopyWith<$Res>? get biodatas {
+    if (_value.biodatas == null) {
       return null;
     }
 
-    return $FamilialCopyWith<$Res>(_value.familial!, (value) {
-      return _then(_value.copyWith(familial: value) as $Val);
+    return $BiodatasCopyWith<$Res>(_value.biodatas!, (value) {
+      return _then(_value.copyWith(biodatas: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DocumentsCopyWith<$Res>? get file {
-    if (_value.file == null) {
+  $FamilialsCopyWith<$Res>? get familials {
+    if (_value.familials == null) {
       return null;
     }
 
-    return $DocumentsCopyWith<$Res>(_value.file!, (value) {
-      return _then(_value.copyWith(file: value) as $Val);
+    return $FamilialsCopyWith<$Res>(_value.familials!, (value) {
+      return _then(_value.copyWith(familials: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FilesCopyWith<$Res>? get files {
+    if (_value.files == null) {
+      return null;
+    }
+
+    return $FilesCopyWith<$Res>(_value.files!, (value) {
+      return _then(_value.copyWith(files: value) as $Val);
     });
   }
 }
@@ -156,21 +140,19 @@ abstract class _$$AdministrationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String userId,
-      Status status,
-      String? reason,
-      String? actionBy,
-      Biodata? biodata,
-      Familial? familial,
-      Documents? file});
+      {Details? details,
+      Biodatas? biodatas,
+      Familials? familials,
+      Files? files});
 
   @override
-  $BiodataCopyWith<$Res>? get biodata;
+  $DetailsCopyWith<$Res>? get details;
   @override
-  $FamilialCopyWith<$Res>? get familial;
+  $BiodatasCopyWith<$Res>? get biodatas;
   @override
-  $DocumentsCopyWith<$Res>? get file;
+  $FamilialsCopyWith<$Res>? get familials;
+  @override
+  $FilesCopyWith<$Res>? get files;
 }
 
 /// @nodoc
@@ -184,48 +166,28 @@ class __$$AdministrationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? userId = null,
-    Object? status = null,
-    Object? reason = freezed,
-    Object? actionBy = freezed,
-    Object? biodata = freezed,
-    Object? familial = freezed,
-    Object? file = freezed,
+    Object? details = freezed,
+    Object? biodatas = freezed,
+    Object? familials = freezed,
+    Object? files = freezed,
   }) {
     return _then(_$AdministrationImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as Status,
-      reason: freezed == reason
-          ? _value.reason
-          : reason // ignore: cast_nullable_to_non_nullable
-              as String?,
-      actionBy: freezed == actionBy
-          ? _value.actionBy
-          : actionBy // ignore: cast_nullable_to_non_nullable
-              as String?,
-      biodata: freezed == biodata
-          ? _value.biodata
-          : biodata // ignore: cast_nullable_to_non_nullable
-              as Biodata?,
-      familial: freezed == familial
-          ? _value.familial
-          : familial // ignore: cast_nullable_to_non_nullable
-              as Familial?,
-      file: freezed == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as Documents?,
+      details: freezed == details
+          ? _value.details
+          : details // ignore: cast_nullable_to_non_nullable
+              as Details?,
+      biodatas: freezed == biodatas
+          ? _value.biodatas
+          : biodatas // ignore: cast_nullable_to_non_nullable
+              as Biodatas?,
+      familials: freezed == familials
+          ? _value.familials
+          : familials // ignore: cast_nullable_to_non_nullable
+              as Familials?,
+      files: freezed == files
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as Files?,
     ));
   }
 }
@@ -234,36 +196,20 @@ class __$$AdministrationImplCopyWithImpl<$Res>
 
 class _$AdministrationImpl implements _Administration {
   const _$AdministrationImpl(
-      {required this.id,
-      required this.userId,
-      required this.status,
-      this.reason,
-      this.actionBy,
-      this.biodata,
-      this.familial,
-      this.file});
+      {this.details, this.biodatas, this.familials, this.files});
 
   @override
-  final String id;
+  final Details? details;
   @override
-  final String userId;
+  final Biodatas? biodatas;
   @override
-  final Status status;
-// required String type,
+  final Familials? familials;
   @override
-  final String? reason;
-  @override
-  final String? actionBy;
-  @override
-  final Biodata? biodata;
-  @override
-  final Familial? familial;
-  @override
-  final Documents? file;
+  final Files? files;
 
   @override
   String toString() {
-    return 'Administration(id: $id, userId: $userId, status: $status, reason: $reason, actionBy: $actionBy, biodata: $biodata, familial: $familial, file: $file)';
+    return 'Administration(details: $details, biodatas: $biodatas, familials: $familials, files: $files)';
   }
 
   @override
@@ -271,21 +217,17 @@ class _$AdministrationImpl implements _Administration {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AdministrationImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.reason, reason) || other.reason == reason) &&
-            (identical(other.actionBy, actionBy) ||
-                other.actionBy == actionBy) &&
-            (identical(other.biodata, biodata) || other.biodata == biodata) &&
-            (identical(other.familial, familial) ||
-                other.familial == familial) &&
-            (identical(other.file, file) || other.file == file));
+            (identical(other.details, details) || other.details == details) &&
+            (identical(other.biodatas, biodatas) ||
+                other.biodatas == biodatas) &&
+            (identical(other.familials, familials) ||
+                other.familials == familials) &&
+            (identical(other.files, files) || other.files == files));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, status, reason,
-      actionBy, biodata, familial, file);
+  int get hashCode =>
+      Object.hash(runtimeType, details, biodatas, familials, files);
 
   @JsonKey(ignore: true)
   @override
@@ -297,31 +239,19 @@ class _$AdministrationImpl implements _Administration {
 
 abstract class _Administration implements Administration {
   const factory _Administration(
-      {required final String id,
-      required final String userId,
-      required final Status status,
-      final String? reason,
-      final String? actionBy,
-      final Biodata? biodata,
-      final Familial? familial,
-      final Documents? file}) = _$AdministrationImpl;
+      {final Details? details,
+      final Biodatas? biodatas,
+      final Familials? familials,
+      final Files? files}) = _$AdministrationImpl;
 
   @override
-  String get id;
+  Details? get details;
   @override
-  String get userId;
+  Biodatas? get biodatas;
   @override
-  Status get status;
-  @override // required String type,
-  String? get reason;
+  Familials? get familials;
   @override
-  String? get actionBy;
-  @override
-  Biodata? get biodata;
-  @override
-  Familial? get familial;
-  @override
-  Documents? get file;
+  Files? get files;
   @override
   @JsonKey(ignore: true)
   _$$AdministrationImplCopyWith<_$AdministrationImpl> get copyWith =>
