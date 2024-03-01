@@ -5,7 +5,6 @@ const warning = Color(0xFFFAB005);
 const danger = Color(0xFFC51810);
 const info = Color(0xFF228BE6);
 
-
 CustomColors lightCustomColors = const CustomColors(
   sourceSuccess: Color(0xFF0CA678),
   success: Color(0xFF006C4C),
@@ -51,8 +50,6 @@ CustomColors darkCustomColors = const CustomColors(
   infoContainer: Color(0xFF00487F),
   onInfoContainer: Color(0xFFD2E4FF),
 );
-
-
 
 /// Defines a set of custom colors, each comprised of 4 complementary tones.
 ///
@@ -161,17 +158,20 @@ class CustomColors extends ThemeExtension<CustomColors> {
       success: Color.lerp(success, other.success, t),
       onSuccess: Color.lerp(onSuccess, other.onSuccess, t),
       successContainer: Color.lerp(successContainer, other.successContainer, t),
-      onSuccessContainer: Color.lerp(onSuccessContainer, other.onSuccessContainer, t),
+      onSuccessContainer:
+          Color.lerp(onSuccessContainer, other.onSuccessContainer, t),
       sourceWarning: Color.lerp(sourceWarning, other.sourceWarning, t),
       warning: Color.lerp(warning, other.warning, t),
       onWarning: Color.lerp(onWarning, other.onWarning, t),
       warningContainer: Color.lerp(warningContainer, other.warningContainer, t),
-      onWarningContainer: Color.lerp(onWarningContainer, other.onWarningContainer, t),
+      onWarningContainer:
+          Color.lerp(onWarningContainer, other.onWarningContainer, t),
       sourceDanger: Color.lerp(sourceDanger, other.sourceDanger, t),
       danger: Color.lerp(danger, other.danger, t),
       onDanger: Color.lerp(onDanger, other.onDanger, t),
       dangerContainer: Color.lerp(dangerContainer, other.dangerContainer, t),
-      onDangerContainer: Color.lerp(onDangerContainer, other.onDangerContainer, t),
+      onDangerContainer:
+          Color.lerp(onDangerContainer, other.onDangerContainer, t),
       sourceInfo: Color.lerp(sourceInfo, other.sourceInfo, t),
       info: Color.lerp(info, other.info, t),
       onInfo: Color.lerp(onInfo, other.onInfo, t),
@@ -186,7 +186,6 @@ class CustomColors extends ThemeExtension<CustomColors> {
   /// See also:
   ///   * <https://m3.material.io/styles/color/the-color-system/custom-colors#harmonization>
   CustomColors harmonized(ColorScheme dynamic) {
-    return copyWith(
-    );
+    return copyWith();
   }
 }

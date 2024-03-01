@@ -389,10 +389,10 @@ class __$$EditProfileGenderChangedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? gender = null,
+    Object? gender = freezed,
   }) {
     return _then(_$EditProfileGenderChangedImpl(
-      null == gender
+      freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
@@ -418,11 +418,12 @@ class _$EditProfileGenderChangedImpl implements EditProfileGenderChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditProfileGenderChangedImpl &&
-            (identical(other.gender, gender) || other.gender == gender));
+            const DeepCollectionEquality().equals(other.gender, gender));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gender);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(gender));
 
   @JsonKey(ignore: true)
   @override

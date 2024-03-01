@@ -149,8 +149,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     RegisterTermsAndConditionsChanged event,
     Emitter<RegisterState> emit,
   ) {
-    final termsAndConditions =
-        TermsAndConditions.dirty(!(state.termsAndConditions.value ?? false));
+    final termsAndConditions = TermsAndConditions.dirty(
+      value: !(state.termsAndConditions.value ?? false),
+    );
     emit(
       state.copyWith(
         termsAndConditions: termsAndConditions,

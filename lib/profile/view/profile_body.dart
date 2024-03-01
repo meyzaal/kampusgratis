@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/profile/profile.dart';
-import 'package:kampusgratis/shared/shared.dart';
 import 'package:user_repository/user_repository.dart';
 
 class ProfileBody extends StatelessWidget {
@@ -11,116 +10,75 @@ class ProfileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final listViewChildren = [
+      const ProfileUserInfo(),
+      ...ListTile.divideTiles(
+        context: context,
+        tiles: [
+          ProfileButton(
+            leadingIcon: ProfileButton.editUser,
+            title: const Text('Edit Profil'),
+            trailing: ProfileButton.arrowRight,
+            onTap: () =>
+                const EditProfileRoute().push<bool>(context).then((value) {
+              if (value != true) return;
+              context
+                  .read<ProfileBloc>()
+                  .add(const ProfileEvent.reloadUserRequested());
+            }),
+          ),
+          ProfileButton(
+            leadingIcon: ProfileButton.gradesAndCertificates,
+            title: const Text('Nilai & Sertifikat'),
+            trailing: ProfileButton.arrowRight,
+          ),
+          ProfileButton(
+            leadingIcon: ProfileButton.changePassword,
+            title: const Text('Ubah Kata Sandi'),
+            trailing: ProfileButton.arrowRight,
+            onTap: () => const ChangePasswordRoute().push<void>(context),
+          ),
+          ProfileButton(
+            leadingIcon: ProfileButton.about,
+            title: const Text('Tentang'),
+            trailing: ProfileButton.arrowRight,
+            onTap: () => const AboutRoute().push<void>(context),
+          ),
+          BlocProvider.value(
+            value: BlocProvider.of<ThemeCubit>(context),
+            child: const _ThemeButton(),
+          ),
+          ProfileButton(
+            leadingIcon: ProfileButton.logOut,
+            title: const Text('Keluar'),
+            onTap: () {
+              showDialog<void>(
+                context: context,
+                builder: (context) => BlocProvider(
+                  create: (context) => ProfileBloc(
+                    userRepository: context.read<UserRepository>(),
+                    authenticationRepository:
+                        context.read<AuthenticationRepository>(),
+                  ),
+                  child: const ConfirmLogoutDialog(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    ];
     return RefreshIndicator.adaptive(
       onRefresh: () async =>
           context.read<ProfileBloc>().add(const ProfileEvent.fetchRequested()),
-      child: ListView(
-        children: [
-          BlocBuilder<ProfileBloc, ProfileState>(
-            builder: (context, state) {
-              switch (state.fetchStatus) {
-                case ProfileStatus.initial:
-                  return const SizedBox();
-                case ProfileStatus.loading:
-                  return const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(32),
-                      child: CircularProgressIndicator.adaptive(),
-                    ),
-                  );
-                case ProfileStatus.failure:
-                  final message =
-                      state.message ?? 'Terjadi kesalahan (message-null).';
-                  return Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: ErrorStateWidget(message: message),
-                    ),
-                  );
-                case ProfileStatus.success:
-                  final user = state.user;
-                  if (user == null) {
-                    return const Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(32),
-                        child: Text('Gagal mendapatkan informasi pengguna.'),
-                      ),
-                    );
-                  }
-                  return _UserInfo(user);
-              }
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: Column(
-              children: ListTile.divideTiles(
-                context: context,
-                tiles: [
-                  ProfileButton(
-                    leadingIcon: ProfileButton.userInfo,
-                    title: const Text('Informasi Pribadi'),
-                    trailing: ProfileButton.arrowRight,
-                    onTap: () =>
-                        const ProfileDetailsRoute().push<void>(context),
-                  ),
-                  ProfileButton(
-                    leadingIcon: ProfileButton.editUser,
-                    title: const Text('Edit Profil'),
-                    trailing: ProfileButton.arrowRight,
-                    onTap: () => const EditProfileRoute()
-                        .push<bool>(context)
-                        .then((value) {
-                      if (value != true) return;
-                      context
-                          .read<ProfileBloc>()
-                          .add(const ProfileEvent.reloadUserRequested());
-                    }),
-                  ),
-                  ProfileButton(
-                    leadingIcon: ProfileButton.gradesAndCertificates,
-                    title: const Text('Nilai & Sertifikat'),
-                    trailing: ProfileButton.arrowRight,
-                  ),
-                  ProfileButton(
-                    leadingIcon: ProfileButton.changePassword,
-                    title: const Text('Ubah Kata Sandi'),
-                    trailing: ProfileButton.arrowRight,
-                    onTap: () =>
-                        const ChangePasswordRoute().push<void>(context),
-                  ),
-                  ProfileButton(
-                    leadingIcon: ProfileButton.about,
-                    title: const Text('Tentang'),
-                    trailing: ProfileButton.arrowRight,
-                    onTap: () => const AboutRoute().push<void>(context),
-                  ),
-                  BlocProvider.value(
-                    value: BlocProvider.of<ThemeCubit>(context),
-                    child: const _ThemeButton(),
-                  ),
-                  ProfileButton(
-                    leadingIcon: ProfileButton.logOut,
-                    title: const Text('Keluar'),
-                    onTap: () {
-                      showDialog<void>(
-                        context: context,
-                        builder: (context) => BlocProvider(
-                          create: (context) => ProfileBloc(
-                            userRepository: context.read<UserRepository>(),
-                            authenticationRepository:
-                                context.read<AuthenticationRepository>(),
-                          ),
-                          child: const ConfirmLogoutDialog(),
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ).toList(),
-            ),
-          ),
-        ],
+      child: ListView.separated(
+        itemBuilder: (context, index) => listViewChildren[index],
+        separatorBuilder: (context, index) {
+          return SizedBox(
+            height: index == 1 || index == listViewChildren.length ? 16 : 0,
+          );
+        },
+        itemCount: listViewChildren.length,
       ),
     );
   }
@@ -159,46 +117,6 @@ class _ThemeButton extends StatelessWidget {
           },
         );
       },
-    );
-  }
-}
-
-class _UserInfo extends StatelessWidget {
-  const _UserInfo(this.user);
-
-  final User user;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        children: [
-          ProfileAvatar(avatarUrl: user.avatar),
-          const SizedBox(height: 8),
-          Text(
-            user.fullName,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 18,
-              height: 27 / 18,
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          Text(
-            user.email,
-            style: const TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 14,
-              height: 21 / 14,
-            ),
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 8),
-          RoleBadge(role: user.role),
-        ],
-      ),
     );
   }
 }

@@ -6,7 +6,12 @@ import 'package:kampusgratis/profile/profile.dart';
 import 'package:kampusgratis/shared/shared.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-enum _Options { deleteAvatar, updateFromGallery, updateFromCamera }
+enum _Options {
+  // KG API does not support removing avatars
+  // deleteAvatar,
+  updateFromGallery,
+  updateFromCamera
+}
 
 class ProfileAvatar extends StatelessWidget {
   const ProfileAvatar({required this.avatarUrl, super.key});
@@ -74,14 +79,14 @@ class ProfileAvatar extends StatelessWidget {
                     ).then((value) {
                       if (value == null) return;
                       switch (value) {
-                        case _Options.deleteAvatar:
-                          // showDialog<void>(
-                          //   context: context,
-                          //   builder: (_) => BlocProvider.value(
-                          //     value: BlocProvider.of<ProfileBloc>(context),
-                          //     child: const _ConfirmDeleteAvatarDialog(),
-                          //   ),
-                          // );
+                        // case _Options.deleteAvatar:
+                        // showDialog<void>(
+                        //   context: context,
+                        //   builder: (_) => BlocProvider.value(
+                        //     value: BlocProvider.of<ProfileBloc>(context),
+                        //     child: const _ConfirmDeleteAvatarDialog(),
+                        //   ),
+                        // );
                         case _Options.updateFromGallery:
                           context.read<ProfileBloc>().add(
                                 const ProfileEvent.avatarChanged(
@@ -163,7 +168,8 @@ class _AvatarUpdateOptions extends StatelessWidget {
 //       backgroundColor:
 //           MaterialStatePropertyAll(theme.extension<CustomColors>()?.danger),
 //       foregroundColor:
-//           MaterialStatePropertyAll(theme.extension<CustomColors>()?.onDanger),
+//           MaterialStatePropertyAll(theme.extension<CustomColors>()?.onDanger
+// ),
 //     );
 //     return CustomDialog(
 //       icon: const PhosphorIcon(PhosphorIconsFill.warning),
@@ -198,7 +204,8 @@ class _AvatarUpdateOptions extends StatelessWidget {
 //                       dimension: 20,
 //                       child: CircularProgressIndicator.adaptive(
 //                         valueColor:
-//                             AlwaysStoppedAnimation(theme.colorScheme.onPrimary),
+//                             AlwaysStoppedAnimation(
+// theme.colorScheme.onPrimary),
 //                       ),
 //                     )
 //                   : const Text('Ya, hapus'),

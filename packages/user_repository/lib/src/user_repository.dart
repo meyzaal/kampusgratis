@@ -46,20 +46,8 @@ class UserRepository {
 
     // Listening authentication status
     _kgClient.status.listen((status) async {
-      if (status.isAuthenticated) {
-        if (_currentUser == null) {
-          final user = await _getUserFromLocalStorage();
-          if (user != null) {
-            _currentUser = user;
-          } else {
-            await getUser();
-          }
-        }
-      }
-      if (status.isUnauthenticated) {
-        _currentUser = null;
-        await _deleteUserFromLocalStorage();
-      }
+      if (status.isAuthenticated) _currentUser ??= await getUser();
+      if (status.isUnauthenticated) await _deleteUserFromLocalStorage();
     });
   }
 
@@ -70,23 +58,27 @@ class UserRepository {
   User? _currentUser;
 
   /// Fetches user data from the server.
-  Future<User> getUser() async {
-    final result = await _kgClient.getUser();
-
-    final data = User(
-      email: result.email ?? '',
-      fullName: result.fullName ?? '',
-      id: result.id ?? '',
-      role: result.role ?? Role.guest,
-      userName: result.userName ?? '',
-      avatar: result.avatar,
-      gender: result.gender,
-      phoneNumber: result.phoneNumber,
-    );
-
-    unawaited(_saveUserToLocalStorage(data));
-    _currentUser = data;
-    return data;
+  Future<User> getUser({bool forceRefresh = false}) async {
+    User? user;
+    if (!forceRefresh) {
+      user = await _getUserFromLocalStorage();
+      if (user != null) return user;
+    }
+    user ??= await _kgClient.getUser().then(
+          (result) => User(
+            email: result.email ?? '',
+            fullName: result.fullName ?? '',
+            id: result.id ?? '',
+            role: result.role ?? Role.guest,
+            userName: result.userName ?? '',
+            avatar: result.avatar,
+            gender: result.gender,
+            phoneNumber: result.phoneNumber,
+          ),
+        );
+    unawaited(_saveUserToLocalStorage(user!));
+    _currentUser = user;
+    return user;
   }
 
   /// Fetches complete user profile data from the server.
@@ -171,6 +163,7 @@ class UserRepository {
     _currentUser = data;
     return data;
   }
+
   /// Delete the user's avatar on the server.
   // Future<User> deleteUserAvatar() async {
   //   final avatar = await _kgClient.updateUserAvatar(null);
@@ -196,20 +189,18 @@ class UserRepository {
   // }
 
   Future<User?> _getUserFromLocalStorage() async {
-    print('GET USER FROM LOCAL STORAGE');
     final box = await Hive.openBox<User>(_userBoxName);
     return box.get(_storageKey);
   }
 
   Future<void> _saveUserToLocalStorage(User user) async {
-    print('SAVE USER TO LOCAL STORAGE');
     final box = await Hive.openBox<User>(_userBoxName);
     return box.put(_storageKey, user);
   }
 
   Future<void> _deleteUserFromLocalStorage() async {
-    print('DELETE USER FROM LOCAL STORAGE');
     final box = await Hive.openBox<User>(_userBoxName);
+    _currentUser = null;
     return box.delete(_storageKey);
   }
 }

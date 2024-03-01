@@ -44,6 +44,5 @@ class CounterCubit extends Cubit<int> {
   }
 
   Future<void> decrement() async {
-    print(userRepository.currentUser);
   }
 }

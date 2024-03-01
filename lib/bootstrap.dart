@@ -43,13 +43,12 @@ Future<void> bootstrap({required KgFlavor flavor}) async {
         DeviceOrientation.portraitUp,
         DeviceOrientation.portraitDown,
       ]);
+      final kgClient = KgClient(flavor: flavor);
       HydratedBloc.storage = await HydratedStorage.build(
         storageDirectory: kIsWeb
             ? HydratedStorage.webStorageDirectory
             : await getTemporaryDirectory(),
       );
-
-      final kgClient = KgClient(flavor: flavor);
 
       final authenticationRepository =
           AuthenticationRepository(kgClient: kgClient);
@@ -60,6 +59,7 @@ Future<void> bootstrap({required KgFlavor flavor}) async {
         userRepository: userRepository,
       );
 
+      WidgetsFlutterBinding.ensureInitialized();
       runApp(app);
     },
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),

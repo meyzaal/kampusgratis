@@ -23,7 +23,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         _userRepository = userRepository,
         _imagePicker = ImagePicker(),
         _imageCropper = ImageCropper(),
-        super(const ProfileState()) {
+        super(ProfileState(user: userRepository.currentUser)) {
     on<ProfileFetchRequested>(_onProfileFetchRequested);
     on<ProfileReloadUserRequested>(_onProfileReloadUserRequested);
     on<ProfileLogOutRequested>(_onProfileLogOutRequested);
@@ -42,7 +42,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ) async {
     emit(state.copyWith(fetchStatus: ProfileStatus.loading));
     try {
-      final user = await _userRepository.getUser();
+      final user = await _userRepository.getUser(forceRefresh: true);
       emit(
         state.copyWith(
           fetchStatus: ProfileStatus.success,
@@ -137,7 +137,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   //   try {
   //     final user = await _userRepository.deleteUserAvatar();
   //     emit(
-  //       state.copyWith(updateAvatarStatus: ProfileStatus.success, user: user),
+  //       state.copyWith(updateAvatarStatus: ProfileStatus.success, 
+  //          user: user,
+  //          ),
   //     );
   //   } on NetworkException catch (e) {
   //     emit(

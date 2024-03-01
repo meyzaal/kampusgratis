@@ -183,11 +183,6 @@ RouteBase get $mainRoute => ShellRouteData.$route(
           factory: $ProfileRouteExtension._fromState,
           routes: [
             GoRouteData.$route(
-              path: 'details',
-              parentNavigatorKey: ProfileDetailsRoute.$parentNavigatorKey,
-              factory: $ProfileDetailsRouteExtension._fromState,
-            ),
-            GoRouteData.$route(
               path: 'edit',
               parentNavigatorKey: EditProfileRoute.$parentNavigatorKey,
               factory: $EditProfileRouteExtension._fromState,
@@ -286,24 +281,6 @@ extension $ProfileRouteExtension on ProfileRoute {
 
   String get location => GoRouteData.$location(
         '/profile',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $ProfileDetailsRouteExtension on ProfileDetailsRoute {
-  static ProfileDetailsRoute _fromState(GoRouterState state) =>
-      const ProfileDetailsRoute();
-
-  String get location => GoRouteData.$location(
-        '/profile/details',
       );
 
   void go(BuildContext context) => context.go(location);

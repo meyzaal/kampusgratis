@@ -17,7 +17,7 @@ class ProfilePage extends StatelessWidget {
         create: (context) => ProfileBloc(
           userRepository: context.read<UserRepository>(),
           authenticationRepository: context.read<AuthenticationRepository>(),
-        )..add(const ProfileEvent.fetchRequested()),
+        ),
         child: const ProfileBody(),
       ),
     );

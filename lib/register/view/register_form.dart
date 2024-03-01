@@ -302,10 +302,6 @@ class _PasswordInput extends StatelessWidget {
           return PasswordInputField(
             labelText: 'Kata Sandi',
             hintText: 'Masukkan kata sandi',
-            // helperText: state.password.isValid
-            //     ? null
-            //     : '''Harus terdiri dari 8 karakter atau lebih dan mengandung setidaknya 1 angka dan 1 huruf kapital.''',
-            // helperMaxLines: 3,
             onChanged: (password) => context
                 .read<RegisterBloc>()
                 .add(RegisterEvent.passwordChanged(password)),
@@ -369,7 +365,8 @@ class _PasswordTip extends StatelessWidget {
 //             labelText: 'Nomor Telepon',
 //             decoration: InputDecoration(
 //               hintText: 'Masukkan nomor telepon',
-//               errorText: state.phone.isPure ? null : state.phone.error?.message,
+//               errorText: state.phone.isPure ? null : 
+// state.phone.error?.message,
 //             ),
 //             onChanged: (phone) => context
 //                 .read<RegisterBloc>()

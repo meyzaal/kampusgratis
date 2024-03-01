@@ -3,7 +3,8 @@ import 'package:kg_client/kg_client.dart';
 
 enum GenderInputValidationError { empty }
 
-final class GenderInput extends FormzInput<Gender?, GenderInputValidationError> {
+final class GenderInput
+    extends FormzInput<Gender?, GenderInputValidationError> {
   const GenderInput.pure([super.value]) : super.pure();
   const GenderInput.dirty([super.value]) : super.dirty();
 

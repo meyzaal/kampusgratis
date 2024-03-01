@@ -18,7 +18,6 @@ import 'package:kampusgratis/my_study/my_study.dart';
 import 'package:kampusgratis/onboarding/onboarding.dart';
 import 'package:kampusgratis/otp_verification/otp_verification.dart';
 import 'package:kampusgratis/profile/profile.dart';
-import 'package:kampusgratis/profile_details/profile_details.dart';
 import 'package:kampusgratis/register/register.dart';
 import 'package:stream_listener/stream_listener.dart';
 
@@ -141,7 +140,6 @@ class ForgotPasswordRoute extends GoRouteData {
     TypedGoRoute<ProfileRoute>(
       path: '/profile',
       routes: [
-        TypedGoRoute<ProfileDetailsRoute>(path: 'details'),
         TypedGoRoute<EditProfileRoute>(path: 'edit'),
         TypedGoRoute<AboutRoute>(path: 'about'),
         TypedGoRoute<ChangePasswordRoute>(path: 'change-password'),
@@ -197,17 +195,6 @@ class ProfileRoute extends GoRouteData {
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
       const NoTransitionPage<void>(child: ProfilePage());
-}
-
-class ProfileDetailsRoute extends GoRouteData {
-  const ProfileDetailsRoute();
-
-  static final GlobalKey<NavigatorState> $parentNavigatorKey =
-      _rootNavigatorKey;
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const ProfileDetailsPage();
 }
 
 class EditProfileRoute extends GoRouteData {
