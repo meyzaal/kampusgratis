@@ -1,4 +1,6 @@
+import 'package:administration_repository/administration_repository.dart';
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:banner_repository/banner_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,10 +11,14 @@ import 'package:user_repository/user_repository.dart';
 
 class App extends StatelessWidget {
   App({
+    required AdministrationRepository administrationRepository,
     required AuthenticationRepository authenticationRepository,
+    required BannerRepository bannerRepository,
     required UserRepository userRepository,
     super.key,
-  })  : _authenticationRepository = authenticationRepository,
+  })  : _administrationRepository = administrationRepository,
+        _authenticationRepository = authenticationRepository,
+        _bannerRepository = bannerRepository,
         _userRepository = userRepository,
         _routerConfig = AppRoutes(
           authenticationCubit: AuthenticationCubit(
@@ -20,7 +26,9 @@ class App extends StatelessWidget {
           ),
         ).router;
 
+  final AdministrationRepository _administrationRepository;
   final AuthenticationRepository _authenticationRepository;
+  final BannerRepository _bannerRepository;
   final UserRepository _userRepository;
   final GoRouter _routerConfig;
 
@@ -28,7 +36,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
+        RepositoryProvider.value(value: _administrationRepository),
         RepositoryProvider.value(value: _authenticationRepository),
+        RepositoryProvider.value(value: _bannerRepository),
         RepositoryProvider.value(value: _userRepository),
       ],
       child: MultiBlocProvider(
@@ -61,6 +71,7 @@ class AppView extends StatelessWidget {
           theme: AppTheme.light(),
           darkTheme: AppTheme.dark(),
           themeMode: state,
+          
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           routerConfig: routerConfig,

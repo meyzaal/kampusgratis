@@ -8,4 +8,4 @@ library kg_client;
 export 'src/exception/network_exception.dart';
 export 'src/kg_client.dart';
 export 'src/models/models.dart'
-    show Gender, LeaderboardType, Role, AdministrationStatus;
+    show AdministrationStatus, Gender, LeaderboardType, Role;

@@ -14,12 +14,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         super(
           const RegisterState(
             status: FormzSubmissionStatus.initial,
-            name: Name.pure(),
-            email: Email.pure(),
-            // phone: Phone.pure(),
-            password: Password.pure(),
-            confirmedPassword: ConfirmedPassword.pure(),
-            termsAndConditions: TermsAndConditions.pure(),
+            name: NameInput.pure(),
+            email: EmailInput.pure(),
+            // phone: PhoneInput.pure(),
+            password: PasswordInput.pure(),
+            confirmedPassword: ConfirmedPasswordInput.pure(),
+            termsAndConditions: TermsAndConditionsInput.pure(),
             isValid: false,
           ),
         ) {
@@ -38,7 +38,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     RegisterNameChanged event,
     Emitter<RegisterState> emit,
   ) {
-    final name = Name.dirty(event.name);
+    final name = NameInput.dirty(event.name);
     emit(
       state.copyWith(
         name: name,
@@ -58,7 +58,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     RegisterEmailChanged event,
     Emitter<RegisterState> emit,
   ) {
-    final email = Email.dirty(event.email);
+    final email = EmailInput.dirty(event.email);
     emit(
       state.copyWith(
         email: email,
@@ -78,7 +78,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   //   RegisterPhoneChanged event,
   //   Emitter<RegisterState> emit,
   // ) {
-  //   final phone = Phone.dirty(event.phone);
+  //   final phone = PhoneInput.dirty(event.phone);
   //   final formzValid = Formz.validate([
   //     state.name,
   //     state.email,
@@ -99,10 +99,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     RegisterPasswordChanged event,
     Emitter<RegisterState> emit,
   ) {
-    final password = Password.dirty(value: event.password);
+    final password = PasswordInput.dirty(value: event.password);
     final confirmedPassword = state.confirmedPassword.isPure
         ? state.confirmedPassword
-        : ConfirmedPassword.dirty(
+        : ConfirmedPasswordInput.dirty(
             password: password.value,
             value: state.confirmedPassword.value,
           );
@@ -126,7 +126,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     RegisterConfirmedPasswordChanged event,
     Emitter<RegisterState> emit,
   ) {
-    final confirmedPassword = ConfirmedPassword.dirty(
+    final confirmedPassword = ConfirmedPasswordInput.dirty(
       password: state.password.value,
       value: event.confirmedPassword,
     );
@@ -149,7 +149,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     RegisterTermsAndConditionsChanged event,
     Emitter<RegisterState> emit,
   ) {
-    final termsAndConditions = TermsAndConditions.dirty(
+    final termsAndConditions = TermsAndConditionsInput.dirty(
       value: !(state.termsAndConditions.value ?? false),
     );
     emit(

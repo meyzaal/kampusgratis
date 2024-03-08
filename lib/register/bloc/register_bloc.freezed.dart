@@ -1057,12 +1057,13 @@ abstract class RegisterFormSubmitted implements RegisterEvent {
 /// @nodoc
 mixin _$RegisterState {
   FormzSubmissionStatus get status => throw _privateConstructorUsedError;
-  Name get name => throw _privateConstructorUsedError;
-  Email get email =>
-      throw _privateConstructorUsedError; // required Phone phone,
-  Password get password => throw _privateConstructorUsedError;
-  ConfirmedPassword get confirmedPassword => throw _privateConstructorUsedError;
-  TermsAndConditions get termsAndConditions =>
+  NameInput get name => throw _privateConstructorUsedError;
+  EmailInput get email =>
+      throw _privateConstructorUsedError; // required PhoneInput phone,
+  PasswordInput get password => throw _privateConstructorUsedError;
+  ConfirmedPasswordInput get confirmedPassword =>
+      throw _privateConstructorUsedError;
+  TermsAndConditionsInput get termsAndConditions =>
       throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
@@ -1080,11 +1081,11 @@ abstract class $RegisterStateCopyWith<$Res> {
   @useResult
   $Res call(
       {FormzSubmissionStatus status,
-      Name name,
-      Email email,
-      Password password,
-      ConfirmedPassword confirmedPassword,
-      TermsAndConditions termsAndConditions,
+      NameInput name,
+      EmailInput email,
+      PasswordInput password,
+      ConfirmedPasswordInput confirmedPassword,
+      TermsAndConditionsInput termsAndConditions,
       bool isValid,
       String? message});
 }
@@ -1119,23 +1120,23 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as NameInput,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as Email,
+              as EmailInput,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as Password,
+              as PasswordInput,
       confirmedPassword: null == confirmedPassword
           ? _value.confirmedPassword
           : confirmedPassword // ignore: cast_nullable_to_non_nullable
-              as ConfirmedPassword,
+              as ConfirmedPasswordInput,
       termsAndConditions: null == termsAndConditions
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
-              as TermsAndConditions,
+              as TermsAndConditionsInput,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
@@ -1158,11 +1159,11 @@ abstract class _$$RegisterStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {FormzSubmissionStatus status,
-      Name name,
-      Email email,
-      Password password,
-      ConfirmedPassword confirmedPassword,
-      TermsAndConditions termsAndConditions,
+      NameInput name,
+      EmailInput email,
+      PasswordInput password,
+      ConfirmedPasswordInput confirmedPassword,
+      TermsAndConditionsInput termsAndConditions,
       bool isValid,
       String? message});
 }
@@ -1195,23 +1196,23 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as NameInput,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as Email,
+              as EmailInput,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as Password,
+              as PasswordInput,
       confirmedPassword: null == confirmedPassword
           ? _value.confirmedPassword
           : confirmedPassword // ignore: cast_nullable_to_non_nullable
-              as ConfirmedPassword,
+              as ConfirmedPasswordInput,
       termsAndConditions: null == termsAndConditions
           ? _value.termsAndConditions
           : termsAndConditions // ignore: cast_nullable_to_non_nullable
-              as TermsAndConditions,
+              as TermsAndConditionsInput,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
@@ -1240,16 +1241,16 @@ class _$RegisterStateImpl implements _RegisterState {
   @override
   final FormzSubmissionStatus status;
   @override
-  final Name name;
+  final NameInput name;
   @override
-  final Email email;
-// required Phone phone,
+  final EmailInput email;
+// required PhoneInput phone,
   @override
-  final Password password;
+  final PasswordInput password;
   @override
-  final ConfirmedPassword confirmedPassword;
+  final ConfirmedPasswordInput confirmedPassword;
   @override
-  final TermsAndConditions termsAndConditions;
+  final TermsAndConditionsInput termsAndConditions;
   @override
   final bool isValid;
   @override
@@ -1292,26 +1293,26 @@ class _$RegisterStateImpl implements _RegisterState {
 abstract class _RegisterState implements RegisterState {
   const factory _RegisterState(
       {required final FormzSubmissionStatus status,
-      required final Name name,
-      required final Email email,
-      required final Password password,
-      required final ConfirmedPassword confirmedPassword,
-      required final TermsAndConditions termsAndConditions,
+      required final NameInput name,
+      required final EmailInput email,
+      required final PasswordInput password,
+      required final ConfirmedPasswordInput confirmedPassword,
+      required final TermsAndConditionsInput termsAndConditions,
       required final bool isValid,
       final String? message}) = _$RegisterStateImpl;
 
   @override
   FormzSubmissionStatus get status;
   @override
-  Name get name;
+  NameInput get name;
   @override
-  Email get email;
-  @override // required Phone phone,
-  Password get password;
+  EmailInput get email;
+  @override // required PhoneInput phone,
+  PasswordInput get password;
   @override
-  ConfirmedPassword get confirmedPassword;
+  ConfirmedPasswordInput get confirmedPassword;
   @override
-  TermsAndConditions get termsAndConditions;
+  TermsAndConditionsInput get termsAndConditions;
   @override
   bool get isValid;
   @override

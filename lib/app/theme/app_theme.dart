@@ -179,5 +179,8 @@ ThemeData _getTheme(Brightness brightness) {
         borderRadius: BorderRadius.circular(8),
       ),
     ),
+    datePickerTheme: DatePickerThemeData(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    ),
   );
 }

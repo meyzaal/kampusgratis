@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Constants _$ConstantsFromJson(Map<String, dynamic> json) {
+  return _Constants.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Constants {
   ConstantMap get gender => throw _privateConstructorUsedError;
@@ -23,6 +27,7 @@ mixin _$Constants {
   ConstantMap get liveWith => throw _privateConstructorUsedError;
   ConstantMap get tuitionPayer => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ConstantsCopyWith<Constants> get copyWith =>
       throw _privateConstructorUsedError;
@@ -224,7 +229,7 @@ class __$$ConstantsImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ConstantsImpl implements _Constants {
   const _$ConstantsImpl(
       {required this.gender,
@@ -233,6 +238,9 @@ class _$ConstantsImpl implements _Constants {
       required this.salary,
       required this.liveWith,
       required this.tuitionPayer});
+
+  factory _$ConstantsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ConstantsImplFromJson(json);
 
   @override
   final ConstantMap gender;
@@ -269,6 +277,7 @@ class _$ConstantsImpl implements _Constants {
                 other.tuitionPayer == tuitionPayer));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, gender, lastEducation,
       occupation, salary, liveWith, tuitionPayer);
@@ -278,6 +287,13 @@ class _$ConstantsImpl implements _Constants {
   @pragma('vm:prefer-inline')
   _$$ConstantsImplCopyWith<_$ConstantsImpl> get copyWith =>
       __$$ConstantsImplCopyWithImpl<_$ConstantsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ConstantsImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Constants implements Constants {
@@ -288,6 +304,9 @@ abstract class _Constants implements Constants {
       required final ConstantMap salary,
       required final ConstantMap liveWith,
       required final ConstantMap tuitionPayer}) = _$ConstantsImpl;
+
+  factory _Constants.fromJson(Map<String, dynamic> json) =
+      _$ConstantsImpl.fromJson;
 
   @override
   ConstantMap get gender;
@@ -307,11 +326,16 @@ abstract class _Constants implements Constants {
       throw _privateConstructorUsedError;
 }
 
+ConstantMap _$ConstantMapFromJson(Map<String, dynamic> json) {
+  return _ConstantMap.fromJson(json);
+}
+
 /// @nodoc
 mixin _$ConstantMap {
   List<String> get keys => throw _privateConstructorUsedError;
   List<String> get values => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ConstantMapCopyWith<ConstantMap> get copyWith =>
       throw _privateConstructorUsedError;
@@ -394,12 +418,15 @@ class __$$ConstantMapImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ConstantMapImpl implements _ConstantMap {
   const _$ConstantMapImpl(
       {required final List<String> keys, required final List<String> values})
       : _keys = keys,
         _values = values;
+
+  factory _$ConstantMapImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ConstantMapImplFromJson(json);
 
   final List<String> _keys;
   @override
@@ -431,6 +458,7 @@ class _$ConstantMapImpl implements _ConstantMap {
             const DeepCollectionEquality().equals(other._values, _values));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -442,12 +470,22 @@ class _$ConstantMapImpl implements _ConstantMap {
   @pragma('vm:prefer-inline')
   _$$ConstantMapImplCopyWith<_$ConstantMapImpl> get copyWith =>
       __$$ConstantMapImplCopyWithImpl<_$ConstantMapImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ConstantMapImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _ConstantMap implements ConstantMap {
   const factory _ConstantMap(
       {required final List<String> keys,
       required final List<String> values}) = _$ConstantMapImpl;
+
+  factory _ConstantMap.fromJson(Map<String, dynamic> json) =
+      _$ConstantMapImpl.fromJson;
 
   @override
   List<String> get keys;

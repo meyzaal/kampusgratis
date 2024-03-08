@@ -1,24 +1,24 @@
 import 'package:formz/formz.dart';
 
-enum NameValidationError { empty }
+enum NameInputValidationError { empty }
 
-final class Name extends FormzInput<String, NameValidationError> {
-  const Name.pure([super.value = '']) : super.pure();
-  const Name.dirty([super.value = '']) : super.dirty();
+final class NameInput extends FormzInput<String, NameInputValidationError> {
+  const NameInput.pure([super.value = '']) : super.pure();
+  const NameInput.dirty([super.value = '']) : super.dirty();
 
   @override
-  NameValidationError? validator(String? value) {
+  NameInputValidationError? validator(String? value) {
     if (value == null) return null;
-    if (value.isEmpty) return NameValidationError.empty;
+    if (value.isEmpty) return NameInputValidationError.empty;
 
     return null;
   }
 }
 
-extension NameValidationErrorX on NameValidationError {
+extension NameInputValidationErrorX on NameInputValidationError {
   String get message {
     switch (this) {
-      case NameValidationError.empty:
+      case NameInputValidationError.empty:
         return 'Nama tidak boleh kosong.';
     }
   }

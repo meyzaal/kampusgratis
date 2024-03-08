@@ -64,19 +64,21 @@ class UserRepository {
       user = await _getUserFromLocalStorage();
       if (user != null) return user;
     }
-    user ??= await _kgClient.getUser().then(
-          (result) => User(
-            email: result.email ?? '',
-            fullName: result.fullName ?? '',
-            id: result.id ?? '',
-            role: result.role ?? Role.guest,
-            userName: result.userName ?? '',
-            avatar: result.avatar,
-            gender: result.gender,
-            phoneNumber: result.phoneNumber,
-          ),
-        );
-    unawaited(_saveUserToLocalStorage(user!));
+    if (user == null) {
+      final result = await _kgClient.getUser();
+      user = User(
+        email: result.email ?? '',
+        fullName: result.fullName ?? '',
+        id: result.id ?? '',
+        role: result.role ?? Role.guest,
+        userName: result.userName ?? '',
+        avatar: result.avatar,
+        gender: result.gender,
+        phoneNumber: result.phoneNumber,
+      );
+    }
+
+    unawaited(_saveUserToLocalStorage(user));
     _currentUser = user;
     return user;
   }

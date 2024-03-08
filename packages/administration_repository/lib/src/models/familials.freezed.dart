@@ -16,8 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Familials {
-  String? get id => throw _privateConstructorUsedError;
-  String? get administrationId => throw _privateConstructorUsedError;
   String? get fatherName => throw _privateConstructorUsedError;
   String? get fatherOccupation => throw _privateConstructorUsedError;
   String? get fatherSalary => throw _privateConstructorUsedError;
@@ -40,9 +38,7 @@ abstract class $FamilialsCopyWith<$Res> {
       _$FamilialsCopyWithImpl<$Res, Familials>;
   @useResult
   $Res call(
-      {String? id,
-      String? administrationId,
-      String? fatherName,
+      {String? fatherName,
       String? fatherOccupation,
       String? fatherSalary,
       String? motherName,
@@ -67,8 +63,6 @@ class _$FamilialsCopyWithImpl<$Res, $Val extends Familials>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? administrationId = freezed,
     Object? fatherName = freezed,
     Object? fatherOccupation = freezed,
     Object? fatherSalary = freezed,
@@ -81,14 +75,6 @@ class _$FamilialsCopyWithImpl<$Res, $Val extends Familials>
     Object? tuitionPayer = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      administrationId: freezed == administrationId
-          ? _value.administrationId
-          : administrationId // ignore: cast_nullable_to_non_nullable
-              as String?,
       fatherName: freezed == fatherName
           ? _value.fatherName
           : fatherName // ignore: cast_nullable_to_non_nullable
@@ -142,9 +128,7 @@ abstract class _$$FamilialsImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? id,
-      String? administrationId,
-      String? fatherName,
+      {String? fatherName,
       String? fatherOccupation,
       String? fatherSalary,
       String? motherName,
@@ -167,8 +151,6 @@ class __$$FamilialsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? administrationId = freezed,
     Object? fatherName = freezed,
     Object? fatherOccupation = freezed,
     Object? fatherSalary = freezed,
@@ -181,14 +163,6 @@ class __$$FamilialsImplCopyWithImpl<$Res>
     Object? tuitionPayer = freezed,
   }) {
     return _then(_$FamilialsImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      administrationId: freezed == administrationId
-          ? _value.administrationId
-          : administrationId // ignore: cast_nullable_to_non_nullable
-              as String?,
       fatherName: freezed == fatherName
           ? _value.fatherName
           : fatherName // ignore: cast_nullable_to_non_nullable
@@ -237,9 +211,7 @@ class __$$FamilialsImplCopyWithImpl<$Res>
 
 class _$FamilialsImpl implements _Familials {
   const _$FamilialsImpl(
-      {this.id,
-      this.administrationId,
-      this.fatherName,
+      {this.fatherName,
       this.fatherOccupation,
       this.fatherSalary,
       this.motherName,
@@ -250,10 +222,6 @@ class _$FamilialsImpl implements _Familials {
       this.liveWith,
       this.tuitionPayer});
 
-  @override
-  final String? id;
-  @override
-  final String? administrationId;
   @override
   final String? fatherName;
   @override
@@ -277,7 +245,7 @@ class _$FamilialsImpl implements _Familials {
 
   @override
   String toString() {
-    return 'Familials(id: $id, administrationId: $administrationId, fatherName: $fatherName, fatherOccupation: $fatherOccupation, fatherSalary: $fatherSalary, motherName: $motherName, motherOccupation: $motherOccupation, motherSalary: $motherSalary, selfSalary: $selfSalary, selfOccupation: $selfOccupation, liveWith: $liveWith, tuitionPayer: $tuitionPayer)';
+    return 'Familials(fatherName: $fatherName, fatherOccupation: $fatherOccupation, fatherSalary: $fatherSalary, motherName: $motherName, motherOccupation: $motherOccupation, motherSalary: $motherSalary, selfSalary: $selfSalary, selfOccupation: $selfOccupation, liveWith: $liveWith, tuitionPayer: $tuitionPayer)';
   }
 
   @override
@@ -285,9 +253,6 @@ class _$FamilialsImpl implements _Familials {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FamilialsImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.administrationId, administrationId) ||
-                other.administrationId == administrationId) &&
             (identical(other.fatherName, fatherName) ||
                 other.fatherName == fatherName) &&
             (identical(other.fatherOccupation, fatherOccupation) ||
@@ -313,8 +278,6 @@ class _$FamilialsImpl implements _Familials {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      administrationId,
       fatherName,
       fatherOccupation,
       fatherSalary,
@@ -335,9 +298,7 @@ class _$FamilialsImpl implements _Familials {
 
 abstract class _Familials implements Familials {
   const factory _Familials(
-      {final String? id,
-      final String? administrationId,
-      final String? fatherName,
+      {final String? fatherName,
       final String? fatherOccupation,
       final String? fatherSalary,
       final String? motherName,
@@ -348,10 +309,6 @@ abstract class _Familials implements Familials {
       final String? liveWith,
       final String? tuitionPayer}) = _$FamilialsImpl;
 
-  @override
-  String? get id;
-  @override
-  String? get administrationId;
   @override
   String? get fatherName;
   @override

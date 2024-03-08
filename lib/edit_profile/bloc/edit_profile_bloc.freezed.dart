@@ -389,10 +389,10 @@ class __$$EditProfileGenderChangedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? gender = freezed,
+    Object? gender = null,
   }) {
     return _then(_$EditProfileGenderChangedImpl(
-      freezed == gender
+      null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
@@ -418,12 +418,11 @@ class _$EditProfileGenderChangedImpl implements EditProfileGenderChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EditProfileGenderChangedImpl &&
-            const DeepCollectionEquality().equals(other.gender, gender));
+            (identical(other.gender, gender) || other.gender == gender));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(gender));
+  int get hashCode => Object.hash(runtimeType, gender);
 
   @JsonKey(ignore: true)
   @override
@@ -804,8 +803,8 @@ abstract class EditProfileFormSubmitted implements EditProfileEvent {
 /// @nodoc
 mixin _$EditProfileState {
   EditProfileStatus get status => throw _privateConstructorUsedError;
-  Name get name => throw _privateConstructorUsedError;
-  Phone get phone => throw _privateConstructorUsedError;
+  NameInput get name => throw _privateConstructorUsedError;
+  PhoneInput get phone => throw _privateConstructorUsedError;
   GenderInput get gender => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
@@ -824,8 +823,8 @@ abstract class $EditProfileStateCopyWith<$Res> {
   @useResult
   $Res call(
       {EditProfileStatus status,
-      Name name,
-      Phone phone,
+      NameInput name,
+      PhoneInput phone,
       GenderInput gender,
       bool isValid,
       User? user,
@@ -863,11 +862,11 @@ class _$EditProfileStateCopyWithImpl<$Res, $Val extends EditProfileState>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as NameInput,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as Phone,
+              as PhoneInput,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -910,8 +909,8 @@ abstract class _$$EditProfileStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {EditProfileStatus status,
-      Name name,
-      Phone phone,
+      NameInput name,
+      PhoneInput phone,
       GenderInput gender,
       bool isValid,
       User? user,
@@ -948,11 +947,11 @@ class __$$EditProfileStateImplCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as Name,
+              as NameInput,
       phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as Phone,
+              as PhoneInput,
       gender: null == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -978,8 +977,8 @@ class __$$EditProfileStateImplCopyWithImpl<$Res>
 class _$EditProfileStateImpl implements _EditProfileState {
   const _$EditProfileStateImpl(
       {this.status = EditProfileStatus.initial,
-      this.name = const Name.pure(),
-      this.phone = const Phone.pure(),
+      this.name = const NameInput.pure(),
+      this.phone = const PhoneInput.pure(),
       this.gender = const GenderInput.pure(),
       this.isValid = false,
       this.user,
@@ -990,10 +989,10 @@ class _$EditProfileStateImpl implements _EditProfileState {
   final EditProfileStatus status;
   @override
   @JsonKey()
-  final Name name;
+  final NameInput name;
   @override
   @JsonKey()
-  final Phone phone;
+  final PhoneInput phone;
   @override
   @JsonKey()
   final GenderInput gender;
@@ -1039,8 +1038,8 @@ class _$EditProfileStateImpl implements _EditProfileState {
 abstract class _EditProfileState implements EditProfileState {
   const factory _EditProfileState(
       {final EditProfileStatus status,
-      final Name name,
-      final Phone phone,
+      final NameInput name,
+      final PhoneInput phone,
       final GenderInput gender,
       final bool isValid,
       final User? user,
@@ -1049,9 +1048,9 @@ abstract class _EditProfileState implements EditProfileState {
   @override
   EditProfileStatus get status;
   @override
-  Name get name;
+  NameInput get name;
   @override
-  Phone get phone;
+  PhoneInput get phone;
   @override
   GenderInput get gender;
   @override

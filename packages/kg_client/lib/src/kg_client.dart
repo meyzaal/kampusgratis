@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -525,8 +524,9 @@ class KgClient {
       final result = Result<List<Article>>.fromJson(
         response.data as JSON,
         (json) {
-          final datas = json as List<JSON>? ?? [];
-          return datas.map(Article.fromJson).toList();
+          var datas = <dynamic>[];
+          if (json is List) datas = json;
+          return datas.map((e) => Article.fromJson(e as JSON? ?? {})).toList();
         },
       );
 
@@ -633,7 +633,7 @@ class KgClient {
   Future<AdministrationConstants> getAdministrationConstants() async {
     try {
       final response =
-          await _httpClient.get<dynamic>('/v/administration/constants');
+          await _httpClient.get<dynamic>('/v1/administration/constants');
       final result = Result<AdministrationConstants>.fromJson(
         response.data as JSON,
         (json) => AdministrationConstants.fromJson(json as JSON? ?? {}),
@@ -845,8 +845,8 @@ class KgClient {
         if (letterOfRecommendation != null)
           'letter_of_Recommendation': letterOfRecommendation,
       });
-      final response =
-          await _httpClient.post<dynamic>('/administration/file', data: data);
+      final response = await _httpClient
+          .post<dynamic>('/v2/administration/files', data: data);
       final result = Result<Files>.fromJson(
         response.data as JSON,
         (json) => Files.fromJson(json as JSON? ?? {}),
@@ -870,8 +870,9 @@ class KgClient {
           await _httpClient.get<dynamic>('/v1/administrative/provincies');
       final result =
           Result<List<Province>>.fromJson(response.data as JSON, (json) {
-        final datas = json as List<JSON>? ?? [];
-        return datas.map(Province.fromJson).toList();
+        var datas = <dynamic>[];
+        if (json is List) datas = json;
+        return datas.map((e) => Province.fromJson(e as JSON? ?? {})).toList();
       });
 
       return result.data ?? <Province>[];
@@ -889,8 +890,9 @@ class KgClient {
       );
       final result =
           Result<List<Regency>>.fromJson(response.data as JSON, (json) {
-        final datas = json as List<JSON>? ?? [];
-        return datas.map(Regency.fromJson).toList();
+        var datas = <dynamic>[];
+        if (json is List) datas = json;
+        return datas.map((e) => Regency.fromJson(e as JSON? ?? {})).toList();
       });
 
       return result.data ?? <Regency>[];
@@ -908,8 +910,9 @@ class KgClient {
       );
       final result =
           Result<List<District>>.fromJson(response.data as JSON, (json) {
-        final datas = json as List<JSON>? ?? [];
-        return datas.map(District.fromJson).toList();
+        var datas = <dynamic>[];
+        if (json is List) datas = json;
+        return datas.map((e) => District.fromJson(e as JSON? ?? {})).toList();
       });
 
       return result.data ?? <District>[];
@@ -927,8 +930,9 @@ class KgClient {
       );
       final result =
           Result<List<Village>>.fromJson(response.data as JSON, (json) {
-        final datas = json as List<JSON>? ?? [];
-        return datas.map(Village.fromJson).toList();
+        var datas = <dynamic>[];
+        if (json is List) datas = json;
+        return datas.map((e) => Village.fromJson(e as JSON? ?? {})).toList();
       });
 
       return result.data ?? <Village>[];
@@ -1019,6 +1023,33 @@ class KgClient {
       throw _getException(e);
     }
   }
+
+// BANNER
+//
+//  ██████╗  █████╗ ███╗   ██╗███╗   ██╗███████╗██████╗
+//  ██╔══██╗██╔══██╗████╗  ██║████╗  ██║██╔════╝██╔══██╗
+//  ██████╔╝███████║██╔██╗ ██║██╔██╗ ██║█████╗  ██████╔╝
+//  ██╔══██╗██╔══██║██║╚██╗██║██║╚██╗██║██╔══╝  ██╔══██╗
+//  ██████╔╝██║  ██║██║ ╚████║██║ ╚████║███████╗██║  ██║
+//  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
+//
+
+  Future<List<Banner>> getBanner() async {
+    try {
+      final response = await _httpClient.get<dynamic>('/v1/banner');
+
+      final result =
+          Result<List<Banner>>.fromJson(response.data as JSON, (json) {
+        var datas = <dynamic>[];
+        if (json is List) datas = json;
+        return datas.map((e) => Banner.fromJson(e as JSON? ?? {})).toList();
+      });
+
+      return result.data ?? <Banner>[];
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
 }
 
 /// Instance of [Fresh] for managing token freshness in the application.
@@ -1086,20 +1117,19 @@ Future<void> _authenticate({
 Future<void> _unauthenticate() => _fresh.setToken(null);
 
 NetworkException _getException(dynamic e) {
-  log(e.toString());
   NetworkException exception;
   if (e is DioException) {
     final statusCode = e.response?.statusCode;
     String? message;
     if (e.response != null) {
-      final data = e.response?.data as JSON;
-      message = data['message'] as String?;
+      final data = e.response?.data;
+      if (data is JSON) message = data['message'] as String?;
     }
 
     switch (e.type) {
       case DioExceptionType.badResponse:
         exception =
-            BadResponseException(message ?? 'Permintaan gagal $statusCode.');
+            BadResponseException(message ?? 'Permintaan gagal [$statusCode].');
       case DioExceptionType.connectionError:
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.receiveTimeout:

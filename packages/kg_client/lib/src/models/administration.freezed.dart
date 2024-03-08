@@ -605,7 +605,7 @@ mixin _$Biodatas {
   @JsonKey(name: 'full_name')
   String? get fullName => throw _privateConstructorUsedError;
   @JsonKey(name: 'gender')
-  Gender? get gender => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
   @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'birthdate')
@@ -658,7 +658,7 @@ abstract class $BiodatasCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'full_name') String? fullName,
-      @JsonKey(name: 'gender') Gender? gender,
+      @JsonKey(name: 'gender') String? gender,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'birthdate') String? birthdate,
       @JsonKey(name: 'birthplace') String? birthplace,
@@ -723,7 +723,7 @@ class _$BiodatasCopyWithImpl<$Res, $Val extends Biodatas>
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as Gender?,
+              as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -814,7 +814,7 @@ abstract class _$$BiodatasImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'full_name') String? fullName,
-      @JsonKey(name: 'gender') Gender? gender,
+      @JsonKey(name: 'gender') String? gender,
       @JsonKey(name: 'phone_number') String? phoneNumber,
       @JsonKey(name: 'birthdate') String? birthdate,
       @JsonKey(name: 'birthplace') String? birthplace,
@@ -877,7 +877,7 @@ class __$$BiodatasImplCopyWithImpl<$Res>
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as Gender?,
+              as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -992,7 +992,7 @@ class _$BiodatasImpl implements _Biodatas {
   final String? fullName;
   @override
   @JsonKey(name: 'gender')
-  final Gender? gender;
+  final String? gender;
   @override
   @JsonKey(name: 'phone_number')
   final String? phoneNumber;
@@ -1143,7 +1143,7 @@ class _$BiodatasImpl implements _Biodatas {
 abstract class _Biodatas implements Biodatas {
   const factory _Biodatas(
       {@JsonKey(name: 'full_name') final String? fullName,
-      @JsonKey(name: 'gender') final Gender? gender,
+      @JsonKey(name: 'gender') final String? gender,
       @JsonKey(name: 'phone_number') final String? phoneNumber,
       @JsonKey(name: 'birthdate') final String? birthdate,
       @JsonKey(name: 'birthplace') final String? birthplace,
@@ -1172,7 +1172,7 @@ abstract class _Biodatas implements Biodatas {
   String? get fullName;
   @override
   @JsonKey(name: 'gender')
-  Gender? get gender;
+  String? get gender;
   @override
   @JsonKey(name: 'phone_number')
   String? get phoneNumber;

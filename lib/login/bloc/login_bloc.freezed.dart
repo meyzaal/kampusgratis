@@ -474,8 +474,8 @@ abstract class LoginFormSubmitted implements LoginEvent {
 /// @nodoc
 mixin _$LoginState {
   FormzSubmissionStatus get status => throw _privateConstructorUsedError;
-  Email get email => throw _privateConstructorUsedError;
-  Password get password => throw _privateConstructorUsedError;
+  EmailInput get email => throw _privateConstructorUsedError;
+  PasswordInput get password => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
@@ -492,8 +492,8 @@ abstract class $LoginStateCopyWith<$Res> {
   @useResult
   $Res call(
       {FormzSubmissionStatus status,
-      Email email,
-      Password password,
+      EmailInput email,
+      PasswordInput password,
       bool isValid,
       String? message});
 }
@@ -525,11 +525,11 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as Email,
+              as EmailInput,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as Password,
+              as PasswordInput,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
@@ -552,8 +552,8 @@ abstract class _$$LoginStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {FormzSubmissionStatus status,
-      Email email,
-      Password password,
+      EmailInput email,
+      PasswordInput password,
       bool isValid,
       String? message});
 }
@@ -583,11 +583,11 @@ class __$$LoginStateImplCopyWithImpl<$Res>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as Email,
+              as EmailInput,
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as Password,
+              as PasswordInput,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
@@ -613,9 +613,9 @@ class _$LoginStateImpl implements _LoginState {
   @override
   final FormzSubmissionStatus status;
   @override
-  final Email email;
+  final EmailInput email;
   @override
-  final Password password;
+  final PasswordInput password;
   @override
   final bool isValid;
   @override
@@ -653,17 +653,17 @@ class _$LoginStateImpl implements _LoginState {
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {required final FormzSubmissionStatus status,
-      required final Email email,
-      required final Password password,
+      required final EmailInput email,
+      required final PasswordInput password,
       required final bool isValid,
       final String? message}) = _$LoginStateImpl;
 
   @override
   FormzSubmissionStatus get status;
   @override
-  Email get email;
+  EmailInput get email;
   @override
-  Password get password;
+  PasswordInput get password;
   @override
   bool get isValid;
   @override

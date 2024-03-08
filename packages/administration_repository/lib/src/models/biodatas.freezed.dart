@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Biodatas {
   String? get fullName => throw _privateConstructorUsedError;
-  Gender? get gender => throw _privateConstructorUsedError;
+  String? get gender => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get birthdate => throw _privateConstructorUsedError;
   String? get birthplace => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $BiodatasCopyWith<$Res> {
   @useResult
   $Res call(
       {String? fullName,
-      Gender? gender,
+      String? gender,
       String? phoneNumber,
       String? birthdate,
       String? birthplace,
@@ -115,7 +115,7 @@ class _$BiodatasCopyWithImpl<$Res, $Val extends Biodatas>
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as Gender?,
+              as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -206,7 +206,7 @@ abstract class _$$BiodatasImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? fullName,
-      Gender? gender,
+      String? gender,
       String? phoneNumber,
       String? birthdate,
       String? birthplace,
@@ -269,7 +269,7 @@ class __$$BiodatasImplCopyWithImpl<$Res>
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
-              as Gender?,
+              as String?,
       phoneNumber: freezed == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -379,7 +379,7 @@ class _$BiodatasImpl implements _Biodatas {
   @override
   final String? fullName;
   @override
-  final Gender? gender;
+  final String? gender;
   @override
   final String? phoneNumber;
   @override
@@ -503,7 +503,7 @@ class _$BiodatasImpl implements _Biodatas {
 abstract class _Biodatas implements Biodatas {
   const factory _Biodatas(
       {final String? fullName,
-      final Gender? gender,
+      final String? gender,
       final String? phoneNumber,
       final String? birthdate,
       final String? birthplace,
@@ -527,7 +527,7 @@ abstract class _Biodatas implements Biodatas {
   @override
   String? get fullName;
   @override
-  Gender? get gender;
+  String? get gender;
   @override
   String? get phoneNumber;
   @override

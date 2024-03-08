@@ -66,7 +66,7 @@ const _$AdministrationStatusEnumMap = {
 _$BiodatasImpl _$$BiodatasImplFromJson(Map<String, dynamic> json) =>
     _$BiodatasImpl(
       fullName: json['full_name'] as String?,
-      gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
+      gender: json['gender'] as String?,
       phoneNumber: json['phone_number'] as String?,
       birthdate: json['birthdate'] as String?,
       birthplace: json['birthplace'] as String?,
@@ -91,7 +91,7 @@ _$BiodatasImpl _$$BiodatasImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$BiodatasImplToJson(_$BiodatasImpl instance) =>
     <String, dynamic>{
       'full_name': instance.fullName,
-      'gender': _$GenderEnumMap[instance.gender],
+      'gender': instance.gender,
       'phone_number': instance.phoneNumber,
       'birthdate': instance.birthdate,
       'birthplace': instance.birthplace,
@@ -112,11 +112,6 @@ Map<String, dynamic> _$$BiodatasImplToJson(_$BiodatasImpl instance) =>
       'village_id': instance.villageId,
       'postal_code': instance.postalCode,
     };
-
-const _$GenderEnumMap = {
-  Gender.male: 'MALE',
-  Gender.female: 'FEMALE',
-};
 
 _$FamilialsImpl _$$FamilialsImplFromJson(Map<String, dynamic> json) =>
     _$FamilialsImpl(

@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kg_client/src/models/models.dart';
 
 part 'administration.freezed.dart';
 part 'administration.g.dart';
@@ -52,7 +51,7 @@ class Details with _$Details {
 class Biodatas with _$Biodatas {
   const factory Biodatas({
     @JsonKey(name: 'full_name') String? fullName,
-    @JsonKey(name: 'gender') Gender? gender,
+    @JsonKey(name: 'gender') String? gender,
     @JsonKey(name: 'phone_number') String? phoneNumber,
     @JsonKey(name: 'birthdate') String? birthdate,
     @JsonKey(name: 'birthplace') String? birthplace,
@@ -192,3 +191,5 @@ class Village with _$Village {
   factory Village.fromJson(Map<String, Object?> json) =>
       _$VillageFromJson(json);
 }
+
+

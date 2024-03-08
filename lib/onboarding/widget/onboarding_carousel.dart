@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kampusgratis/gen/gen.dart';
-import 'package:kampusgratis/onboarding/onboarding.dart';
+import 'package:kampusgratis/shared/shared.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class OnboardingCarousel extends StatelessWidget {
@@ -38,7 +38,7 @@ class OnboardingCarousel extends StatelessWidget {
       autoPlay: true,
       viewportFraction: 1,
       onPageChanged: (index, _) {
-        context.read<OnboardingCarouselCubit>().onPageChanged(index);
+        context.read<CarouselCubit>().onPageChanged(index);
       },
     );
 
@@ -48,48 +48,9 @@ class OnboardingCarousel extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           CarouselSlider(items: items, options: carouselOptions),
-          _Indicator(itemCount: items.length),
+          CarouselIndicator(itemCount: items.length),
         ],
       ),
-    );
-  }
-}
-
-class _Indicator extends StatelessWidget {
-  const _Indicator({required this.itemCount});
-
-  final int itemCount;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final activeColor = theme.colorScheme.primary;
-    final inactiveColor = theme.colorScheme.inversePrimary;
-
-    return BlocBuilder<OnboardingCarouselCubit, int>(
-      buildWhen: (previous, current) => previous != current,
-      builder: (context, activeIndex) {
-        final items = List.generate(itemCount, (index) {
-          final active = index == activeIndex;
-          final dimension = active ? 8.0 : 6.0;
-
-          return AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
-            width: dimension,
-            height: dimension,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: active ? activeColor : inactiveColor,
-            ),
-          );
-        });
-
-        return Wrap(
-          spacing: 8,
-          children: items,
-        );
-      },
     );
   }
 }

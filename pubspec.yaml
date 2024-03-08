@@ -7,8 +7,12 @@ environment:
   sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
+  administration_repository:
+    path: packages/administration_repository
   authentication_repository:
     path: packages/authentication_repository
+  banner_repository:
+    path: packages/banner_repository
   bloc: ^8.1.2
   cached_network_image: ^3.3.1
   carousel_slider: ^4.2.1

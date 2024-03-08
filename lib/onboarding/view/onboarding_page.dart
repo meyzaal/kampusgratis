@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/gen/gen.dart';
 import 'package:kampusgratis/onboarding/onboarding.dart';
+import 'package:kampusgratis/shared/shared.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -22,7 +23,7 @@ class OnboardingPage extends StatelessWidget {
               ),
             );
             final carouselWidget = BlocProvider(
-              create: (context) => OnboardingCarouselCubit(),
+              create: (context) => CarouselCubit(),
               child: const OnboardingCarousel(),
             );
             final buttonsWidget = Column(

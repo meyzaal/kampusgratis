@@ -12,9 +12,9 @@ class CustomInputField extends StatelessWidget {
     this.isFocused = false,
     this.isHovering = false,
     this.expands = false,
-    this.isEmpty = false,
     this.value,
     this.onTap,
+    this.readOnly = false,
   });
 
   final String labelText;
@@ -26,9 +26,9 @@ class CustomInputField extends StatelessWidget {
   final bool isFocused;
   final bool isHovering;
   final bool expands;
-  final bool isEmpty;
   final String? value;
   final VoidCallback? onTap;
+  final bool readOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -54,24 +54,24 @@ class CustomInputField extends StatelessWidget {
       );
     }
 
-    final inputFieldWidget = InkWell(
-      borderRadius: BorderRadius.circular(8),
-      onTap: onTap,
-      child: InputDecorator(
-        decoration: decoration,
-        baseStyle: baseStyle,
-        expands: expands,
-        isEmpty: isEmpty,
-        isFocused: isFocused,
-        isHovering: isHovering,
-        textAlign: textAlign,
-        textAlignVertical: textAlignVertical,
-        child: value != null
-            ? Text(
-                value!,
-                style: theme.textTheme.bodyLarge,
-              )
-            : null,
+    final inputFieldWidget = InputDecorator(
+      decoration: decoration,
+      baseStyle: baseStyle,
+      expands: expands,
+      isEmpty: value == null,
+      isFocused: isFocused,
+      isHovering: isHovering,
+      textAlign: textAlign,
+      textAlignVertical: textAlignVertical,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(8),
+        onTap: readOnly ? null : onTap,
+        child: Text(
+          value ?? '',
+          style: theme.textTheme.bodyLarge,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
     );
 

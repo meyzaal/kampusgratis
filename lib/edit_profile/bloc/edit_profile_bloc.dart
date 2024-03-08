@@ -30,12 +30,12 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   ) {
     final user = state.user;
     if (user != null) {
-      final name = Name.dirty(user.fullName);
+      final name =  NameInput.dirty(user.fullName);
       var gender = state.gender;
       var phone = state.phone;
 
       if (user.gender != null) gender = GenderInput.dirty(user.gender);
-      if (user.phoneNumber != null) phone = Phone.dirty(user.phoneNumber!);
+      if (user.phoneNumber != null) phone = PhoneInput.dirty(user.phoneNumber!);
 
       emit(state.copyWith(name: name, gender: gender, phone: phone));
     }
@@ -45,7 +45,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     EditProfileNameChanged event,
     Emitter<EditProfileState> emit,
   ) {
-    final name = Name.dirty(event.name);
+    final name = NameInput.dirty(event.name);
     emit(
       state.copyWith(
         name: name,
@@ -73,7 +73,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
     EditProfilePhoneChanged event,
     Emitter<EditProfileState> emit,
   ) {
-    final phone = Phone.dirty(event.phone);
+    final phone = PhoneInput.dirty(event.phone);
     emit(
       state.copyWith(
         phone: phone,

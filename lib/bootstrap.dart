@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:administration_repository/administration_repository.dart';
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:banner_repository/banner_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -50,12 +52,17 @@ Future<void> bootstrap({required KgFlavor flavor}) async {
             : await getTemporaryDirectory(),
       );
 
+      final administrationRepository =
+          AdministrationRepository(kgClient: kgClient);
       final authenticationRepository =
           AuthenticationRepository(kgClient: kgClient);
+      final bannerRepository = BannerRepository(kgClient: kgClient);
       final userRepository = UserRepository(kgClient: kgClient);
 
       final app = App(
+        administrationRepository: administrationRepository,
         authenticationRepository: authenticationRepository,
+        bannerRepository: bannerRepository,
         userRepository: userRepository,
       );
 

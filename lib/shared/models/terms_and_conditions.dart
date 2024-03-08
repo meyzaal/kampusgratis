@@ -1,15 +1,15 @@
 import 'package:formz/formz.dart';
 
-enum TermsAndConditionsValidationError { unchecked }
+enum TermsAndConditionsInputValidationError { unchecked }
 
-final class TermsAndConditions
-    extends FormzInput<bool?, TermsAndConditionsValidationError> {
-  const TermsAndConditions.pure({bool? value}) : super.pure(value);
-  const TermsAndConditions.dirty({bool? value}) : super.dirty(value);
+final class TermsAndConditionsInput
+    extends FormzInput<bool?, TermsAndConditionsInputValidationError> {
+  const TermsAndConditionsInput.pure({bool? value}) : super.pure(value);
+  const TermsAndConditionsInput.dirty({bool? value}) : super.dirty(value);
 
   @override
-  TermsAndConditionsValidationError? validator(bool? value) {
-    if (value != true) return TermsAndConditionsValidationError.unchecked;
+  TermsAndConditionsInputValidationError? validator(bool? value) {
+    if (value != true) return TermsAndConditionsInputValidationError.unchecked;
 
     return null;
   }

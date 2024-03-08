@@ -14,8 +14,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         super(
           const LoginState(
             status: FormzSubmissionStatus.initial,
-            email: Email.pure(),
-            password: Password.pure(),
+            email: EmailInput.pure(),
+            password: PasswordInput.pure(),
             isValid: false,
           ),
         ) {
@@ -30,7 +30,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginEmailChanged event,
     Emitter<LoginState> emit,
   ) async {
-    final email = Email.dirty(event.email);
+    final email = EmailInput.dirty(event.email);
     emit(
       state.copyWith(
         email: email,
@@ -43,7 +43,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginPasswordChanged event,
     Emitter<LoginState> emit,
   ) async {
-    final password = Password.dirty(
+    final password = PasswordInput.dirty(
       patternValidation: false,
       value: event.password,
     );

@@ -4,12 +4,12 @@ part of 'register_bloc.dart';
 class RegisterState with _$RegisterState {
   const factory RegisterState({
     required FormzSubmissionStatus status,
-    required Name name,
-    required Email email,
-    // required Phone phone,
-    required Password password,
-    required ConfirmedPassword confirmedPassword,
-    required TermsAndConditions termsAndConditions,
+    required NameInput name,
+    required EmailInput email,
+    // required PhoneInput phone,
+    required PasswordInput password,
+    required ConfirmedPasswordInput confirmedPassword,
+    required TermsAndConditionsInput termsAndConditions,
     required bool isValid,
     String? message,
   }) = _RegisterState;

@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kg_client/kg_client.dart';
 
 part 'biodatas.freezed.dart';
 
@@ -7,7 +6,7 @@ part 'biodatas.freezed.dart';
 class Biodatas with _$Biodatas {
   const factory Biodatas({
     String? fullName,
-    Gender? gender,
+    String? gender,
     String? phoneNumber,
     String? birthdate,
     String? birthplace,

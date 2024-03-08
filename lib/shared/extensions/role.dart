@@ -8,4 +8,7 @@ extension RoleX on Role {
     if (this == Role.teacher) roleString = 'Pengajar';
     return roleString;
   }
+
+  bool get isStudent => this == Role.student;
+  bool get isGuest => this == Role.guest;
 }

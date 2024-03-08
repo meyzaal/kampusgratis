@@ -75,7 +75,7 @@ class ProfileBody extends StatelessWidget {
         itemBuilder: (context, index) => listViewChildren[index],
         separatorBuilder: (context, index) {
           return SizedBox(
-            height: index == 1 || index == listViewChildren.length ? 16 : 0,
+            height: index == 0 || index == listViewChildren.length ? 16 : 0,
           );
         },
         itemCount: listViewChildren.length,

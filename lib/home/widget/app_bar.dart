@@ -9,6 +9,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (previous, current) => previous.user != current.user,
       builder: (context, state) {
         const duration = Duration(milliseconds: 500);
         Widget trailingWidget = const SizedBox();

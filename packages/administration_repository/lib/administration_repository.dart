@@ -2,3 +2,4 @@
 library administration_repository;
 
 export 'src/administration_repository.dart';
+export 'src/models/models.dart';

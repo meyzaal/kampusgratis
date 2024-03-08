@@ -2,12 +2,11 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kampusgratis/shared/models/confirmed_password.dart';
-import 'package:kampusgratis/shared/models/password.dart';
+import 'package:kampusgratis/shared/shared.dart';
 
+part 'change_password_bloc.freezed.dart';
 part 'change_password_event.dart';
 part 'change_password_state.dart';
-part 'change_password_bloc.freezed.dart';
 
 class ChangePasswordBloc
     extends Bloc<ChangePasswordEvent, ChangePasswordState> {
@@ -17,9 +16,9 @@ class ChangePasswordBloc
           const ChangePasswordState(
             isValid: false,
             status: FormzSubmissionStatus.initial,
-            newPassword: Password.pure(),
-            oldPassword: Password.pure(),
-            confirmedPassword: ConfirmedPassword.pure(),
+            newPassword: PasswordInput.pure(),
+            oldPassword: PasswordInput.pure(),
+            confirmedPassword: ConfirmedPasswordInput.pure(),
           ),
         ) {
     on<ChangePasswordOldPasswordChanged>(_onChangePasswordOldPasswordChanged);
@@ -36,7 +35,7 @@ class ChangePasswordBloc
     ChangePasswordOldPasswordChanged event,
     Emitter<ChangePasswordState> emit,
   ) {
-    final oldPassword = Password.dirty(
+    final oldPassword = PasswordInput.dirty(
       patternValidation: false,
       value: event.oldPassword,
     );
@@ -56,10 +55,10 @@ class ChangePasswordBloc
     ChangePasswordNewPasswordChanged event,
     Emitter<ChangePasswordState> emit,
   ) {
-    final newPassword = Password.dirty(value: event.newPassword);
+    final newPassword = PasswordInput.dirty(value: event.newPassword);
     final confirmedPassword = state.confirmedPassword.isPure
         ? state.confirmedPassword
-        : ConfirmedPassword.dirty(
+        : ConfirmedPasswordInput.dirty(
             password: newPassword.value,
             value: state.confirmedPassword.value,
           );
@@ -80,7 +79,7 @@ class ChangePasswordBloc
     ChangePasswordConfirmedPasswordChanged event,
     Emitter<ChangePasswordState> emit,
   ) {
-    final confirmedPassword = ConfirmedPassword.dirty(
+    final confirmedPassword = ConfirmedPasswordInput.dirty(
       password: state.newPassword.value,
       value: event.confirmedPassword,
     );

@@ -5,10 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kampusgratis/about/about.dart';
+import 'package:kampusgratis/administration/administration.dart';
 import 'package:kampusgratis/assignment/assignment.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
 import 'package:kampusgratis/change_password/change_password.dart';
+import 'package:kampusgratis/date_picker/date_picker.dart';
 import 'package:kampusgratis/edit_profile/edit_profile.dart';
+import 'package:kampusgratis/features/features.dart';
 import 'package:kampusgratis/forgot_password/forgot_password.dart';
 import 'package:kampusgratis/home/home.dart';
 import 'package:kampusgratis/login/login.dart';
@@ -19,6 +22,7 @@ import 'package:kampusgratis/onboarding/onboarding.dart';
 import 'package:kampusgratis/otp_verification/otp_verification.dart';
 import 'package:kampusgratis/profile/profile.dart';
 import 'package:kampusgratis/register/register.dart';
+import 'package:kampusgratis/single_choices/single_choices.dart';
 import 'package:stream_listener/stream_listener.dart';
 
 part 'routes.g.dart';
@@ -39,7 +43,7 @@ class AppRoutes {
   GoRouter get router {
     return GoRouter(
       debugLogDiagnostics: kDebugMode,
-      initialLocation: '/home',
+      initialLocation: const HomeRoute(needRedirect: true).location,
       navigatorKey: _rootNavigatorKey,
       redirect: (context, state) {
         final loggedIn = _authenticationCubit.state.isAuthenticated;
@@ -47,14 +51,15 @@ class AppRoutes {
         final onAuthPage = state.matchedLocation.startsWith('/auth');
 
         // if the user is not logged in, they need to login
-        // if (!loggedIn && !onAuthPage && !onOnboardingPage) {
-        //   return '/auth/email-verification/fifere3837%40cubene.com/verify';
-        // }
-        if (!loggedIn && !onAuthPage && !onOnboardingPage) return '/onboarding';
+        if (!loggedIn && !onAuthPage && !onOnboardingPage) {
+          return const OnboardingRoute().location;
+        }
 
         // if the user is logged in but still on the login page, send them
         // to the home page
-        if (loggedIn && (onAuthPage || onOnboardingPage)) return '/home';
+        if (loggedIn && (onAuthPage || onOnboardingPage)) {
+          return const HomeRoute(needRedirect: true).location;
+        }
 
         // no need to redirect at all
         return null;
@@ -133,7 +138,12 @@ class ForgotPasswordRoute extends GoRouteData {
 
 @TypedShellRoute<MainRoute>(
   routes: <TypedRoute<RouteData>>[
-    TypedGoRoute<HomeRoute>(path: '/home'),
+    TypedGoRoute<HomeRoute>(
+      path: '/home',
+      routes: [
+        TypedGoRoute<FeatureRoute>(path: 'features'),
+      ],
+    ),
     TypedGoRoute<MyStudyRoute>(path: '/my-study'),
     TypedGoRoute<AssignmentRoute>(path: '/assignment'),
     TypedGoRoute<MyCalendarRoute>(path: '/my-calendar'),
@@ -158,11 +168,27 @@ class MainRoute extends ShellRouteData {
 }
 
 class HomeRoute extends GoRouteData {
-  const HomeRoute();
+  const HomeRoute({this.needRedirect = false});
+
+  final bool needRedirect;
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
-      const NoTransitionPage<void>(child: HomePage());
+      NoTransitionPage<void>(child: HomePage(needRedirect: needRedirect));
+}
+
+class FeatureRoute extends GoRouteData {
+  const FeatureRoute();
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey =
+      _rootNavigatorKey;
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const MaterialPage(
+        child: FeaturesPage(),
+        fullscreenDialog: true,
+      );
 }
 
 class MyStudyRoute extends GoRouteData {
@@ -227,4 +253,95 @@ class ChangePasswordRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ChangePasswordPage();
+}
+
+@TypedGoRoute<AdministrationRoute>(
+  path: '/administration',
+  routes: [
+    TypedGoRoute<SingleChoicesRoute>(path: 'select/:type'),
+    TypedGoRoute<DatePickerRoute>(path: 'pick/:type'),
+  ],
+)
+class AdministrationRoute extends GoRouteData {
+  const AdministrationRoute();
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey =
+      _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AdministrationPage();
+}
+
+class SingleChoicesOptions {
+  const SingleChoicesOptions({
+    required this.values,
+    required this.title,
+    this.initialValue,
+  });
+
+  final List<String> values;
+  final String title;
+  final String? initialValue;
+}
+
+enum SingleChoicesType {
+  gender,
+  lastEducation,
+  province,
+  regency,
+  district,
+  village,
+}
+
+class SingleChoicesRoute extends GoRouteData {
+  const SingleChoicesRoute(this.type, {required this.$extra});
+
+  final SingleChoicesType type;
+  final SingleChoicesOptions $extra;
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return MaterialPage(
+      fullscreenDialog: true,
+      child: SingleChoicesPage(
+        title: $extra.title,
+        values: $extra.values,
+        initialValue: $extra.initialValue,
+      ),
+    );
+  }
+}
+
+enum DatePickerType { birthDate, schedule }
+
+class DatePickerExtra {
+  const DatePickerExtra({
+    required this.initialDate,
+    required this.firstDate,
+    required this.lastDate,
+  });
+
+  final DateTime? initialDate;
+  final DateTime firstDate;
+  final DateTime lastDate;
+}
+
+class DatePickerRoute extends GoRouteData {
+  const DatePickerRoute(this.type, {required this.$extra});
+
+  final DatePickerType type;
+  final DatePickerExtra $extra;
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return MaterialPage(
+      fullscreenDialog: true,
+      child: DatePickerPage(
+        firstDate: $extra.firstDate,
+        lastDate: $extra.lastDate,
+        initialDate: $extra.initialDate,
+      ),
+    );
+  }
 }

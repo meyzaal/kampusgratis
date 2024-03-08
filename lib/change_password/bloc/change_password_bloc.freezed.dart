@@ -724,9 +724,10 @@ abstract class ChangePasswordFormSubmitted implements ChangePasswordEvent {
 mixin _$ChangePasswordState {
   bool get isValid => throw _privateConstructorUsedError;
   FormzSubmissionStatus get status => throw _privateConstructorUsedError;
-  Password get oldPassword => throw _privateConstructorUsedError;
-  Password get newPassword => throw _privateConstructorUsedError;
-  ConfirmedPassword get confirmedPassword => throw _privateConstructorUsedError;
+  PasswordInput get oldPassword => throw _privateConstructorUsedError;
+  PasswordInput get newPassword => throw _privateConstructorUsedError;
+  ConfirmedPasswordInput get confirmedPassword =>
+      throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -743,9 +744,9 @@ abstract class $ChangePasswordStateCopyWith<$Res> {
   $Res call(
       {bool isValid,
       FormzSubmissionStatus status,
-      Password oldPassword,
-      Password newPassword,
-      ConfirmedPassword confirmedPassword,
+      PasswordInput oldPassword,
+      PasswordInput newPassword,
+      ConfirmedPasswordInput confirmedPassword,
       String? message});
 }
 
@@ -781,15 +782,15 @@ class _$ChangePasswordStateCopyWithImpl<$Res, $Val extends ChangePasswordState>
       oldPassword: null == oldPassword
           ? _value.oldPassword
           : oldPassword // ignore: cast_nullable_to_non_nullable
-              as Password,
+              as PasswordInput,
       newPassword: null == newPassword
           ? _value.newPassword
           : newPassword // ignore: cast_nullable_to_non_nullable
-              as Password,
+              as PasswordInput,
       confirmedPassword: null == confirmedPassword
           ? _value.confirmedPassword
           : confirmedPassword // ignore: cast_nullable_to_non_nullable
-              as ConfirmedPassword,
+              as ConfirmedPasswordInput,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -809,9 +810,9 @@ abstract class _$$ChangePasswordStateImplCopyWith<$Res>
   $Res call(
       {bool isValid,
       FormzSubmissionStatus status,
-      Password oldPassword,
-      Password newPassword,
-      ConfirmedPassword confirmedPassword,
+      PasswordInput oldPassword,
+      PasswordInput newPassword,
+      ConfirmedPasswordInput confirmedPassword,
       String? message});
 }
 
@@ -845,15 +846,15 @@ class __$$ChangePasswordStateImplCopyWithImpl<$Res>
       oldPassword: null == oldPassword
           ? _value.oldPassword
           : oldPassword // ignore: cast_nullable_to_non_nullable
-              as Password,
+              as PasswordInput,
       newPassword: null == newPassword
           ? _value.newPassword
           : newPassword // ignore: cast_nullable_to_non_nullable
-              as Password,
+              as PasswordInput,
       confirmedPassword: null == confirmedPassword
           ? _value.confirmedPassword
           : confirmedPassword // ignore: cast_nullable_to_non_nullable
-              as ConfirmedPassword,
+              as ConfirmedPasswordInput,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -878,11 +879,11 @@ class _$ChangePasswordStateImpl implements _ChangePasswordState {
   @override
   final FormzSubmissionStatus status;
   @override
-  final Password oldPassword;
+  final PasswordInput oldPassword;
   @override
-  final Password newPassword;
+  final PasswordInput newPassword;
   @override
-  final ConfirmedPassword confirmedPassword;
+  final ConfirmedPasswordInput confirmedPassword;
   @override
   final String? message;
 
@@ -923,9 +924,9 @@ abstract class _ChangePasswordState implements ChangePasswordState {
   const factory _ChangePasswordState(
       {required final bool isValid,
       required final FormzSubmissionStatus status,
-      required final Password oldPassword,
-      required final Password newPassword,
-      required final ConfirmedPassword confirmedPassword,
+      required final PasswordInput oldPassword,
+      required final PasswordInput newPassword,
+      required final ConfirmedPasswordInput confirmedPassword,
       final String? message}) = _$ChangePasswordStateImpl;
 
   @override
@@ -933,11 +934,11 @@ abstract class _ChangePasswordState implements ChangePasswordState {
   @override
   FormzSubmissionStatus get status;
   @override
-  Password get oldPassword;
+  PasswordInput get oldPassword;
   @override
-  Password get newPassword;
+  PasswordInput get newPassword;
   @override
-  ConfirmedPassword get confirmedPassword;
+  ConfirmedPasswordInput get confirmedPassword;
   @override
   String? get message;
   @override

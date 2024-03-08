@@ -158,7 +158,7 @@ class AdministrationRepository {
 
   Future<Biodatas> submitBiodatas({
     required String fullName,
-    required Gender gender,
+    required String gender,
     required String phoneNumber,
     required String birthdate,
     required String birthplace,
@@ -177,7 +177,7 @@ class AdministrationRepository {
   }) async {
     final result = await _kgClient.submitAdministrationBiodatas(
       fullName: fullName,
-      gender: gender.name.toUpperCase(),
+      gender: gender,
       phoneNumber: phoneNumber,
       birthdate: birthdate,
       birthplace: birthplace,
@@ -301,8 +301,10 @@ class AdministrationRepository {
 
     return result
         .map(
-          (province) =>
-              Province(code: province.code ?? '', name: province.name ?? ''),
+          (province) => Province(
+            code: province.code ?? '',
+            name: province.name ?? '',
+          ),
         )
         .toList();
   }
@@ -348,4 +350,32 @@ class AdministrationRepository {
         )
         .toList();
   }
+}
+
+extension ProvinciesExtension on List<Province> {
+  Province byId(String provinceId) =>
+      this[indexWhere((province) => province.code == provinceId)];
+  Province byName(String provinceName) =>
+      this[indexWhere((province) => province.name == provinceName)];
+}
+
+extension RegenciesExtension on List<Regency> {
+  Regency byId(String regencyId) =>
+      this[indexWhere((regency) => regency.code == regencyId)];
+  Regency byName(String regencyName) =>
+      this[indexWhere((regency) => regency.name == regencyName)];
+}
+
+extension DistrictsExtension on List<District> {
+  District byId(String districtId) =>
+      this[indexWhere((district) => district.code == districtId)];
+  District byName(String districtName) =>
+      this[indexWhere((district) => district.name == districtName)];
+}
+
+extension VillagesExtension on List<Village> {
+  Village byId(String villageId) =>
+      this[indexWhere((village) => village.code == villageId)];
+  Village byName(String villageName) =>
+      this[indexWhere((village) => village.name == villageName)];
 }

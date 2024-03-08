@@ -15,7 +15,7 @@ class ForgotPasswordBloc
         super(
           const ForgotPasswordState.inputEmail(
             status: FormzSubmissionStatus.initial,
-            email: Email.pure(),
+            email: EmailInput.pure(),
             isValid: false,
           ),
         ) {
@@ -41,7 +41,7 @@ class ForgotPasswordBloc
   ) {
     if (state.isInputEmail) {
       final currentState = state as ForgotPasswordInputEmailState;
-      final email = Email.dirty(event.email);
+      final email = EmailInput.dirty(event.email);
       emit(
         currentState.copyWith(
           email: email,
@@ -58,8 +58,8 @@ class ForgotPasswordBloc
     emit(
       ForgotPasswordState.inputPassword(
         status: FormzSubmissionStatus.initial,
-        newPassword: const Password.pure(),
-        confirmedPassword: const ConfirmedPassword.pure(),
+        newPassword: const PasswordInput.pure(),
+        confirmedPassword: const ConfirmedPasswordInput.pure(),
         isValid: false,
         token: event.token,
       ),
@@ -72,10 +72,10 @@ class ForgotPasswordBloc
   ) {
     if (state.isInputPassword) {
       final currentState = state as ForgotPasswordInputPasswordState;
-      final newPassword = Password.dirty(value: event.newPassword);
+      final newPassword = PasswordInput.dirty(value: event.newPassword);
       final confirmedPassword = currentState.confirmedPassword.isPure
           ? currentState.confirmedPassword
-          : ConfirmedPassword.dirty(
+          : ConfirmedPasswordInput.dirty(
               password: newPassword.value,
               value: currentState.confirmedPassword.value,
             );
@@ -95,7 +95,7 @@ class ForgotPasswordBloc
   ) {
     if (state.isInputPassword) {
       final currentState = state as ForgotPasswordInputPasswordState;
-      final confirmedPassword = ConfirmedPassword.dirty(
+      final confirmedPassword = ConfirmedPasswordInput.dirty(
         password: currentState.newPassword.value,
         value: event.confirmedPassword,
       );

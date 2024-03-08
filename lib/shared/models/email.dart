@@ -1,31 +1,31 @@
 import 'package:formz/formz.dart';
 
-enum EmailValidationError { empty, invalid }
+enum EmailInputValidationError { empty, invalid }
 
-final class Email extends FormzInput<String, EmailValidationError> {
-  const Email.pure([super.value = '']) : super.pure();
-  const Email.dirty([super.value = '']) : super.dirty();
+final class EmailInput extends FormzInput<String, EmailInputValidationError> {
+  const EmailInput.pure([super.value = '']) : super.pure();
+  const EmailInput.dirty([super.value = '']) : super.dirty();
 
   static final _emailRegex = RegExp(
     r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$',
   );
 
   @override
-  EmailValidationError? validator(String? value) {
+  EmailInputValidationError? validator(String? value) {
     if (value == null) return null;
-    if (value.isEmpty) return EmailValidationError.empty;
-    if (!_emailRegex.hasMatch(value)) return EmailValidationError.invalid;
+    if (value.isEmpty) return EmailInputValidationError.empty;
+    if (!_emailRegex.hasMatch(value)) return EmailInputValidationError.invalid;
 
     return null;
   }
 }
 
-extension EmailValidationErrorX on EmailValidationError {
+extension EmailInputValidationErrorX on EmailInputValidationError {
   String get message {
     switch (this) {
-      case EmailValidationError.empty:
+      case EmailInputValidationError.empty:
         return 'Email tidak boleh kosong.';
-      case EmailValidationError.invalid:
+      case EmailInputValidationError.invalid:
         return 'Email tidak valid.';
     }
   }

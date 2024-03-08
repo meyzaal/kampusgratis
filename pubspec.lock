@@ -9,6 +9,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "64.0.0"
+  administration_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/administration_repository"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   analyzer:
     dependency: transitive
     description:
@@ -37,6 +44,13 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/authentication_repository"
+      relative: true
+    source: path
+    version: "0.1.0+1"
+  banner_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/banner_repository"
       relative: true
     source: path
     version: "0.1.0+1"

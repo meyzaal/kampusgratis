@@ -4,8 +4,8 @@ part of 'login_bloc.dart';
 class LoginState with _$LoginState {
   const factory LoginState({
     required FormzSubmissionStatus status,
-    required Email email,
-    required Password password,
+    required EmailInput email,
+    required PasswordInput password,
     required bool isValid,
     String? message,
   }) = _LoginState;

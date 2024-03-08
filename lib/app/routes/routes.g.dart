@@ -10,6 +10,7 @@ List<RouteBase> get $appRoutes => [
       $onboardingRoute,
       $authRoute,
       $mainRoute,
+      $administrationRoute,
     ];
 
 RouteBase get $onboardingRoute => GoRouteData.$route(
@@ -165,6 +166,13 @@ RouteBase get $mainRoute => ShellRouteData.$route(
         GoRouteData.$route(
           path: '/home',
           factory: $HomeRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'features',
+              parentNavigatorKey: FeatureRoute.$parentNavigatorKey,
+              factory: $FeatureRouteExtension._fromState,
+            ),
+          ],
         ),
         GoRouteData.$route(
           path: '/my-study',
@@ -207,10 +215,37 @@ extension $MainRouteExtension on MainRoute {
 }
 
 extension $HomeRouteExtension on HomeRoute {
-  static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
+  static HomeRoute _fromState(GoRouterState state) => HomeRoute(
+        needRedirect: _$convertMapValue(
+              'need-redirect',
+              state.uri.queryParameters,
+              _$boolConverter,
+            ) ??
+            false,
+      );
 
   String get location => GoRouteData.$location(
         '/home',
+        queryParams: {
+          if (needRedirect != false) 'need-redirect': needRedirect.toString(),
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $FeatureRouteExtension on FeatureRoute {
+  static FeatureRoute _fromState(GoRouterState state) => const FeatureRoute();
+
+  String get location => GoRouteData.$location(
+        '/home/features',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -345,3 +380,116 @@ extension $ChangePasswordRouteExtension on ChangePasswordRoute {
 
   void replace(BuildContext context) => context.replace(location);
 }
+
+T? _$convertMapValue<T>(
+  String key,
+  Map<String, String> map,
+  T Function(String) converter,
+) {
+  final value = map[key];
+  return value == null ? null : converter(value);
+}
+
+bool _$boolConverter(String value) {
+  switch (value) {
+    case 'true':
+      return true;
+    case 'false':
+      return false;
+    default:
+      throw UnsupportedError('Cannot convert "$value" into a bool.');
+  }
+}
+
+RouteBase get $administrationRoute => GoRouteData.$route(
+      path: '/administration',
+      parentNavigatorKey: AdministrationRoute.$parentNavigatorKey,
+      factory: $AdministrationRouteExtension._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'select/:type',
+          factory: $SingleChoicesRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'pick/:type',
+          factory: $DatePickerRouteExtension._fromState,
+        ),
+      ],
+    );
+
+extension $AdministrationRouteExtension on AdministrationRoute {
+  static AdministrationRoute _fromState(GoRouterState state) =>
+      const AdministrationRoute();
+
+  String get location => GoRouteData.$location(
+        '/administration',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SingleChoicesRouteExtension on SingleChoicesRoute {
+  static SingleChoicesRoute _fromState(GoRouterState state) =>
+      SingleChoicesRoute(
+        _$SingleChoicesTypeEnumMap._$fromName(state.pathParameters['type']!),
+        $extra: state.extra! as SingleChoicesOptions,
+      );
+
+  String get location => GoRouteData.$location(
+        '/administration/select/${Uri.encodeComponent(_$SingleChoicesTypeEnumMap[type]!)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
+}
+
+const _$SingleChoicesTypeEnumMap = {
+  SingleChoicesType.gender: 'gender',
+  SingleChoicesType.lastEducation: 'last-education',
+  SingleChoicesType.province: 'province',
+  SingleChoicesType.regency: 'regency',
+  SingleChoicesType.district: 'district',
+  SingleChoicesType.village: 'village',
+};
+
+extension $DatePickerRouteExtension on DatePickerRoute {
+  static DatePickerRoute _fromState(GoRouterState state) => DatePickerRoute(
+        _$DatePickerTypeEnumMap._$fromName(state.pathParameters['type']!),
+        $extra: state.extra! as DatePickerExtra,
+      );
+
+  String get location => GoRouteData.$location(
+        '/administration/pick/${Uri.encodeComponent(_$DatePickerTypeEnumMap[type]!)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
+}
+
+const _$DatePickerTypeEnumMap = {
+  DatePickerType.birthDate: 'birth-date',
+  DatePickerType.schedule: 'schedule',
+};

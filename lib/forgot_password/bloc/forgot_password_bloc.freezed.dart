@@ -1121,13 +1121,13 @@ mixin _$ForgotPasswordState {
   String? get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(FormzSubmissionStatus status, Email email,
+    required TResult Function(FormzSubmissionStatus status, EmailInput email,
             bool isValid, String? message)
         inputEmail,
     required TResult Function(
             FormzSubmissionStatus status,
-            Password newPassword,
-            ConfirmedPassword confirmedPassword,
+            PasswordInput newPassword,
+            ConfirmedPasswordInput confirmedPassword,
             bool isValid,
             String token,
             String? message)
@@ -1136,13 +1136,13 @@ mixin _$ForgotPasswordState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(FormzSubmissionStatus status, Email email, bool isValid,
-            String? message)?
+    TResult? Function(FormzSubmissionStatus status, EmailInput email,
+            bool isValid, String? message)?
         inputEmail,
     TResult? Function(
             FormzSubmissionStatus status,
-            Password newPassword,
-            ConfirmedPassword confirmedPassword,
+            PasswordInput newPassword,
+            ConfirmedPasswordInput confirmedPassword,
             bool isValid,
             String token,
             String? message)?
@@ -1151,13 +1151,13 @@ mixin _$ForgotPasswordState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(FormzSubmissionStatus status, Email email, bool isValid,
-            String? message)?
+    TResult Function(FormzSubmissionStatus status, EmailInput email,
+            bool isValid, String? message)?
         inputEmail,
     TResult Function(
             FormzSubmissionStatus status,
-            Password newPassword,
-            ConfirmedPassword confirmedPassword,
+            PasswordInput newPassword,
+            ConfirmedPasswordInput confirmedPassword,
             bool isValid,
             String token,
             String? message)?
@@ -1245,7 +1245,7 @@ abstract class _$$ForgotPasswordInputEmailStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {FormzSubmissionStatus status,
-      Email email,
+      EmailInput email,
       bool isValid,
       String? message});
 }
@@ -1276,7 +1276,7 @@ class __$$ForgotPasswordInputEmailStateImplCopyWithImpl<$Res>
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as Email,
+              as EmailInput,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
@@ -1302,7 +1302,7 @@ class _$ForgotPasswordInputEmailStateImpl
   @override
   final FormzSubmissionStatus status;
   @override
-  final Email email;
+  final EmailInput email;
   @override
   final bool isValid;
   @override
@@ -1338,13 +1338,13 @@ class _$ForgotPasswordInputEmailStateImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(FormzSubmissionStatus status, Email email,
+    required TResult Function(FormzSubmissionStatus status, EmailInput email,
             bool isValid, String? message)
         inputEmail,
     required TResult Function(
             FormzSubmissionStatus status,
-            Password newPassword,
-            ConfirmedPassword confirmedPassword,
+            PasswordInput newPassword,
+            ConfirmedPasswordInput confirmedPassword,
             bool isValid,
             String token,
             String? message)
@@ -1356,13 +1356,13 @@ class _$ForgotPasswordInputEmailStateImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(FormzSubmissionStatus status, Email email, bool isValid,
-            String? message)?
+    TResult? Function(FormzSubmissionStatus status, EmailInput email,
+            bool isValid, String? message)?
         inputEmail,
     TResult? Function(
             FormzSubmissionStatus status,
-            Password newPassword,
-            ConfirmedPassword confirmedPassword,
+            PasswordInput newPassword,
+            ConfirmedPasswordInput confirmedPassword,
             bool isValid,
             String token,
             String? message)?
@@ -1374,13 +1374,13 @@ class _$ForgotPasswordInputEmailStateImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(FormzSubmissionStatus status, Email email, bool isValid,
-            String? message)?
+    TResult Function(FormzSubmissionStatus status, EmailInput email,
+            bool isValid, String? message)?
         inputEmail,
     TResult Function(
             FormzSubmissionStatus status,
-            Password newPassword,
-            ConfirmedPassword confirmedPassword,
+            PasswordInput newPassword,
+            ConfirmedPasswordInput confirmedPassword,
             bool isValid,
             String token,
             String? message)?
@@ -1429,13 +1429,13 @@ class _$ForgotPasswordInputEmailStateImpl
 abstract class ForgotPasswordInputEmailState implements ForgotPasswordState {
   const factory ForgotPasswordInputEmailState(
       {required final FormzSubmissionStatus status,
-      required final Email email,
+      required final EmailInput email,
       required final bool isValid,
       final String? message}) = _$ForgotPasswordInputEmailStateImpl;
 
   @override
   FormzSubmissionStatus get status;
-  Email get email;
+  EmailInput get email;
   @override
   bool get isValid;
   @override
@@ -1458,8 +1458,8 @@ abstract class _$$ForgotPasswordInputPasswordStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {FormzSubmissionStatus status,
-      Password newPassword,
-      ConfirmedPassword confirmedPassword,
+      PasswordInput newPassword,
+      ConfirmedPasswordInput confirmedPassword,
       bool isValid,
       String token,
       String? message});
@@ -1493,11 +1493,11 @@ class __$$ForgotPasswordInputPasswordStateImplCopyWithImpl<$Res>
       newPassword: null == newPassword
           ? _value.newPassword
           : newPassword // ignore: cast_nullable_to_non_nullable
-              as Password,
+              as PasswordInput,
       confirmedPassword: null == confirmedPassword
           ? _value.confirmedPassword
           : confirmedPassword // ignore: cast_nullable_to_non_nullable
-              as ConfirmedPassword,
+              as ConfirmedPasswordInput,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
@@ -1529,9 +1529,9 @@ class _$ForgotPasswordInputPasswordStateImpl
   @override
   final FormzSubmissionStatus status;
   @override
-  final Password newPassword;
+  final PasswordInput newPassword;
   @override
-  final ConfirmedPassword confirmedPassword;
+  final ConfirmedPasswordInput confirmedPassword;
   @override
   final bool isValid;
   @override
@@ -1574,13 +1574,13 @@ class _$ForgotPasswordInputPasswordStateImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(FormzSubmissionStatus status, Email email,
+    required TResult Function(FormzSubmissionStatus status, EmailInput email,
             bool isValid, String? message)
         inputEmail,
     required TResult Function(
             FormzSubmissionStatus status,
-            Password newPassword,
-            ConfirmedPassword confirmedPassword,
+            PasswordInput newPassword,
+            ConfirmedPasswordInput confirmedPassword,
             bool isValid,
             String token,
             String? message)
@@ -1593,13 +1593,13 @@ class _$ForgotPasswordInputPasswordStateImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(FormzSubmissionStatus status, Email email, bool isValid,
-            String? message)?
+    TResult? Function(FormzSubmissionStatus status, EmailInput email,
+            bool isValid, String? message)?
         inputEmail,
     TResult? Function(
             FormzSubmissionStatus status,
-            Password newPassword,
-            ConfirmedPassword confirmedPassword,
+            PasswordInput newPassword,
+            ConfirmedPasswordInput confirmedPassword,
             bool isValid,
             String token,
             String? message)?
@@ -1612,13 +1612,13 @@ class _$ForgotPasswordInputPasswordStateImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(FormzSubmissionStatus status, Email email, bool isValid,
-            String? message)?
+    TResult Function(FormzSubmissionStatus status, EmailInput email,
+            bool isValid, String? message)?
         inputEmail,
     TResult Function(
             FormzSubmissionStatus status,
-            Password newPassword,
-            ConfirmedPassword confirmedPassword,
+            PasswordInput newPassword,
+            ConfirmedPasswordInput confirmedPassword,
             bool isValid,
             String token,
             String? message)?
@@ -1668,16 +1668,16 @@ class _$ForgotPasswordInputPasswordStateImpl
 abstract class ForgotPasswordInputPasswordState implements ForgotPasswordState {
   const factory ForgotPasswordInputPasswordState(
       {required final FormzSubmissionStatus status,
-      required final Password newPassword,
-      required final ConfirmedPassword confirmedPassword,
+      required final PasswordInput newPassword,
+      required final ConfirmedPasswordInput confirmedPassword,
       required final bool isValid,
       required final String token,
       final String? message}) = _$ForgotPasswordInputPasswordStateImpl;
 
   @override
   FormzSubmissionStatus get status;
-  Password get newPassword;
-  ConfirmedPassword get confirmedPassword;
+  PasswordInput get newPassword;
+  ConfirmedPasswordInput get confirmedPassword;
   @override
   bool get isValid;
   String get token;

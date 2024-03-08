@@ -25,6 +25,14 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/administration_accepted.svg
+  SvgGenImage get administrationAccepted =>
+      const SvgGenImage('assets/images/administration_accepted.svg');
+
+  /// File path: assets/images/administration_pending.svg
+  SvgGenImage get administrationPending =>
+      const SvgGenImage('assets/images/administration_pending.svg');
+
   /// File path: assets/images/avatar-placeholder.png
   AssetGenImage get avatarPlaceholder =>
       const AssetGenImage('assets/images/avatar-placeholder.png');
@@ -50,6 +58,8 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
+        administrationAccepted,
+        administrationPending,
         avatarPlaceholder,
         exceptionFigure,
         ilustrasi1Onboarding,
