@@ -13,7 +13,10 @@ enum KgFeature {
 
 class FeatureItem extends StatelessWidget {
   const FeatureItem({
-    required this.icon, required this.label, required this.boxColor, super.key,
+    required this.icon,
+    required this.label,
+    required this.boxColor,
+    super.key,
     this.onTap,
   });
 
@@ -33,7 +36,7 @@ class FeatureItem extends StatelessWidget {
         boxColor = const Color(0xFF0C5DAC);
 
   const FeatureItem.studyPlan({super.key, this.onTap})
-      : icon = const PhosphorIcon(PhosphorIconsDuotone.graduationCap),
+      : icon = const PhosphorIcon(PhosphorIconsDuotone.fileText),
         label = 'Rencana Studi',
         boxColor = const Color(0xFFFAB317);
 
@@ -68,15 +71,28 @@ class FeatureItem extends StatelessWidget {
     const iconColor = Colors.white;
 
     final iconWidget = FittedBox(
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: boxColor,
-          borderRadius: BorderRadius.circular(8),
+      child: Material(
+        color: boxColor,
+        clipBehavior: Clip.hardEdge,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
         ),
-        child: IconTheme(
-          data: const IconThemeData(color: iconColor, size: iconSize),
-          child: icon,
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.white10,
+                Colors.black12,
+              ],
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+            ),
+          ),
+          padding: const EdgeInsets.all(10),
+          child: IconTheme(
+            data: const IconThemeData(color: iconColor, size: iconSize),
+            child: icon,
+          ),
         ),
       ),
     );
