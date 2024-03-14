@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kampusgratis/administration/administration.dart';
+import 'package:kampusgratis/app/app.dart';
 
 class AdministrationBottom extends StatelessWidget {
   const AdministrationBottom({super.key});
@@ -36,7 +38,9 @@ class AdministrationBottom extends StatelessWidget {
                   showCloseIcon: true,
                 ),
               );
-            // TODO(meyzaal): navigate to bootcamp
+            const BootcampRoute()
+                .push<void>(context)
+                .then((value) => context.pop(true));
           } else {
             ScaffoldMessenger.of(context)
               ..clearSnackBars()

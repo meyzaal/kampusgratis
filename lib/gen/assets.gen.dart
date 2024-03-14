@@ -53,8 +53,9 @@ class $AssetsImagesGen {
   SvgGenImage get ilustrasi3Onboarding =>
       const SvgGenImage('assets/images/ilustrasi_3_onboarding.svg');
 
-  /// File path: assets/images/logo-kg.png
-  AssetGenImage get logoKg => const AssetGenImage('assets/images/logo-kg.png');
+  /// File path: assets/images/logo-kg-orange.png
+  AssetGenImage get logoKgOrange =>
+      const AssetGenImage('assets/images/logo-kg-orange.png');
 
   /// List of all assets
   List<dynamic> get values => [
@@ -65,7 +66,7 @@ class $AssetsImagesGen {
         ilustrasi1Onboarding,
         ilustrasi2Onboarding,
         ilustrasi3Onboarding,
-        logoKg
+        logoKgOrange
       ];
 }
 

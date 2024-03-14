@@ -16,6 +16,8 @@ class Result<T> with _$Result<T> {
     @JsonKey(name: 'code') int? code,
     @JsonKey(name: 'status') String? status,
     @JsonKey(name: 'message') String? message,
+    // Used in StudyPlan
+    @JsonKey(name: 'meta') Meta? meta,
   }) = _Result;
 
   /// Factory method for creating an [Result] instance from
@@ -25,4 +27,16 @@ class Result<T> with _$Result<T> {
     T Function(Object?) fromJsonT,
   ) =>
       _$ResultFromJson(json, fromJsonT);
+}
+
+@freezed
+class Meta with _$Meta {
+  const factory Meta({
+    @JsonKey(name: 'page_size') int? pageSize,
+    @JsonKey(name: 'total_data') int? totalData,
+    @JsonKey(name: 'current_page') int? currentPage,
+    @JsonKey(name: 'max_page') int? maxPage,
+  }) = _Meta;
+
+  factory Meta.fromJson(Map<String, Object?> json) => _$MetaFromJson(json);
 }

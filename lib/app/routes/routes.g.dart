@@ -11,6 +11,8 @@ List<RouteBase> get $appRoutes => [
       $authRoute,
       $mainRoute,
       $administrationRoute,
+      $pdfViewerRoute,
+      $bootcampRoute,
     ];
 
 RouteBase get $onboardingRoute => GoRouteData.$route(
@@ -217,10 +219,7 @@ extension $MainRouteExtension on MainRoute {
 extension $HomeRouteExtension on HomeRoute {
   static HomeRoute _fromState(GoRouterState state) => HomeRoute(
         needRedirect: _$convertMapValue(
-              'need-redirect',
-              state.uri.queryParameters,
-              _$boolConverter,
-            ) ??
+                'need-redirect', state.uri.queryParameters, _$boolConverter) ??
             false,
       );
 
@@ -439,7 +438,7 @@ extension $SingleChoicesRouteExtension on SingleChoicesRoute {
   static SingleChoicesRoute _fromState(GoRouterState state) =>
       SingleChoicesRoute(
         _$SingleChoicesTypeEnumMap._$fromName(state.pathParameters['type']!),
-        $extra: state.extra! as SingleChoicesOptions,
+        $extra: state.extra as SingleChoicesOptions,
       );
 
   String get location => GoRouteData.$location(
@@ -470,7 +469,7 @@ const _$SingleChoicesTypeEnumMap = {
 extension $DatePickerRouteExtension on DatePickerRoute {
   static DatePickerRoute _fromState(GoRouterState state) => DatePickerRoute(
         _$DatePickerTypeEnumMap._$fromName(state.pathParameters['type']!),
-        $extra: state.extra! as DatePickerExtra,
+        $extra: state.extra as DatePickerExtra,
       );
 
   String get location => GoRouteData.$location(
@@ -493,3 +492,57 @@ const _$DatePickerTypeEnumMap = {
   DatePickerType.birthDate: 'birth-date',
   DatePickerType.schedule: 'schedule',
 };
+
+RouteBase get $pdfViewerRoute => GoRouteData.$route(
+      path: '/view-pdf/:type',
+      factory: $PdfViewerRouteExtension._fromState,
+    );
+
+extension $PdfViewerRouteExtension on PdfViewerRoute {
+  static PdfViewerRoute _fromState(GoRouterState state) => PdfViewerRoute(
+        _$PdfViewerTypeEnumMap._$fromName(state.pathParameters['type']!),
+        $extra: state.extra as PdfViewerExtra,
+      );
+
+  String get location => GoRouteData.$location(
+        '/view-pdf/${Uri.encodeComponent(_$PdfViewerTypeEnumMap[type]!)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
+}
+
+const _$PdfViewerTypeEnumMap = {
+  PdfViewerType.network: 'network',
+  PdfViewerType.asset: 'asset',
+};
+
+RouteBase get $bootcampRoute => GoRouteData.$route(
+      path: '/bootcamp',
+      factory: $BootcampRouteExtension._fromState,
+    );
+
+extension $BootcampRouteExtension on BootcampRoute {
+  static BootcampRoute _fromState(GoRouterState state) => const BootcampRoute();
+
+  String get location => GoRouteData.$location(
+        '/bootcamp',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}

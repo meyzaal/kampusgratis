@@ -8,6 +8,7 @@ import 'package:kampusgratis/about/about.dart';
 import 'package:kampusgratis/administration/administration.dart';
 import 'package:kampusgratis/assignment/assignment.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
+import 'package:kampusgratis/bootcamp/bootcamp.dart';
 import 'package:kampusgratis/change_password/change_password.dart';
 import 'package:kampusgratis/date_picker/date_picker.dart';
 import 'package:kampusgratis/edit_profile/edit_profile.dart';
@@ -20,6 +21,7 @@ import 'package:kampusgratis/my_calendar/my_calendar.dart';
 import 'package:kampusgratis/my_study/my_study.dart';
 import 'package:kampusgratis/onboarding/onboarding.dart';
 import 'package:kampusgratis/otp_verification/otp_verification.dart';
+import 'package:kampusgratis/pdf_viewer/pdf_viewer.dart';
 import 'package:kampusgratis/profile/profile.dart';
 import 'package:kampusgratis/register/register.dart';
 import 'package:kampusgratis/single_choices/single_choices.dart';
@@ -343,5 +345,47 @@ class DatePickerRoute extends GoRouteData {
         initialDate: $extra.initialDate,
       ),
     );
+  }
+}
+
+enum PdfViewerType { network, asset }
+
+class PdfViewerExtra {
+  const PdfViewerExtra({
+    required this.path,
+    required this.title,
+  });
+
+  final String path;
+  final String title;
+}
+
+@TypedGoRoute<PdfViewerRoute>(path: '/view-pdf/:type')
+class PdfViewerRoute extends GoRouteData {
+  const PdfViewerRoute(this.type, {required this.$extra});
+
+  final PdfViewerType type;
+  final PdfViewerExtra $extra;
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return MaterialPage(child: child, fullscreenDialog: true);
+  }
+
+  Widget get child => switch (type) {
+        PdfViewerType.network =>
+          PdfViewerPage.network(title: $extra.title, url: $extra.path),
+        PdfViewerType.asset =>
+          PdfViewerPage.asset(title: $extra.title, path: $extra.path)
+      };
+}
+
+@TypedGoRoute<BootcampRoute>(path: '/bootcamp')
+class BootcampRoute extends GoRouteData {
+  const BootcampRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return const BootcampPage();
   }
 }

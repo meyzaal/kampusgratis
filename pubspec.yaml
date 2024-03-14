@@ -14,12 +14,15 @@ dependencies:
   banner_repository:
     path: packages/banner_repository
   bloc: ^8.1.2
+  bootcamp_repository:
+    path: packages/bootcamp_repository
   cached_network_image: ^3.3.1
   carousel_slider: ^4.2.1
   dynamic_color: ^1.6.9
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
+  flutter_cached_pdfview: ^0.4.2
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.0.9

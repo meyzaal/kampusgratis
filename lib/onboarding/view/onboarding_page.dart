@@ -19,7 +19,7 @@ class OnboardingPage extends StatelessWidget {
             final logoWidget = Center(
               child: Padding(
                 padding: const EdgeInsets.all(8),
-                child: Assets.images.logoKg.image(width: 124),
+                child: Assets.images.logoKgOrange.image(width: 124),
               ),
             );
             final carouselWidget = BlocProvider(

@@ -1,6 +1,7 @@
 import 'package:administration_repository/administration_repository.dart';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:banner_repository/banner_repository.dart';
+import 'package:bootcamp_repository/bootcamp_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -15,10 +16,12 @@ class App extends StatelessWidget {
     required AuthenticationRepository authenticationRepository,
     required BannerRepository bannerRepository,
     required UserRepository userRepository,
+    required BootcampRepository bootcampRepository,
     super.key,
   })  : _administrationRepository = administrationRepository,
         _authenticationRepository = authenticationRepository,
         _bannerRepository = bannerRepository,
+        _bootcampRepository = bootcampRepository,
         _userRepository = userRepository,
         _routerConfig = AppRoutes(
           authenticationCubit: AuthenticationCubit(
@@ -29,6 +32,7 @@ class App extends StatelessWidget {
   final AdministrationRepository _administrationRepository;
   final AuthenticationRepository _authenticationRepository;
   final BannerRepository _bannerRepository;
+  final BootcampRepository _bootcampRepository;
   final UserRepository _userRepository;
   final GoRouter _routerConfig;
 
@@ -39,6 +43,7 @@ class App extends StatelessWidget {
         RepositoryProvider.value(value: _administrationRepository),
         RepositoryProvider.value(value: _authenticationRepository),
         RepositoryProvider.value(value: _bannerRepository),
+        RepositoryProvider.value(value: _bootcampRepository),
         RepositoryProvider.value(value: _userRepository),
       ],
       child: MultiBlocProvider(
@@ -63,15 +68,12 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final defaultBrightness = MediaQuery.platformBrightnessOf(context);
-
     return BlocBuilder<ThemeCubit, ThemeMode>(
       builder: (context, state) {
         return MaterialApp.router(
           theme: AppTheme.light(),
           darkTheme: AppTheme.dark(),
           themeMode: state,
-          
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           routerConfig: routerConfig,

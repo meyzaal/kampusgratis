@@ -51,7 +51,7 @@ extension on Banner {
             child: CircularProgressIndicator.adaptive(value: progress.progress),
           ),
         )
-      : Assets.images.logoKg.image(
+      : Assets.images.logoKgOrange.image(
           fit: BoxFit.contain,
           width: double.infinity,
         );

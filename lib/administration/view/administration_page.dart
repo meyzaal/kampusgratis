@@ -1,7 +1,9 @@
 import 'package:administration_repository/administration_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kampusgratis/administration/administration.dart';
+import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/gen/gen.dart';
 import 'package:kampusgratis/shared/shared.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -120,8 +122,10 @@ class _AcceptedStatus extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       FilledButton(
-                        onPressed: () {},
-                        child: const Text('Ambil studi'),
+                        onPressed: () => const BootcampRoute()
+                            .push<void>(context)
+                            .then((value) => context.pop(true)),
+                        child: const Text('Lihat bootcamp'),
                       ),
                     ],
                   ),

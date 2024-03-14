@@ -17,22 +17,17 @@ class HomeFeatures extends StatelessWidget {
     final gridChildren = isStudent
         ? [
             FeatureItem.bootcamp(
-              onTap: () {},
+              onTap: () => _toBootcamp(context),
             ),
             const FeatureItem.myStudy(),
             const FeatureItem.creditConversion(),
           ]
         : [
             FeatureItem.bootcamp(
-              onTap: () {},
+              onTap: () => _toBootcamp(context),
             ),
             FeatureItem.administration(
-              onTap: () => const AdministrationRoute()
-                  .push<bool>(context)
-                  .then((updated) {
-                if (updated != true) return;
-                context.read<HomeBloc>().add(const HomeEvent.fetched());
-              }),
+              onTap: () => _toAdministration(context),
             ),
             const FeatureItem.creditConversion(),
           ];
@@ -48,14 +43,9 @@ class HomeFeatures extends StatelessWidget {
                 if (value == null) return;
                 switch (value) {
                   case KgFeature.administration:
-                    const AdministrationRoute()
-                        .push<bool>(context)
-                        .then((updated) {
-                      if (updated != true) return;
-                      context.read<HomeBloc>().add(const HomeEvent.fetched());
-                    });
+                    _toAdministration(context);
                   case KgFeature.bootcamp:
-                  // TODO(meyzaal): Handle this case.
+                    _toBootcamp(context);
                   case KgFeature.studyPlan:
                   // TODO(meyzaal): Handle this case.
                   case KgFeature.myStudy:
@@ -73,4 +63,13 @@ class HomeFeatures extends StatelessWidget {
       ),
     );
   }
+
+  void _toAdministration(BuildContext context) =>
+      const AdministrationRoute().push<bool>(context).then((updated) {
+        if (updated != true) return;
+        context.read<HomeBloc>().add(const HomeEvent.fetched());
+      });
+
+  void _toBootcamp(BuildContext context) =>
+      const BootcampRoute().push<void>(context);
 }

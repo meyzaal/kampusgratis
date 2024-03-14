@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:administration_repository/administration_repository.dart';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:banner_repository/banner_repository.dart';
+import 'package:bootcamp_repository/bootcamp_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -57,11 +58,13 @@ Future<void> bootstrap({required KgFlavor flavor}) async {
       final authenticationRepository =
           AuthenticationRepository(kgClient: kgClient);
       final bannerRepository = BannerRepository(kgClient: kgClient);
+      final bootcampRepository = BootcampRepository(kgClient: kgClient);
       final userRepository = UserRepository(kgClient: kgClient);
 
       final app = App(
         administrationRepository: administrationRepository,
         authenticationRepository: authenticationRepository,
+        bootcampRepository: bootcampRepository,
         bannerRepository: bannerRepository,
         userRepository: userRepository,
       );

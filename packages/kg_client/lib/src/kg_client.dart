@@ -25,6 +25,7 @@ enum KgFlavor {
   production,
 }
 
+
 /// A Dart class representing the KgClient, which is responsible for managing
 /// HTTP requests to the Kg API. It can be configured with a custom Dio HTTP
 /// client and KgFlavor.
@@ -1046,6 +1047,84 @@ class KgClient {
       });
 
       return result.data ?? <Banner>[];
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+// STUDY PLAN
+//
+//  ███████╗████████╗██╗   ██╗██████╗ ██╗   ██╗
+//  ██╔════╝╚══██╔══╝██║   ██║██╔══██╗╚██╗ ██╔╝
+//  ███████╗   ██║   ██║   ██║██║  ██║ ╚████╔╝
+//  ╚════██║   ██║   ██║   ██║██║  ██║  ╚██╔╝
+//  ███████║   ██║   ╚██████╔╝██████╔╝   ██║
+//  ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝    ╚═╝
+//
+//  ██████╗ ██╗      █████╗ ███╗   ██╗
+//  ██╔══██╗██║     ██╔══██╗████╗  ██║
+//  ██████╔╝██║     ███████║██╔██╗ ██║
+//  ██╔═══╝ ██║     ██╔══██║██║╚██╗██║
+//  ██║     ███████╗██║  ██║██║ ╚████║
+//  ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝
+//
+
+  Future<Result<List<Subject>>> getSubjects({
+    int? credit,
+    String? keyword,
+    int? level,
+    int? limit,
+    String? majorId,
+    int? page,
+    int? semester,
+    SubjectType? type,
+  }) async {
+    try {
+      final params = {
+        if (credit != null) 'credit': credit,
+        if (keyword != null) 'keyword': keyword,
+        if (level != null) 'level': level,
+        if (limit != null) 'limit': limit,
+        if (majorId != null) 'major_id': majorId,
+        if (page != null) 'page': page,
+        if (semester != null) 'semester': semester,
+        if (type != null) 'type': type.name.toUpperCase(),
+      };
+      final response = await _httpClient.get<dynamic>(
+        '/v1/study-plan/subjects',
+        queryParameters: params,
+      );
+
+      final result =
+          Result<List<Subject>>.fromJson(response.data as JSON, (json) {
+        var datas = <dynamic>[];
+        if (json is List) datas = json;
+        return datas.map((e) => Subject.fromJson(e as JSON? ?? {})).toList();
+      });
+
+      return result;
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+  Future<EnrollSubject> enrollSubject(String subjectId) async {
+    try {
+      final response = await _httpClient
+          .post<dynamic>('/v2/study-plan/subjects/$subjectId/take');
+
+      final result =
+          Result<EnrollSubject>.fromJson(response.data as JSON, (json) {
+        return EnrollSubject.fromJson(json as JSON? ?? {});
+      });
+
+      final enrollSubject = result.data;
+      if (enrollSubject == null) {
+        throw ParsingFailedException(
+          'Gagal mendapatkan data respon (data-null).',
+        );
+      }
+      return enrollSubject;
     } catch (e) {
       throw _getException(e);
     }
