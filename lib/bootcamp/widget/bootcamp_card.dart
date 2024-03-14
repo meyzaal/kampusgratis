@@ -42,7 +42,7 @@ class BootcampCard extends StatelessWidget {
           );
         }
       },
-      child: Card(
+      child: Card.outlined(
         clipBehavior: Clip.hardEdge,
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -190,24 +190,27 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Theme(
-      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+      data: theme.copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
         childrenPadding: const EdgeInsets.symmetric(horizontal: 16),
         title: Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 16,
             height: 24 / 16,
             fontWeight: FontWeight.w600,
+            color: theme.colorScheme.onSurfaceVariant,
           ),
         ),
         children: [
           Text(
             description,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
               height: 21 / 14,
+              color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
         ],
@@ -245,12 +248,9 @@ class _Actions extends StatelessWidget {
                   ? null
                   : () {
                       if (brochureUrl!.endsWith('.pdf')) {
-                        PdfViewerRoute(
-                          PdfViewerType.network,
-                          $extra: PdfViewerExtra(
-                            path: brochureUrl!,
-                            title: 'Brosur Bootcamp',
-                          ),
+                        PdfViewerRoute.network(
+                          brochureUrl!,
+                          title: 'Brosur Bootcamp',
                         ).push<void>(context);
                       } else {
                         launchUrl(Uri.parse(brochureUrl!)).then((canLaunch) {

@@ -174,11 +174,6 @@ ThemeData _getTheme(Brightness brightness) {
       showDragHandle: true,
     ),
     textTheme: GoogleFonts.poppinsTextTheme(theme.textTheme),
-    cardTheme: CardTheme(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-    ),
     datePickerTheme: DatePickerThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),

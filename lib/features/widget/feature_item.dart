@@ -109,7 +109,7 @@ class FeatureItem extends StatelessWidget {
       ),
     );
 
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: Column(
         children: [

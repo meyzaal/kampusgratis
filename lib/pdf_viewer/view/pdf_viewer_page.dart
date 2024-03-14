@@ -35,7 +35,7 @@ class _AssetPdfViewer extends StatelessWidget {
         path,
         loadingWidget: _ProgressIndicator.new,
         errorWidget: (error) => const Center(
-            child: ErrorStateWidget(message: 'Gagal memuat file pdf.')),
+            child: ErrorStateWidget(message: 'Gagal memuat file pdf.'),),
       ),
     );
   }
@@ -53,7 +53,7 @@ class _NetworkPdfViewer extends StatelessWidget {
         url,
         placeholder: (progress) => _ProgressIndicator(progress: progress),
         errorWidget: (error) => const Center(
-            child: ErrorStateWidget(message: 'Gagal memuat file pdf.')),
+            child: ErrorStateWidget(message: 'Gagal memuat file pdf.'),),
       ),
     );
   }

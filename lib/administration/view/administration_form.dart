@@ -258,7 +258,6 @@ class _GenderInput extends StatelessWidget {
             final constants = state.constants;
             if (constants != null) {
               SingleChoicesRoute(
-                SingleChoicesType.gender,
                 $extra: SingleChoicesOptions(
                   values: constants.gender.values,
                   title: 'Pilih Jenis Kelamin',
@@ -350,7 +349,6 @@ class _LastEducationInput extends StatelessWidget {
             final constants = state.constants;
             if (constants != null) {
               SingleChoicesRoute(
-                SingleChoicesType.lastEducation,
                 $extra: SingleChoicesOptions(
                   values: constants.lastEducation.values,
                   title: 'Pilih Pendidikan Terakhir',
@@ -449,7 +447,6 @@ class _BirthDateInput extends StatelessWidget {
 
             if (date != null) initialDate = date;
             DatePickerRoute(
-              DatePickerType.birthDate,
               $extra: DatePickerExtra(
                 initialDate: initialDate,
                 firstDate: firstDate,
@@ -497,7 +494,6 @@ class _ProvinceInput extends StatelessWidget {
             final provincies = state.administrativeProvincies;
             final values = provincies.map((e) => e.name).toList();
             SingleChoicesRoute(
-              SingleChoicesType.province,
               $extra: SingleChoicesOptions(
                 values: values,
                 title: 'Pilih Provinsi',
@@ -547,7 +543,6 @@ class _RegencyInput extends StatelessWidget {
                   final regencies = state.administrativeRegencies;
                   final values = regencies.map((e) => e.name).toList();
                   SingleChoicesRoute(
-                    SingleChoicesType.regency,
                     $extra: SingleChoicesOptions(
                       values: values,
                       title: 'Pilih Kabupaten/Kota',
@@ -610,7 +605,6 @@ class _DistrictInput extends StatelessWidget {
                   final districts = state.administrativeDistricts;
                   final values = districts.map((e) => e.name).toList();
                   SingleChoicesRoute(
-                    SingleChoicesType.district,
                     $extra: SingleChoicesOptions(
                       values: values,
                       title: 'Pilih Kecamatan',
@@ -673,7 +667,6 @@ class _VillageInput extends StatelessWidget {
                   final villages = state.administrativeVillages;
                   final values = villages.map((e) => e.name).toList();
                   SingleChoicesRoute(
-                    SingleChoicesType.village,
                     $extra: SingleChoicesOptions(
                       values: values,
                       title: 'Pilih kelurahan/desa',

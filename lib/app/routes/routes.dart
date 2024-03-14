@@ -260,8 +260,8 @@ class ChangePasswordRoute extends GoRouteData {
 @TypedGoRoute<AdministrationRoute>(
   path: '/administration',
   routes: [
-    TypedGoRoute<SingleChoicesRoute>(path: 'select/:type'),
-    TypedGoRoute<DatePickerRoute>(path: 'pick/:type'),
+    TypedGoRoute<SingleChoicesRoute>(path: 'choose'),
+    TypedGoRoute<DatePickerRoute>(path: 'pick-date'),
   ],
 )
 class AdministrationRoute extends GoRouteData {
@@ -287,19 +287,9 @@ class SingleChoicesOptions {
   final String? initialValue;
 }
 
-enum SingleChoicesType {
-  gender,
-  lastEducation,
-  province,
-  regency,
-  district,
-  village,
-}
-
 class SingleChoicesRoute extends GoRouteData {
-  const SingleChoicesRoute(this.type, {required this.$extra});
+  const SingleChoicesRoute({required this.$extra});
 
-  final SingleChoicesType type;
   final SingleChoicesOptions $extra;
 
   @override
@@ -315,8 +305,6 @@ class SingleChoicesRoute extends GoRouteData {
   }
 }
 
-enum DatePickerType { birthDate, schedule }
-
 class DatePickerExtra {
   const DatePickerExtra({
     required this.initialDate,
@@ -330,9 +318,8 @@ class DatePickerExtra {
 }
 
 class DatePickerRoute extends GoRouteData {
-  const DatePickerRoute(this.type, {required this.$extra});
+  const DatePickerRoute({required this.$extra});
 
-  final DatePickerType type;
   final DatePickerExtra $extra;
 
   @override
@@ -348,39 +335,12 @@ class DatePickerRoute extends GoRouteData {
   }
 }
 
-enum PdfViewerType { network, asset }
-
-class PdfViewerExtra {
-  const PdfViewerExtra({
-    required this.path,
-    required this.title,
-  });
-
-  final String path;
-  final String title;
-}
-
-@TypedGoRoute<PdfViewerRoute>(path: '/view-pdf/:type')
-class PdfViewerRoute extends GoRouteData {
-  const PdfViewerRoute(this.type, {required this.$extra});
-
-  final PdfViewerType type;
-  final PdfViewerExtra $extra;
-
-  @override
-  Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return MaterialPage(child: child, fullscreenDialog: true);
-  }
-
-  Widget get child => switch (type) {
-        PdfViewerType.network =>
-          PdfViewerPage.network(title: $extra.title, url: $extra.path),
-        PdfViewerType.asset =>
-          PdfViewerPage.asset(title: $extra.title, path: $extra.path)
-      };
-}
-
-@TypedGoRoute<BootcampRoute>(path: '/bootcamp')
+@TypedGoRoute<BootcampRoute>(
+  path: '/bootcamp',
+  routes: [
+    TypedGoRoute<PdfViewerRoute>(path: 'view-pdf'),
+  ],
+)
 class BootcampRoute extends GoRouteData {
   const BootcampRoute();
 
@@ -388,4 +348,49 @@ class BootcampRoute extends GoRouteData {
   Widget build(BuildContext context, GoRouterState state) {
     return const BootcampPage();
   }
+}
+
+enum PdfViewerType { network, asset }
+
+class PdfViewerExtra {
+  const PdfViewerExtra({
+    required this.type,
+    required this.path,
+    required this.title,
+  });
+
+  final PdfViewerType type;
+  final String path;
+  final String title;
+}
+
+class PdfViewerRoute extends GoRouteData {
+  const PdfViewerRoute({required this.$extra});
+
+  PdfViewerRoute.network(String url, {String? title})
+      : $extra = PdfViewerExtra(
+          type: PdfViewerType.network,
+          path: url,
+          title: '$title',
+        );
+  PdfViewerRoute.asset(String path, {String? title})
+      : $extra = PdfViewerExtra(
+          type: PdfViewerType.asset,
+          path: path,
+          title: '$title',
+        );
+
+  final PdfViewerExtra $extra;
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return MaterialPage(child: child, fullscreenDialog: true);
+  }
+
+  Widget get child => switch ($extra.type) {
+        PdfViewerType.network =>
+          PdfViewerPage.network(title: $extra.title, url: $extra.path),
+        PdfViewerType.asset =>
+          PdfViewerPage.asset(title: $extra.title, path: $extra.path)
+      };
 }
