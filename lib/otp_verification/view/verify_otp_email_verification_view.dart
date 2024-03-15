@@ -56,8 +56,14 @@ class _SuccessDialog extends StatelessWidget {
     return CustomDialog(
       icon: const PhosphorIcon(PhosphorIconsFill.checkCircle),
       iconColor: theme.extension<CustomColors>()?.sourceSuccess,
-      title: const Text('Akun anda berhasil di daftarkan'),
-      content: const Text('Silakan masuk untuk melanjutkan.'),
+      title: const Text(
+        'Akun anda berhasil di daftarkan',
+        textAlign: TextAlign.center,
+      ),
+      content: const Text(
+        'Silakan masuk untuk melanjutkan.',
+        textAlign: TextAlign.center,
+      ),
       actions: [
         FilledButton(
           onPressed: () => context.pop(),

@@ -38,6 +38,8 @@ dependencies:
   json_annotation: ^4.8.1
   kg_client:
     path: packages/kg_client
+  my_study_repository:
+    path: packages/my_study_repository
   package_info_plus: ^5.0.1
   path_provider: ^2.1.2
   phosphor_flutter: ^2.0.1

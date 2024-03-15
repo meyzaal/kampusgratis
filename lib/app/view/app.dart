@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
 import 'package:kampusgratis/l10n/l10n.dart';
+import 'package:my_study_repository/my_study_repository.dart';
 import 'package:user_repository/user_repository.dart';
 
 class App extends StatelessWidget {
@@ -15,6 +16,7 @@ class App extends StatelessWidget {
     required AdministrationRepository administrationRepository,
     required AuthenticationRepository authenticationRepository,
     required BannerRepository bannerRepository,
+    required MyStudyRepository myStudyRepository,
     required UserRepository userRepository,
     required BootcampRepository bootcampRepository,
     super.key,
@@ -22,6 +24,7 @@ class App extends StatelessWidget {
         _authenticationRepository = authenticationRepository,
         _bannerRepository = bannerRepository,
         _bootcampRepository = bootcampRepository,
+        _myStudyRepository = myStudyRepository,
         _userRepository = userRepository,
         _routerConfig = AppRoutes(
           authenticationCubit: AuthenticationCubit(
@@ -33,6 +36,7 @@ class App extends StatelessWidget {
   final AuthenticationRepository _authenticationRepository;
   final BannerRepository _bannerRepository;
   final BootcampRepository _bootcampRepository;
+  final MyStudyRepository _myStudyRepository;
   final UserRepository _userRepository;
   final GoRouter _routerConfig;
 
@@ -44,6 +48,7 @@ class App extends StatelessWidget {
         RepositoryProvider.value(value: _authenticationRepository),
         RepositoryProvider.value(value: _bannerRepository),
         RepositoryProvider.value(value: _bootcampRepository),
+        RepositoryProvider.value(value: _myStudyRepository),
         RepositoryProvider.value(value: _userRepository),
       ],
       child: MultiBlocProvider(

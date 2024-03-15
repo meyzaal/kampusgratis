@@ -218,7 +218,7 @@ extension $MainRouteExtension on MainRoute {
 extension $HomeRouteExtension on HomeRoute {
   static HomeRoute _fromState(GoRouterState state) => HomeRoute(
         needRedirect: _$convertMapValue(
-                'need-redirect', state.uri.queryParameters, _$boolConverter,) ??
+                'need-redirect', state.uri.queryParameters, _$boolConverter) ??
             false,
       );
 
@@ -436,7 +436,7 @@ extension $AdministrationRouteExtension on AdministrationRoute {
 extension $SingleChoicesRouteExtension on SingleChoicesRoute {
   static SingleChoicesRoute _fromState(GoRouterState state) =>
       SingleChoicesRoute(
-        $extra: state.extra! as SingleChoicesOptions,
+        $extra: state.extra as SingleChoicesOptions,
       );
 
   String get location => GoRouteData.$location(
@@ -457,7 +457,7 @@ extension $SingleChoicesRouteExtension on SingleChoicesRoute {
 
 extension $DatePickerRouteExtension on DatePickerRoute {
   static DatePickerRoute _fromState(GoRouterState state) => DatePickerRoute(
-        $extra: state.extra! as DatePickerExtra,
+        $extra: state.extra as DatePickerExtra,
       );
 
   String get location => GoRouteData.$location(
@@ -506,7 +506,7 @@ extension $BootcampRouteExtension on BootcampRoute {
 
 extension $PdfViewerRouteExtension on PdfViewerRoute {
   static PdfViewerRoute _fromState(GoRouterState state) => PdfViewerRoute(
-        $extra: state.extra! as PdfViewerExtra,
+        $extra: state.extra as PdfViewerExtra,
       );
 
   String get location => GoRouteData.$location(

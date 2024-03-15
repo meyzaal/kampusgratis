@@ -154,6 +154,8 @@ class _GenderInput extends StatelessWidget {
               ),
             ),
             onTap: () {
+              final focus = FocusScope.of(context);
+              if (focus.hasFocus) focus.unfocus();
               showDialog<Gender>(
                 context: context,
                 builder: (context) => SelectGenderDialog(

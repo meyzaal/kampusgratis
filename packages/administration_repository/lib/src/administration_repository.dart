@@ -156,7 +156,7 @@ class AdministrationRepository {
     );
   }
 
-  Future<Biodatas> submitBiodatas({
+  Future<Administration> submitBiodatas({
     required String fullName,
     required String gender,
     required String phoneNumber,
@@ -175,7 +175,7 @@ class AdministrationRepository {
     int? semester,
     String? nim,
   }) async {
-    final result = await _kgClient.submitAdministrationBiodatas(
+    await _kgClient.submitAdministrationBiodatas(
       fullName: fullName,
       gender: gender,
       phoneNumber: phoneNumber,
@@ -194,30 +194,7 @@ class AdministrationRepository {
       semester: semester,
       university: university,
     );
-
-    return Biodatas(
-      address: result.address,
-      birthdate: result.birthdate,
-      birthplace: result.birthplace,
-      district: result.district,
-      districtId: result.districtId,
-      fullName: result.fullName,
-      gender: result.gender,
-      identityNumber: result.identityNumber,
-      lastEducation: result.lastEducation,
-      phoneNumber: result.phoneNumber,
-      postalCode: result.postalCode,
-      province: result.province,
-      provinceId: result.provinceId,
-      regency: result.regency,
-      regencyId: result.regencyId,
-      village: result.village,
-      villageId: result.villageId,
-      major: result.major,
-      nim: result.nim,
-      semester: result.semester,
-      university: result.university,
-    );
+    return getAdministration();
   }
 
   Future<Familials> submitFamilials({

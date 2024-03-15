@@ -75,11 +75,25 @@ class AdministrationForm extends StatelessWidget {
                   );
             }
           },
-          child: ListView.separated(
+          // child: ListView.separated(
+          //   padding: const EdgeInsets.all(16),
+          //   itemBuilder: (context, index) => listViewItems[index],
+          //   separatorBuilder: (context, index) => const SizedBox(height: 16),
+          //   itemCount: listViewItems.length,
+          // ),
+          child: SingleChildScrollView(
             padding: const EdgeInsets.all(16),
-            itemBuilder: (context, index) => listViewItems[index],
-            separatorBuilder: (context, index) => const SizedBox(height: 16),
-            itemCount: listViewItems.length,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                for (int i = 0; i < listViewItems.length; i++)
+                  if (i < listViewItems.length) ...[
+                    listViewItems[i],
+                    const SizedBox(height: 16),
+                  ] else
+                    listViewItems[i],
+              ],
+            ),
           ),
         );
       },
@@ -255,6 +269,8 @@ class _GenderInput extends StatelessWidget {
             ),
           ),
           onTap: () {
+            final focus = FocusScope.of(context);
+            if (focus.hasFocus) focus.unfocus();
             final constants = state.constants;
             if (constants != null) {
               SingleChoicesRoute(
@@ -308,7 +324,7 @@ class _PhoneInput extends StatelessWidget {
               .read<AdministrationBloc>()
               .add(AdministrationEvent.phoneChanged(phone)),
           keyboardType: TextInputType.phone,
-          textInputAction: TextInputAction.done,
+          textInputAction: TextInputAction.next,
         );
       },
     );
@@ -346,6 +362,8 @@ class _LastEducationInput extends StatelessWidget {
             ),
           ),
           onTap: () {
+            final focus = FocusScope.of(context);
+            if (focus.hasFocus) focus.unfocus();
             final constants = state.constants;
             if (constants != null) {
               SingleChoicesRoute(
@@ -440,6 +458,8 @@ class _BirthDateInput extends StatelessWidget {
             ),
           ),
           onTap: () {
+            final focus = FocusScope.of(context);
+            if (focus.hasFocus) focus.unfocus();
             var initialDate = DateTime(2000);
             final now = DateTime.now();
             final firstDate = DateTime(now.year - 70);
@@ -491,6 +511,8 @@ class _ProvinceInput extends StatelessWidget {
             ),
           ),
           onTap: () {
+            final focus = FocusScope.of(context);
+            if (focus.hasFocus) focus.unfocus();
             final provincies = state.administrativeProvincies;
             final values = provincies.map((e) => e.name).toList();
             SingleChoicesRoute(
@@ -538,37 +560,39 @@ class _RegencyInput extends StatelessWidget {
               size: 18,
             ),
           ),
-          onTap: state.fetchRegenciesStatus.isSuccess
-              ? () {
-                  final regencies = state.administrativeRegencies;
-                  final values = regencies.map((e) => e.name).toList();
-                  SingleChoicesRoute(
-                    $extra: SingleChoicesOptions(
-                      values: values,
-                      title: 'Pilih Kabupaten/Kota',
-                      initialValue: initialValue,
+          onTap: () {
+            final focus = FocusScope.of(context);
+            if (focus.hasFocus) focus.unfocus();
+            if (state.fetchRegenciesStatus.isSuccess) {
+              final regencies = state.administrativeRegencies;
+              final values = regencies.map((e) => e.name).toList();
+              SingleChoicesRoute(
+                $extra: SingleChoicesOptions(
+                  values: values,
+                  title: 'Pilih Kabupaten/Kota',
+                  initialValue: initialValue,
+                ),
+              ).push<String>(context).then((value) {
+                if (value == null) return;
+                final regency = regencies.byName(value);
+                context
+                    .read<AdministrationBloc>()
+                    .add(AdministrationEvent.regencyChanged(regency));
+              });
+            } else {
+              if (state.province.isPure) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Provinsi harus dipilih terlebih dahulu.',
+                      ),
                     ),
-                  ).push<String>(context).then((value) {
-                    if (value == null) return;
-                    final regency = regencies.byName(value);
-                    context
-                        .read<AdministrationBloc>()
-                        .add(AdministrationEvent.regencyChanged(regency));
-                  });
-                }
-              : () {
-                  if (state.province.isPure) {
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Provinsi harus dipilih terlebih dahulu.',
-                          ),
-                        ),
-                      );
-                  }
-                },
+                  );
+              }
+            }
+          },
         );
       },
     );
@@ -600,37 +624,39 @@ class _DistrictInput extends StatelessWidget {
               size: 18,
             ),
           ),
-          onTap: state.fetchDistrictsStatus.isSuccess
-              ? () {
-                  final districts = state.administrativeDistricts;
-                  final values = districts.map((e) => e.name).toList();
-                  SingleChoicesRoute(
-                    $extra: SingleChoicesOptions(
-                      values: values,
-                      title: 'Pilih Kecamatan',
-                      initialValue: initialValue,
+          onTap: () {
+            final focus = FocusScope.of(context);
+            if (focus.hasFocus) focus.unfocus();
+            if (state.fetchDistrictsStatus.isSuccess) {
+              final districts = state.administrativeDistricts;
+              final values = districts.map((e) => e.name).toList();
+              SingleChoicesRoute(
+                $extra: SingleChoicesOptions(
+                  values: values,
+                  title: 'Pilih Kecamatan',
+                  initialValue: initialValue,
+                ),
+              ).push<String>(context).then((value) {
+                if (value == null) return;
+                final district = districts.byName(value);
+                context
+                    .read<AdministrationBloc>()
+                    .add(AdministrationEvent.districtChanged(district));
+              });
+            } else {
+              if (state.regency.isPure) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Kabupaten/Kota harus dipilih terlebih dahulu.',
+                      ),
                     ),
-                  ).push<String>(context).then((value) {
-                    if (value == null) return;
-                    final district = districts.byName(value);
-                    context
-                        .read<AdministrationBloc>()
-                        .add(AdministrationEvent.districtChanged(district));
-                  });
-                }
-              : () {
-                  if (state.regency.isPure) {
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Kabupaten/Kota harus dipilih terlebih dahulu.',
-                          ),
-                        ),
-                      );
-                  }
-                },
+                  );
+              }
+            }
+          },
         );
       },
     );
@@ -662,37 +688,39 @@ class _VillageInput extends StatelessWidget {
               size: 18,
             ),
           ),
-          onTap: state.fetchVillagesStatus.isSuccess
-              ? () {
-                  final villages = state.administrativeVillages;
-                  final values = villages.map((e) => e.name).toList();
-                  SingleChoicesRoute(
-                    $extra: SingleChoicesOptions(
-                      values: values,
-                      title: 'Pilih kelurahan/desa',
-                      initialValue: initialValue,
+          onTap: () {
+            final focus = FocusScope.of(context);
+            if (focus.hasFocus) focus.unfocus();
+            if (state.fetchVillagesStatus.isSuccess) {
+              final villages = state.administrativeVillages;
+              final values = villages.map((e) => e.name).toList();
+              SingleChoicesRoute(
+                $extra: SingleChoicesOptions(
+                  values: values,
+                  title: 'Pilih kelurahan/desa',
+                  initialValue: initialValue,
+                ),
+              ).push<String>(context).then((value) {
+                if (value == null) return;
+                final village = villages.byName(value);
+                context
+                    .read<AdministrationBloc>()
+                    .add(AdministrationEvent.villageChanged(village));
+              });
+            } else {
+              if (state.district.isPure) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Kecamatan harus dipilih terlebih dahulu.',
+                      ),
                     ),
-                  ).push<String>(context).then((value) {
-                    if (value == null) return;
-                    final village = villages.byName(value);
-                    context
-                        .read<AdministrationBloc>()
-                        .add(AdministrationEvent.villageChanged(village));
-                  });
-                }
-              : () {
-                  if (state.district.isPure) {
-                    ScaffoldMessenger.of(context)
-                      ..hideCurrentSnackBar()
-                      ..showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Kecamatan harus dipilih terlebih dahulu.',
-                          ),
-                        ),
-                      );
-                  }
-                },
+                  );
+              }
+            }
+          },
         );
       },
     );

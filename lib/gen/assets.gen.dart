@@ -37,6 +37,10 @@ class $AssetsImagesGen {
   AssetGenImage get avatarPlaceholder =>
       const AssetGenImage('assets/images/avatar-placeholder.png');
 
+  /// File path: assets/images/empty_figure.svg
+  SvgGenImage get emptyFigure =>
+      const SvgGenImage('assets/images/empty_figure.svg');
+
   /// File path: assets/images/exception_figure.svg
   SvgGenImage get exceptionFigure =>
       const SvgGenImage('assets/images/exception_figure.svg');
@@ -57,16 +61,21 @@ class $AssetsImagesGen {
   AssetGenImage get logoKgOrange =>
       const AssetGenImage('assets/images/logo-kg-orange.png');
 
+  /// File path: assets/images/logo-kg.png
+  AssetGenImage get logoKg => const AssetGenImage('assets/images/logo-kg.png');
+
   /// List of all assets
   List<dynamic> get values => [
         administrationAccepted,
         administrationPending,
         avatarPlaceholder,
+        emptyFigure,
         exceptionFigure,
         ilustrasi1Onboarding,
         ilustrasi2Onboarding,
         ilustrasi3Onboarding,
-        logoKgOrange
+        logoKgOrange,
+        logoKg
       ];
 }
 

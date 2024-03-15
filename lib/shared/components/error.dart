@@ -13,6 +13,7 @@ class ErrorStateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+
       children: [
         Assets.images.exceptionFigure.svg(
           width: 150,
@@ -27,6 +28,7 @@ class ErrorStateWidget extends StatelessWidget {
             fontSize: 16,
             height: 24 / 16,
           ),
+          textAlign: TextAlign.center,
         ),
         Text(
           message,
@@ -36,6 +38,7 @@ class ErrorStateWidget extends StatelessWidget {
             height: 18 / 12,
             color: Theme.of(context).colorScheme.outline,
           ),
+          textAlign: TextAlign.center,
         ),
         if (onRetry != null) ...[
           const SizedBox(height: 32),

@@ -755,7 +755,7 @@ class AdministrationBloc
         }
       }
 
-      final biodatas = await _administrationRepository.submitBiodatas(
+      final administration = await _administrationRepository.submitBiodatas(
         fullName: name,
         gender: gender,
         phoneNumber: phone,
@@ -775,7 +775,6 @@ class AdministrationBloc
         university: university,
       );
 
-      final administration = state.administration?.copyWith(biodatas: biodatas);
       emit(
         state.copyWith(
           submissionStatus: FormzSubmissionStatus.success,

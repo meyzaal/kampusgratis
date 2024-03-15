@@ -177,5 +177,7 @@ ThemeData _getTheme(Brightness brightness) {
     datePickerTheme: DatePickerThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
+    tabBarTheme:
+        const TabBarTheme(labelStyle: TextStyle(fontWeight: FontWeight.w600)),
   );
 }

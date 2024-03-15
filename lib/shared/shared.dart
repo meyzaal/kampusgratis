@@ -7,6 +7,7 @@ export 'components/error.dart';
 export 'components/input_field.dart';
 export 'components/optional.dart';
 export 'components/select_gender_dialog.dart';
+export 'components/tab_bar.dart';
 export 'components/text_field.dart';
 export 'constants.dart';
 export 'cubit/carousel_cubit.dart';

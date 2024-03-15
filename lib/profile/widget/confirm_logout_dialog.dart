@@ -26,9 +26,6 @@ class ConfirmLogoutDialog extends StatelessWidget {
       actions: [
         BlocConsumer<ProfileBloc, ProfileState>(
           listener: (context, state) {
-            if (state.logOutStatus.isSuccess) {
-              context.pop();
-            }
             if (state.logOutStatus.isFailure) {
               final message =
                   state.message ?? 'Terjadi kesalahan (message-null).';

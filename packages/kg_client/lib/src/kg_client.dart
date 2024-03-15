@@ -25,7 +25,6 @@ enum KgFlavor {
   production,
 }
 
-
 /// A Dart class representing the KgClient, which is responsible for managing
 /// HTTP requests to the Kg API. It can be configured with a custom Dio HTTP
 /// client and KgFlavor.
@@ -1125,6 +1124,33 @@ class KgClient {
         );
       }
       return enrollSubject;
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+// MY STUDY
+//
+//  ███╗   ███╗██╗   ██╗    ███████╗████████╗██╗   ██╗██████╗ ██╗   ██╗
+//  ████╗ ████║╚██╗ ██╔╝    ██╔════╝╚══██╔══╝██║   ██║██╔══██╗╚██╗ ██╔╝
+//  ██╔████╔██║ ╚████╔╝     ███████╗   ██║   ██║   ██║██║  ██║ ╚████╔╝
+//  ██║╚██╔╝██║  ╚██╔╝      ╚════██║   ██║   ██║   ██║██║  ██║  ╚██╔╝
+//  ██║ ╚═╝ ██║   ██║       ███████║   ██║   ╚██████╔╝██████╔╝   ██║
+//  ╚═╝     ╚═╝   ╚═╝       ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝    ╚═╝
+//
+
+  Future<List<MyStudy>> getMyStudy() async {
+    try {
+      final response = await _httpClient.get<dynamic>('/v2/my-study');
+
+      final result =
+          Result<List<MyStudy>>.fromJson(response.data as JSON, (json) {
+        var datas = <dynamic>[];
+        if (json is List) datas = json;
+        return datas.map((e) => MyStudy.fromJson(e as JSON? ?? {})).toList();
+      });
+
+      return result.data ?? [];
     } catch (e) {
       throw _getException(e);
     }

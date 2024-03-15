@@ -12,6 +12,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:kampusgratis/app/app.dart';
 import 'package:kg_client/kg_client.dart';
+import 'package:my_study_repository/my_study_repository.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:user_repository/user_repository.dart';
 
@@ -59,6 +60,7 @@ Future<void> bootstrap({required KgFlavor flavor}) async {
           AuthenticationRepository(kgClient: kgClient);
       final bannerRepository = BannerRepository(kgClient: kgClient);
       final bootcampRepository = BootcampRepository(kgClient: kgClient);
+      final myStudyRepository = MyStudyRepository(kgClient: kgClient);
       final userRepository = UserRepository(kgClient: kgClient);
 
       final app = App(
@@ -66,6 +68,7 @@ Future<void> bootstrap({required KgFlavor flavor}) async {
         authenticationRepository: authenticationRepository,
         bootcampRepository: bootcampRepository,
         bannerRepository: bannerRepository,
+        myStudyRepository: myStudyRepository,
         userRepository: userRepository,
       );
 
