@@ -24,6 +24,7 @@ class AdministrationBloc
       : _administrationRepository = administrationRepository,
         super(
           const AdministrationState(
+            bootcampEnrolled: false,
             isValid: false,
             administrationMode: AdministrationMode.initial,
             fetchAdministrationStatus: AdministrationFetchStatus.initial,
@@ -50,6 +51,7 @@ class AdministrationBloc
             administrativeVillages: [],
           ),
         ) {
+    on<AdministrationBootcampEnrolled>(_onAdministrationBootcampEnrolled);
     on<AdministrationModeChanged>(_onAdministrationModeChanged);
     on<AdministrationFetched>(_onAdministrationFetched);
     on<AdministrationNameChanged>(_onAdministrationNameChanged);
@@ -78,6 +80,13 @@ class AdministrationBloc
   }
 
   final AdministrationRepository _administrationRepository;
+
+  void _onAdministrationBootcampEnrolled(
+    AdministrationBootcampEnrolled event,
+    Emitter<AdministrationState> emit,
+  ) {
+    emit(state.copyWith(bootcampEnrolled: true));
+  }
 
   void _onAdministrationModeChanged(
     AdministrationModeChanged event,

@@ -178,6 +178,13 @@ RouteBase get $mainRoute => ShellRouteData.$route(
         GoRouteData.$route(
           path: '/my-study',
           factory: $MyStudyRouteExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: ':subjectId/sessions',
+              parentNavigatorKey: SubjectSessionRoute.$parentNavigatorKey,
+              factory: $SubjectSessionRouteExtension._fromState,
+            ),
+          ],
         ),
         GoRouteData.$route(
           path: '/assignment',
@@ -271,6 +278,29 @@ extension $MyStudyRouteExtension on MyStudyRoute {
       context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SubjectSessionRouteExtension on SubjectSessionRoute {
+  static SubjectSessionRoute _fromState(GoRouterState state) =>
+      SubjectSessionRoute(
+        state.pathParameters['subjectId']!,
+        $extra: state.extra as String,
+      );
+
+  String get location => GoRouteData.$location(
+        '/my-study/${Uri.encodeComponent(subjectId)}/sessions',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
 }
 
 extension $AssignmentRouteExtension on AssignmentRoute {
@@ -488,20 +518,24 @@ RouteBase get $bootcampRoute => GoRouteData.$route(
     );
 
 extension $BootcampRouteExtension on BootcampRoute {
-  static BootcampRoute _fromState(GoRouterState state) => const BootcampRoute();
+  static BootcampRoute _fromState(GoRouterState state) => BootcampRoute(
+        $extra: state.extra as BootcampExtra?,
+      );
 
   String get location => GoRouteData.$location(
         '/bootcamp',
       );
 
-  void go(BuildContext context) => context.go(location);
+  void go(BuildContext context) => context.go(location, extra: $extra);
 
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
 
   void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
+      context.pushReplacement(location, extra: $extra);
 
-  void replace(BuildContext context) => context.replace(location);
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
 }
 
 extension $PdfViewerRouteExtension on PdfViewerRoute {

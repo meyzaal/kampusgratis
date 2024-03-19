@@ -20,14 +20,14 @@ mixin _$MyStudy {
   String get subjectCode => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get slug => throw _privateConstructorUsedError;
-  String? get thumbnail => throw _privateConstructorUsedError;
-  String? get teacherName => throw _privateConstructorUsedError;
   int get credit => throw _privateConstructorUsedError;
   int get subjectSemester => throw _privateConstructorUsedError;
   int get currentSession => throw _privateConstructorUsedError;
   int get studentCount => throw _privateConstructorUsedError;
   int get sessionCount => throw _privateConstructorUsedError;
   double get progressPercentage => throw _privateConstructorUsedError;
+  String? get thumbnail => throw _privateConstructorUsedError;
+  String? get teacherName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MyStudyCopyWith<MyStudy> get copyWith => throw _privateConstructorUsedError;
@@ -43,14 +43,14 @@ abstract class $MyStudyCopyWith<$Res> {
       String subjectCode,
       String name,
       String slug,
-      String? thumbnail,
-      String? teacherName,
       int credit,
       int subjectSemester,
       int currentSession,
       int studentCount,
       int sessionCount,
-      double progressPercentage});
+      double progressPercentage,
+      String? thumbnail,
+      String? teacherName});
 }
 
 /// @nodoc
@@ -70,14 +70,14 @@ class _$MyStudyCopyWithImpl<$Res, $Val extends MyStudy>
     Object? subjectCode = null,
     Object? name = null,
     Object? slug = null,
-    Object? thumbnail = freezed,
-    Object? teacherName = freezed,
     Object? credit = null,
     Object? subjectSemester = null,
     Object? currentSession = null,
     Object? studentCount = null,
     Object? sessionCount = null,
     Object? progressPercentage = null,
+    Object? thumbnail = freezed,
+    Object? teacherName = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -96,14 +96,6 @@ class _$MyStudyCopyWithImpl<$Res, $Val extends MyStudy>
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnail: freezed == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String?,
-      teacherName: freezed == teacherName
-          ? _value.teacherName
-          : teacherName // ignore: cast_nullable_to_non_nullable
-              as String?,
       credit: null == credit
           ? _value.credit
           : credit // ignore: cast_nullable_to_non_nullable
@@ -128,6 +120,14 @@ class _$MyStudyCopyWithImpl<$Res, $Val extends MyStudy>
           ? _value.progressPercentage
           : progressPercentage // ignore: cast_nullable_to_non_nullable
               as double,
+      thumbnail: freezed == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      teacherName: freezed == teacherName
+          ? _value.teacherName
+          : teacherName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -144,14 +144,14 @@ abstract class _$$MyStudyImplCopyWith<$Res> implements $MyStudyCopyWith<$Res> {
       String subjectCode,
       String name,
       String slug,
-      String? thumbnail,
-      String? teacherName,
       int credit,
       int subjectSemester,
       int currentSession,
       int studentCount,
       int sessionCount,
-      double progressPercentage});
+      double progressPercentage,
+      String? thumbnail,
+      String? teacherName});
 }
 
 /// @nodoc
@@ -169,14 +169,14 @@ class __$$MyStudyImplCopyWithImpl<$Res>
     Object? subjectCode = null,
     Object? name = null,
     Object? slug = null,
-    Object? thumbnail = freezed,
-    Object? teacherName = freezed,
     Object? credit = null,
     Object? subjectSemester = null,
     Object? currentSession = null,
     Object? studentCount = null,
     Object? sessionCount = null,
     Object? progressPercentage = null,
+    Object? thumbnail = freezed,
+    Object? teacherName = freezed,
   }) {
     return _then(_$MyStudyImpl(
       id: null == id
@@ -195,14 +195,6 @@ class __$$MyStudyImplCopyWithImpl<$Res>
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnail: freezed == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String?,
-      teacherName: freezed == teacherName
-          ? _value.teacherName
-          : teacherName // ignore: cast_nullable_to_non_nullable
-              as String?,
       credit: null == credit
           ? _value.credit
           : credit // ignore: cast_nullable_to_non_nullable
@@ -227,6 +219,14 @@ class __$$MyStudyImplCopyWithImpl<$Res>
           ? _value.progressPercentage
           : progressPercentage // ignore: cast_nullable_to_non_nullable
               as double,
+      thumbnail: freezed == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      teacherName: freezed == teacherName
+          ? _value.teacherName
+          : teacherName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -239,14 +239,14 @@ class _$MyStudyImpl implements _MyStudy {
       required this.subjectCode,
       required this.name,
       required this.slug,
-      this.thumbnail,
-      this.teacherName,
       required this.credit,
       required this.subjectSemester,
       required this.currentSession,
       required this.studentCount,
       required this.sessionCount,
-      required this.progressPercentage});
+      required this.progressPercentage,
+      this.thumbnail,
+      this.teacherName});
 
   @override
   final String id;
@@ -256,10 +256,6 @@ class _$MyStudyImpl implements _MyStudy {
   final String name;
   @override
   final String slug;
-  @override
-  final String? thumbnail;
-  @override
-  final String? teacherName;
   @override
   final int credit;
   @override
@@ -272,10 +268,14 @@ class _$MyStudyImpl implements _MyStudy {
   final int sessionCount;
   @override
   final double progressPercentage;
+  @override
+  final String? thumbnail;
+  @override
+  final String? teacherName;
 
   @override
   String toString() {
-    return 'MyStudy(id: $id, subjectCode: $subjectCode, name: $name, slug: $slug, thumbnail: $thumbnail, teacherName: $teacherName, credit: $credit, subjectSemester: $subjectSemester, currentSession: $currentSession, studentCount: $studentCount, sessionCount: $sessionCount, progressPercentage: $progressPercentage)';
+    return 'MyStudy(id: $id, subjectCode: $subjectCode, name: $name, slug: $slug, credit: $credit, subjectSemester: $subjectSemester, currentSession: $currentSession, studentCount: $studentCount, sessionCount: $sessionCount, progressPercentage: $progressPercentage, thumbnail: $thumbnail, teacherName: $teacherName)';
   }
 
   @override
@@ -288,10 +288,6 @@ class _$MyStudyImpl implements _MyStudy {
                 other.subjectCode == subjectCode) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.slug, slug) || other.slug == slug) &&
-            (identical(other.thumbnail, thumbnail) ||
-                other.thumbnail == thumbnail) &&
-            (identical(other.teacherName, teacherName) ||
-                other.teacherName == teacherName) &&
             (identical(other.credit, credit) || other.credit == credit) &&
             (identical(other.subjectSemester, subjectSemester) ||
                 other.subjectSemester == subjectSemester) &&
@@ -302,7 +298,11 @@ class _$MyStudyImpl implements _MyStudy {
             (identical(other.sessionCount, sessionCount) ||
                 other.sessionCount == sessionCount) &&
             (identical(other.progressPercentage, progressPercentage) ||
-                other.progressPercentage == progressPercentage));
+                other.progressPercentage == progressPercentage) &&
+            (identical(other.thumbnail, thumbnail) ||
+                other.thumbnail == thumbnail) &&
+            (identical(other.teacherName, teacherName) ||
+                other.teacherName == teacherName));
   }
 
   @override
@@ -312,14 +312,14 @@ class _$MyStudyImpl implements _MyStudy {
       subjectCode,
       name,
       slug,
-      thumbnail,
-      teacherName,
       credit,
       subjectSemester,
       currentSession,
       studentCount,
       sessionCount,
-      progressPercentage);
+      progressPercentage,
+      thumbnail,
+      teacherName);
 
   @JsonKey(ignore: true)
   @override
@@ -334,14 +334,14 @@ abstract class _MyStudy implements MyStudy {
       required final String subjectCode,
       required final String name,
       required final String slug,
-      final String? thumbnail,
-      final String? teacherName,
       required final int credit,
       required final int subjectSemester,
       required final int currentSession,
       required final int studentCount,
       required final int sessionCount,
-      required final double progressPercentage}) = _$MyStudyImpl;
+      required final double progressPercentage,
+      final String? thumbnail,
+      final String? teacherName}) = _$MyStudyImpl;
 
   @override
   String get id;
@@ -351,10 +351,6 @@ abstract class _MyStudy implements MyStudy {
   String get name;
   @override
   String get slug;
-  @override
-  String? get thumbnail;
-  @override
-  String? get teacherName;
   @override
   int get credit;
   @override
@@ -367,6 +363,10 @@ abstract class _MyStudy implements MyStudy {
   int get sessionCount;
   @override
   double get progressPercentage;
+  @override
+  String? get thumbnail;
+  @override
+  String? get teacherName;
   @override
   @JsonKey(ignore: true)
   _$$MyStudyImplCopyWith<_$MyStudyImpl> get copyWith =>

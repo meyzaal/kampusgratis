@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:bootcamp_repository/bootcamp_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kg_client/kg_client.dart';
 
@@ -11,7 +12,7 @@ part 'bootcamp_bloc.freezed.dart';
 enum BootcampStatus { initial, loading, failure, success }
 
 class BootcampBloc extends Bloc<BootcampEvent, BootcampState> {
-  BootcampBloc(BootcampRepository bootcampRepository)
+  BootcampBloc(BootcampRepository bootcampRepository, {this.onBootcampEnrolled})
       : _bootcampRepository = bootcampRepository,
         super(
           const BootcampState(
@@ -27,6 +28,7 @@ class BootcampBloc extends Bloc<BootcampEvent, BootcampState> {
   }
 
   final BootcampRepository _bootcampRepository;
+  final VoidCallback? onBootcampEnrolled;
 
   Future<void> _onBootcampEventFetched(
     BootcampEventFetched event,
@@ -75,6 +77,7 @@ class BootcampBloc extends Bloc<BootcampEvent, BootcampState> {
     Emitter<BootcampState> emit,
   ) async {
     final datas = List<BootcampData>.from(state.datas);
+    onBootcampEnrolled?.call();
     emit(
       state.copyWith(
         datas: datas.update(

@@ -25,6 +25,7 @@ import 'package:kampusgratis/pdf_viewer/pdf_viewer.dart';
 import 'package:kampusgratis/profile/profile.dart';
 import 'package:kampusgratis/register/register.dart';
 import 'package:kampusgratis/single_choices/single_choices.dart';
+import 'package:kampusgratis/subject_session/subject_session.dart';
 import 'package:stream_listener/stream_listener.dart';
 
 part 'routes.g.dart';
@@ -146,7 +147,12 @@ class ForgotPasswordRoute extends GoRouteData {
         TypedGoRoute<FeatureRoute>(path: 'features'),
       ],
     ),
-    TypedGoRoute<MyStudyRoute>(path: '/my-study'),
+    TypedGoRoute<MyStudyRoute>(
+      path: '/my-study',
+      routes: [
+        TypedGoRoute<SubjectSessionRoute>(path: ':subjectId/sessions'),
+      ],
+    ),
     TypedGoRoute<AssignmentRoute>(path: '/assignment'),
     TypedGoRoute<MyCalendarRoute>(path: '/my-calendar'),
     TypedGoRoute<ProfileRoute>(
@@ -199,6 +205,20 @@ class MyStudyRoute extends GoRouteData {
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
       const NoTransitionPage<void>(child: MyStudyPage());
+}
+
+class SubjectSessionRoute extends GoRouteData {
+  const SubjectSessionRoute(this.subjectId, {required this.$extra});
+
+  final String subjectId;
+  final String $extra; // subjectName
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey =
+      _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      SubjectSessionPage(subjectId: subjectId, subjectName: $extra);
 }
 
 class AssignmentRoute extends GoRouteData {
@@ -335,6 +355,12 @@ class DatePickerRoute extends GoRouteData {
   }
 }
 
+class BootcampExtra {
+  const BootcampExtra(this.onBootcampEnrolled);
+
+  final VoidCallback? onBootcampEnrolled;
+}
+
 @TypedGoRoute<BootcampRoute>(
   path: '/bootcamp',
   routes: [
@@ -342,11 +368,13 @@ class DatePickerRoute extends GoRouteData {
   ],
 )
 class BootcampRoute extends GoRouteData {
-  const BootcampRoute();
+  const BootcampRoute({this.$extra});
+
+  final BootcampExtra? $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const BootcampPage();
+    return BootcampPage(onBootcampEnrolled: $extra?.onBootcampEnrolled);
   }
 }
 

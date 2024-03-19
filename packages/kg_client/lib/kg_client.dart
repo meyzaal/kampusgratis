@@ -12,8 +12,8 @@ export 'src/models/models.dart'
         AdministrationStatus,
         Gender,
         LeaderboardType,
+        ProgressStatus,
         ProgressType,
         Role,
-        SessionStatus,
         SessionType,
         SubjectType;

@@ -45,7 +45,6 @@ class AdministrationForm extends StatelessWidget {
       const _NinInput(),
       const _GenderInput(),
       const _PhoneInput(),
-      const _LastEducationInput(),
       const _BirthPlaceInput(),
       const _BirthDateInput(),
       const _ProvinceInput(),
@@ -54,6 +53,7 @@ class AdministrationForm extends StatelessWidget {
       const _VillageInput(),
       const _ZipCodeInput(),
       const _AddressInput(),
+      const _LastEducationInput(),
       const _UniversityInput(),
       const _NimInput(),
       const _MajorInput(),
@@ -325,73 +325,6 @@ class _PhoneInput extends StatelessWidget {
               .add(AdministrationEvent.phoneChanged(phone)),
           keyboardType: TextInputType.phone,
           textInputAction: TextInputAction.next,
-        );
-      },
-    );
-  }
-}
-
-class _LastEducationInput extends StatelessWidget {
-  const _LastEducationInput();
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AdministrationBloc, AdministrationState>(
-      builder: (context, state) {
-        String? lastEducationValue;
-        final lastEducationKey = state.lastEducation.isPure
-            ? state.administration?.biodatas?.lastEducation
-            : state.lastEducation.value;
-        if (lastEducationKey != null && lastEducationKey.isNotEmpty) {
-          lastEducationValue =
-              state.constants?.lastEducation.valueFromKey(lastEducationKey);
-        }
-        return CustomInputField(
-          suffixLabelWidget: const Asterisk(),
-          readOnly: state.administration?.details?.status.isPending ?? false,
-          labelText: 'Pendidikan Terakhir',
-          value: lastEducationValue,
-          decoration: InputDecoration(
-            hintText: 'Pilih pendidikan terakhir',
-            errorText: state.lastEducation.isPure
-                ? null
-                : state.lastEducation.error?.message,
-            suffixIcon: const PhosphorIcon(
-              PhosphorIconsFill.caretDown,
-              size: 18,
-            ),
-          ),
-          onTap: () {
-            final focus = FocusScope.of(context);
-            if (focus.hasFocus) focus.unfocus();
-            final constants = state.constants;
-            if (constants != null) {
-              SingleChoicesRoute(
-                $extra: SingleChoicesOptions(
-                  values: constants.lastEducation.values,
-                  title: 'Pilih Pendidikan Terakhir',
-                  initialValue: lastEducationValue,
-                ),
-              ).push<String>(context).then((value) {
-                if (value == null) return;
-                final lastEducation =
-                    constants.lastEducation.keyFromValue(value);
-                context.read<AdministrationBloc>().add(
-                      AdministrationEvent.lastEducationChanged(lastEducation),
-                    );
-              });
-            } else {
-              ScaffoldMessenger.of(context)
-                ..clearSnackBars()
-                ..showSnackBar(
-                  const SnackBar(
-                    showCloseIcon: true,
-                    content:
-                        Text('Tidak dapat menemukan data, coba lagi nanti.'),
-                  ),
-                );
-            }
-          },
         );
       },
     );
@@ -778,6 +711,73 @@ class _AddressInput extends StatelessWidget {
               .add(AdministrationEvent.addressChanged(address)),
           keyboardType: TextInputType.streetAddress,
           textInputAction: TextInputAction.next,
+        );
+      },
+    );
+  }
+}
+
+class _LastEducationInput extends StatelessWidget {
+  const _LastEducationInput();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AdministrationBloc, AdministrationState>(
+      builder: (context, state) {
+        String? lastEducationValue;
+        final lastEducationKey = state.lastEducation.isPure
+            ? state.administration?.biodatas?.lastEducation
+            : state.lastEducation.value;
+        if (lastEducationKey != null && lastEducationKey.isNotEmpty) {
+          lastEducationValue =
+              state.constants?.lastEducation.valueFromKey(lastEducationKey);
+        }
+        return CustomInputField(
+          suffixLabelWidget: const Asterisk(),
+          readOnly: state.administration?.details?.status.isPending ?? false,
+          labelText: 'Pendidikan Terakhir',
+          value: lastEducationValue,
+          decoration: InputDecoration(
+            hintText: 'Pilih pendidikan terakhir',
+            errorText: state.lastEducation.isPure
+                ? null
+                : state.lastEducation.error?.message,
+            suffixIcon: const PhosphorIcon(
+              PhosphorIconsFill.caretDown,
+              size: 18,
+            ),
+          ),
+          onTap: () {
+            final focus = FocusScope.of(context);
+            if (focus.hasFocus) focus.unfocus();
+            final constants = state.constants;
+            if (constants != null) {
+              SingleChoicesRoute(
+                $extra: SingleChoicesOptions(
+                  values: constants.lastEducation.values,
+                  title: 'Pilih Pendidikan Terakhir',
+                  initialValue: lastEducationValue,
+                ),
+              ).push<String>(context).then((value) {
+                if (value == null) return;
+                final lastEducation =
+                    constants.lastEducation.keyFromValue(value);
+                context.read<AdministrationBloc>().add(
+                      AdministrationEvent.lastEducationChanged(lastEducation),
+                    );
+              });
+            } else {
+              ScaffoldMessenger.of(context)
+                ..clearSnackBars()
+                ..showSnackBar(
+                  const SnackBar(
+                    showCloseIcon: true,
+                    content:
+                        Text('Tidak dapat menemukan data, coba lagi nanti.'),
+                  ),
+                );
+            }
+          },
         );
       },
     );

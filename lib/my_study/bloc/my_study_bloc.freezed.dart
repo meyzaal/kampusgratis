@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MyStudyEvent {
+  bool get forceRefresh => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetched,
+    required TResult Function(bool forceRefresh) fetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetched,
+    TResult? Function(bool forceRefresh)? fetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetched,
+    TResult Function(bool forceRefresh)? fetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +49,10 @@ mixin _$MyStudyEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MyStudyEventCopyWith<MyStudyEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -55,6 +60,8 @@ abstract class $MyStudyEventCopyWith<$Res> {
   factory $MyStudyEventCopyWith(
           MyStudyEvent value, $Res Function(MyStudyEvent) then) =
       _$MyStudyEventCopyWithImpl<$Res, MyStudyEvent>;
+  @useResult
+  $Res call({bool forceRefresh});
 }
 
 /// @nodoc
@@ -66,13 +73,30 @@ class _$MyStudyEventCopyWithImpl<$Res, $Val extends MyStudyEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? forceRefresh = null,
+  }) {
+    return _then(_value.copyWith(
+      forceRefresh: null == forceRefresh
+          ? _value.forceRefresh
+          : forceRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$MyStudyFetchedImplCopyWith<$Res> {
+abstract class _$$MyStudyFetchedImplCopyWith<$Res>
+    implements $MyStudyEventCopyWith<$Res> {
   factory _$$MyStudyFetchedImplCopyWith(_$MyStudyFetchedImpl value,
           $Res Function(_$MyStudyFetchedImpl) then) =
       __$$MyStudyFetchedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool forceRefresh});
 }
 
 /// @nodoc
@@ -82,51 +106,77 @@ class __$$MyStudyFetchedImplCopyWithImpl<$Res>
   __$$MyStudyFetchedImplCopyWithImpl(
       _$MyStudyFetchedImpl _value, $Res Function(_$MyStudyFetchedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? forceRefresh = null,
+  }) {
+    return _then(_$MyStudyFetchedImpl(
+      forceRefresh: null == forceRefresh
+          ? _value.forceRefresh
+          : forceRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$MyStudyFetchedImpl implements MyStudyFetched {
-  const _$MyStudyFetchedImpl();
+  const _$MyStudyFetchedImpl({required this.forceRefresh});
+
+  @override
+  final bool forceRefresh;
 
   @override
   String toString() {
-    return 'MyStudyEvent.fetched()';
+    return 'MyStudyEvent.fetched(forceRefresh: $forceRefresh)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$MyStudyFetchedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$MyStudyFetchedImpl &&
+            (identical(other.forceRefresh, forceRefresh) ||
+                other.forceRefresh == forceRefresh));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, forceRefresh);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MyStudyFetchedImplCopyWith<_$MyStudyFetchedImpl> get copyWith =>
+      __$$MyStudyFetchedImplCopyWithImpl<_$MyStudyFetchedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetched,
+    required TResult Function(bool forceRefresh) fetched,
   }) {
-    return fetched();
+    return fetched(forceRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetched,
+    TResult? Function(bool forceRefresh)? fetched,
   }) {
-    return fetched?.call();
+    return fetched?.call(forceRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetched,
+    TResult Function(bool forceRefresh)? fetched,
     required TResult orElse(),
   }) {
     if (fetched != null) {
-      return fetched();
+      return fetched(forceRefresh);
     }
     return orElse();
   }
@@ -161,7 +211,15 @@ class _$MyStudyFetchedImpl implements MyStudyFetched {
 }
 
 abstract class MyStudyFetched implements MyStudyEvent {
-  const factory MyStudyFetched() = _$MyStudyFetchedImpl;
+  const factory MyStudyFetched({required final bool forceRefresh}) =
+      _$MyStudyFetchedImpl;
+
+  @override
+  bool get forceRefresh;
+  @override
+  @JsonKey(ignore: true)
+  _$$MyStudyFetchedImplCopyWith<_$MyStudyFetchedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -1155,6 +1155,28 @@ class KgClient {
       throw _getException(e);
     }
   }
+
+  Future<SubjectSession> getSessions(String subjectId) async {
+    try {
+      final response = await _httpClient
+          .get<dynamic>('/v2/my-study/subjects/$subjectId/sessions');
+
+      final result =
+          Result<SubjectSession>.fromJson(response.data as JSON, (json) {
+        return SubjectSession.fromJson(json as JSON? ?? {});
+      });
+
+      final subjectSession = result.data;
+      if (subjectSession == null) {
+        throw ParsingFailedException(
+          'Gagal mendapatkan data respon (data-null).',
+        );
+      }
+      return subjectSession;
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
 }
 
 /// Instance of [Fresh] for managing token freshness in the application.

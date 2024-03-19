@@ -40,7 +40,7 @@ class AdministrationBottom extends StatelessWidget {
               );
             const BootcampRoute()
                 .push<void>(context)
-                .then((value) => context.pop(true));
+                .then((_) => context.pop(true));
           } else {
             ScaffoldMessenger.of(context)
               ..clearSnackBars()

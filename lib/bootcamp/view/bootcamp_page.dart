@@ -6,15 +6,19 @@ import 'package:kampusgratis/shared/shared.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BootcampPage extends StatelessWidget {
-  const BootcampPage({super.key});
+  const BootcampPage({super.key, this.onBootcampEnrolled});
+
+  final VoidCallback? onBootcampEnrolled;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Bootcamp')),
       body: BlocProvider(
-        create: (context) => BootcampBloc(context.read<BootcampRepository>())
-          ..add(const BootcampEvent.fetched(isLoadMore: false)),
+        create: (context) => BootcampBloc(
+          context.read<BootcampRepository>(),
+          onBootcampEnrolled: onBootcampEnrolled,
+        )..add(const BootcampEvent.fetched(isLoadMore: false)),
         child: const BootcampView(),
       ),
     );

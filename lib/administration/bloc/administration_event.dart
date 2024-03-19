@@ -2,6 +2,8 @@ part of 'administration_bloc.dart';
 
 @freezed
 class AdministrationEvent with _$AdministrationEvent {
+  const factory AdministrationEvent.bootcampEnrolled() =
+      AdministrationBootcampEnrolled;
   const factory AdministrationEvent.modeChanged(AdministrationMode mode) =
       AdministrationModeChanged;
   const factory AdministrationEvent.fetched() = AdministrationFetched;

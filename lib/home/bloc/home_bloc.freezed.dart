@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeEvent {
+  bool get forceRefresh => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetched,
+    required TResult Function(bool forceRefresh) fetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetched,
+    TResult? Function(bool forceRefresh)? fetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetched,
+    TResult Function(bool forceRefresh)? fetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,12 +49,18 @@ mixin _$HomeEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomeEventCopyWith<HomeEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $HomeEventCopyWith<$Res> {
   factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
       _$HomeEventCopyWithImpl<$Res, HomeEvent>;
+  @useResult
+  $Res call({bool forceRefresh});
 }
 
 /// @nodoc
@@ -65,13 +72,30 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? forceRefresh = null,
+  }) {
+    return _then(_value.copyWith(
+      forceRefresh: null == forceRefresh
+          ? _value.forceRefresh
+          : forceRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$HomeFetchedImplCopyWith<$Res> {
+abstract class _$$HomeFetchedImplCopyWith<$Res>
+    implements $HomeEventCopyWith<$Res> {
   factory _$$HomeFetchedImplCopyWith(
           _$HomeFetchedImpl value, $Res Function(_$HomeFetchedImpl) then) =
       __$$HomeFetchedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool forceRefresh});
 }
 
 /// @nodoc
@@ -81,51 +105,76 @@ class __$$HomeFetchedImplCopyWithImpl<$Res>
   __$$HomeFetchedImplCopyWithImpl(
       _$HomeFetchedImpl _value, $Res Function(_$HomeFetchedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? forceRefresh = null,
+  }) {
+    return _then(_$HomeFetchedImpl(
+      forceRefresh: null == forceRefresh
+          ? _value.forceRefresh
+          : forceRefresh // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$HomeFetchedImpl implements HomeFetched {
-  const _$HomeFetchedImpl();
+  const _$HomeFetchedImpl({required this.forceRefresh});
+
+  @override
+  final bool forceRefresh;
 
   @override
   String toString() {
-    return 'HomeEvent.fetched()';
+    return 'HomeEvent.fetched(forceRefresh: $forceRefresh)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$HomeFetchedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$HomeFetchedImpl &&
+            (identical(other.forceRefresh, forceRefresh) ||
+                other.forceRefresh == forceRefresh));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, forceRefresh);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HomeFetchedImplCopyWith<_$HomeFetchedImpl> get copyWith =>
+      __$$HomeFetchedImplCopyWithImpl<_$HomeFetchedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() fetched,
+    required TResult Function(bool forceRefresh) fetched,
   }) {
-    return fetched();
+    return fetched(forceRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? fetched,
+    TResult? Function(bool forceRefresh)? fetched,
   }) {
-    return fetched?.call();
+    return fetched?.call(forceRefresh);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetched,
+    TResult Function(bool forceRefresh)? fetched,
     required TResult orElse(),
   }) {
     if (fetched != null) {
-      return fetched();
+      return fetched(forceRefresh);
     }
     return orElse();
   }
@@ -160,7 +209,15 @@ class _$HomeFetchedImpl implements HomeFetched {
 }
 
 abstract class HomeFetched implements HomeEvent {
-  const factory HomeFetched() = _$HomeFetchedImpl;
+  const factory HomeFetched({required final bool forceRefresh}) =
+      _$HomeFetchedImpl;
+
+  @override
+  bool get forceRefresh;
+  @override
+  @JsonKey(ignore: true)
+  _$$HomeFetchedImplCopyWith<_$HomeFetchedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

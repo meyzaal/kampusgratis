@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
           create: (context) => HomeBloc(
             userRepository: context.read<UserRepository>(),
             bannerRepository: context.read<BannerRepository>(),
-          )..add(const HomeEvent.fetched()),
+          )..add(const HomeEvent.fetched(forceRefresh: false)),
         ),
         BlocProvider(create: (context) => CarouselCubit()),
       ],

@@ -12,10 +12,21 @@ class MyStudyBloc extends Bloc<MyStudyEvent, MyStudyState> {
       : _myStudyRepository = myStudyRepository,
         super(const MyStudyState.initial()) {
     on<MyStudyFetched>((event, emit) async {
+      if (!event.forceRefresh) {
+        final studies = _myStudyRepository.studies;
+        if (studies != null) {
+          return emit(
+            MyStudyState.success(
+              ongoing: studies.ongoing,
+              completed: studies.completed,
+            ),
+          );
+        }
+      }
+
       emit(const MyStudyState.loading());
       try {
         final result = await _myStudyRepository.getStudies();
-        result.forEach(print);
         emit(
           MyStudyState.success(
             ongoing: result.ongoing,

@@ -110,22 +110,24 @@ const _$SessionTypeEnumMap = {
 
 _$ProgressImpl _$$ProgressImplFromJson(Map<String, dynamic> json) =>
     _$ProgressImpl(
-      status: $enumDecodeNullable(_$SessionStatusEnumMap, json['status']),
+      status: $enumDecodeNullable(_$ProgressStatusEnumMap, json['status']),
       type: $enumDecodeNullable(_$ProgressTypeEnumMap, json['type']),
       updatedAt: json['updated_at'] as String?,
     );
 
 Map<String, dynamic> _$$ProgressImplToJson(_$ProgressImpl instance) =>
     <String, dynamic>{
-      'status': _$SessionStatusEnumMap[instance.status],
+      'status': _$ProgressStatusEnumMap[instance.status],
       'type': _$ProgressTypeEnumMap[instance.type],
       'updated_at': instance.updatedAt,
     };
 
-const _$SessionStatusEnumMap = {
-  SessionStatus.locked: 'LOCKED',
-  SessionStatus.ongoing: 'ONGOING',
-  SessionStatus.pending: 'PENDING',
+const _$ProgressStatusEnumMap = {
+  ProgressStatus.locked: 'LOCKED',
+  ProgressStatus.ongoing: 'ONGOING',
+  ProgressStatus.pending: 'PENDING',
+  ProgressStatus.finished: 'FINISHED',
+  ProgressStatus.failed: 'FAILED',
 };
 
 const _$ProgressTypeEnumMap = {

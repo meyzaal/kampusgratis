@@ -14,7 +14,9 @@ class MyStudyCard extends StatelessWidget {
     return Card.filled(
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          SubjectSessionRoute(data.id, $extra: data.name).push<void>(context);
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -139,9 +141,8 @@ class _Progress extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
-    final indicatorColor = progress == 1
-        ? theme.extension<CustomColors>()?.sourceSuccess
-        : colors.primary;
+    final isCompleted = progress == 1;
+
     final titleWidget = Text(
       'Tingkat penyelesaian',
       style: TextStyle(
@@ -151,9 +152,16 @@ class _Progress extends StatelessWidget {
       ),
     );
     final indicatorWidget = LinearProgressIndicator(
-      valueColor: AlwaysStoppedAnimation(indicatorColor),
+      valueColor: AlwaysStoppedAnimation(
+        isCompleted
+            ? theme.extension<CustomColors>()?.sourceSuccess
+            : colors.primary,
+      ),
       value: progress,
-      backgroundColor: colors.outlineVariant,
+      backgroundColor: (isCompleted
+              ? theme.extension<CustomColors>()?.sourceSuccess
+              : colors.primary)
+          ?.withOpacity(0.2),
       borderRadius: BorderRadius.circular(8),
       minHeight: 8,
     );

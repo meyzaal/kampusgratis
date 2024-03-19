@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kampusgratis/bootcamp/bootcamp.dart';
+import 'package:kampusgratis/shared/shared.dart';
 
 class BootcampList extends StatefulWidget {
   const BootcampList({
@@ -27,8 +28,8 @@ class _BootcampListState extends State<BootcampList> {
         if (state.datas.isEmpty) {
           return const Center(
             child: Padding(
-              padding: EdgeInsets.all(16),
-              child: Text('Tidak ada data'),
+              padding: EdgeInsets.all(24),
+              child: EmptyDataWidget(),
             ),
           );
         }
@@ -45,9 +46,8 @@ class _BootcampListState extends State<BootcampList> {
               if (index >= state.datas.length) return const _BottomLoader();
               return BootcampCard(bootcamp: state.datas[index], index: index);
             },
-            itemCount: state.hasReachMax
-                ? state.datas.length
-                : state.datas.length + 1,
+            itemCount:
+                state.hasReachMax ? state.datas.length : state.datas.length + 1,
           ),
         );
       },

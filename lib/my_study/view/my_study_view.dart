@@ -39,8 +39,9 @@ class _Failure extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: ErrorStateWidget(
           message: message ?? 'Terjadi kesalahan (message-null).',
-          onRetry: () =>
-              context.read<MyStudyBloc>().add(const MyStudyEvent.fetched()),
+          onRetry: () => context
+              .read<MyStudyBloc>()
+              .add(const MyStudyEvent.fetched(forceRefresh: true)),
         ),
       ),
     );

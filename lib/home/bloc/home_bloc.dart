@@ -30,6 +30,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     HomeFetched event,
     Emitter<HomeState> emit,
   ) async {
+    if (!event.forceRefresh) {
+      // await Future<void>.delayed(const Duration(milliseconds: 500));
+      final localUser = _userRepository.currentUser;
+      final localBanners = _bannerRepository.banners;
+      if (localBanners != null && localUser != null) {
+        return emit(
+          state.copyWith(
+            user: localUser,
+            banners: localBanners,
+            status: HomeStatus.success,
+          ),
+        );
+      }
+    }
     emit(state.copyWith(status: HomeStatus.loading));
     try {
       final user = await _userRepository.getUser(forceRefresh: true);

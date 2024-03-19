@@ -122,9 +122,20 @@ class _AcceptedStatus extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       FilledButton(
-                        onPressed: () => const BootcampRoute()
-                            .push<void>(context)
-                            .then((value) => context.pop(true)),
+                        onPressed: () => BootcampRoute(
+                          $extra: BootcampExtra(
+                            () => context.read<AdministrationBloc>().add(
+                                  const AdministrationEvent.bootcampEnrolled(),
+                                ),
+                          ),
+                        ).push<void>(context).then(
+                              (_) => context.pop(
+                                context.select(
+                                  (AdministrationBloc bloc) =>
+                                      bloc.state.bootcampEnrolled,
+                                ),
+                              ),
+                            ),
                         child: const Text('Lihat bootcamp'),
                       ),
                     ],

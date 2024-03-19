@@ -10,9 +10,12 @@ class MyStudyRepository {
 
   final KgClient _kgClient;
 
+  List<MyStudy>? get studies => _studies;
+  List<MyStudy>? _studies;
+
   Future<List<MyStudy>> getStudies() async {
     final results = await _kgClient.getMyStudy();
-    return results
+    return _studies = results
         .map(
           (result) => MyStudy(
             id: result.id ?? '',
@@ -30,5 +33,49 @@ class MyStudyRepository {
           ),
         )
         .toList();
+  }
+
+  Future<SubjectSession> getSessions(String subjectId) async {
+    final result = await _kgClient.getSessions(subjectId);
+
+    final subject = Subject(
+      id: result.subject?.id ?? '',
+      name: result.subject?.name ?? '',
+      description: result.subject?.description ?? '',
+      thumbnail: result.subject?.thumbnail,
+    );
+    final overview = Overview(
+      subjectId: result.overview?.subjectId ?? '',
+      durationSeconds: result.overview?.durationSeconds ?? 0,
+      durationMinutes: result.overview?.durationMinutes ?? 0,
+      link: result.overview?.link,
+      moduleId: result.overview?.moduleId,
+      sessionId: result.overview?.sessionId,
+    );
+    final sessions = (result.sessions ?? [])
+        .map(
+          (session) => Session(
+            id: session.id ?? '',
+            title: session.title ?? '',
+            sessionNo: session.sessionNo ?? 0,
+            sessionType: session.sessionType ?? SessionType.regular,
+            isLocked: session.isLocked ?? true,
+            progress: (session.progress ?? [])
+                .map(
+                  (progress) => Progress(
+                    status: progress.status ?? ProgressStatus.locked,
+                    type: progress.type ?? ProgressType.module,
+                    updatedAt: progress.updatedAt ?? '',
+                  ),
+                )
+                .toList(),
+          ),
+        )
+        .toList();
+    return SubjectSession(
+      subject: subject,
+      overview: overview,
+      sessions: sessions,
+    );
   }
 }

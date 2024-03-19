@@ -11,8 +11,9 @@ class MyStudyList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator.adaptive(
-      onRefresh: () async =>
-          context.read<MyStudyBloc>().add(const MyStudyEvent.fetched()),
+      onRefresh: () async => context
+          .read<MyStudyBloc>()
+          .add(const MyStudyEvent.fetched(forceRefresh: true)),
       child: ListView.separated(
         itemBuilder: (context, index) => MyStudyCard(data: datas[index]),
         separatorBuilder: (context, index) => const SizedBox(height: 8),

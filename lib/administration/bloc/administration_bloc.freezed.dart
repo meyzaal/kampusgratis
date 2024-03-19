@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AdministrationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -45,6 +46,7 @@ mixin _$AdministrationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -72,6 +74,7 @@ mixin _$AdministrationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -100,6 +103,8 @@ mixin _$AdministrationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -141,6 +146,7 @@ mixin _$AdministrationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -169,6 +175,7 @@ mixin _$AdministrationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -214,6 +221,263 @@ class _$AdministrationEventCopyWithImpl<$Res, $Val extends AdministrationEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$AdministrationBootcampEnrolledImplCopyWith<$Res> {
+  factory _$$AdministrationBootcampEnrolledImplCopyWith(
+          _$AdministrationBootcampEnrolledImpl value,
+          $Res Function(_$AdministrationBootcampEnrolledImpl) then) =
+      __$$AdministrationBootcampEnrolledImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AdministrationBootcampEnrolledImplCopyWithImpl<$Res>
+    extends _$AdministrationEventCopyWithImpl<$Res,
+        _$AdministrationBootcampEnrolledImpl>
+    implements _$$AdministrationBootcampEnrolledImplCopyWith<$Res> {
+  __$$AdministrationBootcampEnrolledImplCopyWithImpl(
+      _$AdministrationBootcampEnrolledImpl _value,
+      $Res Function(_$AdministrationBootcampEnrolledImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AdministrationBootcampEnrolledImpl
+    implements AdministrationBootcampEnrolled {
+  const _$AdministrationBootcampEnrolledImpl();
+
+  @override
+  String toString() {
+    return 'AdministrationEvent.bootcampEnrolled()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AdministrationBootcampEnrolledImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
+    required TResult Function(AdministrationMode mode) modeChanged,
+    required TResult Function() fetched,
+    required TResult Function(String name) nameChanged,
+    required TResult Function(String nin) ninChanged,
+    required TResult Function(String gender) genderChanged,
+    required TResult Function(String phone) phoneChanged,
+    required TResult Function(String lastEducation) lastEducationChanged,
+    required TResult Function(String birthPlace) birthPlaceChanged,
+    required TResult Function(String birthDate) birthDateChanged,
+    required TResult Function(String address) addressChanged,
+    required TResult Function(Province province) provinceChanged,
+    required TResult Function(Regency regency) regencyChanged,
+    required TResult Function(District district) districtChanged,
+    required TResult Function(Village village) villageChanged,
+    required TResult Function(String zipCode) zipCodeChanged,
+    required TResult Function(String semester) semesterChanged,
+    required TResult Function(String nim) nimChanged,
+    required TResult Function(String university) universityChanged,
+    required TResult Function(String major) majorChanged,
+    required TResult Function() formSubmitted,
+    required TResult Function(String provinceId) regenciesFetched,
+    required TResult Function(String regencyId) districtsFetched,
+    required TResult Function(String districtId) villagesFetched,
+  }) {
+    return bootcampEnrolled();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
+    TResult? Function(AdministrationMode mode)? modeChanged,
+    TResult? Function()? fetched,
+    TResult? Function(String name)? nameChanged,
+    TResult? Function(String nin)? ninChanged,
+    TResult? Function(String gender)? genderChanged,
+    TResult? Function(String phone)? phoneChanged,
+    TResult? Function(String lastEducation)? lastEducationChanged,
+    TResult? Function(String birthPlace)? birthPlaceChanged,
+    TResult? Function(String birthDate)? birthDateChanged,
+    TResult? Function(String address)? addressChanged,
+    TResult? Function(Province province)? provinceChanged,
+    TResult? Function(Regency regency)? regencyChanged,
+    TResult? Function(District district)? districtChanged,
+    TResult? Function(Village village)? villageChanged,
+    TResult? Function(String zipCode)? zipCodeChanged,
+    TResult? Function(String semester)? semesterChanged,
+    TResult? Function(String nim)? nimChanged,
+    TResult? Function(String university)? universityChanged,
+    TResult? Function(String major)? majorChanged,
+    TResult? Function()? formSubmitted,
+    TResult? Function(String provinceId)? regenciesFetched,
+    TResult? Function(String regencyId)? districtsFetched,
+    TResult? Function(String districtId)? villagesFetched,
+  }) {
+    return bootcampEnrolled?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
+    TResult Function(AdministrationMode mode)? modeChanged,
+    TResult Function()? fetched,
+    TResult Function(String name)? nameChanged,
+    TResult Function(String nin)? ninChanged,
+    TResult Function(String gender)? genderChanged,
+    TResult Function(String phone)? phoneChanged,
+    TResult Function(String lastEducation)? lastEducationChanged,
+    TResult Function(String birthPlace)? birthPlaceChanged,
+    TResult Function(String birthDate)? birthDateChanged,
+    TResult Function(String address)? addressChanged,
+    TResult Function(Province province)? provinceChanged,
+    TResult Function(Regency regency)? regencyChanged,
+    TResult Function(District district)? districtChanged,
+    TResult Function(Village village)? villageChanged,
+    TResult Function(String zipCode)? zipCodeChanged,
+    TResult Function(String semester)? semesterChanged,
+    TResult Function(String nim)? nimChanged,
+    TResult Function(String university)? universityChanged,
+    TResult Function(String major)? majorChanged,
+    TResult Function()? formSubmitted,
+    TResult Function(String provinceId)? regenciesFetched,
+    TResult Function(String regencyId)? districtsFetched,
+    TResult Function(String districtId)? villagesFetched,
+    required TResult orElse(),
+  }) {
+    if (bootcampEnrolled != null) {
+      return bootcampEnrolled();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
+    required TResult Function(AdministrationModeChanged value) modeChanged,
+    required TResult Function(AdministrationFetched value) fetched,
+    required TResult Function(AdministrationNameChanged value) nameChanged,
+    required TResult Function(AdministrationNinChanged value) ninChanged,
+    required TResult Function(AdministrationGenderChanged value) genderChanged,
+    required TResult Function(AdministrationPhoneChanged value) phoneChanged,
+    required TResult Function(AdministrationLastEducationChanged value)
+        lastEducationChanged,
+    required TResult Function(AdministrationBirthPlaceChanged value)
+        birthPlaceChanged,
+    required TResult Function(AdministrationBirthDateChanged value)
+        birthDateChanged,
+    required TResult Function(AdministrationAddressChanged value)
+        addressChanged,
+    required TResult Function(AdministrationProvinceChanged value)
+        provinceChanged,
+    required TResult Function(AdministrationRegencyChanged value)
+        regencyChanged,
+    required TResult Function(AdministrationDistrictChanged value)
+        districtChanged,
+    required TResult Function(AdministrationVillageChanged value)
+        villageChanged,
+    required TResult Function(AdministrationZipCodeChanged value)
+        zipCodeChanged,
+    required TResult Function(AdministrationSemesterChanged value)
+        semesterChanged,
+    required TResult Function(AdministrationNimChanged value) nimChanged,
+    required TResult Function(AdministrationUniversityChanged value)
+        universityChanged,
+    required TResult Function(AdministrationMajorChanged value) majorChanged,
+    required TResult Function(AdministrationFormSubmitted value) formSubmitted,
+    required TResult Function(_AdministrationRegenciesFetched value)
+        regenciesFetched,
+    required TResult Function(_AdministrationDistrictsFetched value)
+        districtsFetched,
+    required TResult Function(_AdministrationVillagesFetched value)
+        villagesFetched,
+  }) {
+    return bootcampEnrolled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
+    TResult? Function(AdministrationModeChanged value)? modeChanged,
+    TResult? Function(AdministrationFetched value)? fetched,
+    TResult? Function(AdministrationNameChanged value)? nameChanged,
+    TResult? Function(AdministrationNinChanged value)? ninChanged,
+    TResult? Function(AdministrationGenderChanged value)? genderChanged,
+    TResult? Function(AdministrationPhoneChanged value)? phoneChanged,
+    TResult? Function(AdministrationLastEducationChanged value)?
+        lastEducationChanged,
+    TResult? Function(AdministrationBirthPlaceChanged value)? birthPlaceChanged,
+    TResult? Function(AdministrationBirthDateChanged value)? birthDateChanged,
+    TResult? Function(AdministrationAddressChanged value)? addressChanged,
+    TResult? Function(AdministrationProvinceChanged value)? provinceChanged,
+    TResult? Function(AdministrationRegencyChanged value)? regencyChanged,
+    TResult? Function(AdministrationDistrictChanged value)? districtChanged,
+    TResult? Function(AdministrationVillageChanged value)? villageChanged,
+    TResult? Function(AdministrationZipCodeChanged value)? zipCodeChanged,
+    TResult? Function(AdministrationSemesterChanged value)? semesterChanged,
+    TResult? Function(AdministrationNimChanged value)? nimChanged,
+    TResult? Function(AdministrationUniversityChanged value)? universityChanged,
+    TResult? Function(AdministrationMajorChanged value)? majorChanged,
+    TResult? Function(AdministrationFormSubmitted value)? formSubmitted,
+    TResult? Function(_AdministrationRegenciesFetched value)? regenciesFetched,
+    TResult? Function(_AdministrationDistrictsFetched value)? districtsFetched,
+    TResult? Function(_AdministrationVillagesFetched value)? villagesFetched,
+  }) {
+    return bootcampEnrolled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
+    TResult Function(AdministrationModeChanged value)? modeChanged,
+    TResult Function(AdministrationFetched value)? fetched,
+    TResult Function(AdministrationNameChanged value)? nameChanged,
+    TResult Function(AdministrationNinChanged value)? ninChanged,
+    TResult Function(AdministrationGenderChanged value)? genderChanged,
+    TResult Function(AdministrationPhoneChanged value)? phoneChanged,
+    TResult Function(AdministrationLastEducationChanged value)?
+        lastEducationChanged,
+    TResult Function(AdministrationBirthPlaceChanged value)? birthPlaceChanged,
+    TResult Function(AdministrationBirthDateChanged value)? birthDateChanged,
+    TResult Function(AdministrationAddressChanged value)? addressChanged,
+    TResult Function(AdministrationProvinceChanged value)? provinceChanged,
+    TResult Function(AdministrationRegencyChanged value)? regencyChanged,
+    TResult Function(AdministrationDistrictChanged value)? districtChanged,
+    TResult Function(AdministrationVillageChanged value)? villageChanged,
+    TResult Function(AdministrationZipCodeChanged value)? zipCodeChanged,
+    TResult Function(AdministrationSemesterChanged value)? semesterChanged,
+    TResult Function(AdministrationNimChanged value)? nimChanged,
+    TResult Function(AdministrationUniversityChanged value)? universityChanged,
+    TResult Function(AdministrationMajorChanged value)? majorChanged,
+    TResult Function(AdministrationFormSubmitted value)? formSubmitted,
+    TResult Function(_AdministrationRegenciesFetched value)? regenciesFetched,
+    TResult Function(_AdministrationDistrictsFetched value)? districtsFetched,
+    TResult Function(_AdministrationVillagesFetched value)? villagesFetched,
+    required TResult orElse(),
+  }) {
+    if (bootcampEnrolled != null) {
+      return bootcampEnrolled(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AdministrationBootcampEnrolled implements AdministrationEvent {
+  const factory AdministrationBootcampEnrolled() =
+      _$AdministrationBootcampEnrolledImpl;
 }
 
 /// @nodoc
@@ -284,6 +548,7 @@ class _$AdministrationModeChangedImpl implements AdministrationModeChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -314,6 +579,7 @@ class _$AdministrationModeChangedImpl implements AdministrationModeChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -344,6 +610,7 @@ class _$AdministrationModeChangedImpl implements AdministrationModeChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -378,6 +645,8 @@ class _$AdministrationModeChangedImpl implements AdministrationModeChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -422,6 +691,7 @@ class _$AdministrationModeChangedImpl implements AdministrationModeChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -453,6 +723,7 @@ class _$AdministrationModeChangedImpl implements AdministrationModeChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -536,6 +807,7 @@ class _$AdministrationFetchedImpl implements AdministrationFetched {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -566,6 +838,7 @@ class _$AdministrationFetchedImpl implements AdministrationFetched {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -596,6 +869,7 @@ class _$AdministrationFetchedImpl implements AdministrationFetched {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -630,6 +904,8 @@ class _$AdministrationFetchedImpl implements AdministrationFetched {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -674,6 +950,7 @@ class _$AdministrationFetchedImpl implements AdministrationFetched {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -705,6 +982,7 @@ class _$AdministrationFetchedImpl implements AdministrationFetched {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -810,6 +1088,7 @@ class _$AdministrationNameChangedImpl implements AdministrationNameChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -840,6 +1119,7 @@ class _$AdministrationNameChangedImpl implements AdministrationNameChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -870,6 +1150,7 @@ class _$AdministrationNameChangedImpl implements AdministrationNameChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -904,6 +1185,8 @@ class _$AdministrationNameChangedImpl implements AdministrationNameChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -948,6 +1231,7 @@ class _$AdministrationNameChangedImpl implements AdministrationNameChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -979,6 +1263,7 @@ class _$AdministrationNameChangedImpl implements AdministrationNameChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -1090,6 +1375,7 @@ class _$AdministrationNinChangedImpl implements AdministrationNinChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -1120,6 +1406,7 @@ class _$AdministrationNinChangedImpl implements AdministrationNinChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -1150,6 +1437,7 @@ class _$AdministrationNinChangedImpl implements AdministrationNinChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -1184,6 +1472,8 @@ class _$AdministrationNinChangedImpl implements AdministrationNinChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -1228,6 +1518,7 @@ class _$AdministrationNinChangedImpl implements AdministrationNinChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -1259,6 +1550,7 @@ class _$AdministrationNinChangedImpl implements AdministrationNinChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -1370,6 +1662,7 @@ class _$AdministrationGenderChangedImpl implements AdministrationGenderChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -1400,6 +1693,7 @@ class _$AdministrationGenderChangedImpl implements AdministrationGenderChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -1430,6 +1724,7 @@ class _$AdministrationGenderChangedImpl implements AdministrationGenderChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -1464,6 +1759,8 @@ class _$AdministrationGenderChangedImpl implements AdministrationGenderChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -1508,6 +1805,7 @@ class _$AdministrationGenderChangedImpl implements AdministrationGenderChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -1539,6 +1837,7 @@ class _$AdministrationGenderChangedImpl implements AdministrationGenderChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -1650,6 +1949,7 @@ class _$AdministrationPhoneChangedImpl implements AdministrationPhoneChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -1680,6 +1980,7 @@ class _$AdministrationPhoneChangedImpl implements AdministrationPhoneChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -1710,6 +2011,7 @@ class _$AdministrationPhoneChangedImpl implements AdministrationPhoneChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -1744,6 +2046,8 @@ class _$AdministrationPhoneChangedImpl implements AdministrationPhoneChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -1788,6 +2092,7 @@ class _$AdministrationPhoneChangedImpl implements AdministrationPhoneChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -1819,6 +2124,7 @@ class _$AdministrationPhoneChangedImpl implements AdministrationPhoneChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -1933,6 +2239,7 @@ class _$AdministrationLastEducationChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -1963,6 +2270,7 @@ class _$AdministrationLastEducationChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -1993,6 +2301,7 @@ class _$AdministrationLastEducationChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -2027,6 +2336,8 @@ class _$AdministrationLastEducationChangedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -2071,6 +2382,7 @@ class _$AdministrationLastEducationChangedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -2102,6 +2414,7 @@ class _$AdministrationLastEducationChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -2218,6 +2531,7 @@ class _$AdministrationBirthPlaceChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -2248,6 +2562,7 @@ class _$AdministrationBirthPlaceChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -2278,6 +2593,7 @@ class _$AdministrationBirthPlaceChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -2312,6 +2628,8 @@ class _$AdministrationBirthPlaceChangedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -2356,6 +2674,7 @@ class _$AdministrationBirthPlaceChangedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -2387,6 +2706,7 @@ class _$AdministrationBirthPlaceChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -2502,6 +2822,7 @@ class _$AdministrationBirthDateChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -2532,6 +2853,7 @@ class _$AdministrationBirthDateChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -2562,6 +2884,7 @@ class _$AdministrationBirthDateChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -2596,6 +2919,8 @@ class _$AdministrationBirthDateChangedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -2640,6 +2965,7 @@ class _$AdministrationBirthDateChangedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -2671,6 +2997,7 @@ class _$AdministrationBirthDateChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -2785,6 +3112,7 @@ class _$AdministrationAddressChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -2815,6 +3143,7 @@ class _$AdministrationAddressChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -2845,6 +3174,7 @@ class _$AdministrationAddressChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -2879,6 +3209,8 @@ class _$AdministrationAddressChangedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -2923,6 +3255,7 @@ class _$AdministrationAddressChangedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -2954,6 +3287,7 @@ class _$AdministrationAddressChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -3079,6 +3413,7 @@ class _$AdministrationProvinceChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -3109,6 +3444,7 @@ class _$AdministrationProvinceChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -3139,6 +3475,7 @@ class _$AdministrationProvinceChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -3173,6 +3510,8 @@ class _$AdministrationProvinceChangedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -3217,6 +3556,7 @@ class _$AdministrationProvinceChangedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -3248,6 +3588,7 @@ class _$AdministrationProvinceChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -3372,6 +3713,7 @@ class _$AdministrationRegencyChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -3402,6 +3744,7 @@ class _$AdministrationRegencyChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -3432,6 +3775,7 @@ class _$AdministrationRegencyChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -3466,6 +3810,8 @@ class _$AdministrationRegencyChangedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -3510,6 +3856,7 @@ class _$AdministrationRegencyChangedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -3541,6 +3888,7 @@ class _$AdministrationRegencyChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -3666,6 +4014,7 @@ class _$AdministrationDistrictChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -3696,6 +4045,7 @@ class _$AdministrationDistrictChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -3726,6 +4076,7 @@ class _$AdministrationDistrictChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -3760,6 +4111,8 @@ class _$AdministrationDistrictChangedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -3804,6 +4157,7 @@ class _$AdministrationDistrictChangedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -3835,6 +4189,7 @@ class _$AdministrationDistrictChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -3959,6 +4314,7 @@ class _$AdministrationVillageChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -3989,6 +4345,7 @@ class _$AdministrationVillageChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -4019,6 +4376,7 @@ class _$AdministrationVillageChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -4053,6 +4411,8 @@ class _$AdministrationVillageChangedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -4097,6 +4457,7 @@ class _$AdministrationVillageChangedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -4128,6 +4489,7 @@ class _$AdministrationVillageChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -4242,6 +4604,7 @@ class _$AdministrationZipCodeChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -4272,6 +4635,7 @@ class _$AdministrationZipCodeChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -4302,6 +4666,7 @@ class _$AdministrationZipCodeChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -4336,6 +4701,8 @@ class _$AdministrationZipCodeChangedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -4380,6 +4747,7 @@ class _$AdministrationZipCodeChangedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -4411,6 +4779,7 @@ class _$AdministrationZipCodeChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -4526,6 +4895,7 @@ class _$AdministrationSemesterChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -4556,6 +4926,7 @@ class _$AdministrationSemesterChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -4586,6 +4957,7 @@ class _$AdministrationSemesterChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -4620,6 +4992,8 @@ class _$AdministrationSemesterChangedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -4664,6 +5038,7 @@ class _$AdministrationSemesterChangedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -4695,6 +5070,7 @@ class _$AdministrationSemesterChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -4807,6 +5183,7 @@ class _$AdministrationNimChangedImpl implements AdministrationNimChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -4837,6 +5214,7 @@ class _$AdministrationNimChangedImpl implements AdministrationNimChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -4867,6 +5245,7 @@ class _$AdministrationNimChangedImpl implements AdministrationNimChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -4901,6 +5280,8 @@ class _$AdministrationNimChangedImpl implements AdministrationNimChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -4945,6 +5326,7 @@ class _$AdministrationNimChangedImpl implements AdministrationNimChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -4976,6 +5358,7 @@ class _$AdministrationNimChangedImpl implements AdministrationNimChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -5090,6 +5473,7 @@ class _$AdministrationUniversityChangedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -5120,6 +5504,7 @@ class _$AdministrationUniversityChangedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -5150,6 +5535,7 @@ class _$AdministrationUniversityChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -5184,6 +5570,8 @@ class _$AdministrationUniversityChangedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -5228,6 +5616,7 @@ class _$AdministrationUniversityChangedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -5259,6 +5648,7 @@ class _$AdministrationUniversityChangedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -5371,6 +5761,7 @@ class _$AdministrationMajorChangedImpl implements AdministrationMajorChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -5401,6 +5792,7 @@ class _$AdministrationMajorChangedImpl implements AdministrationMajorChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -5431,6 +5823,7 @@ class _$AdministrationMajorChangedImpl implements AdministrationMajorChanged {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -5465,6 +5858,8 @@ class _$AdministrationMajorChangedImpl implements AdministrationMajorChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -5509,6 +5904,7 @@ class _$AdministrationMajorChangedImpl implements AdministrationMajorChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -5540,6 +5936,7 @@ class _$AdministrationMajorChangedImpl implements AdministrationMajorChanged {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -5625,6 +6022,7 @@ class _$AdministrationFormSubmittedImpl implements AdministrationFormSubmitted {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -5655,6 +6053,7 @@ class _$AdministrationFormSubmittedImpl implements AdministrationFormSubmitted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -5685,6 +6084,7 @@ class _$AdministrationFormSubmittedImpl implements AdministrationFormSubmitted {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -5719,6 +6119,8 @@ class _$AdministrationFormSubmittedImpl implements AdministrationFormSubmitted {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -5763,6 +6165,7 @@ class _$AdministrationFormSubmittedImpl implements AdministrationFormSubmitted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -5794,6 +6197,7 @@ class _$AdministrationFormSubmittedImpl implements AdministrationFormSubmitted {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -5903,6 +6307,7 @@ class _$AdministrationRegenciesFetchedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -5933,6 +6338,7 @@ class _$AdministrationRegenciesFetchedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -5963,6 +6369,7 @@ class _$AdministrationRegenciesFetchedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -5997,6 +6404,8 @@ class _$AdministrationRegenciesFetchedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -6041,6 +6450,7 @@ class _$AdministrationRegenciesFetchedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -6072,6 +6482,7 @@ class _$AdministrationRegenciesFetchedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -6187,6 +6598,7 @@ class _$AdministrationDistrictsFetchedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -6217,6 +6629,7 @@ class _$AdministrationDistrictsFetchedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -6247,6 +6660,7 @@ class _$AdministrationDistrictsFetchedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -6281,6 +6695,8 @@ class _$AdministrationDistrictsFetchedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -6325,6 +6741,7 @@ class _$AdministrationDistrictsFetchedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -6356,6 +6773,7 @@ class _$AdministrationDistrictsFetchedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -6471,6 +6889,7 @@ class _$AdministrationVillagesFetchedImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() bootcampEnrolled,
     required TResult Function(AdministrationMode mode) modeChanged,
     required TResult Function() fetched,
     required TResult Function(String name) nameChanged,
@@ -6501,6 +6920,7 @@ class _$AdministrationVillagesFetchedImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? bootcampEnrolled,
     TResult? Function(AdministrationMode mode)? modeChanged,
     TResult? Function()? fetched,
     TResult? Function(String name)? nameChanged,
@@ -6531,6 +6951,7 @@ class _$AdministrationVillagesFetchedImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? bootcampEnrolled,
     TResult Function(AdministrationMode mode)? modeChanged,
     TResult Function()? fetched,
     TResult Function(String name)? nameChanged,
@@ -6565,6 +6986,8 @@ class _$AdministrationVillagesFetchedImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(AdministrationBootcampEnrolled value)
+        bootcampEnrolled,
     required TResult Function(AdministrationModeChanged value) modeChanged,
     required TResult Function(AdministrationFetched value) fetched,
     required TResult Function(AdministrationNameChanged value) nameChanged,
@@ -6609,6 +7032,7 @@ class _$AdministrationVillagesFetchedImpl
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult? Function(AdministrationModeChanged value)? modeChanged,
     TResult? Function(AdministrationFetched value)? fetched,
     TResult? Function(AdministrationNameChanged value)? nameChanged,
@@ -6640,6 +7064,7 @@ class _$AdministrationVillagesFetchedImpl
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(AdministrationBootcampEnrolled value)? bootcampEnrolled,
     TResult Function(AdministrationModeChanged value)? modeChanged,
     TResult Function(AdministrationFetched value)? fetched,
     TResult Function(AdministrationNameChanged value)? nameChanged,
@@ -6686,6 +7111,7 @@ abstract class _AdministrationVillagesFetched implements AdministrationEvent {
 
 /// @nodoc
 mixin _$AdministrationState {
+  bool get bootcampEnrolled => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
   AdministrationMode get administrationMode =>
       throw _privateConstructorUsedError;
@@ -6740,7 +7166,8 @@ abstract class $AdministrationStateCopyWith<$Res> {
       _$AdministrationStateCopyWithImpl<$Res, AdministrationState>;
   @useResult
   $Res call(
-      {bool isValid,
+      {bool bootcampEnrolled,
+      bool isValid,
       AdministrationMode administrationMode,
       AdministrationFetchStatus fetchAdministrationStatus,
       AdministrationFetchStatus fetchRegenciesStatus,
@@ -6789,6 +7216,7 @@ class _$AdministrationStateCopyWithImpl<$Res, $Val extends AdministrationState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? bootcampEnrolled = null,
     Object? isValid = null,
     Object? administrationMode = null,
     Object? fetchAdministrationStatus = null,
@@ -6822,6 +7250,10 @@ class _$AdministrationStateCopyWithImpl<$Res, $Val extends AdministrationState>
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
+      bootcampEnrolled: null == bootcampEnrolled
+          ? _value.bootcampEnrolled
+          : bootcampEnrolled // ignore: cast_nullable_to_non_nullable
+              as bool,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
@@ -6983,7 +7415,8 @@ abstract class _$$AdministrationStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isValid,
+      {bool bootcampEnrolled,
+      bool isValid,
       AdministrationMode administrationMode,
       AdministrationFetchStatus fetchAdministrationStatus,
       AdministrationFetchStatus fetchRegenciesStatus,
@@ -7032,6 +7465,7 @@ class __$$AdministrationStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? bootcampEnrolled = null,
     Object? isValid = null,
     Object? administrationMode = null,
     Object? fetchAdministrationStatus = null,
@@ -7065,6 +7499,10 @@ class __$$AdministrationStateImplCopyWithImpl<$Res>
     Object? message = freezed,
   }) {
     return _then(_$AdministrationStateImpl(
+      bootcampEnrolled: null == bootcampEnrolled
+          ? _value.bootcampEnrolled
+          : bootcampEnrolled // ignore: cast_nullable_to_non_nullable
+              as bool,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
@@ -7197,7 +7635,8 @@ class __$$AdministrationStateImplCopyWithImpl<$Res>
 
 class _$AdministrationStateImpl implements _AdministrationState {
   const _$AdministrationStateImpl(
-      {required this.isValid,
+      {required this.bootcampEnrolled,
+      required this.isValid,
       required this.administrationMode,
       required this.fetchAdministrationStatus,
       required this.fetchRegenciesStatus,
@@ -7233,6 +7672,8 @@ class _$AdministrationStateImpl implements _AdministrationState {
         _administrativeDistricts = administrativeDistricts,
         _administrativeVillages = administrativeVillages;
 
+  @override
+  final bool bootcampEnrolled;
   @override
   final bool isValid;
   @override
@@ -7326,7 +7767,7 @@ class _$AdministrationStateImpl implements _AdministrationState {
 
   @override
   String toString() {
-    return 'AdministrationState(isValid: $isValid, administrationMode: $administrationMode, fetchAdministrationStatus: $fetchAdministrationStatus, fetchRegenciesStatus: $fetchRegenciesStatus, fetchDistrictsStatus: $fetchDistrictsStatus, fetchVillagesStatus: $fetchVillagesStatus, submissionStatus: $submissionStatus, name: $name, nin: $nin, gender: $gender, phone: $phone, lastEducation: $lastEducation, birthPlace: $birthPlace, birthDate: $birthDate, address: $address, province: $province, regency: $regency, district: $district, village: $village, zipCode: $zipCode, administrativeProvincies: $administrativeProvincies, administrativeRegencies: $administrativeRegencies, administrativeDistricts: $administrativeDistricts, administrativeVillages: $administrativeVillages, semester: $semester, nim: $nim, university: $university, major: $major, administration: $administration, constants: $constants, message: $message)';
+    return 'AdministrationState(bootcampEnrolled: $bootcampEnrolled, isValid: $isValid, administrationMode: $administrationMode, fetchAdministrationStatus: $fetchAdministrationStatus, fetchRegenciesStatus: $fetchRegenciesStatus, fetchDistrictsStatus: $fetchDistrictsStatus, fetchVillagesStatus: $fetchVillagesStatus, submissionStatus: $submissionStatus, name: $name, nin: $nin, gender: $gender, phone: $phone, lastEducation: $lastEducation, birthPlace: $birthPlace, birthDate: $birthDate, address: $address, province: $province, regency: $regency, district: $district, village: $village, zipCode: $zipCode, administrativeProvincies: $administrativeProvincies, administrativeRegencies: $administrativeRegencies, administrativeDistricts: $administrativeDistricts, administrativeVillages: $administrativeVillages, semester: $semester, nim: $nim, university: $university, major: $major, administration: $administration, constants: $constants, message: $message)';
   }
 
   @override
@@ -7334,6 +7775,8 @@ class _$AdministrationStateImpl implements _AdministrationState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AdministrationStateImpl &&
+            (identical(other.bootcampEnrolled, bootcampEnrolled) ||
+                other.bootcampEnrolled == bootcampEnrolled) &&
             (identical(other.isValid, isValid) || other.isValid == isValid) &&
             (identical(other.administrationMode, administrationMode) ||
                 other.administrationMode == administrationMode) &&
@@ -7390,6 +7833,7 @@ class _$AdministrationStateImpl implements _AdministrationState {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
+        bootcampEnrolled,
         isValid,
         administrationMode,
         fetchAdministrationStatus,
@@ -7433,7 +7877,8 @@ class _$AdministrationStateImpl implements _AdministrationState {
 
 abstract class _AdministrationState implements AdministrationState {
   const factory _AdministrationState(
-      {required final bool isValid,
+      {required final bool bootcampEnrolled,
+      required final bool isValid,
       required final AdministrationMode administrationMode,
       required final AdministrationFetchStatus fetchAdministrationStatus,
       required final AdministrationFetchStatus fetchRegenciesStatus,
@@ -7465,6 +7910,8 @@ abstract class _AdministrationState implements AdministrationState {
       final Constants? constants,
       final String? message}) = _$AdministrationStateImpl;
 
+  @override
+  bool get bootcampEnrolled;
   @override
   bool get isValid;
   @override

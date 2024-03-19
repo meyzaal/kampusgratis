@@ -3,6 +3,7 @@ part of 'administration_bloc.dart';
 @freezed
 class AdministrationState with _$AdministrationState {
   const factory AdministrationState({
+    required bool bootcampEnrolled,
     required bool isValid,
     required AdministrationMode administrationMode,
     required AdministrationFetchStatus fetchAdministrationStatus,

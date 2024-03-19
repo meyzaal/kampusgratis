@@ -26,7 +26,7 @@ class MyStudyPage extends StatelessWidget {
         ),
         body: BlocProvider(
           create: (context) => MyStudyBloc(context.read<MyStudyRepository>())
-            ..add(const MyStudyEvent.fetched()),
+            ..add(const MyStudyEvent.fetched(forceRefresh: false)),
           child: PageStorage(bucket: _bucket, child: const MyStudyView()),
         ),
       ),

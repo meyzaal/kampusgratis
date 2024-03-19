@@ -69,7 +69,7 @@ class Session with _$Session {
 @freezed
 class Progress with _$Progress {
   const factory Progress({
-    @JsonKey(name: 'status') SessionStatus? status,
+    @JsonKey(name: 'status') ProgressStatus? status,
     @JsonKey(name: 'type') ProgressType? type,
     @JsonKey(name: 'updated_at') String? updatedAt,
   }) = _Progress;
@@ -78,13 +78,17 @@ class Progress with _$Progress {
       _$ProgressFromJson(json);
 }
 
-enum SessionStatus {
+enum ProgressStatus {
   @JsonValue('LOCKED')
   locked,
   @JsonValue('ONGOING')
   ongoing,
   @JsonValue('PENDING')
-  pending
+  pending,
+  @JsonValue('FINISHED')
+  finished,
+  @JsonValue('FAILED')
+  failed,
 }
 
 enum ProgressType {

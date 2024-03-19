@@ -3,6 +3,7 @@ export 'components/avatar.dart';
 export 'components/back_button.dart';
 export 'components/carousel_indicator.dart';
 export 'components/dialog.dart';
+export 'components/empty.dart';
 export 'components/error.dart';
 export 'components/input_field.dart';
 export 'components/optional.dart';

@@ -80,11 +80,13 @@ class _Action extends StatelessWidget {
           if (value == null) return;
           switch (value) {
             case _Options.bootcamp:
-              const BootcampRoute().push<void>(context).then(
-                    (_) => context
-                        .read<MyStudyBloc>()
-                        .add(const MyStudyEvent.fetched()),
-                  );
+              BootcampRoute(
+                $extra: BootcampExtra(
+                  () => context
+                      .read<MyStudyBloc>()
+                      .add(const MyStudyEvent.fetched(forceRefresh: true)),
+                ),
+              ).push<void>(context);
             case _Options.studyPlan:
             // TODO(meyzaal): Handle this case.
           }

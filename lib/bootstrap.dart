@@ -71,8 +71,8 @@ Future<void> bootstrap({required KgFlavor flavor}) async {
         myStudyRepository: myStudyRepository,
         userRepository: userRepository,
       );
-
       WidgetsFlutterBinding.ensureInitialized();
+
       runApp(app);
     },
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),

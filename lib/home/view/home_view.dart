@@ -23,7 +23,9 @@ class HomeView extends StatelessWidget {
           if (role != null && role.isGuest && needRedirect) {
             const AdministrationRoute().push<bool>(context).then((updated) {
               if (updated != true) return;
-              context.read<HomeBloc>().add(const HomeEvent.fetched());
+              context
+                  .read<HomeBloc>()
+                  .add(const HomeEvent.fetched(forceRefresh: true));
             });
           }
         },
@@ -37,8 +39,9 @@ class HomeView extends StatelessWidget {
               return _Failure(message: state.message);
             case HomeStatus.success:
               return RefreshIndicator.adaptive(
-                onRefresh: () async =>
-                    context.read<HomeBloc>().add(const HomeEvent.fetched()),
+                onRefresh: () async => context
+                    .read<HomeBloc>()
+                    .add(const HomeEvent.fetched(forceRefresh: true)),
                 child: CustomScrollView(
                   slivers: [
                     if (state.banners.isNotEmpty)
@@ -66,8 +69,9 @@ class _Failure extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: ErrorStateWidget(
           message: message ?? 'Terjadi kesalahan (message-null).',
-          onRetry: () =>
-              context.read<HomeBloc>().add(const HomeEvent.fetched()),
+          onRetry: () => context
+              .read<HomeBloc>()
+              .add(const HomeEvent.fetched(forceRefresh: true)),
         ),
       ),
     );

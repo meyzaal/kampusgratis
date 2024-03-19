@@ -67,7 +67,9 @@ class HomeFeatures extends StatelessWidget {
   void _toAdministration(BuildContext context) =>
       const AdministrationRoute().push<bool>(context).then((updated) {
         if (updated != true) return;
-        context.read<HomeBloc>().add(const HomeEvent.fetched());
+        context
+            .read<HomeBloc>()
+            .add(const HomeEvent.fetched(forceRefresh: true));
       });
 
   void _toBootcamp(BuildContext context) =>

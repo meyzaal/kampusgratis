@@ -6,10 +6,13 @@ class BannerRepository {
 
   final KgClient _kgClient;
 
+  List<Banner>? get banners => _banners;
+  List<Banner>? _banners;
+
   Future<List<Banner>> getBanner() async {
     final result = await _kgClient.getBanner();
 
-    return result
+    return _banners = result
         .map((banner) => Banner(id: banner.id ?? '', url: banner.url))
         .toList();
   }

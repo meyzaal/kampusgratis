@@ -1199,7 +1199,7 @@ Progress _$ProgressFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Progress {
   @JsonKey(name: 'status')
-  SessionStatus? get status => throw _privateConstructorUsedError;
+  ProgressStatus? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'type')
   ProgressType? get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
@@ -1217,7 +1217,7 @@ abstract class $ProgressCopyWith<$Res> {
       _$ProgressCopyWithImpl<$Res, Progress>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') SessionStatus? status,
+      {@JsonKey(name: 'status') ProgressStatus? status,
       @JsonKey(name: 'type') ProgressType? type,
       @JsonKey(name: 'updated_at') String? updatedAt});
 }
@@ -1243,7 +1243,7 @@ class _$ProgressCopyWithImpl<$Res, $Val extends Progress>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as SessionStatus?,
+              as ProgressStatus?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1265,7 +1265,7 @@ abstract class _$$ProgressImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'status') SessionStatus? status,
+      {@JsonKey(name: 'status') ProgressStatus? status,
       @JsonKey(name: 'type') ProgressType? type,
       @JsonKey(name: 'updated_at') String? updatedAt});
 }
@@ -1289,7 +1289,7 @@ class __$$ProgressImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as SessionStatus?,
+              as ProgressStatus?,
       type: freezed == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1315,7 +1315,7 @@ class _$ProgressImpl implements _Progress {
 
   @override
   @JsonKey(name: 'status')
-  final SessionStatus? status;
+  final ProgressStatus? status;
   @override
   @JsonKey(name: 'type')
   final ProgressType? type;
@@ -1359,7 +1359,7 @@ class _$ProgressImpl implements _Progress {
 
 abstract class _Progress implements Progress {
   const factory _Progress(
-      {@JsonKey(name: 'status') final SessionStatus? status,
+      {@JsonKey(name: 'status') final ProgressStatus? status,
       @JsonKey(name: 'type') final ProgressType? type,
       @JsonKey(name: 'updated_at') final String? updatedAt}) = _$ProgressImpl;
 
@@ -1368,7 +1368,7 @@ abstract class _Progress implements Progress {
 
   @override
   @JsonKey(name: 'status')
-  SessionStatus? get status;
+  ProgressStatus? get status;
   @override
   @JsonKey(name: 'type')
   ProgressType? get type;
