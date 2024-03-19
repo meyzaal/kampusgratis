@@ -503,16 +503,19 @@ class AuthenticationRepository {
   }
 }
 
-/// Extension on the [Status] enum to provide convenient methods for checking
-/// authentication status.
+/// Extension on the [AuthenticationStatus] enum to provide convenient methods 
+/// for checking authentication status.
 ///
 /// This extension adds three boolean getters:
-/// - [isInitial]: Returns `true` if the status is [Status.initial], indicating
-///   the initial authentication state.
-/// - [isAuthenticated]: Returns `true` if the status is [Status.authenticated],
-///   indicating a successful authentication.
+/// - [isInitial]: Returns `true` if the status is 
+///   [AuthenticationStatus.initial], indicating the initial authentication 
+///   state.
+/// - [isAuthenticated]: Returns `true` if the status is 
+///   [AuthenticationStatus.authenticated], indicating a successful 
+///   authentication.
 /// - [isUnauthenticated]: Returns `true` if the status is
-///   [Status.unauthenticated], indicating an unauthenticated state.
+///   [AuthenticationStatus.unauthenticated], indicating an unauthenticated 
+///   state.
 extension AuthenticationStatusX on AuthenticationStatus {
   /// Returns `true` if the status is [AuthenticationStatus.initial].
   bool get isInitial => this == AuthenticationStatus.initial;

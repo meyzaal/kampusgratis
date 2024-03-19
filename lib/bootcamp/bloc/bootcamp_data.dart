@@ -8,4 +8,3 @@ class BootcampData with _$BootcampData {
     String? message,
   }) = _BootcampData;
 }
-

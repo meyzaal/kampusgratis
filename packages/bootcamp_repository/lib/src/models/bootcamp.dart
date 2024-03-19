@@ -24,5 +24,3 @@ class Bootcamp with _$Bootcamp {
     String? startAt,
   }) = _Bootcamp;
 }
-
-

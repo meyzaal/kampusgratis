@@ -191,5 +191,3 @@ class Village with _$Village {
   factory Village.fromJson(Map<String, Object?> json) =>
       _$VillageFromJson(json);
 }
-
-

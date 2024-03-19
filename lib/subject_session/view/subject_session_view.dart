@@ -34,7 +34,7 @@ class SubjectSessionView extends StatelessWidget {
                       data: state.data,
                       subjectId: state.subjectId,
                     ),
-                }
+                },
               ],
             ),
           ),
