@@ -95,7 +95,7 @@ BEGIN
             VALUE "InternalName", "kampusgratis" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.example.verygoodcore.kampusgratis. All rights reserved." "\0"
             VALUE "OriginalFilename", "kampusgratis.exe" "\0"
-            VALUE "ProductName", "Kampusgratis" "\0"
+            VALUE "ProductName", "KampusGratis.id" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

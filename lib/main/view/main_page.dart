@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kampusgratis/app/app.dart';
+import 'package:kampusgratis/shared/shared.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatelessWidget with NavigationMiddleware {
   const MainPage({required this.child, super.key});
 
   final Widget child;
@@ -61,7 +62,7 @@ class MainPage extends StatelessWidget {
             case 0:
               const HomeRoute().go(context);
             case 1:
-              const MyStudyRoute().go(context);
+              checkRole(context, onNavigate: const MyStudyRoute().go);
             case 2:
               const AssignmentRoute().go(context);
             case 3:

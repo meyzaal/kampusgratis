@@ -6,7 +6,7 @@ import 'package:kampusgratis/home/home.dart';
 import 'package:kampusgratis/shared/shared.dart';
 import 'package:user_repository/user_repository.dart';
 
-class HomeFeatures extends StatelessWidget {
+class HomeFeatures extends StatelessWidget with NavigationMiddleware {
   const HomeFeatures({super.key, this.user});
 
   final User? user;
@@ -19,7 +19,9 @@ class HomeFeatures extends StatelessWidget {
             FeatureItem.bootcamp(
               onTap: () => _toBootcamp(context),
             ),
-            const FeatureItem.myStudy(),
+            FeatureItem.myStudy(
+              onTap: () => _toMyStudy(context),
+            ),
             const FeatureItem.creditConversion(),
           ]
         : [
@@ -49,7 +51,7 @@ class HomeFeatures extends StatelessWidget {
                   case KgFeature.studyPlan:
                   // TODO(meyzaal): Handle this case.
                   case KgFeature.myStudy:
-                  // TODO(meyzaal): Handle this case.
+                    _toMyStudy(context);
                   case KgFeature.assignment:
                   // TODO(meyzaal): Handle this case.
                   case KgFeature.gradesAndCertificates:
@@ -64,14 +66,20 @@ class HomeFeatures extends StatelessWidget {
     );
   }
 
+  void _refresh(BuildContext context) =>
+      context.read<HomeBloc>().add(const HomeEvent.fetched(forceRefresh: true));
+
   void _toAdministration(BuildContext context) =>
       const AdministrationRoute().push<bool>(context).then((updated) {
         if (updated != true) return;
-        context
-            .read<HomeBloc>()
-            .add(const HomeEvent.fetched(forceRefresh: true));
+        _refresh(context);
       });
 
-  void _toBootcamp(BuildContext context) =>
-      const BootcampRoute().push<void>(context);
+  void _toBootcamp(BuildContext context) => const BootcampRoute().push;
+
+  void _toMyStudy(BuildContext context) => checkRole(
+        context,
+        onNavigate: const MyStudyRoute().go,
+        onAdministrationAccepted: _refresh,
+      );
 }

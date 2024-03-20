@@ -46,7 +46,7 @@ class HomeView extends StatelessWidget {
                   slivers: [
                     if (state.banners.isNotEmpty)
                       HomeBannerCarousel(banners: state.banners),
-                    const HomeFeatures(),
+                    HomeFeatures(user: state.user),
                   ],
                 ),
               );
