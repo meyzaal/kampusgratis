@@ -1068,7 +1068,7 @@ class KgClient {
 //  ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝
 //
 
-  Future<Result<List<Subject>>> getSubjects({
+  Future<Result<List<SpSubject>>> getSubjects({
     int? credit,
     String? keyword,
     int? level,
@@ -1095,10 +1095,10 @@ class KgClient {
       );
 
       final result =
-          Result<List<Subject>>.fromJson(response.data as JSON, (json) {
+          Result<List<SpSubject>>.fromJson(response.data as JSON, (json) {
         var datas = <dynamic>[];
         if (json is List) datas = json;
-        return datas.map((e) => Subject.fromJson(e as JSON? ?? {})).toList();
+        return datas.map((e) => SpSubject.fromJson(e as JSON? ?? {})).toList();
       });
 
       return result;
@@ -1173,6 +1173,33 @@ class KgClient {
         );
       }
       return subjectSession;
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
+  Future<ModuleDetails> getModuleDetails({
+    required String subjectId,
+    required String sessionId,
+    required String moduleId,
+  }) async {
+    try {
+      final response = await _httpClient.get<dynamic>(
+        '/v2/my-study/subjects/$subjectId/sessions/$sessionId/modules/$moduleId',
+      );
+
+      final result =
+          Result<ModuleDetails>.fromJson(response.data as JSON, (json) {
+        return ModuleDetails.fromJson(json as JSON? ?? {});
+      });
+
+      final moduleDetails = result.data;
+      if (moduleDetails == null) {
+        throw ParsingFailedException(
+          'Gagal mendapatkan data respon (data-null).',
+        );
+      }
+      return moduleDetails;
     } catch (e) {
       throw _getException(e);
     }

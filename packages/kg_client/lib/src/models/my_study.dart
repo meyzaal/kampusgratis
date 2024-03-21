@@ -3,6 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'my_study.freezed.dart';
 part 'my_study.g.dart';
 
+// LEARNING PROGRESS
+
 @freezed
 class MyStudy with _$MyStudy {
   const factory MyStudy({
@@ -24,10 +26,12 @@ class MyStudy with _$MyStudy {
       _$MyStudyFromJson(json);
 }
 
+// SUBJECT SESSION
+
 @freezed
 class SubjectSession with _$SubjectSession {
   const factory SubjectSession({
-    @JsonKey(name: 'subject') Subject? subject,
+    @JsonKey(name: 'subject') MsSubject? subject,
     @JsonKey(name: 'overview') Overview? overview,
     @JsonKey(name: 'sessions') List<Session>? sessions,
   }) = _SubjectSession;
@@ -114,14 +118,88 @@ enum SessionType {
 }
 
 @freezed
-class Subject with _$Subject {
-  const factory Subject({
+class MsSubject with _$MsSubject {
+  const factory MsSubject({
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'thumbnail') String? thumbnail,
-  }) = _Subject;
+  }) = _MsSubject;
 
-  factory Subject.fromJson(Map<String, dynamic> json) =>
-      _$SubjectFromJson(json);
+  factory MsSubject.fromJson(Map<String, dynamic> json) =>
+      _$MsSubjectFromJson(json);
+}
+
+// MODULE DETAILS
+
+@freezed
+class ModuleDetails with _$ModuleDetails {
+  const factory ModuleDetails({
+    @JsonKey(name: 'detail') Detail? detail,
+    @JsonKey(name: 'module') Module? module,
+  }) = _ModuleDetails;
+
+  factory ModuleDetails.fromJson(Map<String, dynamic> json) =>
+      _$ModuleDetailsFromJson(json);
+}
+
+@freezed
+class Detail with _$Detail {
+  const factory Detail({
+    @JsonKey(name: 'subject_id') String? subjectId,
+    @JsonKey(name: 'subject_name') String? subjectName,
+    @JsonKey(name: 'session_id') String? sessionId,
+    @JsonKey(name: 'session_no') int? sessionNo,
+    @JsonKey(name: 'session_type') String? sessionType,
+  }) = _Detail;
+
+  factory Detail.fromJson(Map<String, dynamic> json) => _$DetailFromJson(json);
+}
+
+@freezed
+class Module with _$Module {
+  const factory Module({
+    @JsonKey(name: 'id') String? id,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'is_all_video_seen') bool? isAllVideoSeen,
+    @JsonKey(name: 'videos') List<ModuleContent>? videos,
+    @JsonKey(name: 'documents') List<ModuleDocument>? documents,
+    @JsonKey(name: 'journals') List<ModuleContent>? journals,
+    @JsonKey(name: 'articles') List<ModuleContent>? articles,
+    @JsonKey(name: 'status') String? status,
+  }) = _Module;
+
+  factory Module.fromJson(Map<String, dynamic> json) => _$ModuleFromJson(json);
+}
+
+@freezed
+class ModuleContent with _$ModuleContent {
+  const factory ModuleContent({
+    @JsonKey(name: 'id') String? id,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'content') String? content,
+    @JsonKey(name: 'url') String? url,
+    @JsonKey(name: 'module_id') String? moduleId,
+    @JsonKey(name: 'duration_in_seconds') int? durationInSeconds,
+    @JsonKey(name: 'description') String? description,
+  }) = _ModuleContent;
+
+  factory ModuleContent.fromJson(Map<String, dynamic> json) =>
+      _$ModuleContentFromJson(json);
+}
+
+@freezed
+class ModuleDocument with _$ModuleDocument {
+  const factory ModuleDocument({
+    @JsonKey(name: 'id') String? id,
+    @JsonKey(name: 'document_id') dynamic documentId,
+    @JsonKey(name: 'document_file') String? documentFile,
+    @JsonKey(name: 'module_id') String? moduleId,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'duration_in_seconds') int? durationInSeconds,
+  }) = _ModuleDocument;
+
+  factory ModuleDocument.fromJson(Map<String, dynamic> json) =>
+      _$ModuleDocumentFromJson(json);
 }

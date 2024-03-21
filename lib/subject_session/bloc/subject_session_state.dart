@@ -21,4 +21,3 @@ extension SubjectSessionStatusX on SubjectSessionStatus {
   bool get isSuccess => this == SubjectSessionStatus.success;
 }
 
-extension SubjectSessionStateX on SubjectSessionState {}

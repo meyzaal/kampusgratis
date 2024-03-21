@@ -63,14 +63,15 @@ class _Success extends StatelessWidget {
     final moduleId = overview?.moduleId; // overview widget
 
     final items = [
-      if (subjectId != null && sessionId != null && moduleId != null)
-        SubjectSessionOverview(
-          subjectId: subjectId,
-          sessionId: sessionId,
-          moduleId: moduleId,
-          durationSeconds: overview?.durationSeconds,
-          link: overview?.link,
-        ),
+      if (overview != null)
+        if (overview.isNotEmpty)
+          SubjectSessionOverview(
+            subjectId: subjectId!,
+            sessionId: sessionId!,
+            moduleId: moduleId!,
+            durationSeconds: overview.durationSeconds,
+            link: overview.link,
+          ),
       ...data!.sessions.map(
         (session) => SubjectSessionTile(
           isLocked: session.isLocked,

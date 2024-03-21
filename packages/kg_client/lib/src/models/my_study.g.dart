@@ -42,7 +42,7 @@ _$SubjectSessionImpl _$$SubjectSessionImplFromJson(Map<String, dynamic> json) =>
     _$SubjectSessionImpl(
       subject: json['subject'] == null
           ? null
-          : Subject.fromJson(json['subject'] as Map<String, dynamic>),
+          : MsSubject.fromJson(json['subject'] as Map<String, dynamic>),
       overview: json['overview'] == null
           ? null
           : Overview.fromJson(json['overview'] as Map<String, dynamic>),
@@ -138,18 +138,127 @@ const _$ProgressTypeEnumMap = {
   ProgressType.reflection: 'REFLECTION',
 };
 
-_$SubjectImpl _$$SubjectImplFromJson(Map<String, dynamic> json) =>
-    _$SubjectImpl(
+_$MsSubjectImpl _$$MsSubjectImplFromJson(Map<String, dynamic> json) =>
+    _$MsSubjectImpl(
       id: json['id'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
       thumbnail: json['thumbnail'] as String?,
     );
 
-Map<String, dynamic> _$$SubjectImplToJson(_$SubjectImpl instance) =>
+Map<String, dynamic> _$$MsSubjectImplToJson(_$MsSubjectImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
       'thumbnail': instance.thumbnail,
+    };
+
+_$ModuleDetailsImpl _$$ModuleDetailsImplFromJson(Map<String, dynamic> json) =>
+    _$ModuleDetailsImpl(
+      detail: json['detail'] == null
+          ? null
+          : Detail.fromJson(json['detail'] as Map<String, dynamic>),
+      module: json['module'] == null
+          ? null
+          : Module.fromJson(json['module'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$ModuleDetailsImplToJson(_$ModuleDetailsImpl instance) =>
+    <String, dynamic>{
+      'detail': instance.detail,
+      'module': instance.module,
+    };
+
+_$DetailImpl _$$DetailImplFromJson(Map<String, dynamic> json) => _$DetailImpl(
+      subjectId: json['subject_id'] as String?,
+      subjectName: json['subject_name'] as String?,
+      sessionId: json['session_id'] as String?,
+      sessionNo: json['session_no'] as int?,
+      sessionType: json['session_type'] as String?,
+    );
+
+Map<String, dynamic> _$$DetailImplToJson(_$DetailImpl instance) =>
+    <String, dynamic>{
+      'subject_id': instance.subjectId,
+      'subject_name': instance.subjectName,
+      'session_id': instance.sessionId,
+      'session_no': instance.sessionNo,
+      'session_type': instance.sessionType,
+    };
+
+_$ModuleImpl _$$ModuleImplFromJson(Map<String, dynamic> json) => _$ModuleImpl(
+      id: json['id'] as String?,
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      isAllVideoSeen: json['is_all_video_seen'] as bool?,
+      videos: (json['videos'] as List<dynamic>?)
+          ?.map((e) => ModuleContent.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      documents: (json['documents'] as List<dynamic>?)
+          ?.map((e) => ModuleDocument.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      journals: (json['journals'] as List<dynamic>?)
+          ?.map((e) => ModuleContent.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      articles: (json['articles'] as List<dynamic>?)
+          ?.map((e) => ModuleContent.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      status: json['status'] as String?,
+    );
+
+Map<String, dynamic> _$$ModuleImplToJson(_$ModuleImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'description': instance.description,
+      'is_all_video_seen': instance.isAllVideoSeen,
+      'videos': instance.videos,
+      'documents': instance.documents,
+      'journals': instance.journals,
+      'articles': instance.articles,
+      'status': instance.status,
+    };
+
+_$ModuleContentImpl _$$ModuleContentImplFromJson(Map<String, dynamic> json) =>
+    _$ModuleContentImpl(
+      id: json['id'] as String?,
+      title: json['title'] as String?,
+      content: json['content'] as String?,
+      url: json['url'] as String?,
+      moduleId: json['module_id'] as String?,
+      durationInSeconds: json['duration_in_seconds'] as int?,
+      description: json['description'] as String?,
+    );
+
+Map<String, dynamic> _$$ModuleContentImplToJson(_$ModuleContentImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'content': instance.content,
+      'url': instance.url,
+      'module_id': instance.moduleId,
+      'duration_in_seconds': instance.durationInSeconds,
+      'description': instance.description,
+    };
+
+_$ModuleDocumentImpl _$$ModuleDocumentImplFromJson(Map<String, dynamic> json) =>
+    _$ModuleDocumentImpl(
+      id: json['id'] as String?,
+      documentId: json['document_id'],
+      documentFile: json['document_file'] as String?,
+      moduleId: json['module_id'] as String?,
+      title: json['title'] as String?,
+      durationInSeconds: json['duration_in_seconds'] as int?,
+    );
+
+Map<String, dynamic> _$$ModuleDocumentImplToJson(
+        _$ModuleDocumentImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'document_id': instance.documentId,
+      'document_file': instance.documentFile,
+      'module_id': instance.moduleId,
+      'title': instance.title,
+      'duration_in_seconds': instance.durationInSeconds,
     };

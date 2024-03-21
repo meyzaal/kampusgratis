@@ -1,13 +1,13 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'subject.freezed.dart';
-part 'subject.g.dart';
+part 'study_plan.freezed.dart';
+part 'study_plan.g.dart';
 
 enum SubjectType { group, individual }
 
 @freezed
-class Subject with _$Subject {
-  const factory Subject({
+class SpSubject with _$SpSubject {
+  const factory SpSubject({
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'description') String? description,
@@ -25,10 +25,10 @@ class Subject with _$Subject {
     @JsonKey(name: 'start_at') String? startAt,
     @JsonKey(name: 'major_id') String? majorId,
     @JsonKey(name: 'major_name') String? majorName,
-  }) = _Subject;
+  }) = _SpSubject;
 
-  factory Subject.fromJson(Map<String, Object?> json) =>
-      _$SubjectFromJson(json);
+  factory SpSubject.fromJson(Map<String, Object?> json) =>
+      _$SpSubjectFromJson(json);
 }
 
 @freezed

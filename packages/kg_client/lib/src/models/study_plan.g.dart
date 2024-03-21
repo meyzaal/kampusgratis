@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'subject.dart';
+part of 'study_plan.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SubjectImpl _$$SubjectImplFromJson(Map<String, dynamic> json) =>
-    _$SubjectImpl(
+_$SpSubjectImpl _$$SpSubjectImplFromJson(Map<String, dynamic> json) =>
+    _$SpSubjectImpl(
       id: json['id'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
@@ -27,7 +27,7 @@ _$SubjectImpl _$$SubjectImplFromJson(Map<String, dynamic> json) =>
       majorName: json['major_name'] as String?,
     );
 
-Map<String, dynamic> _$$SubjectImplToJson(_$SubjectImpl instance) =>
+Map<String, dynamic> _$$SpSubjectImplToJson(_$SpSubjectImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

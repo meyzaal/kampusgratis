@@ -22,4 +22,6 @@ extension OverviewX on Overview {
         durationSeconds == 0 ||
         durationMinutes == 0;
   }
+
+  bool get isNotEmpty => !isEmpty;
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'subject.dart';
+part of 'study_plan.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Subject _$SubjectFromJson(Map<String, dynamic> json) {
-  return _Subject.fromJson(json);
+SpSubject _$SpSubjectFromJson(Map<String, dynamic> json) {
+  return _SpSubject.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Subject {
+mixin _$SpSubject {
   @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
@@ -57,13 +57,14 @@ mixin _$Subject {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SubjectCopyWith<Subject> get copyWith => throw _privateConstructorUsedError;
+  $SpSubjectCopyWith<SpSubject> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SubjectCopyWith<$Res> {
-  factory $SubjectCopyWith(Subject value, $Res Function(Subject) then) =
-      _$SubjectCopyWithImpl<$Res, Subject>;
+abstract class $SpSubjectCopyWith<$Res> {
+  factory $SpSubjectCopyWith(SpSubject value, $Res Function(SpSubject) then) =
+      _$SpSubjectCopyWithImpl<$Res, SpSubject>;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
@@ -86,9 +87,9 @@ abstract class $SubjectCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SubjectCopyWithImpl<$Res, $Val extends Subject>
-    implements $SubjectCopyWith<$Res> {
-  _$SubjectCopyWithImpl(this._value, this._then);
+class _$SpSubjectCopyWithImpl<$Res, $Val extends SpSubject>
+    implements $SpSubjectCopyWith<$Res> {
+  _$SpSubjectCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -190,10 +191,11 @@ class _$SubjectCopyWithImpl<$Res, $Val extends Subject>
 }
 
 /// @nodoc
-abstract class _$$SubjectImplCopyWith<$Res> implements $SubjectCopyWith<$Res> {
-  factory _$$SubjectImplCopyWith(
-          _$SubjectImpl value, $Res Function(_$SubjectImpl) then) =
-      __$$SubjectImplCopyWithImpl<$Res>;
+abstract class _$$SpSubjectImplCopyWith<$Res>
+    implements $SpSubjectCopyWith<$Res> {
+  factory _$$SpSubjectImplCopyWith(
+          _$SpSubjectImpl value, $Res Function(_$SpSubjectImpl) then) =
+      __$$SpSubjectImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -217,11 +219,11 @@ abstract class _$$SubjectImplCopyWith<$Res> implements $SubjectCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SubjectImplCopyWithImpl<$Res>
-    extends _$SubjectCopyWithImpl<$Res, _$SubjectImpl>
-    implements _$$SubjectImplCopyWith<$Res> {
-  __$$SubjectImplCopyWithImpl(
-      _$SubjectImpl _value, $Res Function(_$SubjectImpl) _then)
+class __$$SpSubjectImplCopyWithImpl<$Res>
+    extends _$SpSubjectCopyWithImpl<$Res, _$SpSubjectImpl>
+    implements _$$SpSubjectImplCopyWith<$Res> {
+  __$$SpSubjectImplCopyWithImpl(
+      _$SpSubjectImpl _value, $Res Function(_$SpSubjectImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -245,7 +247,7 @@ class __$$SubjectImplCopyWithImpl<$Res>
     Object? majorId = freezed,
     Object? majorName = freezed,
   }) {
-    return _then(_$SubjectImpl(
+    return _then(_$SpSubjectImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -320,8 +322,8 @@ class __$$SubjectImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SubjectImpl implements _Subject {
-  const _$SubjectImpl(
+class _$SpSubjectImpl implements _SpSubject {
+  const _$SpSubjectImpl(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'description') this.description,
@@ -340,8 +342,8 @@ class _$SubjectImpl implements _Subject {
       @JsonKey(name: 'major_id') this.majorId,
       @JsonKey(name: 'major_name') this.majorName});
 
-  factory _$SubjectImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SubjectImplFromJson(json);
+  factory _$SpSubjectImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SpSubjectImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -397,14 +399,14 @@ class _$SubjectImpl implements _Subject {
 
   @override
   String toString() {
-    return 'Subject(id: $id, name: $name, description: $description, slug: $slug, code: $code, credit: $credit, type: $type, level: $level, thumbnail: $thumbnail, brochure: $brochure, semester: $semester, totalSession: $totalSession, isTaken: $isTaken, isAvailable: $isAvailable, startAt: $startAt, majorId: $majorId, majorName: $majorName)';
+    return 'SpSubject(id: $id, name: $name, description: $description, slug: $slug, code: $code, credit: $credit, type: $type, level: $level, thumbnail: $thumbnail, brochure: $brochure, semester: $semester, totalSession: $totalSession, isTaken: $isTaken, isAvailable: $isAvailable, startAt: $startAt, majorId: $majorId, majorName: $majorName)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SubjectImpl &&
+            other is _$SpSubjectImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
@@ -456,19 +458,19 @@ class _$SubjectImpl implements _Subject {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SubjectImplCopyWith<_$SubjectImpl> get copyWith =>
-      __$$SubjectImplCopyWithImpl<_$SubjectImpl>(this, _$identity);
+  _$$SpSubjectImplCopyWith<_$SpSubjectImpl> get copyWith =>
+      __$$SpSubjectImplCopyWithImpl<_$SpSubjectImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SubjectImplToJson(
+    return _$$SpSubjectImplToJson(
       this,
     );
   }
 }
 
-abstract class _Subject implements Subject {
-  const factory _Subject(
+abstract class _SpSubject implements SpSubject {
+  const factory _SpSubject(
       {@JsonKey(name: 'id') final String? id,
       @JsonKey(name: 'name') final String? name,
       @JsonKey(name: 'description') final String? description,
@@ -485,9 +487,10 @@ abstract class _Subject implements Subject {
       @JsonKey(name: 'is_available') final bool? isAvailable,
       @JsonKey(name: 'start_at') final String? startAt,
       @JsonKey(name: 'major_id') final String? majorId,
-      @JsonKey(name: 'major_name') final String? majorName}) = _$SubjectImpl;
+      @JsonKey(name: 'major_name') final String? majorName}) = _$SpSubjectImpl;
 
-  factory _Subject.fromJson(Map<String, dynamic> json) = _$SubjectImpl.fromJson;
+  factory _SpSubject.fromJson(Map<String, dynamic> json) =
+      _$SpSubjectImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
@@ -542,7 +545,7 @@ abstract class _Subject implements Subject {
   String? get majorName;
   @override
   @JsonKey(ignore: true)
-  _$$SubjectImplCopyWith<_$SubjectImpl> get copyWith =>
+  _$$SpSubjectImplCopyWith<_$SpSubjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
