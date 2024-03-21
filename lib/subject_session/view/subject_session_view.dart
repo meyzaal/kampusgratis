@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kampusgratis/shared/shared.dart';
 import 'package:kampusgratis/subject_session/subject_session.dart';
 import 'package:my_study_repository/my_study_repository.dart';
@@ -18,24 +19,27 @@ class SubjectSessionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SubjectSessionBloc, SubjectSessionState>(
       builder: (context, state) {
-        return Scaffold(
-          body: RefreshIndicator.adaptive(
-            onRefresh: () async => context
-                .read<SubjectSessionBloc>()
-                .add(SubjectSessionEvent.fetched(subjectId)),
-            child: CustomScrollView(
-              slivers: [
-                SliverAppBar.large(title: Text(subjectName)),
-                switch (state.status) {
-                  SubjectSessionStatus.initial => const SliverToBoxAdapter(),
-                  SubjectSessionStatus.loading => const _Loading(),
-                  SubjectSessionStatus.failure => const _Failure(),
-                  SubjectSessionStatus.success => _Success(
-                      data: state.data,
-                      subjectId: state.subjectId,
-                    ),
-                },
-              ],
+        return PopScope(
+          canPop: false,
+          onPopInvoked: (didPop) {
+            context.pop(state.updated);
+          },
+          child: Scaffold(
+            body: RefreshIndicator.adaptive(
+              onRefresh: () async => context
+                  .read<SubjectSessionBloc>()
+                  .add(SubjectSessionEvent.fetched(subjectId)),
+              child: CustomScrollView(
+                slivers: [
+                  SliverAppBar.large(title: Text(subjectName)),
+                  switch (state.status) {
+                    SubjectSessionStatus.initial => const SliverToBoxAdapter(),
+                    SubjectSessionStatus.loading => const _Loading(),
+                    SubjectSessionStatus.failure => const _Failure(),
+                    SubjectSessionStatus.success => _Success(state.data),
+                  },
+                ],
+              ),
             ),
           ),
         );
@@ -45,19 +49,28 @@ class SubjectSessionView extends StatelessWidget {
 }
 
 class _Success extends StatelessWidget {
-  const _Success({
-    required this.data,
-    required this.subjectId,
-  });
+  const _Success(this.data);
 
   final SubjectSession? data;
-  final String? subjectId;
 
   @override
   Widget build(BuildContext context) {
     if (data == null) return const SizedBox();
+    final overview = data?.overview;
+
+    final subjectId = overview?.subjectId; // overview widget
+    final sessionId = overview?.sessionId; // overview widget
+    final moduleId = overview?.moduleId; // overview widget
 
     final items = [
+      if (subjectId != null && sessionId != null && moduleId != null)
+        SubjectSessionOverview(
+          subjectId: subjectId,
+          sessionId: sessionId,
+          moduleId: moduleId,
+          durationSeconds: overview?.durationSeconds,
+          link: overview?.link,
+        ),
       ...data!.sessions.map(
         (session) => SubjectSessionTile(
           isLocked: session.isLocked,

@@ -11,7 +11,12 @@ class SubjectSessionBloc
     extends Bloc<SubjectSessionEvent, SubjectSessionState> {
   SubjectSessionBloc(MyStudyRepository myStudyRepository)
       : _myStudyRepository = myStudyRepository,
-        super(const SubjectSessionState(status: SubjectSessionStatus.initial)) {
+        super(
+          const SubjectSessionState(
+            status: SubjectSessionStatus.initial,
+            updated: false,
+          ),
+        ) {
     on<SubjectSessionFetched>((event, emit) async {
       emit(state.copyWith(status: SubjectSessionStatus.loading));
       try {

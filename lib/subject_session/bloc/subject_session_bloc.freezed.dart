@@ -226,6 +226,7 @@ abstract class SubjectSessionFetched implements SubjectSessionEvent {
 /// @nodoc
 mixin _$SubjectSessionState {
   SubjectSessionStatus get status => throw _privateConstructorUsedError;
+  bool get updated => throw _privateConstructorUsedError;
   SubjectSession? get data => throw _privateConstructorUsedError;
   String? get subjectId => throw _privateConstructorUsedError;
   String? get subjectName => throw _privateConstructorUsedError;
@@ -244,6 +245,7 @@ abstract class $SubjectSessionStateCopyWith<$Res> {
   @useResult
   $Res call(
       {SubjectSessionStatus status,
+      bool updated,
       SubjectSession? data,
       String? subjectId,
       String? subjectName,
@@ -266,6 +268,7 @@ class _$SubjectSessionStateCopyWithImpl<$Res, $Val extends SubjectSessionState>
   @override
   $Res call({
     Object? status = null,
+    Object? updated = null,
     Object? data = freezed,
     Object? subjectId = freezed,
     Object? subjectName = freezed,
@@ -276,6 +279,10 @@ class _$SubjectSessionStateCopyWithImpl<$Res, $Val extends SubjectSessionState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SubjectSessionStatus,
+      updated: null == updated
+          ? _value.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as bool,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -318,6 +325,7 @@ abstract class _$$SubjectSessionStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {SubjectSessionStatus status,
+      bool updated,
       SubjectSession? data,
       String? subjectId,
       String? subjectName,
@@ -339,6 +347,7 @@ class __$$SubjectSessionStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? updated = null,
     Object? data = freezed,
     Object? subjectId = freezed,
     Object? subjectName = freezed,
@@ -349,6 +358,10 @@ class __$$SubjectSessionStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SubjectSessionStatus,
+      updated: null == updated
+          ? _value.updated
+          : updated // ignore: cast_nullable_to_non_nullable
+              as bool,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -374,6 +387,7 @@ class __$$SubjectSessionStateImplCopyWithImpl<$Res>
 class _$SubjectSessionStateImpl implements _SubjectSessionState {
   const _$SubjectSessionStateImpl(
       {required this.status,
+      required this.updated,
       this.data,
       this.subjectId,
       this.subjectName,
@@ -381,6 +395,8 @@ class _$SubjectSessionStateImpl implements _SubjectSessionState {
 
   @override
   final SubjectSessionStatus status;
+  @override
+  final bool updated;
   @override
   final SubjectSession? data;
   @override
@@ -392,7 +408,7 @@ class _$SubjectSessionStateImpl implements _SubjectSessionState {
 
   @override
   String toString() {
-    return 'SubjectSessionState(status: $status, data: $data, subjectId: $subjectId, subjectName: $subjectName, message: $message)';
+    return 'SubjectSessionState(status: $status, updated: $updated, data: $data, subjectId: $subjectId, subjectName: $subjectName, message: $message)';
   }
 
   @override
@@ -401,6 +417,7 @@ class _$SubjectSessionStateImpl implements _SubjectSessionState {
         (other.runtimeType == runtimeType &&
             other is _$SubjectSessionStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.updated, updated) || other.updated == updated) &&
             (identical(other.data, data) || other.data == data) &&
             (identical(other.subjectId, subjectId) ||
                 other.subjectId == subjectId) &&
@@ -410,8 +427,8 @@ class _$SubjectSessionStateImpl implements _SubjectSessionState {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, data, subjectId, subjectName, message);
+  int get hashCode => Object.hash(
+      runtimeType, status, updated, data, subjectId, subjectName, message);
 
   @JsonKey(ignore: true)
   @override
@@ -424,6 +441,7 @@ class _$SubjectSessionStateImpl implements _SubjectSessionState {
 abstract class _SubjectSessionState implements SubjectSessionState {
   const factory _SubjectSessionState(
       {required final SubjectSessionStatus status,
+      required final bool updated,
       final SubjectSession? data,
       final String? subjectId,
       final String? subjectName,
@@ -431,6 +449,8 @@ abstract class _SubjectSessionState implements SubjectSessionState {
 
   @override
   SubjectSessionStatus get status;
+  @override
+  bool get updated;
   @override
   SubjectSession? get data;
   @override

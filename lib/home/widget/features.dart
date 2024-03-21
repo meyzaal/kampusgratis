@@ -75,7 +75,8 @@ class HomeFeatures extends StatelessWidget with NavigationMiddleware {
         _refresh(context);
       });
 
-  void _toBootcamp(BuildContext context) => const BootcampRoute().push;
+  void _toBootcamp(BuildContext context) =>
+      const BootcampRoute().push<void>(context);
 
   void _toMyStudy(BuildContext context) => checkRole(
         context,

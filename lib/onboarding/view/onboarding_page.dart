@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/gen/gen.dart';
 import 'package:kampusgratis/onboarding/onboarding.dart';
@@ -38,14 +37,14 @@ class OnboardingPage extends StatelessWidget {
                   onPressed: () => const LoginRoute().push<void>(context),
                   child: RichText(
                     text: TextSpan(
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: theme.colorScheme.primary,
                       ),
                       children: [
                         TextSpan(
                           text: 'Sudah punya akun?',
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
                         ),
@@ -56,7 +55,7 @@ class OnboardingPage extends StatelessWidget {
                 ),
               ],
             );
-    
+
             return SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.all(16),

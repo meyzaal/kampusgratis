@@ -114,6 +114,20 @@ extension on ProgressStatus {
     }
   }
 
+  Widget? get text {
+    if (this case ProgressStatus.locked) {
+      return const Text('Terkunci');
+    } else if (this case ProgressStatus.ongoing) {
+      return const Text('Berjalan');
+    } else if (this case ProgressStatus.finished) {
+      return const Text('Selesai');
+    } else if (this case ProgressStatus.failed) {
+      return const Text('Gagal');
+    } else {
+      return null;
+    }
+  }
+
   Color? iconColor(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.extension<CustomColors>();

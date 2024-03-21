@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
 import 'package:kampusgratis/register/register.dart';
@@ -158,7 +157,7 @@ class _TermsAndConditionsCheckBoxState
           Expanded(
             child: RichText(
               text: TextSpan(
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 12,
                   height: 18 / 12,
@@ -176,7 +175,7 @@ class _TermsAndConditionsCheckBoxState
                   ),
                   TextSpan(
                     text: 'Syarat dan Ketentuan',
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       color: theme.colorScheme.primary,
                       decoration: TextDecoration.underline,
                       fontWeight: FontWeight.w600,
@@ -209,7 +208,7 @@ class _TermsAndConditionsCheckBoxState
                   ),
                   TextSpan(
                     text: 'Kebijakan Privasi',
-                    style: GoogleFonts.poppins(
+                    style: TextStyle(
                       color: theme.colorScheme.primary,
                       decoration: TextDecoration.underline,
                       fontWeight: FontWeight.w600,
@@ -365,7 +364,7 @@ class _PasswordTip extends StatelessWidget {
 //             labelText: 'Nomor Telepon',
 //             decoration: InputDecoration(
 //               hintText: 'Masukkan nomor telepon',
-//               errorText: state.phone.isPure ? null : 
+//               errorText: state.phone.isPure ? null :
 // state.phone.error?.message,
 //             ),
 //             onChanged: (phone) => context

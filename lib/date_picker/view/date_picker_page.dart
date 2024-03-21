@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:kampusgratis/date_picker/date_picker.dart';
 
@@ -70,7 +69,7 @@ class _DatePickerBody extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                           child: Text(
                             selectedDateString,
-                            style: GoogleFonts.poppins(
+                            style: TextStyle(
                               fontSize: 24,
                               color: theme.colorScheme.onSurface,
                             ),

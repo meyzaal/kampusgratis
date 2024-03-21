@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kampusgratis/gen/gen.dart';
 import 'package:kampusgratis/shared/shared.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -83,7 +82,7 @@ class _Content extends StatelessWidget {
         const SizedBox(height: 24),
         Text(
           title,
-          style: GoogleFonts.poppins(
+          style: const TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 20,
             height: 30 / 20,

@@ -1,7 +1,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/authentication/authentication.dart';
 import 'package:kampusgratis/register/register.dart';
@@ -55,14 +54,14 @@ class _LoginButton extends StatelessWidget {
         },
         child: RichText(
           text: TextSpan(
-            style: GoogleFonts.poppins(
+            style: TextStyle(
               fontWeight: FontWeight.w500,
               color: theme.colorScheme.primary,
             ),
             children: [
               TextSpan(
                 text: 'Sudah Punya Akun?',
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),

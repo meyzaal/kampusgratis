@@ -4,6 +4,7 @@ part of 'subject_session_bloc.dart';
 class SubjectSessionState with _$SubjectSessionState {
   const factory SubjectSessionState({
     required SubjectSessionStatus status,
+    required bool updated,
     SubjectSession? data,
     String? subjectId,
     String? subjectName,

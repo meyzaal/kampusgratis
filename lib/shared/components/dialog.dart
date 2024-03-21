@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 const EdgeInsets _defaultInsetPadding =
     EdgeInsets.symmetric(horizontal: 40, vertical: 24);
@@ -98,7 +97,7 @@ class CustomDialog extends StatelessWidget {
         right: 24,
         bottom: content == null ? 20.0 : 0.0,
       );
-      final defaultTitleTextStyle = GoogleFonts.poppins(
+      final defaultTitleTextStyle = TextStyle(
         fontWeight: FontWeight.w600,
         fontSize: 20,
         color: theme.colorScheme.onSurface,
@@ -128,7 +127,7 @@ class CustomDialog extends StatelessWidget {
         right: 24,
         bottom: 24,
       );
-      final defaultContentTextStyle = GoogleFonts.poppins(
+      const defaultContentTextStyle = TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 14,
       );

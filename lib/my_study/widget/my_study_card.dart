@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/gen/gen.dart';
+import 'package:kampusgratis/my_study/my_study.dart';
 import 'package:my_study_repository/my_study_repository.dart';
 
 class MyStudyCard extends StatelessWidget {
@@ -14,9 +16,14 @@ class MyStudyCard extends StatelessWidget {
     return Card.filled(
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: () {
-          SubjectSessionRoute(data.id, $extra: data.name).push<void>(context);
-        },
+        onTap: () => SubjectSessionRoute(data.id, $extra: data.name)
+            .push<bool>(context)
+            .then((updated) {
+          if (updated != true) return;
+          context
+              .read<MyStudyBloc>()
+              .add(const MyStudyEvent.fetched(forceRefresh: true));
+        }),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

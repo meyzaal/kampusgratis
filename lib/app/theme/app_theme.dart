@@ -34,7 +34,7 @@ ThemeData _getTheme(Brightness brightness) {
     appBarTheme: AppBarTheme(
       centerTitle: true,
       color: colorScheme.primary,
-      titleTextStyle: GoogleFonts.poppins(
+      titleTextStyle: GoogleFonts.raleway(
         fontWeight: FontWeight.w600,
         fontSize: 18,
         height: 27 / 18,
@@ -48,7 +48,7 @@ ThemeData _getTheme(Brightness brightness) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        textStyle: GoogleFonts.poppins(
+        textStyle: GoogleFonts.raleway(
           fontWeight: FontWeight.w500,
           fontSize: 14,
           height: 21 / 14,
@@ -64,7 +64,7 @@ ThemeData _getTheme(Brightness brightness) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        textStyle: GoogleFonts.poppins(
+        textStyle: GoogleFonts.raleway(
           fontWeight: FontWeight.w500,
           fontSize: 14,
           height: 21 / 14,
@@ -80,7 +80,7 @@ ThemeData _getTheme(Brightness brightness) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        textStyle: GoogleFonts.poppins(
+        textStyle: GoogleFonts.raleway(
           fontWeight: FontWeight.w500,
           fontSize: 14,
           height: 21 / 14,
@@ -96,7 +96,7 @@ ThemeData _getTheme(Brightness brightness) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        textStyle: GoogleFonts.poppins(
+        textStyle: GoogleFonts.raleway(
           fontWeight: FontWeight.w500,
           fontSize: 14,
           height: 21 / 14,
@@ -136,7 +136,7 @@ ThemeData _getTheme(Brightness brightness) {
     inputDecorationTheme: InputDecorationTheme(
       suffixIconColor: colorScheme.outline,
       prefixIconColor: colorScheme.outline,
-      hintStyle: GoogleFonts.poppins(
+      hintStyle: GoogleFonts.raleway(
         fontWeight: FontWeight.normal,
         fontSize: 14,
         color: colorScheme.outline,
@@ -150,12 +150,12 @@ ThemeData _getTheme(Brightness brightness) {
       ),
     ),
     dialogTheme: DialogTheme(
-      titleTextStyle: GoogleFonts.poppins(
+      titleTextStyle: GoogleFonts.raleway(
         fontWeight: FontWeight.w600,
         fontSize: 20,
         color: colorScheme.onSurface,
       ),
-      contentTextStyle: GoogleFonts.poppins(
+      contentTextStyle: GoogleFonts.raleway(
         fontWeight: FontWeight.w400,
         fontSize: 14,
         color: colorScheme.onSurface,
@@ -173,7 +173,7 @@ ThemeData _getTheme(Brightness brightness) {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       showDragHandle: true,
     ),
-    textTheme: GoogleFonts.poppinsTextTheme(theme.textTheme),
+    textTheme: GoogleFonts.ralewayTextTheme(theme.textTheme),
     datePickerTheme: DatePickerThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),

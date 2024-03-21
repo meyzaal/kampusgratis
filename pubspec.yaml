@@ -50,6 +50,7 @@ dependencies:
   url_launcher: ^6.2.4
   user_repository:
     path: packages/user_repository
+  youtube_player_iframe: ^5.0.0
 
 dev_dependencies:
   bloc_test: ^9.1.4
