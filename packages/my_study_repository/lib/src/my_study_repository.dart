@@ -78,4 +78,130 @@ class MyStudyRepository {
       sessions: sessions,
     );
   }
+
+  Future<Module> getModuleDetails({
+    required String subjectId,
+    required String sessionId,
+    required String moduleId,
+  }) async {
+    final result = await _kgClient.getModuleDetails(
+      subjectId: subjectId,
+      sessionId: sessionId,
+      moduleId: moduleId,
+    );
+    final articles = (result.module?.articles ?? [])
+        .map(
+          (article) => Content(
+            id: article.id ?? '',
+            title: article.title ?? '',
+            content: article.content ?? '',
+            url: article.url ?? '',
+            moduleId: article.moduleId ?? '',
+            durationInSeconds: article.durationInSeconds ?? 0,
+          ),
+        )
+        .toList();
+    final journals = (result.module?.journals ?? [])
+        .map(
+          (journal) => Content(
+            id: journal.id ?? '',
+            title: journal.title ?? '',
+            content: journal.content ?? '',
+            url: journal.url ?? '',
+            moduleId: journal.moduleId ?? '',
+            durationInSeconds: journal.durationInSeconds ?? 0,
+          ),
+        )
+        .toList();
+    final videos = (result.module?.videos ?? [])
+        .map(
+          (video) => Content(
+            id: video.id ?? '',
+            title: video.title ?? '',
+            content: video.content ?? '',
+            url: video.url ?? '',
+            moduleId: video.moduleId ?? '',
+            durationInSeconds: video.durationInSeconds ?? 0,
+          ),
+        )
+        .toList();
+    final documents = (result.module?.documents ?? [])
+        .map(
+          (document) => Document(
+            id: document.id ?? '',
+            documentFile: document.documentFile ?? '',
+            moduleId: document.moduleId ?? '',
+            title: document.title ?? '',
+            durationInSeconds: document.durationInSeconds ?? 0,
+          ),
+        )
+        .toList();
+
+    return Module(
+      subjectId: subjectId,
+      subjectName: result.detail?.subjectName ?? '',
+      sessionId: sessionId,
+      sessionNo: result.detail?.sessionNo ?? 0,
+      sessionType: result.detail?.sessionType ?? SessionType.regular,
+      id: result.module?.id ?? '',
+      title: result.module?.title ?? '',
+      description: result.module?.description ?? '',
+      isAllVideoSeen: result.module?.isAllVideoSeen ?? false,
+      videos: videos,
+      documents: documents,
+      journals: journals,
+      articles: articles,
+      status: result.module?.status ?? ProgressStatus.pending,
+    );
+  }
+
+  Future<OverviewDetails> getOverviewDetails({
+    required String subjectId,
+    required String sessionId,
+    required String moduleId,
+  }) async {
+    final result = await _kgClient.getModuleDetails(
+      subjectId: subjectId,
+      sessionId: sessionId,
+      moduleId: moduleId,
+    );
+    final videos = (result.module?.videos ?? [])
+        .map(
+          (video) => Content(
+            id: video.id ?? '',
+            title: video.title ?? '',
+            content: video.content ?? '',
+            url: video.url ?? '',
+            moduleId: video.moduleId ?? '',
+            durationInSeconds: video.durationInSeconds ?? 0,
+          ),
+        )
+        .toList();
+    final documents = (result.module?.documents ?? [])
+        .map(
+          (document) => Document(
+            id: document.id ?? '',
+            documentFile: document.documentFile ?? '',
+            moduleId: document.moduleId ?? '',
+            title: document.title ?? '',
+            durationInSeconds: document.durationInSeconds ?? 0,
+          ),
+        )
+        .toList();
+
+    return OverviewDetails(
+      subjectId: subjectId,
+      subjectName: result.detail?.subjectName ?? '',
+      sessionId: sessionId,
+      sessionNo: result.detail?.sessionNo ?? 0,
+      sessionType: result.detail?.sessionType ?? SessionType.regular,
+      id: result.module?.id ?? '',
+      title: result.module?.title ?? '',
+      description: result.module?.description ?? '',
+      isAllVideoSeen: result.module?.isAllVideoSeen ?? false,
+      video: videos.isNotEmpty ? videos.first : const Content.empty(),
+      documents: documents,
+      status: result.module?.status ?? ProgressStatus.pending,
+    );
+  }
 }

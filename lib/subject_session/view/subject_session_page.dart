@@ -6,19 +6,19 @@ import 'package:my_study_repository/my_study_repository.dart';
 class SubjectSessionPage extends StatelessWidget {
   const SubjectSessionPage({
     required this.subjectId,
-    required this.subjectName,
+    this.subjectName,
     super.key,
   });
 
   final String subjectId;
-  final String subjectName;
+  final String? subjectName;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SubjectSessionBloc(context.read<MyStudyRepository>())
         ..add(SubjectSessionEvent.fetched(subjectId)),
-      child: SubjectSessionView(subjectId: subjectId, subjectName: subjectName),
+      child: SubjectSessionView(subjectId: subjectId),
     );
   }
 }

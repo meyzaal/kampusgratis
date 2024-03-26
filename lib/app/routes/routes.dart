@@ -24,6 +24,7 @@ import 'package:kampusgratis/otp_verification/otp_verification.dart';
 import 'package:kampusgratis/pdf_viewer/pdf_viewer.dart';
 import 'package:kampusgratis/profile/profile.dart';
 import 'package:kampusgratis/register/register.dart';
+import 'package:kampusgratis/session_overview/session_overview.dart';
 import 'package:kampusgratis/single_choices/single_choices.dart';
 import 'package:kampusgratis/subject_session/subject_session.dart';
 import 'package:stream_listener/stream_listener.dart';
@@ -150,7 +151,14 @@ class ForgotPasswordRoute extends GoRouteData {
     TypedGoRoute<MyStudyRoute>(
       path: '/my-study',
       routes: [
-        TypedGoRoute<SubjectSessionRoute>(path: ':subjectId/sessions'),
+        TypedGoRoute<SubjectSessionRoute>(
+          path: ':subjectId/sessions',
+          routes: [
+            TypedGoRoute<SessionOverviewRoute>(
+              path: ':sessionId/overview',
+            ),
+          ],
+        ),
       ],
     ),
     TypedGoRoute<AssignmentRoute>(path: '/assignment'),
@@ -208,17 +216,45 @@ class MyStudyRoute extends GoRouteData {
 }
 
 class SubjectSessionRoute extends GoRouteData {
-  const SubjectSessionRoute(this.subjectId, {required this.$extra});
+  const SubjectSessionRoute(this.subjectId);
 
   final String subjectId;
-  final String $extra; // subjectName
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey =
+      _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => SubjectSessionPage(
+        subjectId: subjectId,
+      );
+}
+
+class SessionOverviewRoute extends GoRouteData {
+  const SessionOverviewRoute(
+    this.subjectId,
+    this.sessionId,
+    this.moduleId, {
+    this.$extra,
+  });
+
+  final String subjectId;
+  final String sessionId;
+  final String moduleId;
+
+  /// YouTube video ID
+  final String? $extra;
 
   static final GlobalKey<NavigatorState> $parentNavigatorKey =
       _rootNavigatorKey;
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      SubjectSessionPage(subjectId: subjectId, subjectName: $extra);
+      SessionOverviewPage(
+        subjectId: subjectId,
+        sessionId: sessionId,
+        moduleId: moduleId,
+        videoId: $extra,
+      );
 }
 
 class AssignmentRoute extends GoRouteData {

@@ -35,7 +35,7 @@ class SubjectSessionTile extends StatelessWidget {
         title: Text(title, style: style),
         trailing: isLocked
             ? PhosphorIcon(
-                PhosphorIconsFill.lock,
+                PhosphorIconsRegular.lock,
                 color: theme.disabledColor,
               )
             : null,
@@ -109,20 +109,6 @@ extension on ProgressStatus {
       return PhosphorIconsFill.checkCircle;
     } else if (this case ProgressStatus.failed) {
       return PhosphorIconsFill.warningCircle;
-    } else {
-      return null;
-    }
-  }
-
-  Widget? get text {
-    if (this case ProgressStatus.locked) {
-      return const Text('Terkunci');
-    } else if (this case ProgressStatus.ongoing) {
-      return const Text('Berjalan');
-    } else if (this case ProgressStatus.finished) {
-      return const Text('Selesai');
-    } else if (this case ProgressStatus.failed) {
-      return const Text('Gagal');
     } else {
       return null;
     }

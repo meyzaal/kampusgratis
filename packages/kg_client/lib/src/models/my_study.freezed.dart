@@ -1808,7 +1808,7 @@ mixin _$Detail {
   @JsonKey(name: 'session_no')
   int? get sessionNo => throw _privateConstructorUsedError;
   @JsonKey(name: 'session_type')
-  String? get sessionType => throw _privateConstructorUsedError;
+  SessionType? get sessionType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1825,7 +1825,7 @@ abstract class $DetailCopyWith<$Res> {
       @JsonKey(name: 'subject_name') String? subjectName,
       @JsonKey(name: 'session_id') String? sessionId,
       @JsonKey(name: 'session_no') int? sessionNo,
-      @JsonKey(name: 'session_type') String? sessionType});
+      @JsonKey(name: 'session_type') SessionType? sessionType});
 }
 
 /// @nodoc
@@ -1867,7 +1867,7 @@ class _$DetailCopyWithImpl<$Res, $Val extends Detail>
       sessionType: freezed == sessionType
           ? _value.sessionType
           : sessionType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as SessionType?,
     ) as $Val);
   }
 }
@@ -1884,7 +1884,7 @@ abstract class _$$DetailImplCopyWith<$Res> implements $DetailCopyWith<$Res> {
       @JsonKey(name: 'subject_name') String? subjectName,
       @JsonKey(name: 'session_id') String? sessionId,
       @JsonKey(name: 'session_no') int? sessionNo,
-      @JsonKey(name: 'session_type') String? sessionType});
+      @JsonKey(name: 'session_type') SessionType? sessionType});
 }
 
 /// @nodoc
@@ -1924,7 +1924,7 @@ class __$$DetailImplCopyWithImpl<$Res>
       sessionType: freezed == sessionType
           ? _value.sessionType
           : sessionType // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as SessionType?,
     ));
   }
 }
@@ -1956,7 +1956,7 @@ class _$DetailImpl implements _Detail {
   final int? sessionNo;
   @override
   @JsonKey(name: 'session_type')
-  final String? sessionType;
+  final SessionType? sessionType;
 
   @override
   String toString() {
@@ -2001,11 +2001,12 @@ class _$DetailImpl implements _Detail {
 
 abstract class _Detail implements Detail {
   const factory _Detail(
-      {@JsonKey(name: 'subject_id') final String? subjectId,
-      @JsonKey(name: 'subject_name') final String? subjectName,
-      @JsonKey(name: 'session_id') final String? sessionId,
-      @JsonKey(name: 'session_no') final int? sessionNo,
-      @JsonKey(name: 'session_type') final String? sessionType}) = _$DetailImpl;
+          {@JsonKey(name: 'subject_id') final String? subjectId,
+          @JsonKey(name: 'subject_name') final String? subjectName,
+          @JsonKey(name: 'session_id') final String? sessionId,
+          @JsonKey(name: 'session_no') final int? sessionNo,
+          @JsonKey(name: 'session_type') final SessionType? sessionType}) =
+      _$DetailImpl;
 
   factory _Detail.fromJson(Map<String, dynamic> json) = _$DetailImpl.fromJson;
 
@@ -2023,7 +2024,7 @@ abstract class _Detail implements Detail {
   int? get sessionNo;
   @override
   @JsonKey(name: 'session_type')
-  String? get sessionType;
+  SessionType? get sessionType;
   @override
   @JsonKey(ignore: true)
   _$$DetailImplCopyWith<_$DetailImpl> get copyWith =>
@@ -2053,7 +2054,7 @@ mixin _$Module {
   @JsonKey(name: 'articles')
   List<ModuleContent>? get articles => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
-  String? get status => throw _privateConstructorUsedError;
+  ProgressStatus? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2074,7 +2075,7 @@ abstract class $ModuleCopyWith<$Res> {
       @JsonKey(name: 'documents') List<ModuleDocument>? documents,
       @JsonKey(name: 'journals') List<ModuleContent>? journals,
       @JsonKey(name: 'articles') List<ModuleContent>? articles,
-      @JsonKey(name: 'status') String? status});
+      @JsonKey(name: 'status') ProgressStatus? status});
 }
 
 /// @nodoc
@@ -2136,7 +2137,7 @@ class _$ModuleCopyWithImpl<$Res, $Val extends Module>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ProgressStatus?,
     ) as $Val);
   }
 }
@@ -2157,7 +2158,7 @@ abstract class _$$ModuleImplCopyWith<$Res> implements $ModuleCopyWith<$Res> {
       @JsonKey(name: 'documents') List<ModuleDocument>? documents,
       @JsonKey(name: 'journals') List<ModuleContent>? journals,
       @JsonKey(name: 'articles') List<ModuleContent>? articles,
-      @JsonKey(name: 'status') String? status});
+      @JsonKey(name: 'status') ProgressStatus? status});
 }
 
 /// @nodoc
@@ -2217,7 +2218,7 @@ class __$$ModuleImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as ProgressStatus?,
     ));
   }
 }
@@ -2301,7 +2302,7 @@ class _$ModuleImpl implements _Module {
 
   @override
   @JsonKey(name: 'status')
-  final String? status;
+  final ProgressStatus? status;
 
   @override
   String toString() {
@@ -2365,7 +2366,7 @@ abstract class _Module implements Module {
       @JsonKey(name: 'documents') final List<ModuleDocument>? documents,
       @JsonKey(name: 'journals') final List<ModuleContent>? journals,
       @JsonKey(name: 'articles') final List<ModuleContent>? articles,
-      @JsonKey(name: 'status') final String? status}) = _$ModuleImpl;
+      @JsonKey(name: 'status') final ProgressStatus? status}) = _$ModuleImpl;
 
   factory _Module.fromJson(Map<String, dynamic> json) = _$ModuleImpl.fromJson;
 
@@ -2395,7 +2396,7 @@ abstract class _Module implements Module {
   List<ModuleContent>? get articles;
   @override
   @JsonKey(name: 'status')
-  String? get status;
+  ProgressStatus? get status;
   @override
   @JsonKey(ignore: true)
   _$$ModuleImplCopyWith<_$ModuleImpl> get copyWith =>
@@ -2697,7 +2698,7 @@ mixin _$ModuleDocument {
   @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'document_id')
-  dynamic get documentId => throw _privateConstructorUsedError;
+  String? get documentId => throw _privateConstructorUsedError;
   @JsonKey(name: 'document_file')
   String? get documentFile => throw _privateConstructorUsedError;
   @JsonKey(name: 'module_id')
@@ -2721,7 +2722,7 @@ abstract class $ModuleDocumentCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'document_id') dynamic documentId,
+      @JsonKey(name: 'document_id') String? documentId,
       @JsonKey(name: 'document_file') String? documentFile,
       @JsonKey(name: 'module_id') String? moduleId,
       @JsonKey(name: 'title') String? title,
@@ -2756,7 +2757,7 @@ class _$ModuleDocumentCopyWithImpl<$Res, $Val extends ModuleDocument>
       documentId: freezed == documentId
           ? _value.documentId
           : documentId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       documentFile: freezed == documentFile
           ? _value.documentFile
           : documentFile // ignore: cast_nullable_to_non_nullable
@@ -2787,7 +2788,7 @@ abstract class _$$ModuleDocumentImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
-      @JsonKey(name: 'document_id') dynamic documentId,
+      @JsonKey(name: 'document_id') String? documentId,
       @JsonKey(name: 'document_file') String? documentFile,
       @JsonKey(name: 'module_id') String? moduleId,
       @JsonKey(name: 'title') String? title,
@@ -2820,7 +2821,7 @@ class __$$ModuleDocumentImplCopyWithImpl<$Res>
       documentId: freezed == documentId
           ? _value.documentId
           : documentId // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       documentFile: freezed == documentFile
           ? _value.documentFile
           : documentFile // ignore: cast_nullable_to_non_nullable
@@ -2860,7 +2861,7 @@ class _$ModuleDocumentImpl implements _ModuleDocument {
   final String? id;
   @override
   @JsonKey(name: 'document_id')
-  final dynamic documentId;
+  final String? documentId;
   @override
   @JsonKey(name: 'document_file')
   final String? documentFile;
@@ -2885,8 +2886,8 @@ class _$ModuleDocumentImpl implements _ModuleDocument {
         (other.runtimeType == runtimeType &&
             other is _$ModuleDocumentImpl &&
             (identical(other.id, id) || other.id == id) &&
-            const DeepCollectionEquality()
-                .equals(other.documentId, documentId) &&
+            (identical(other.documentId, documentId) ||
+                other.documentId == documentId) &&
             (identical(other.documentFile, documentFile) ||
                 other.documentFile == documentFile) &&
             (identical(other.moduleId, moduleId) ||
@@ -2898,14 +2899,8 @@ class _$ModuleDocumentImpl implements _ModuleDocument {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      const DeepCollectionEquality().hash(documentId),
-      documentFile,
-      moduleId,
-      title,
-      durationInSeconds);
+  int get hashCode => Object.hash(runtimeType, id, documentId, documentFile,
+      moduleId, title, durationInSeconds);
 
   @JsonKey(ignore: true)
   @override
@@ -2925,7 +2920,7 @@ class _$ModuleDocumentImpl implements _ModuleDocument {
 abstract class _ModuleDocument implements ModuleDocument {
   const factory _ModuleDocument(
           {@JsonKey(name: 'id') final String? id,
-          @JsonKey(name: 'document_id') final dynamic documentId,
+          @JsonKey(name: 'document_id') final String? documentId,
           @JsonKey(name: 'document_file') final String? documentFile,
           @JsonKey(name: 'module_id') final String? moduleId,
           @JsonKey(name: 'title') final String? title,
@@ -2940,7 +2935,7 @@ abstract class _ModuleDocument implements ModuleDocument {
   String? get id;
   @override
   @JsonKey(name: 'document_id')
-  dynamic get documentId;
+  String? get documentId;
   @override
   @JsonKey(name: 'document_file')
   String? get documentFile;

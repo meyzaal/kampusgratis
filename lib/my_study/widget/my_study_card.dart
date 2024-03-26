@@ -16,7 +16,7 @@ class MyStudyCard extends StatelessWidget {
     return Card.filled(
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: () => SubjectSessionRoute(data.id, $extra: data.name)
+        onTap: () => SubjectSessionRoute(data.id)
             .push<bool>(context)
             .then((updated) {
           if (updated != true) return;

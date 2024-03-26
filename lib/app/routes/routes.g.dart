@@ -183,6 +183,13 @@ RouteBase get $mainRoute => ShellRouteData.$route(
               path: ':subjectId/sessions',
               parentNavigatorKey: SubjectSessionRoute.$parentNavigatorKey,
               factory: $SubjectSessionRouteExtension._fromState,
+              routes: [
+                GoRouteData.$route(
+                  path: ':sessionId/overview',
+                  parentNavigatorKey: SessionOverviewRoute.$parentNavigatorKey,
+                  factory: $SessionOverviewRouteExtension._fromState,
+                ),
+              ],
             ),
           ],
         ),
@@ -284,11 +291,36 @@ extension $SubjectSessionRouteExtension on SubjectSessionRoute {
   static SubjectSessionRoute _fromState(GoRouterState state) =>
       SubjectSessionRoute(
         state.pathParameters['subjectId']!,
-        $extra: state.extra as String,
       );
 
   String get location => GoRouteData.$location(
         '/my-study/${Uri.encodeComponent(subjectId)}/sessions',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SessionOverviewRouteExtension on SessionOverviewRoute {
+  static SessionOverviewRoute _fromState(GoRouterState state) =>
+      SessionOverviewRoute(
+        state.pathParameters['subjectId']!,
+        state.pathParameters['sessionId']!,
+        state.uri.queryParameters['module-id']!,
+        $extra: state.extra as String?,
+      );
+
+  String get location => GoRouteData.$location(
+        '/my-study/${Uri.encodeComponent(subjectId)}/sessions/${Uri.encodeComponent(sessionId)}/overview',
+        queryParams: {
+          'module-id': moduleId,
+        },
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);

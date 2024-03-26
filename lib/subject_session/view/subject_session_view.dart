@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kampusgratis/app/app.dart';
 import 'package:kampusgratis/shared/shared.dart';
 import 'package:kampusgratis/subject_session/subject_session.dart';
 import 'package:my_study_repository/my_study_repository.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class SubjectSessionView extends StatelessWidget {
   const SubjectSessionView({
     required this.subjectId,
-    required this.subjectName,
     super.key,
   });
 
   final String subjectId;
-  final String subjectName;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SubjectSessionBloc, SubjectSessionState>(
       builder: (context, state) {
+        final subjectName =
+            state.data?.subject.name ?? state.subjectName ?? 'Memuat...';
+
         return PopScope(
           canPop: false,
-          onPopInvoked: (didPop) {
-            context.pop(state.updated);
-          },
+          onPopInvoked: (didPop) => context.pop(state.updated),
           child: Scaffold(
             body: RefreshIndicator.adaptive(
               onRefresh: () async => context
@@ -58,17 +59,37 @@ class _Success extends StatelessWidget {
     if (data == null) return const SizedBox();
     final overview = data?.overview;
 
-    final subjectId = overview?.subjectId; // overview widget
-    final sessionId = overview?.sessionId; // overview widget
-    final moduleId = overview?.moduleId; // overview widget
+    String? videoId;
+    final subjectId = overview?.subjectId;
+    final sessionId = overview?.sessionId;
+    final moduleId = overview?.moduleId;
+
+    final link = overview?.link;
+    if (link != null) videoId = YoutubePlayer.convertUrlToId(link);
 
     final items = [
       if (overview != null)
         if (overview.isNotEmpty)
           SubjectSessionOverview(
-            subjectId: subjectId!,
-            sessionId: sessionId!,
-            moduleId: moduleId!,
+            onTap: () {
+              if (subjectId == null || sessionId == null || moduleId == null) {
+                ScaffoldMessenger.of(context)
+                  ..clearSnackBars()
+                  ..showSnackBar(
+                    const SnackBar(
+                      content: Text('Tidak dapat membuka pendahuluan.'),
+                      showCloseIcon: true,
+                    ),
+                  );
+              } else {
+                SessionOverviewRoute(
+                  subjectId,
+                  sessionId,
+                  moduleId,
+                  $extra: videoId,
+                ).push<void>(context);
+              }
+            },
             durationSeconds: overview.durationSeconds,
             link: overview.link,
           ),

@@ -2,23 +2,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:kampusgratis/shared/extensions/duration.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class SubjectSessionOverview extends StatelessWidget {
   const SubjectSessionOverview({
-    required this.subjectId,
-    required this.sessionId,
-    required this.moduleId,
+    required this.durationSeconds,
+    required this.link,
+    this.onTap,
     super.key,
-    this.durationSeconds,
-    this.link,
   });
 
-  final String subjectId;
-  final String sessionId;
-  final String moduleId;
   final int? durationSeconds;
   final String? link;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +24,10 @@ class SubjectSessionOverview extends StatelessWidget {
 
     if (durationSeconds != null) duration = Duration(seconds: durationSeconds!);
     if ((link ?? '').isNotEmpty) {
-      videoId = YoutubePlayerController.convertUrlToId(link!);
+      videoId = YoutubePlayer.convertUrlToId(link!);
     }
     if (videoId != null) {
-      imageUrl = YoutubePlayerController.getThumbnail(videoId: videoId);
+      imageUrl = YoutubePlayer.getThumbnail(videoId: videoId);
     }
 
     if (imageUrl != null) {
@@ -39,13 +35,13 @@ class SubjectSessionOverview extends StatelessWidget {
         margin: const EdgeInsets.all(16),
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          onTap: () => _onTap(context),
+          onTap: onTap,
           child: _Thumbnail(imageUrl: imageUrl, duration: duration),
         ),
       );
     }
     return ListTile(
-      onTap: () => _onTap(context),
+      onTap: onTap,
       title: const Text('Pendahuluan'),
       subtitle: const Text('Lihat video dan dokumen pendahuluan.'),
       trailing: const Icon(
@@ -54,8 +50,6 @@ class SubjectSessionOverview extends StatelessWidget {
       ),
     );
   }
-
-  void _onTap(BuildContext context) {}
 }
 
 class _Thumbnail extends StatelessWidget {

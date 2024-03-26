@@ -109,6 +109,8 @@ enum ProgressType {
 }
 
 enum SessionType {
+  @JsonValue('OVERVIEW')
+  overview,
   @JsonValue('FINAL_EXAM')
   finalExam,
   @JsonValue('MIDTERM_EXAM')
@@ -150,7 +152,7 @@ class Detail with _$Detail {
     @JsonKey(name: 'subject_name') String? subjectName,
     @JsonKey(name: 'session_id') String? sessionId,
     @JsonKey(name: 'session_no') int? sessionNo,
-    @JsonKey(name: 'session_type') String? sessionType,
+    @JsonKey(name: 'session_type') SessionType? sessionType,
   }) = _Detail;
 
   factory Detail.fromJson(Map<String, dynamic> json) => _$DetailFromJson(json);
@@ -167,7 +169,7 @@ class Module with _$Module {
     @JsonKey(name: 'documents') List<ModuleDocument>? documents,
     @JsonKey(name: 'journals') List<ModuleContent>? journals,
     @JsonKey(name: 'articles') List<ModuleContent>? articles,
-    @JsonKey(name: 'status') String? status,
+    @JsonKey(name: 'status') ProgressStatus? status,
   }) = _Module;
 
   factory Module.fromJson(Map<String, dynamic> json) => _$ModuleFromJson(json);
@@ -193,7 +195,7 @@ class ModuleContent with _$ModuleContent {
 class ModuleDocument with _$ModuleDocument {
   const factory ModuleDocument({
     @JsonKey(name: 'id') String? id,
-    @JsonKey(name: 'document_id') dynamic documentId,
+    @JsonKey(name: 'document_id') String? documentId,
     @JsonKey(name: 'document_file') String? documentFile,
     @JsonKey(name: 'module_id') String? moduleId,
     @JsonKey(name: 'title') String? title,

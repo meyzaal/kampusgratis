@@ -103,6 +103,7 @@ Map<String, dynamic> _$$SessionImplToJson(_$SessionImpl instance) =>
     };
 
 const _$SessionTypeEnumMap = {
+  SessionType.overview: 'OVERVIEW',
   SessionType.finalExam: 'FINAL_EXAM',
   SessionType.midtermExam: 'MIDTERM_EXAM',
   SessionType.regular: 'REGULAR',
@@ -175,7 +176,8 @@ _$DetailImpl _$$DetailImplFromJson(Map<String, dynamic> json) => _$DetailImpl(
       subjectName: json['subject_name'] as String?,
       sessionId: json['session_id'] as String?,
       sessionNo: json['session_no'] as int?,
-      sessionType: json['session_type'] as String?,
+      sessionType:
+          $enumDecodeNullable(_$SessionTypeEnumMap, json['session_type']),
     );
 
 Map<String, dynamic> _$$DetailImplToJson(_$DetailImpl instance) =>
@@ -184,7 +186,7 @@ Map<String, dynamic> _$$DetailImplToJson(_$DetailImpl instance) =>
       'subject_name': instance.subjectName,
       'session_id': instance.sessionId,
       'session_no': instance.sessionNo,
-      'session_type': instance.sessionType,
+      'session_type': _$SessionTypeEnumMap[instance.sessionType],
     };
 
 _$ModuleImpl _$$ModuleImplFromJson(Map<String, dynamic> json) => _$ModuleImpl(
@@ -204,7 +206,7 @@ _$ModuleImpl _$$ModuleImplFromJson(Map<String, dynamic> json) => _$ModuleImpl(
       articles: (json['articles'] as List<dynamic>?)
           ?.map((e) => ModuleContent.fromJson(e as Map<String, dynamic>))
           .toList(),
-      status: json['status'] as String?,
+      status: $enumDecodeNullable(_$ProgressStatusEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$$ModuleImplToJson(_$ModuleImpl instance) =>
@@ -217,7 +219,7 @@ Map<String, dynamic> _$$ModuleImplToJson(_$ModuleImpl instance) =>
       'documents': instance.documents,
       'journals': instance.journals,
       'articles': instance.articles,
-      'status': instance.status,
+      'status': _$ProgressStatusEnumMap[instance.status],
     };
 
 _$ModuleContentImpl _$$ModuleContentImplFromJson(Map<String, dynamic> json) =>
@@ -245,7 +247,7 @@ Map<String, dynamic> _$$ModuleContentImplToJson(_$ModuleContentImpl instance) =>
 _$ModuleDocumentImpl _$$ModuleDocumentImplFromJson(Map<String, dynamic> json) =>
     _$ModuleDocumentImpl(
       id: json['id'] as String?,
-      documentId: json['document_id'],
+      documentId: json['document_id'] as String?,
       documentFile: json['document_file'] as String?,
       moduleId: json['module_id'] as String?,
       title: json['title'] as String?,
