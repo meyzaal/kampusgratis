@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SubjectSession {
   Subject get subject => throw _privateConstructorUsedError;
-  Overview get overview => throw _privateConstructorUsedError;
+  SessionOverview get overview => throw _privateConstructorUsedError;
   List<Session> get sessions => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,10 +31,10 @@ abstract class $SubjectSessionCopyWith<$Res> {
           SubjectSession value, $Res Function(SubjectSession) then) =
       _$SubjectSessionCopyWithImpl<$Res, SubjectSession>;
   @useResult
-  $Res call({Subject subject, Overview overview, List<Session> sessions});
+  $Res call(
+      {Subject subject, SessionOverview overview, List<Session> sessions});
 
   $SubjectCopyWith<$Res> get subject;
-  $OverviewCopyWith<$Res> get overview;
 }
 
 /// @nodoc
@@ -51,7 +51,7 @@ class _$SubjectSessionCopyWithImpl<$Res, $Val extends SubjectSession>
   @override
   $Res call({
     Object? subject = null,
-    Object? overview = null,
+    Object? overview = freezed,
     Object? sessions = null,
   }) {
     return _then(_value.copyWith(
@@ -59,10 +59,10 @@ class _$SubjectSessionCopyWithImpl<$Res, $Val extends SubjectSession>
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
               as Subject,
-      overview: null == overview
+      overview: freezed == overview
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
-              as Overview,
+              as SessionOverview,
       sessions: null == sessions
           ? _value.sessions
           : sessions // ignore: cast_nullable_to_non_nullable
@@ -77,14 +77,6 @@ class _$SubjectSessionCopyWithImpl<$Res, $Val extends SubjectSession>
       return _then(_value.copyWith(subject: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $OverviewCopyWith<$Res> get overview {
-    return $OverviewCopyWith<$Res>(_value.overview, (value) {
-      return _then(_value.copyWith(overview: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -95,12 +87,11 @@ abstract class _$$SubjectSessionImplCopyWith<$Res>
       __$$SubjectSessionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Subject subject, Overview overview, List<Session> sessions});
+  $Res call(
+      {Subject subject, SessionOverview overview, List<Session> sessions});
 
   @override
   $SubjectCopyWith<$Res> get subject;
-  @override
-  $OverviewCopyWith<$Res> get overview;
 }
 
 /// @nodoc
@@ -115,7 +106,7 @@ class __$$SubjectSessionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? subject = null,
-    Object? overview = null,
+    Object? overview = freezed,
     Object? sessions = null,
   }) {
     return _then(_$SubjectSessionImpl(
@@ -123,10 +114,10 @@ class __$$SubjectSessionImplCopyWithImpl<$Res>
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
               as Subject,
-      overview: null == overview
+      overview: freezed == overview
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
-              as Overview,
+              as SessionOverview,
       sessions: null == sessions
           ? _value._sessions
           : sessions // ignore: cast_nullable_to_non_nullable
@@ -147,7 +138,7 @@ class _$SubjectSessionImpl implements _SubjectSession {
   @override
   final Subject subject;
   @override
-  final Overview overview;
+  final SessionOverview overview;
   final List<Session> _sessions;
   @override
   List<Session> get sessions {
@@ -167,13 +158,15 @@ class _$SubjectSessionImpl implements _SubjectSession {
         (other.runtimeType == runtimeType &&
             other is _$SubjectSessionImpl &&
             (identical(other.subject, subject) || other.subject == subject) &&
-            (identical(other.overview, overview) ||
-                other.overview == overview) &&
+            const DeepCollectionEquality().equals(other.overview, overview) &&
             const DeepCollectionEquality().equals(other._sessions, _sessions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, subject, overview,
+  int get hashCode => Object.hash(
+      runtimeType,
+      subject,
+      const DeepCollectionEquality().hash(overview),
       const DeepCollectionEquality().hash(_sessions));
 
   @JsonKey(ignore: true)
@@ -187,13 +180,13 @@ class _$SubjectSessionImpl implements _SubjectSession {
 abstract class _SubjectSession implements SubjectSession {
   const factory _SubjectSession(
       {required final Subject subject,
-      required final Overview overview,
+      required final SessionOverview overview,
       required final List<Session> sessions}) = _$SubjectSessionImpl;
 
   @override
   Subject get subject;
   @override
-  Overview get overview;
+  SessionOverview get overview;
   @override
   List<Session> get sessions;
   @override

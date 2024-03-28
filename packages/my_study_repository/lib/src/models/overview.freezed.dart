@@ -16,15 +16,83 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Overview {
-  String get subjectId => throw _privateConstructorUsedError;
-  int get durationSeconds => throw _privateConstructorUsedError;
-  int get durationMinutes => throw _privateConstructorUsedError;
-  String? get sessionId => throw _privateConstructorUsedError;
-  String? get moduleId => throw _privateConstructorUsedError;
-  String? get link => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $OverviewCopyWith<Overview> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String subjectId,
+            int durationSeconds,
+            int durationMinutes,
+            String? sessionId,
+            String? moduleId,
+            String? link)
+        session,
+    required TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            Content video,
+            List<Document> documents,
+            ProgressStatus status)
+        detail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String subjectId,
+            int durationSeconds,
+            int durationMinutes,
+            String? sessionId,
+            String? moduleId,
+            String? link)?
+        session,
+    TResult? Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            Content video,
+            List<Document> documents,
+            ProgressStatus status)?
+        detail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String subjectId, int durationSeconds, int durationMinutes,
+            String? sessionId, String? moduleId, String? link)?
+        session,
+    TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            Content video,
+            List<Document> documents,
+            ProgressStatus status)?
+        detail,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SessionOverview value) session,
+    required TResult Function(DetailOverview value) detail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SessionOverview value)? session,
+    TResult? Function(DetailOverview value)? detail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SessionOverview value)? session,
+    TResult Function(DetailOverview value)? detail,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -32,14 +100,6 @@ mixin _$Overview {
 abstract class $OverviewCopyWith<$Res> {
   factory $OverviewCopyWith(Overview value, $Res Function(Overview) then) =
       _$OverviewCopyWithImpl<$Res, Overview>;
-  @useResult
-  $Res call(
-      {String subjectId,
-      int durationSeconds,
-      int durationMinutes,
-      String? sessionId,
-      String? moduleId,
-      String? link});
 }
 
 /// @nodoc
@@ -51,53 +111,13 @@ class _$OverviewCopyWithImpl<$Res, $Val extends Overview>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? subjectId = null,
-    Object? durationSeconds = null,
-    Object? durationMinutes = null,
-    Object? sessionId = freezed,
-    Object? moduleId = freezed,
-    Object? link = freezed,
-  }) {
-    return _then(_value.copyWith(
-      subjectId: null == subjectId
-          ? _value.subjectId
-          : subjectId // ignore: cast_nullable_to_non_nullable
-              as String,
-      durationSeconds: null == durationSeconds
-          ? _value.durationSeconds
-          : durationSeconds // ignore: cast_nullable_to_non_nullable
-              as int,
-      durationMinutes: null == durationMinutes
-          ? _value.durationMinutes
-          : durationMinutes // ignore: cast_nullable_to_non_nullable
-              as int,
-      sessionId: freezed == sessionId
-          ? _value.sessionId
-          : sessionId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      moduleId: freezed == moduleId
-          ? _value.moduleId
-          : moduleId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      link: freezed == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$OverviewImplCopyWith<$Res>
-    implements $OverviewCopyWith<$Res> {
-  factory _$$OverviewImplCopyWith(
-          _$OverviewImpl value, $Res Function(_$OverviewImpl) then) =
-      __$$OverviewImplCopyWithImpl<$Res>;
-  @override
+abstract class _$$SessionOverviewImplCopyWith<$Res> {
+  factory _$$SessionOverviewImplCopyWith(_$SessionOverviewImpl value,
+          $Res Function(_$SessionOverviewImpl) then) =
+      __$$SessionOverviewImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {String subjectId,
@@ -109,11 +129,11 @@ abstract class _$$OverviewImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$OverviewImplCopyWithImpl<$Res>
-    extends _$OverviewCopyWithImpl<$Res, _$OverviewImpl>
-    implements _$$OverviewImplCopyWith<$Res> {
-  __$$OverviewImplCopyWithImpl(
-      _$OverviewImpl _value, $Res Function(_$OverviewImpl) _then)
+class __$$SessionOverviewImplCopyWithImpl<$Res>
+    extends _$OverviewCopyWithImpl<$Res, _$SessionOverviewImpl>
+    implements _$$SessionOverviewImplCopyWith<$Res> {
+  __$$SessionOverviewImplCopyWithImpl(
+      _$SessionOverviewImpl _value, $Res Function(_$SessionOverviewImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -126,7 +146,7 @@ class __$$OverviewImplCopyWithImpl<$Res>
     Object? moduleId = freezed,
     Object? link = freezed,
   }) {
-    return _then(_$OverviewImpl(
+    return _then(_$SessionOverviewImpl(
       subjectId: null == subjectId
           ? _value.subjectId
           : subjectId // ignore: cast_nullable_to_non_nullable
@@ -157,8 +177,8 @@ class __$$OverviewImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$OverviewImpl implements _Overview {
-  const _$OverviewImpl(
+class _$SessionOverviewImpl implements SessionOverview {
+  const _$SessionOverviewImpl(
       {required this.subjectId,
       required this.durationSeconds,
       required this.durationMinutes,
@@ -181,14 +201,14 @@ class _$OverviewImpl implements _Overview {
 
   @override
   String toString() {
-    return 'Overview(subjectId: $subjectId, durationSeconds: $durationSeconds, durationMinutes: $durationMinutes, sessionId: $sessionId, moduleId: $moduleId, link: $link)';
+    return 'Overview.session(subjectId: $subjectId, durationSeconds: $durationSeconds, durationMinutes: $durationMinutes, sessionId: $sessionId, moduleId: $moduleId, link: $link)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OverviewImpl &&
+            other is _$SessionOverviewImpl &&
             (identical(other.subjectId, subjectId) ||
                 other.subjectId == subjectId) &&
             (identical(other.durationSeconds, durationSeconds) ||
@@ -209,33 +229,412 @@ class _$OverviewImpl implements _Overview {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OverviewImplCopyWith<_$OverviewImpl> get copyWith =>
-      __$$OverviewImplCopyWithImpl<_$OverviewImpl>(this, _$identity);
+  _$$SessionOverviewImplCopyWith<_$SessionOverviewImpl> get copyWith =>
+      __$$SessionOverviewImplCopyWithImpl<_$SessionOverviewImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String subjectId,
+            int durationSeconds,
+            int durationMinutes,
+            String? sessionId,
+            String? moduleId,
+            String? link)
+        session,
+    required TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            Content video,
+            List<Document> documents,
+            ProgressStatus status)
+        detail,
+  }) {
+    return session(
+        subjectId, durationSeconds, durationMinutes, sessionId, moduleId, link);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String subjectId,
+            int durationSeconds,
+            int durationMinutes,
+            String? sessionId,
+            String? moduleId,
+            String? link)?
+        session,
+    TResult? Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            Content video,
+            List<Document> documents,
+            ProgressStatus status)?
+        detail,
+  }) {
+    return session?.call(
+        subjectId, durationSeconds, durationMinutes, sessionId, moduleId, link);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String subjectId, int durationSeconds, int durationMinutes,
+            String? sessionId, String? moduleId, String? link)?
+        session,
+    TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            Content video,
+            List<Document> documents,
+            ProgressStatus status)?
+        detail,
+    required TResult orElse(),
+  }) {
+    if (session != null) {
+      return session(subjectId, durationSeconds, durationMinutes, sessionId,
+          moduleId, link);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SessionOverview value) session,
+    required TResult Function(DetailOverview value) detail,
+  }) {
+    return session(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SessionOverview value)? session,
+    TResult? Function(DetailOverview value)? detail,
+  }) {
+    return session?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SessionOverview value)? session,
+    TResult Function(DetailOverview value)? detail,
+    required TResult orElse(),
+  }) {
+    if (session != null) {
+      return session(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _Overview implements Overview {
-  const factory _Overview(
+abstract class SessionOverview implements Overview {
+  const factory SessionOverview(
       {required final String subjectId,
       required final int durationSeconds,
       required final int durationMinutes,
       final String? sessionId,
       final String? moduleId,
-      final String? link}) = _$OverviewImpl;
+      final String? link}) = _$SessionOverviewImpl;
+
+  String get subjectId;
+  int get durationSeconds;
+  int get durationMinutes;
+  String? get sessionId;
+  String? get moduleId;
+  String? get link;
+  @JsonKey(ignore: true)
+  _$$SessionOverviewImplCopyWith<_$SessionOverviewImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DetailOverviewImplCopyWith<$Res> {
+  factory _$$DetailOverviewImplCopyWith(_$DetailOverviewImpl value,
+          $Res Function(_$DetailOverviewImpl) then) =
+      __$$DetailOverviewImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {String id,
+      String title,
+      String description,
+      bool isAllVideoSeen,
+      Content video,
+      List<Document> documents,
+      ProgressStatus status});
+
+  $ContentCopyWith<$Res> get video;
+}
+
+/// @nodoc
+class __$$DetailOverviewImplCopyWithImpl<$Res>
+    extends _$OverviewCopyWithImpl<$Res, _$DetailOverviewImpl>
+    implements _$$DetailOverviewImplCopyWith<$Res> {
+  __$$DetailOverviewImplCopyWithImpl(
+      _$DetailOverviewImpl _value, $Res Function(_$DetailOverviewImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? title = null,
+    Object? description = null,
+    Object? isAllVideoSeen = null,
+    Object? video = null,
+    Object? documents = null,
+    Object? status = null,
+  }) {
+    return _then(_$DetailOverviewImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      isAllVideoSeen: null == isAllVideoSeen
+          ? _value.isAllVideoSeen
+          : isAllVideoSeen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      video: null == video
+          ? _value.video
+          : video // ignore: cast_nullable_to_non_nullable
+              as Content,
+      documents: null == documents
+          ? _value._documents
+          : documents // ignore: cast_nullable_to_non_nullable
+              as List<Document>,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ProgressStatus,
+    ));
+  }
 
   @override
-  String get subjectId;
+  @pragma('vm:prefer-inline')
+  $ContentCopyWith<$Res> get video {
+    return $ContentCopyWith<$Res>(_value.video, (value) {
+      return _then(_value.copyWith(video: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$DetailOverviewImpl implements DetailOverview {
+  const _$DetailOverviewImpl(
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.isAllVideoSeen,
+      required this.video,
+      required final List<Document> documents,
+      required this.status})
+      : _documents = documents;
+
   @override
-  int get durationSeconds;
+  final String id;
   @override
-  int get durationMinutes;
+  final String title;
   @override
-  String? get sessionId;
+  final String description;
   @override
-  String? get moduleId;
+  final bool isAllVideoSeen;
   @override
-  String? get link;
+  final Content video;
+  final List<Document> _documents;
   @override
+  List<Document> get documents {
+    if (_documents is EqualUnmodifiableListView) return _documents;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_documents);
+  }
+
+  @override
+  final ProgressStatus status;
+
+  @override
+  String toString() {
+    return 'Overview.detail(id: $id, title: $title, description: $description, isAllVideoSeen: $isAllVideoSeen, video: $video, documents: $documents, status: $status)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DetailOverviewImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.isAllVideoSeen, isAllVideoSeen) ||
+                other.isAllVideoSeen == isAllVideoSeen) &&
+            (identical(other.video, video) || other.video == video) &&
+            const DeepCollectionEquality()
+                .equals(other._documents, _documents) &&
+            (identical(other.status, status) || other.status == status));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      description,
+      isAllVideoSeen,
+      video,
+      const DeepCollectionEquality().hash(_documents),
+      status);
+
   @JsonKey(ignore: true)
-  _$$OverviewImplCopyWith<_$OverviewImpl> get copyWith =>
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DetailOverviewImplCopyWith<_$DetailOverviewImpl> get copyWith =>
+      __$$DetailOverviewImplCopyWithImpl<_$DetailOverviewImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String subjectId,
+            int durationSeconds,
+            int durationMinutes,
+            String? sessionId,
+            String? moduleId,
+            String? link)
+        session,
+    required TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            Content video,
+            List<Document> documents,
+            ProgressStatus status)
+        detail,
+  }) {
+    return detail(
+        id, title, description, isAllVideoSeen, video, documents, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String subjectId,
+            int durationSeconds,
+            int durationMinutes,
+            String? sessionId,
+            String? moduleId,
+            String? link)?
+        session,
+    TResult? Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            Content video,
+            List<Document> documents,
+            ProgressStatus status)?
+        detail,
+  }) {
+    return detail?.call(
+        id, title, description, isAllVideoSeen, video, documents, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String subjectId, int durationSeconds, int durationMinutes,
+            String? sessionId, String? moduleId, String? link)?
+        session,
+    TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            Content video,
+            List<Document> documents,
+            ProgressStatus status)?
+        detail,
+    required TResult orElse(),
+  }) {
+    if (detail != null) {
+      return detail(
+          id, title, description, isAllVideoSeen, video, documents, status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SessionOverview value) session,
+    required TResult Function(DetailOverview value) detail,
+  }) {
+    return detail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SessionOverview value)? session,
+    TResult? Function(DetailOverview value)? detail,
+  }) {
+    return detail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SessionOverview value)? session,
+    TResult Function(DetailOverview value)? detail,
+    required TResult orElse(),
+  }) {
+    if (detail != null) {
+      return detail(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DetailOverview implements Overview {
+  const factory DetailOverview(
+      {required final String id,
+      required final String title,
+      required final String description,
+      required final bool isAllVideoSeen,
+      required final Content video,
+      required final List<Document> documents,
+      required final ProgressStatus status}) = _$DetailOverviewImpl;
+
+  String get id;
+  String get title;
+  String get description;
+  bool get isAllVideoSeen;
+  Content get video;
+  List<Document> get documents;
+  ProgressStatus get status;
+  @JsonKey(ignore: true)
+  _$$DetailOverviewImplCopyWith<_$DetailOverviewImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

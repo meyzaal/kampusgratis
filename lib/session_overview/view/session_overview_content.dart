@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kampusgratis/app/app.dart';
+import 'package:kampusgratis/session_overview/session_overview.dart';
 import 'package:my_study_repository/my_study_repository.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -12,16 +14,25 @@ class SessionOverviewContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final listViewChildren = [
-      _Title(data.title),
-      _Description(data.description),
-      _Documents(data.documents),
+      _Title(data.overview.title),
+      _Description(data.overview.description),
+      _Documents(data.overview.documents),
     ];
 
-    return Scrollbar(
-      child: ListView.separated(
-        itemBuilder: (context, index) => listViewChildren[index],
-        separatorBuilder: (context, index) => const Divider(height: 0),
-        itemCount: listViewChildren.length,
+    return RefreshIndicator.adaptive(
+      onRefresh: () async => context.read<SessionOverviewBloc>().add(
+            SessionOverviewEvent.fetched(
+              subjectId: data.detail.subjectId,
+              sessionId: data.detail.sessionId,
+              moduleId: data.overview.id,
+            ),
+          ),
+      child: Scrollbar(
+        child: ListView.separated(
+          itemBuilder: (context, index) => listViewChildren[index],
+          separatorBuilder: (context, index) => const Divider(height: 0),
+          itemCount: listViewChildren.length,
+        ),
       ),
     );
   }

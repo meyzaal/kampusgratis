@@ -1,10 +1,13 @@
 export 'content.dart';
+export 'detail.dart';
 export 'document.dart';
 export 'module.dart';
+export 'module_details.dart';
 export 'my_study.dart';
 export 'overview.dart';
 export 'overview_details.dart';
 export 'progress.dart';
 export 'session.dart';
+export 'session_modules.dart';
 export 'subject.dart';
 export 'subject_session.dart';

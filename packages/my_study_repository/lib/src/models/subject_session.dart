@@ -7,7 +7,7 @@ part 'subject_session.freezed.dart';
 class SubjectSession with _$SubjectSession {
   const factory SubjectSession({
     required Subject subject,
-    required Overview overview,
+    required SessionOverview overview,
     required List<Session> sessions,
   }) = _SubjectSession;
 }

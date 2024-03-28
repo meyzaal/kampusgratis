@@ -1178,6 +1178,32 @@ class KgClient {
     }
   }
 
+  Future<SessionModules> getSessionModules({
+    required String subjectId,
+    required String sessionId,
+  }) async {
+    try {
+      final response = await _httpClient.get<dynamic>(
+        '/v2/my-study/subjects/$subjectId/sessions/$sessionId/modules',
+      );
+
+      final result =
+          Result<SessionModules>.fromJson(response.data as JSON, (json) {
+        return SessionModules.fromJson(json as JSON? ?? {});
+      });
+
+      final moduleDetails = result.data;
+      if (moduleDetails == null) {
+        throw ParsingFailedException(
+          'Gagal mendapatkan data respon (data-null).',
+        );
+      }
+      return moduleDetails;
+    } catch (e) {
+      throw _getException(e);
+    }
+  }
+
   Future<ModuleDetails> getModuleDetails({
     required String subjectId,
     required String sessionId,

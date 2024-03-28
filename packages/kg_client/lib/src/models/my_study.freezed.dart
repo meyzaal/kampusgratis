@@ -1595,6 +1595,544 @@ abstract class _MsSubject implements MsSubject {
       throw _privateConstructorUsedError;
 }
 
+SessionModules _$SessionModulesFromJson(Map<String, dynamic> json) {
+  return _SessionModules.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SessionModules {
+  @JsonKey(name: 'detail')
+  Detail? get detail => throw _privateConstructorUsedError;
+  @JsonKey(name: 'modules')
+  List<ModuleSession>? get modules => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SessionModulesCopyWith<SessionModules> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SessionModulesCopyWith<$Res> {
+  factory $SessionModulesCopyWith(
+          SessionModules value, $Res Function(SessionModules) then) =
+      _$SessionModulesCopyWithImpl<$Res, SessionModules>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'detail') Detail? detail,
+      @JsonKey(name: 'modules') List<ModuleSession>? modules});
+
+  $DetailCopyWith<$Res>? get detail;
+}
+
+/// @nodoc
+class _$SessionModulesCopyWithImpl<$Res, $Val extends SessionModules>
+    implements $SessionModulesCopyWith<$Res> {
+  _$SessionModulesCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? detail = freezed,
+    Object? modules = freezed,
+  }) {
+    return _then(_value.copyWith(
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as Detail?,
+      modules: freezed == modules
+          ? _value.modules
+          : modules // ignore: cast_nullable_to_non_nullable
+              as List<ModuleSession>?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DetailCopyWith<$Res>? get detail {
+    if (_value.detail == null) {
+      return null;
+    }
+
+    return $DetailCopyWith<$Res>(_value.detail!, (value) {
+      return _then(_value.copyWith(detail: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$SessionModulesImplCopyWith<$Res>
+    implements $SessionModulesCopyWith<$Res> {
+  factory _$$SessionModulesImplCopyWith(_$SessionModulesImpl value,
+          $Res Function(_$SessionModulesImpl) then) =
+      __$$SessionModulesImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'detail') Detail? detail,
+      @JsonKey(name: 'modules') List<ModuleSession>? modules});
+
+  @override
+  $DetailCopyWith<$Res>? get detail;
+}
+
+/// @nodoc
+class __$$SessionModulesImplCopyWithImpl<$Res>
+    extends _$SessionModulesCopyWithImpl<$Res, _$SessionModulesImpl>
+    implements _$$SessionModulesImplCopyWith<$Res> {
+  __$$SessionModulesImplCopyWithImpl(
+      _$SessionModulesImpl _value, $Res Function(_$SessionModulesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? detail = freezed,
+    Object? modules = freezed,
+  }) {
+    return _then(_$SessionModulesImpl(
+      detail: freezed == detail
+          ? _value.detail
+          : detail // ignore: cast_nullable_to_non_nullable
+              as Detail?,
+      modules: freezed == modules
+          ? _value._modules
+          : modules // ignore: cast_nullable_to_non_nullable
+              as List<ModuleSession>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SessionModulesImpl implements _SessionModules {
+  const _$SessionModulesImpl(
+      {@JsonKey(name: 'detail') this.detail,
+      @JsonKey(name: 'modules') final List<ModuleSession>? modules})
+      : _modules = modules;
+
+  factory _$SessionModulesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SessionModulesImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'detail')
+  final Detail? detail;
+  final List<ModuleSession>? _modules;
+  @override
+  @JsonKey(name: 'modules')
+  List<ModuleSession>? get modules {
+    final value = _modules;
+    if (value == null) return null;
+    if (_modules is EqualUnmodifiableListView) return _modules;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'SessionModules(detail: $detail, modules: $modules)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SessionModulesImpl &&
+            (identical(other.detail, detail) || other.detail == detail) &&
+            const DeepCollectionEquality().equals(other._modules, _modules));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, detail, const DeepCollectionEquality().hash(_modules));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SessionModulesImplCopyWith<_$SessionModulesImpl> get copyWith =>
+      __$$SessionModulesImplCopyWithImpl<_$SessionModulesImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SessionModulesImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SessionModules implements SessionModules {
+  const factory _SessionModules(
+          {@JsonKey(name: 'detail') final Detail? detail,
+          @JsonKey(name: 'modules') final List<ModuleSession>? modules}) =
+      _$SessionModulesImpl;
+
+  factory _SessionModules.fromJson(Map<String, dynamic> json) =
+      _$SessionModulesImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'detail')
+  Detail? get detail;
+  @override
+  @JsonKey(name: 'modules')
+  List<ModuleSession>? get modules;
+  @override
+  @JsonKey(ignore: true)
+  _$$SessionModulesImplCopyWith<_$SessionModulesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ModuleSession _$ModuleSessionFromJson(Map<String, dynamic> json) {
+  return _ModuleSession.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ModuleSession {
+  @JsonKey(name: 'id')
+  String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_videos')
+  String? get totalVideos => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_documents')
+  String? get totalDocuments => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_journals')
+  String? get totalJournals => throw _privateConstructorUsedError;
+  @JsonKey(name: 'total_articles')
+  String? get totalArticles => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_all_video_seen')
+  bool? get isAllVideoSeen => throw _privateConstructorUsedError;
+  @JsonKey(name: 'title')
+  String? get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'description')
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'submitted')
+  bool? get submitted => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ModuleSessionCopyWith<ModuleSession> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ModuleSessionCopyWith<$Res> {
+  factory $ModuleSessionCopyWith(
+          ModuleSession value, $Res Function(ModuleSession) then) =
+      _$ModuleSessionCopyWithImpl<$Res, ModuleSession>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'total_videos') String? totalVideos,
+      @JsonKey(name: 'total_documents') String? totalDocuments,
+      @JsonKey(name: 'total_journals') String? totalJournals,
+      @JsonKey(name: 'total_articles') String? totalArticles,
+      @JsonKey(name: 'is_all_video_seen') bool? isAllVideoSeen,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'submitted') bool? submitted});
+}
+
+/// @nodoc
+class _$ModuleSessionCopyWithImpl<$Res, $Val extends ModuleSession>
+    implements $ModuleSessionCopyWith<$Res> {
+  _$ModuleSessionCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? totalVideos = freezed,
+    Object? totalDocuments = freezed,
+    Object? totalJournals = freezed,
+    Object? totalArticles = freezed,
+    Object? isAllVideoSeen = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? submitted = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalVideos: freezed == totalVideos
+          ? _value.totalVideos
+          : totalVideos // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalDocuments: freezed == totalDocuments
+          ? _value.totalDocuments
+          : totalDocuments // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalJournals: freezed == totalJournals
+          ? _value.totalJournals
+          : totalJournals // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalArticles: freezed == totalArticles
+          ? _value.totalArticles
+          : totalArticles // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isAllVideoSeen: freezed == isAllVideoSeen
+          ? _value.isAllVideoSeen
+          : isAllVideoSeen // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      submitted: freezed == submitted
+          ? _value.submitted
+          : submitted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ModuleSessionImplCopyWith<$Res>
+    implements $ModuleSessionCopyWith<$Res> {
+  factory _$$ModuleSessionImplCopyWith(
+          _$ModuleSessionImpl value, $Res Function(_$ModuleSessionImpl) then) =
+      __$$ModuleSessionImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String? id,
+      @JsonKey(name: 'total_videos') String? totalVideos,
+      @JsonKey(name: 'total_documents') String? totalDocuments,
+      @JsonKey(name: 'total_journals') String? totalJournals,
+      @JsonKey(name: 'total_articles') String? totalArticles,
+      @JsonKey(name: 'is_all_video_seen') bool? isAllVideoSeen,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'submitted') bool? submitted});
+}
+
+/// @nodoc
+class __$$ModuleSessionImplCopyWithImpl<$Res>
+    extends _$ModuleSessionCopyWithImpl<$Res, _$ModuleSessionImpl>
+    implements _$$ModuleSessionImplCopyWith<$Res> {
+  __$$ModuleSessionImplCopyWithImpl(
+      _$ModuleSessionImpl _value, $Res Function(_$ModuleSessionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? totalVideos = freezed,
+    Object? totalDocuments = freezed,
+    Object? totalJournals = freezed,
+    Object? totalArticles = freezed,
+    Object? isAllVideoSeen = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? submitted = freezed,
+  }) {
+    return _then(_$ModuleSessionImpl(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalVideos: freezed == totalVideos
+          ? _value.totalVideos
+          : totalVideos // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalDocuments: freezed == totalDocuments
+          ? _value.totalDocuments
+          : totalDocuments // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalJournals: freezed == totalJournals
+          ? _value.totalJournals
+          : totalJournals // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalArticles: freezed == totalArticles
+          ? _value.totalArticles
+          : totalArticles // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isAllVideoSeen: freezed == isAllVideoSeen
+          ? _value.isAllVideoSeen
+          : isAllVideoSeen // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      submitted: freezed == submitted
+          ? _value.submitted
+          : submitted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ModuleSessionImpl implements _ModuleSession {
+  const _$ModuleSessionImpl(
+      {@JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'total_videos') this.totalVideos,
+      @JsonKey(name: 'total_documents') this.totalDocuments,
+      @JsonKey(name: 'total_journals') this.totalJournals,
+      @JsonKey(name: 'total_articles') this.totalArticles,
+      @JsonKey(name: 'is_all_video_seen') this.isAllVideoSeen,
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'submitted') this.submitted});
+
+  factory _$ModuleSessionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ModuleSessionImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'id')
+  final String? id;
+  @override
+  @JsonKey(name: 'total_videos')
+  final String? totalVideos;
+  @override
+  @JsonKey(name: 'total_documents')
+  final String? totalDocuments;
+  @override
+  @JsonKey(name: 'total_journals')
+  final String? totalJournals;
+  @override
+  @JsonKey(name: 'total_articles')
+  final String? totalArticles;
+  @override
+  @JsonKey(name: 'is_all_video_seen')
+  final bool? isAllVideoSeen;
+  @override
+  @JsonKey(name: 'title')
+  final String? title;
+  @override
+  @JsonKey(name: 'description')
+  final String? description;
+  @override
+  @JsonKey(name: 'submitted')
+  final bool? submitted;
+
+  @override
+  String toString() {
+    return 'ModuleSession(id: $id, totalVideos: $totalVideos, totalDocuments: $totalDocuments, totalJournals: $totalJournals, totalArticles: $totalArticles, isAllVideoSeen: $isAllVideoSeen, title: $title, description: $description, submitted: $submitted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ModuleSessionImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.totalVideos, totalVideos) ||
+                other.totalVideos == totalVideos) &&
+            (identical(other.totalDocuments, totalDocuments) ||
+                other.totalDocuments == totalDocuments) &&
+            (identical(other.totalJournals, totalJournals) ||
+                other.totalJournals == totalJournals) &&
+            (identical(other.totalArticles, totalArticles) ||
+                other.totalArticles == totalArticles) &&
+            (identical(other.isAllVideoSeen, isAllVideoSeen) ||
+                other.isAllVideoSeen == isAllVideoSeen) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.submitted, submitted) ||
+                other.submitted == submitted));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      totalVideos,
+      totalDocuments,
+      totalJournals,
+      totalArticles,
+      isAllVideoSeen,
+      title,
+      description,
+      submitted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ModuleSessionImplCopyWith<_$ModuleSessionImpl> get copyWith =>
+      __$$ModuleSessionImplCopyWithImpl<_$ModuleSessionImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ModuleSessionImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ModuleSession implements ModuleSession {
+  const factory _ModuleSession(
+      {@JsonKey(name: 'id') final String? id,
+      @JsonKey(name: 'total_videos') final String? totalVideos,
+      @JsonKey(name: 'total_documents') final String? totalDocuments,
+      @JsonKey(name: 'total_journals') final String? totalJournals,
+      @JsonKey(name: 'total_articles') final String? totalArticles,
+      @JsonKey(name: 'is_all_video_seen') final bool? isAllVideoSeen,
+      @JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'description') final String? description,
+      @JsonKey(name: 'submitted') final bool? submitted}) = _$ModuleSessionImpl;
+
+  factory _ModuleSession.fromJson(Map<String, dynamic> json) =
+      _$ModuleSessionImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'id')
+  String? get id;
+  @override
+  @JsonKey(name: 'total_videos')
+  String? get totalVideos;
+  @override
+  @JsonKey(name: 'total_documents')
+  String? get totalDocuments;
+  @override
+  @JsonKey(name: 'total_journals')
+  String? get totalJournals;
+  @override
+  @JsonKey(name: 'total_articles')
+  String? get totalArticles;
+  @override
+  @JsonKey(name: 'is_all_video_seen')
+  bool? get isAllVideoSeen;
+  @override
+  @JsonKey(name: 'title')
+  String? get title;
+  @override
+  @JsonKey(name: 'description')
+  String? get description;
+  @override
+  @JsonKey(name: 'submitted')
+  bool? get submitted;
+  @override
+  @JsonKey(ignore: true)
+  _$$ModuleSessionImplCopyWith<_$ModuleSessionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 ModuleDetails _$ModuleDetailsFromJson(Map<String, dynamic> json) {
   return _ModuleDetails.fromJson(json);
 }
@@ -1604,7 +2142,7 @@ mixin _$ModuleDetails {
   @JsonKey(name: 'detail')
   Detail? get detail => throw _privateConstructorUsedError;
   @JsonKey(name: 'module')
-  Module? get module => throw _privateConstructorUsedError;
+  DetailModule? get module => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1620,10 +2158,10 @@ abstract class $ModuleDetailsCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'detail') Detail? detail,
-      @JsonKey(name: 'module') Module? module});
+      @JsonKey(name: 'module') DetailModule? module});
 
   $DetailCopyWith<$Res>? get detail;
-  $ModuleCopyWith<$Res>? get module;
+  $DetailModuleCopyWith<$Res>? get module;
 }
 
 /// @nodoc
@@ -1650,7 +2188,7 @@ class _$ModuleDetailsCopyWithImpl<$Res, $Val extends ModuleDetails>
       module: freezed == module
           ? _value.module
           : module // ignore: cast_nullable_to_non_nullable
-              as Module?,
+              as DetailModule?,
     ) as $Val);
   }
 
@@ -1668,12 +2206,12 @@ class _$ModuleDetailsCopyWithImpl<$Res, $Val extends ModuleDetails>
 
   @override
   @pragma('vm:prefer-inline')
-  $ModuleCopyWith<$Res>? get module {
+  $DetailModuleCopyWith<$Res>? get module {
     if (_value.module == null) {
       return null;
     }
 
-    return $ModuleCopyWith<$Res>(_value.module!, (value) {
+    return $DetailModuleCopyWith<$Res>(_value.module!, (value) {
       return _then(_value.copyWith(module: value) as $Val);
     });
   }
@@ -1689,12 +2227,12 @@ abstract class _$$ModuleDetailsImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'detail') Detail? detail,
-      @JsonKey(name: 'module') Module? module});
+      @JsonKey(name: 'module') DetailModule? module});
 
   @override
   $DetailCopyWith<$Res>? get detail;
   @override
-  $ModuleCopyWith<$Res>? get module;
+  $DetailModuleCopyWith<$Res>? get module;
 }
 
 /// @nodoc
@@ -1719,7 +2257,7 @@ class __$$ModuleDetailsImplCopyWithImpl<$Res>
       module: freezed == module
           ? _value.module
           : module // ignore: cast_nullable_to_non_nullable
-              as Module?,
+              as DetailModule?,
     ));
   }
 }
@@ -1739,7 +2277,7 @@ class _$ModuleDetailsImpl implements _ModuleDetails {
   final Detail? detail;
   @override
   @JsonKey(name: 'module')
-  final Module? module;
+  final DetailModule? module;
 
   @override
   String toString() {
@@ -1775,8 +2313,9 @@ class _$ModuleDetailsImpl implements _ModuleDetails {
 
 abstract class _ModuleDetails implements ModuleDetails {
   const factory _ModuleDetails(
-      {@JsonKey(name: 'detail') final Detail? detail,
-      @JsonKey(name: 'module') final Module? module}) = _$ModuleDetailsImpl;
+          {@JsonKey(name: 'detail') final Detail? detail,
+          @JsonKey(name: 'module') final DetailModule? module}) =
+      _$ModuleDetailsImpl;
 
   factory _ModuleDetails.fromJson(Map<String, dynamic> json) =
       _$ModuleDetailsImpl.fromJson;
@@ -1786,7 +2325,7 @@ abstract class _ModuleDetails implements ModuleDetails {
   Detail? get detail;
   @override
   @JsonKey(name: 'module')
-  Module? get module;
+  DetailModule? get module;
   @override
   @JsonKey(ignore: true)
   _$$ModuleDetailsImplCopyWith<_$ModuleDetailsImpl> get copyWith =>
@@ -2031,12 +2570,12 @@ abstract class _Detail implements Detail {
       throw _privateConstructorUsedError;
 }
 
-Module _$ModuleFromJson(Map<String, dynamic> json) {
-  return _Module.fromJson(json);
+DetailModule _$DetailModuleFromJson(Map<String, dynamic> json) {
+  return _DetailModule.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Module {
+mixin _$DetailModule {
   @JsonKey(name: 'id')
   String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
@@ -2058,13 +2597,15 @@ mixin _$Module {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ModuleCopyWith<Module> get copyWith => throw _privateConstructorUsedError;
+  $DetailModuleCopyWith<DetailModule> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ModuleCopyWith<$Res> {
-  factory $ModuleCopyWith(Module value, $Res Function(Module) then) =
-      _$ModuleCopyWithImpl<$Res, Module>;
+abstract class $DetailModuleCopyWith<$Res> {
+  factory $DetailModuleCopyWith(
+          DetailModule value, $Res Function(DetailModule) then) =
+      _$DetailModuleCopyWithImpl<$Res, DetailModule>;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String? id,
@@ -2079,9 +2620,9 @@ abstract class $ModuleCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ModuleCopyWithImpl<$Res, $Val extends Module>
-    implements $ModuleCopyWith<$Res> {
-  _$ModuleCopyWithImpl(this._value, this._then);
+class _$DetailModuleCopyWithImpl<$Res, $Val extends DetailModule>
+    implements $DetailModuleCopyWith<$Res> {
+  _$DetailModuleCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -2143,10 +2684,11 @@ class _$ModuleCopyWithImpl<$Res, $Val extends Module>
 }
 
 /// @nodoc
-abstract class _$$ModuleImplCopyWith<$Res> implements $ModuleCopyWith<$Res> {
-  factory _$$ModuleImplCopyWith(
-          _$ModuleImpl value, $Res Function(_$ModuleImpl) then) =
-      __$$ModuleImplCopyWithImpl<$Res>;
+abstract class _$$DetailModuleImplCopyWith<$Res>
+    implements $DetailModuleCopyWith<$Res> {
+  factory _$$DetailModuleImplCopyWith(
+          _$DetailModuleImpl value, $Res Function(_$DetailModuleImpl) then) =
+      __$$DetailModuleImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2162,11 +2704,11 @@ abstract class _$$ModuleImplCopyWith<$Res> implements $ModuleCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ModuleImplCopyWithImpl<$Res>
-    extends _$ModuleCopyWithImpl<$Res, _$ModuleImpl>
-    implements _$$ModuleImplCopyWith<$Res> {
-  __$$ModuleImplCopyWithImpl(
-      _$ModuleImpl _value, $Res Function(_$ModuleImpl) _then)
+class __$$DetailModuleImplCopyWithImpl<$Res>
+    extends _$DetailModuleCopyWithImpl<$Res, _$DetailModuleImpl>
+    implements _$$DetailModuleImplCopyWith<$Res> {
+  __$$DetailModuleImplCopyWithImpl(
+      _$DetailModuleImpl _value, $Res Function(_$DetailModuleImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2182,7 +2724,7 @@ class __$$ModuleImplCopyWithImpl<$Res>
     Object? articles = freezed,
     Object? status = freezed,
   }) {
-    return _then(_$ModuleImpl(
+    return _then(_$DetailModuleImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2225,8 +2767,8 @@ class __$$ModuleImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ModuleImpl implements _Module {
-  const _$ModuleImpl(
+class _$DetailModuleImpl implements _DetailModule {
+  const _$DetailModuleImpl(
       {@JsonKey(name: 'id') this.id,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'description') this.description,
@@ -2241,8 +2783,8 @@ class _$ModuleImpl implements _Module {
         _journals = journals,
         _articles = articles;
 
-  factory _$ModuleImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ModuleImplFromJson(json);
+  factory _$DetailModuleImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DetailModuleImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -2306,14 +2848,14 @@ class _$ModuleImpl implements _Module {
 
   @override
   String toString() {
-    return 'Module(id: $id, title: $title, description: $description, isAllVideoSeen: $isAllVideoSeen, videos: $videos, documents: $documents, journals: $journals, articles: $articles, status: $status)';
+    return 'DetailModule(id: $id, title: $title, description: $description, isAllVideoSeen: $isAllVideoSeen, videos: $videos, documents: $documents, journals: $journals, articles: $articles, status: $status)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ModuleImpl &&
+            other is _$DetailModuleImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -2345,30 +2887,32 @@ class _$ModuleImpl implements _Module {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ModuleImplCopyWith<_$ModuleImpl> get copyWith =>
-      __$$ModuleImplCopyWithImpl<_$ModuleImpl>(this, _$identity);
+  _$$DetailModuleImplCopyWith<_$DetailModuleImpl> get copyWith =>
+      __$$DetailModuleImplCopyWithImpl<_$DetailModuleImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ModuleImplToJson(
+    return _$$DetailModuleImplToJson(
       this,
     );
   }
 }
 
-abstract class _Module implements Module {
-  const factory _Module(
-      {@JsonKey(name: 'id') final String? id,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'description') final String? description,
-      @JsonKey(name: 'is_all_video_seen') final bool? isAllVideoSeen,
-      @JsonKey(name: 'videos') final List<ModuleContent>? videos,
-      @JsonKey(name: 'documents') final List<ModuleDocument>? documents,
-      @JsonKey(name: 'journals') final List<ModuleContent>? journals,
-      @JsonKey(name: 'articles') final List<ModuleContent>? articles,
-      @JsonKey(name: 'status') final ProgressStatus? status}) = _$ModuleImpl;
+abstract class _DetailModule implements DetailModule {
+  const factory _DetailModule(
+          {@JsonKey(name: 'id') final String? id,
+          @JsonKey(name: 'title') final String? title,
+          @JsonKey(name: 'description') final String? description,
+          @JsonKey(name: 'is_all_video_seen') final bool? isAllVideoSeen,
+          @JsonKey(name: 'videos') final List<ModuleContent>? videos,
+          @JsonKey(name: 'documents') final List<ModuleDocument>? documents,
+          @JsonKey(name: 'journals') final List<ModuleContent>? journals,
+          @JsonKey(name: 'articles') final List<ModuleContent>? articles,
+          @JsonKey(name: 'status') final ProgressStatus? status}) =
+      _$DetailModuleImpl;
 
-  factory _Module.fromJson(Map<String, dynamic> json) = _$ModuleImpl.fromJson;
+  factory _DetailModule.fromJson(Map<String, dynamic> json) =
+      _$DetailModuleImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
@@ -2399,7 +2943,7 @@ abstract class _Module implements Module {
   ProgressStatus? get status;
   @override
   @JsonKey(ignore: true)
-  _$$ModuleImplCopyWith<_$ModuleImpl> get copyWith =>
+  _$$DetailModuleImplCopyWith<_$DetailModuleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

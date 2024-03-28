@@ -189,6 +189,11 @@ RouteBase get $mainRoute => ShellRouteData.$route(
                   parentNavigatorKey: SessionOverviewRoute.$parentNavigatorKey,
                   factory: $SessionOverviewRouteExtension._fromState,
                 ),
+                GoRouteData.$route(
+                  path: ':sessionId/modules',
+                  parentNavigatorKey: SessionModulesRoute.$parentNavigatorKey,
+                  factory: $SessionModulesRouteExtension._fromState,
+                ),
               ],
             ),
           ],
@@ -333,6 +338,27 @@ extension $SessionOverviewRouteExtension on SessionOverviewRoute {
 
   void replace(BuildContext context) =>
       context.replace(location, extra: $extra);
+}
+
+extension $SessionModulesRouteExtension on SessionModulesRoute {
+  static SessionModulesRoute _fromState(GoRouterState state) =>
+      SessionModulesRoute(
+        state.pathParameters['subjectId']!,
+        state.pathParameters['sessionId']!,
+      );
+
+  String get location => GoRouteData.$location(
+        '/my-study/${Uri.encodeComponent(subjectId)}/sessions/${Uri.encodeComponent(sessionId)}/modules',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $AssignmentRouteExtension on AssignmentRoute {

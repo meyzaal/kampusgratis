@@ -44,7 +44,7 @@ class MyStudyRepository {
       description: result.subject?.description ?? '',
       thumbnail: result.subject?.thumbnail,
     );
-    final overview = Overview(
+    final overview = SessionOverview(
       subjectId: result.overview?.subjectId ?? '',
       durationSeconds: result.overview?.durationSeconds ?? 0,
       durationMinutes: result.overview?.durationMinutes ?? 0,
@@ -79,7 +79,44 @@ class MyStudyRepository {
     );
   }
 
-  Future<Module> getModuleDetails({
+  Future<SessionModules> getSessionModules({
+    required String subjectId,
+    required String sessionId,
+  }) async {
+    final result = await _kgClient.getSessionModules(
+      subjectId: subjectId,
+      sessionId: sessionId,
+    );
+    final detail = Detail(
+      subjectId: subjectId,
+      subjectName: result.detail?.subjectName ?? '',
+      sessionId: sessionId,
+      sessionNo: result.detail?.sessionNo ?? 0,
+      sessionType: result.detail?.sessionType ?? SessionType.regular,
+    );
+    final modules = (result.modules ?? [])
+        .map(
+          (module) => ModuleSession(
+            id: module.id ?? '',
+            totalVideos: int.tryParse(module.totalVideos ?? '') ?? 0,
+            totalDocuments: int.tryParse(module.totalDocuments ?? '') ?? 0,
+            totalJournals: int.tryParse(module.totalJournals ?? '') ?? 0,
+            totalArticles: int.tryParse(module.totalArticles ?? '') ?? 0,
+            isAllVideoSeen: module.isAllVideoSeen ?? false,
+            title: module.title ?? '-',
+            description: module.description ?? '-',
+            submitted: module.submitted ?? false,
+          ),
+        )
+        .toList();
+
+    return SessionModules(
+      detail: detail,
+      modules: modules,
+    );
+  }
+
+  Future<ModuleDetails> getModuleDetails({
     required String subjectId,
     required String sessionId,
     required String moduleId,
@@ -136,13 +173,14 @@ class MyStudyRepository {
           ),
         )
         .toList();
-
-    return Module(
+    final detail = Detail(
       subjectId: subjectId,
       subjectName: result.detail?.subjectName ?? '',
       sessionId: sessionId,
       sessionNo: result.detail?.sessionNo ?? 0,
       sessionType: result.detail?.sessionType ?? SessionType.regular,
+    );
+    final module = DetailModule(
       id: result.module?.id ?? '',
       title: result.module?.title ?? '',
       description: result.module?.description ?? '',
@@ -153,6 +191,7 @@ class MyStudyRepository {
       articles: articles,
       status: result.module?.status ?? ProgressStatus.pending,
     );
+    return ModuleDetails(detail: detail, module: module);
   }
 
   Future<OverviewDetails> getOverviewDetails({
@@ -188,13 +227,14 @@ class MyStudyRepository {
           ),
         )
         .toList();
-
-    return OverviewDetails(
+    final detail = Detail(
       subjectId: subjectId,
       subjectName: result.detail?.subjectName ?? '',
       sessionId: sessionId,
       sessionNo: result.detail?.sessionNo ?? 0,
       sessionType: result.detail?.sessionType ?? SessionType.regular,
+    );
+    final overview = DetailOverview(
       id: result.module?.id ?? '',
       title: result.module?.title ?? '',
       description: result.module?.description ?? '',
@@ -203,5 +243,7 @@ class MyStudyRepository {
       documents: documents,
       status: result.module?.status ?? ProgressStatus.pending,
     );
+
+    return OverviewDetails(detail: detail, overview: overview);
   }
 }

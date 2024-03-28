@@ -24,6 +24,7 @@ import 'package:kampusgratis/otp_verification/otp_verification.dart';
 import 'package:kampusgratis/pdf_viewer/pdf_viewer.dart';
 import 'package:kampusgratis/profile/profile.dart';
 import 'package:kampusgratis/register/register.dart';
+import 'package:kampusgratis/session_modules/session_modules.dart';
 import 'package:kampusgratis/session_overview/session_overview.dart';
 import 'package:kampusgratis/single_choices/single_choices.dart';
 import 'package:kampusgratis/subject_session/subject_session.dart';
@@ -157,6 +158,9 @@ class ForgotPasswordRoute extends GoRouteData {
             TypedGoRoute<SessionOverviewRoute>(
               path: ':sessionId/overview',
             ),
+            TypedGoRoute<SessionModulesRoute>(
+              path: ':sessionId/modules',
+            ),
           ],
         ),
       ],
@@ -226,6 +230,25 @@ class SubjectSessionRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) => SubjectSessionPage(
         subjectId: subjectId,
+      );
+}
+
+class SessionModulesRoute extends GoRouteData {
+  const SessionModulesRoute(
+    this.subjectId,
+    this.sessionId,
+  );
+
+  final String subjectId;
+  final String sessionId;
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey =
+      _rootNavigatorKey;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => SessionModulesPage(
+        subjectId: subjectId,
+        sessionId: sessionId,
       );
 }
 

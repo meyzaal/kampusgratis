@@ -1,6 +1,6 @@
 name: kampusgratis
 description: A Very Good Project created by Very Good CLI.
-version: 2.0.0-beta+39
+version: 2.0.1-beta+40
 publish_to: none
 
 environment:

@@ -132,13 +132,44 @@ class MsSubject with _$MsSubject {
       _$MsSubjectFromJson(json);
 }
 
+// SESSION MODULES
+
+@freezed
+class SessionModules with _$SessionModules {
+  const factory SessionModules({
+    @JsonKey(name: 'detail') Detail? detail,
+    @JsonKey(name: 'modules') List<ModuleSession>? modules,
+  }) = _SessionModules;
+
+  factory SessionModules.fromJson(Map<String, Object?> json) =>
+      _$SessionModulesFromJson(json);
+}
+
+@freezed
+class ModuleSession with _$ModuleSession {
+  const factory ModuleSession({
+    @JsonKey(name: 'id') String? id,
+    @JsonKey(name: 'total_videos') String? totalVideos,
+    @JsonKey(name: 'total_documents') String? totalDocuments,
+    @JsonKey(name: 'total_journals') String? totalJournals,
+    @JsonKey(name: 'total_articles') String? totalArticles,
+    @JsonKey(name: 'is_all_video_seen') bool? isAllVideoSeen,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'submitted') bool? submitted,
+  }) = _ModuleSession;
+
+  factory ModuleSession.fromJson(Map<String, Object?> json) =>
+      _$ModuleSessionFromJson(json);
+}
+
 // MODULE DETAILS
 
 @freezed
 class ModuleDetails with _$ModuleDetails {
   const factory ModuleDetails({
     @JsonKey(name: 'detail') Detail? detail,
-    @JsonKey(name: 'module') Module? module,
+    @JsonKey(name: 'module') DetailModule? module,
   }) = _ModuleDetails;
 
   factory ModuleDetails.fromJson(Map<String, dynamic> json) =>
@@ -159,8 +190,8 @@ class Detail with _$Detail {
 }
 
 @freezed
-class Module with _$Module {
-  const factory Module({
+class DetailModule with _$DetailModule {
+  const factory DetailModule({
     @JsonKey(name: 'id') String? id,
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'description') String? description,
@@ -170,9 +201,10 @@ class Module with _$Module {
     @JsonKey(name: 'journals') List<ModuleContent>? journals,
     @JsonKey(name: 'articles') List<ModuleContent>? articles,
     @JsonKey(name: 'status') ProgressStatus? status,
-  }) = _Module;
+  }) = _DetailModule;
 
-  factory Module.fromJson(Map<String, dynamic> json) => _$ModuleFromJson(json);
+  factory DetailModule.fromJson(Map<String, dynamic> json) =>
+      _$DetailModuleFromJson(json);
 }
 
 @freezed

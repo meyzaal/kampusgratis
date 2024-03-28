@@ -98,6 +98,8 @@ class _Success extends StatelessWidget {
           isLocked: session.isLocked,
           number: session.sessionNo,
           title: session.title,
+          sessionId: session.id,
+          subjectId: data?.subject.id ?? '',
           progresses: session.progress,
         ),
       ),

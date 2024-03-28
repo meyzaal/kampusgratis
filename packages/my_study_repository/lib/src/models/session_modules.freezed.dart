@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'overview_details.dart';
+part of 'session_modules.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,30 +15,30 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$OverviewDetails {
+mixin _$SessionModules {
   Detail get detail => throw _privateConstructorUsedError;
-  DetailOverview get overview => throw _privateConstructorUsedError;
+  List<ModuleSession> get modules => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $OverviewDetailsCopyWith<OverviewDetails> get copyWith =>
+  $SessionModulesCopyWith<SessionModules> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OverviewDetailsCopyWith<$Res> {
-  factory $OverviewDetailsCopyWith(
-          OverviewDetails value, $Res Function(OverviewDetails) then) =
-      _$OverviewDetailsCopyWithImpl<$Res, OverviewDetails>;
+abstract class $SessionModulesCopyWith<$Res> {
+  factory $SessionModulesCopyWith(
+          SessionModules value, $Res Function(SessionModules) then) =
+      _$SessionModulesCopyWithImpl<$Res, SessionModules>;
   @useResult
-  $Res call({Detail detail, DetailOverview overview});
+  $Res call({Detail detail, List<ModuleSession> modules});
 
   $DetailCopyWith<$Res> get detail;
 }
 
 /// @nodoc
-class _$OverviewDetailsCopyWithImpl<$Res, $Val extends OverviewDetails>
-    implements $OverviewDetailsCopyWith<$Res> {
-  _$OverviewDetailsCopyWithImpl(this._value, this._then);
+class _$SessionModulesCopyWithImpl<$Res, $Val extends SessionModules>
+    implements $SessionModulesCopyWith<$Res> {
+  _$SessionModulesCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -49,17 +49,17 @@ class _$OverviewDetailsCopyWithImpl<$Res, $Val extends OverviewDetails>
   @override
   $Res call({
     Object? detail = null,
-    Object? overview = freezed,
+    Object? modules = null,
   }) {
     return _then(_value.copyWith(
       detail: null == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
               as Detail,
-      overview: freezed == overview
-          ? _value.overview
-          : overview // ignore: cast_nullable_to_non_nullable
-              as DetailOverview,
+      modules: null == modules
+          ? _value.modules
+          : modules // ignore: cast_nullable_to_non_nullable
+              as List<ModuleSession>,
     ) as $Val);
   }
 
@@ -73,93 +73,100 @@ class _$OverviewDetailsCopyWithImpl<$Res, $Val extends OverviewDetails>
 }
 
 /// @nodoc
-abstract class _$$OverviewDetailsImplCopyWith<$Res>
-    implements $OverviewDetailsCopyWith<$Res> {
-  factory _$$OverviewDetailsImplCopyWith(_$OverviewDetailsImpl value,
-          $Res Function(_$OverviewDetailsImpl) then) =
-      __$$OverviewDetailsImplCopyWithImpl<$Res>;
+abstract class _$$SessionModulesImplCopyWith<$Res>
+    implements $SessionModulesCopyWith<$Res> {
+  factory _$$SessionModulesImplCopyWith(_$SessionModulesImpl value,
+          $Res Function(_$SessionModulesImpl) then) =
+      __$$SessionModulesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Detail detail, DetailOverview overview});
+  $Res call({Detail detail, List<ModuleSession> modules});
 
   @override
   $DetailCopyWith<$Res> get detail;
 }
 
 /// @nodoc
-class __$$OverviewDetailsImplCopyWithImpl<$Res>
-    extends _$OverviewDetailsCopyWithImpl<$Res, _$OverviewDetailsImpl>
-    implements _$$OverviewDetailsImplCopyWith<$Res> {
-  __$$OverviewDetailsImplCopyWithImpl(
-      _$OverviewDetailsImpl _value, $Res Function(_$OverviewDetailsImpl) _then)
+class __$$SessionModulesImplCopyWithImpl<$Res>
+    extends _$SessionModulesCopyWithImpl<$Res, _$SessionModulesImpl>
+    implements _$$SessionModulesImplCopyWith<$Res> {
+  __$$SessionModulesImplCopyWithImpl(
+      _$SessionModulesImpl _value, $Res Function(_$SessionModulesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? detail = null,
-    Object? overview = freezed,
+    Object? modules = null,
   }) {
-    return _then(_$OverviewDetailsImpl(
+    return _then(_$SessionModulesImpl(
       detail: null == detail
           ? _value.detail
           : detail // ignore: cast_nullable_to_non_nullable
               as Detail,
-      overview: freezed == overview
-          ? _value.overview
-          : overview // ignore: cast_nullable_to_non_nullable
-              as DetailOverview,
+      modules: null == modules
+          ? _value._modules
+          : modules // ignore: cast_nullable_to_non_nullable
+              as List<ModuleSession>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$OverviewDetailsImpl implements _OverviewDetails {
-  const _$OverviewDetailsImpl({required this.detail, required this.overview});
+class _$SessionModulesImpl implements _SessionModules {
+  _$SessionModulesImpl(
+      {required this.detail, required final List<ModuleSession> modules})
+      : _modules = modules;
 
   @override
   final Detail detail;
+  final List<ModuleSession> _modules;
   @override
-  final DetailOverview overview;
+  List<ModuleSession> get modules {
+    if (_modules is EqualUnmodifiableListView) return _modules;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_modules);
+  }
 
   @override
   String toString() {
-    return 'OverviewDetails(detail: $detail, overview: $overview)';
+    return 'SessionModules(detail: $detail, modules: $modules)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OverviewDetailsImpl &&
+            other is _$SessionModulesImpl &&
             (identical(other.detail, detail) || other.detail == detail) &&
-            const DeepCollectionEquality().equals(other.overview, overview));
+            const DeepCollectionEquality().equals(other._modules, _modules));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, detail, const DeepCollectionEquality().hash(overview));
+      runtimeType, detail, const DeepCollectionEquality().hash(_modules));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$OverviewDetailsImplCopyWith<_$OverviewDetailsImpl> get copyWith =>
-      __$$OverviewDetailsImplCopyWithImpl<_$OverviewDetailsImpl>(
+  _$$SessionModulesImplCopyWith<_$SessionModulesImpl> get copyWith =>
+      __$$SessionModulesImplCopyWithImpl<_$SessionModulesImpl>(
           this, _$identity);
 }
 
-abstract class _OverviewDetails implements OverviewDetails {
-  const factory _OverviewDetails(
+abstract class _SessionModules implements SessionModules {
+  factory _SessionModules(
       {required final Detail detail,
-      required final DetailOverview overview}) = _$OverviewDetailsImpl;
+      required final List<ModuleSession> modules}) = _$SessionModulesImpl;
 
   @override
   Detail get detail;
   @override
-  DetailOverview get overview;
+  List<ModuleSession> get modules;
   @override
   @JsonKey(ignore: true)
-  _$$OverviewDetailsImplCopyWith<_$OverviewDetailsImpl> get copyWith =>
+  _$$SessionModulesImplCopyWith<_$SessionModulesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

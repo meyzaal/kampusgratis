@@ -16,20 +16,108 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Module {
-  String get subjectId => throw _privateConstructorUsedError;
-  String get subjectName => throw _privateConstructorUsedError;
-  String get sessionId => throw _privateConstructorUsedError;
-  int get sessionNo => throw _privateConstructorUsedError;
-  SessionType get sessionType => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
+  bool get isAllVideoSeen => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  bool get isAllVideoSeen => throw _privateConstructorUsedError;
-  List<Content> get videos => throw _privateConstructorUsedError;
-  List<Document> get documents => throw _privateConstructorUsedError;
-  List<Content> get journals => throw _privateConstructorUsedError;
-  List<Content> get articles => throw _privateConstructorUsedError;
-  ProgressStatus get status => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String id,
+            int totalVideos,
+            int totalDocuments,
+            int totalJournals,
+            int totalArticles,
+            bool isAllVideoSeen,
+            String title,
+            String description,
+            bool submitted)
+        session,
+    required TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            List<Content> videos,
+            List<Document> documents,
+            List<Content> journals,
+            List<Content> articles,
+            ProgressStatus status)
+        detail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String id,
+            int totalVideos,
+            int totalDocuments,
+            int totalJournals,
+            int totalArticles,
+            bool isAllVideoSeen,
+            String title,
+            String description,
+            bool submitted)?
+        session,
+    TResult? Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            List<Content> videos,
+            List<Document> documents,
+            List<Content> journals,
+            List<Content> articles,
+            ProgressStatus status)?
+        detail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String id,
+            int totalVideos,
+            int totalDocuments,
+            int totalJournals,
+            int totalArticles,
+            bool isAllVideoSeen,
+            String title,
+            String description,
+            bool submitted)?
+        session,
+    TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            List<Content> videos,
+            List<Document> documents,
+            List<Content> journals,
+            List<Content> articles,
+            ProgressStatus status)?
+        detail,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ModuleSession value) session,
+    required TResult Function(DetailModule value) detail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ModuleSession value)? session,
+    TResult? Function(DetailModule value)? detail,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ModuleSession value)? session,
+    TResult Function(DetailModule value)? detail,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ModuleCopyWith<Module> get copyWith => throw _privateConstructorUsedError;
@@ -40,21 +128,7 @@ abstract class $ModuleCopyWith<$Res> {
   factory $ModuleCopyWith(Module value, $Res Function(Module) then) =
       _$ModuleCopyWithImpl<$Res, Module>;
   @useResult
-  $Res call(
-      {String subjectId,
-      String subjectName,
-      String sessionId,
-      int sessionNo,
-      SessionType sessionType,
-      String id,
-      String title,
-      String description,
-      bool isAllVideoSeen,
-      List<Content> videos,
-      List<Document> documents,
-      List<Content> journals,
-      List<Content> articles,
-      ProgressStatus status});
+  $Res call({String id, bool isAllVideoSeen, String title, String description});
 }
 
 /// @nodoc
@@ -70,46 +144,20 @@ class _$ModuleCopyWithImpl<$Res, $Val extends Module>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? subjectId = null,
-    Object? subjectName = null,
-    Object? sessionId = null,
-    Object? sessionNo = null,
-    Object? sessionType = null,
     Object? id = null,
+    Object? isAllVideoSeen = null,
     Object? title = null,
     Object? description = null,
-    Object? isAllVideoSeen = null,
-    Object? videos = null,
-    Object? documents = null,
-    Object? journals = null,
-    Object? articles = null,
-    Object? status = null,
   }) {
     return _then(_value.copyWith(
-      subjectId: null == subjectId
-          ? _value.subjectId
-          : subjectId // ignore: cast_nullable_to_non_nullable
-              as String,
-      subjectName: null == subjectName
-          ? _value.subjectName
-          : subjectName // ignore: cast_nullable_to_non_nullable
-              as String,
-      sessionId: null == sessionId
-          ? _value.sessionId
-          : sessionId // ignore: cast_nullable_to_non_nullable
-              as String,
-      sessionNo: null == sessionNo
-          ? _value.sessionNo
-          : sessionNo // ignore: cast_nullable_to_non_nullable
-              as int,
-      sessionType: null == sessionType
-          ? _value.sessionType
-          : sessionType // ignore: cast_nullable_to_non_nullable
-              as SessionType,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      isAllVideoSeen: null == isAllVideoSeen
+          ? _value.isAllVideoSeen
+          : isAllVideoSeen // ignore: cast_nullable_to_non_nullable
+              as bool,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -118,48 +166,339 @@ class _$ModuleCopyWithImpl<$Res, $Val extends Module>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      isAllVideoSeen: null == isAllVideoSeen
-          ? _value.isAllVideoSeen
-          : isAllVideoSeen // ignore: cast_nullable_to_non_nullable
-              as bool,
-      videos: null == videos
-          ? _value.videos
-          : videos // ignore: cast_nullable_to_non_nullable
-              as List<Content>,
-      documents: null == documents
-          ? _value.documents
-          : documents // ignore: cast_nullable_to_non_nullable
-              as List<Document>,
-      journals: null == journals
-          ? _value.journals
-          : journals // ignore: cast_nullable_to_non_nullable
-              as List<Content>,
-      articles: null == articles
-          ? _value.articles
-          : articles // ignore: cast_nullable_to_non_nullable
-              as List<Content>,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as ProgressStatus,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$ModuleImplCopyWith<$Res> implements $ModuleCopyWith<$Res> {
-  factory _$$ModuleImplCopyWith(
-          _$ModuleImpl value, $Res Function(_$ModuleImpl) then) =
-      __$$ModuleImplCopyWithImpl<$Res>;
+abstract class _$$ModuleSessionImplCopyWith<$Res>
+    implements $ModuleCopyWith<$Res> {
+  factory _$$ModuleSessionImplCopyWith(
+          _$ModuleSessionImpl value, $Res Function(_$ModuleSessionImpl) then) =
+      __$$ModuleSessionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String subjectId,
-      String subjectName,
-      String sessionId,
-      int sessionNo,
-      SessionType sessionType,
-      String id,
+      {String id,
+      int totalVideos,
+      int totalDocuments,
+      int totalJournals,
+      int totalArticles,
+      bool isAllVideoSeen,
+      String title,
+      String description,
+      bool submitted});
+}
+
+/// @nodoc
+class __$$ModuleSessionImplCopyWithImpl<$Res>
+    extends _$ModuleCopyWithImpl<$Res, _$ModuleSessionImpl>
+    implements _$$ModuleSessionImplCopyWith<$Res> {
+  __$$ModuleSessionImplCopyWithImpl(
+      _$ModuleSessionImpl _value, $Res Function(_$ModuleSessionImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? totalVideos = null,
+    Object? totalDocuments = null,
+    Object? totalJournals = null,
+    Object? totalArticles = null,
+    Object? isAllVideoSeen = null,
+    Object? title = null,
+    Object? description = null,
+    Object? submitted = null,
+  }) {
+    return _then(_$ModuleSessionImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      totalVideos: null == totalVideos
+          ? _value.totalVideos
+          : totalVideos // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalDocuments: null == totalDocuments
+          ? _value.totalDocuments
+          : totalDocuments // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalJournals: null == totalJournals
+          ? _value.totalJournals
+          : totalJournals // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalArticles: null == totalArticles
+          ? _value.totalArticles
+          : totalArticles // ignore: cast_nullable_to_non_nullable
+              as int,
+      isAllVideoSeen: null == isAllVideoSeen
+          ? _value.isAllVideoSeen
+          : isAllVideoSeen // ignore: cast_nullable_to_non_nullable
+              as bool,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      submitted: null == submitted
+          ? _value.submitted
+          : submitted // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ModuleSessionImpl implements ModuleSession {
+  const _$ModuleSessionImpl(
+      {required this.id,
+      required this.totalVideos,
+      required this.totalDocuments,
+      required this.totalJournals,
+      required this.totalArticles,
+      required this.isAllVideoSeen,
+      required this.title,
+      required this.description,
+      required this.submitted});
+
+  @override
+  final String id;
+  @override
+  final int totalVideos;
+  @override
+  final int totalDocuments;
+  @override
+  final int totalJournals;
+  @override
+  final int totalArticles;
+  @override
+  final bool isAllVideoSeen;
+  @override
+  final String title;
+  @override
+  final String description;
+  @override
+  final bool submitted;
+
+  @override
+  String toString() {
+    return 'Module.session(id: $id, totalVideos: $totalVideos, totalDocuments: $totalDocuments, totalJournals: $totalJournals, totalArticles: $totalArticles, isAllVideoSeen: $isAllVideoSeen, title: $title, description: $description, submitted: $submitted)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ModuleSessionImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.totalVideos, totalVideos) ||
+                other.totalVideos == totalVideos) &&
+            (identical(other.totalDocuments, totalDocuments) ||
+                other.totalDocuments == totalDocuments) &&
+            (identical(other.totalJournals, totalJournals) ||
+                other.totalJournals == totalJournals) &&
+            (identical(other.totalArticles, totalArticles) ||
+                other.totalArticles == totalArticles) &&
+            (identical(other.isAllVideoSeen, isAllVideoSeen) ||
+                other.isAllVideoSeen == isAllVideoSeen) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.submitted, submitted) ||
+                other.submitted == submitted));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      totalVideos,
+      totalDocuments,
+      totalJournals,
+      totalArticles,
+      isAllVideoSeen,
+      title,
+      description,
+      submitted);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ModuleSessionImplCopyWith<_$ModuleSessionImpl> get copyWith =>
+      __$$ModuleSessionImplCopyWithImpl<_$ModuleSessionImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String id,
+            int totalVideos,
+            int totalDocuments,
+            int totalJournals,
+            int totalArticles,
+            bool isAllVideoSeen,
+            String title,
+            String description,
+            bool submitted)
+        session,
+    required TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            List<Content> videos,
+            List<Document> documents,
+            List<Content> journals,
+            List<Content> articles,
+            ProgressStatus status)
+        detail,
+  }) {
+    return session(id, totalVideos, totalDocuments, totalJournals,
+        totalArticles, isAllVideoSeen, title, description, submitted);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String id,
+            int totalVideos,
+            int totalDocuments,
+            int totalJournals,
+            int totalArticles,
+            bool isAllVideoSeen,
+            String title,
+            String description,
+            bool submitted)?
+        session,
+    TResult? Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            List<Content> videos,
+            List<Document> documents,
+            List<Content> journals,
+            List<Content> articles,
+            ProgressStatus status)?
+        detail,
+  }) {
+    return session?.call(id, totalVideos, totalDocuments, totalJournals,
+        totalArticles, isAllVideoSeen, title, description, submitted);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String id,
+            int totalVideos,
+            int totalDocuments,
+            int totalJournals,
+            int totalArticles,
+            bool isAllVideoSeen,
+            String title,
+            String description,
+            bool submitted)?
+        session,
+    TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            List<Content> videos,
+            List<Document> documents,
+            List<Content> journals,
+            List<Content> articles,
+            ProgressStatus status)?
+        detail,
+    required TResult orElse(),
+  }) {
+    if (session != null) {
+      return session(id, totalVideos, totalDocuments, totalJournals,
+          totalArticles, isAllVideoSeen, title, description, submitted);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ModuleSession value) session,
+    required TResult Function(DetailModule value) detail,
+  }) {
+    return session(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ModuleSession value)? session,
+    TResult? Function(DetailModule value)? detail,
+  }) {
+    return session?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ModuleSession value)? session,
+    TResult Function(DetailModule value)? detail,
+    required TResult orElse(),
+  }) {
+    if (session != null) {
+      return session(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ModuleSession implements Module {
+  const factory ModuleSession(
+      {required final String id,
+      required final int totalVideos,
+      required final int totalDocuments,
+      required final int totalJournals,
+      required final int totalArticles,
+      required final bool isAllVideoSeen,
+      required final String title,
+      required final String description,
+      required final bool submitted}) = _$ModuleSessionImpl;
+
+  @override
+  String get id;
+  int get totalVideos;
+  int get totalDocuments;
+  int get totalJournals;
+  int get totalArticles;
+  @override
+  bool get isAllVideoSeen;
+  @override
+  String get title;
+  @override
+  String get description;
+  bool get submitted;
+  @override
+  @JsonKey(ignore: true)
+  _$$ModuleSessionImplCopyWith<_$ModuleSessionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DetailModuleImplCopyWith<$Res>
+    implements $ModuleCopyWith<$Res> {
+  factory _$$DetailModuleImplCopyWith(
+          _$DetailModuleImpl value, $Res Function(_$DetailModuleImpl) then) =
+      __$$DetailModuleImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String id,
       String title,
       String description,
       bool isAllVideoSeen,
@@ -171,21 +510,16 @@ abstract class _$$ModuleImplCopyWith<$Res> implements $ModuleCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$ModuleImplCopyWithImpl<$Res>
-    extends _$ModuleCopyWithImpl<$Res, _$ModuleImpl>
-    implements _$$ModuleImplCopyWith<$Res> {
-  __$$ModuleImplCopyWithImpl(
-      _$ModuleImpl _value, $Res Function(_$ModuleImpl) _then)
+class __$$DetailModuleImplCopyWithImpl<$Res>
+    extends _$ModuleCopyWithImpl<$Res, _$DetailModuleImpl>
+    implements _$$DetailModuleImplCopyWith<$Res> {
+  __$$DetailModuleImplCopyWithImpl(
+      _$DetailModuleImpl _value, $Res Function(_$DetailModuleImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? subjectId = null,
-    Object? subjectName = null,
-    Object? sessionId = null,
-    Object? sessionNo = null,
-    Object? sessionType = null,
     Object? id = null,
     Object? title = null,
     Object? description = null,
@@ -196,27 +530,7 @@ class __$$ModuleImplCopyWithImpl<$Res>
     Object? articles = null,
     Object? status = null,
   }) {
-    return _then(_$ModuleImpl(
-      subjectId: null == subjectId
-          ? _value.subjectId
-          : subjectId // ignore: cast_nullable_to_non_nullable
-              as String,
-      subjectName: null == subjectName
-          ? _value.subjectName
-          : subjectName // ignore: cast_nullable_to_non_nullable
-              as String,
-      sessionId: null == sessionId
-          ? _value.sessionId
-          : sessionId // ignore: cast_nullable_to_non_nullable
-              as String,
-      sessionNo: null == sessionNo
-          ? _value.sessionNo
-          : sessionNo // ignore: cast_nullable_to_non_nullable
-              as int,
-      sessionType: null == sessionType
-          ? _value.sessionType
-          : sessionType // ignore: cast_nullable_to_non_nullable
-              as SessionType,
+    return _then(_$DetailModuleImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -259,14 +573,9 @@ class __$$ModuleImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ModuleImpl implements _Module {
-  const _$ModuleImpl(
-      {required this.subjectId,
-      required this.subjectName,
-      required this.sessionId,
-      required this.sessionNo,
-      required this.sessionType,
-      required this.id,
+class _$DetailModuleImpl implements DetailModule {
+  const _$DetailModuleImpl(
+      {required this.id,
       required this.title,
       required this.description,
       required this.isAllVideoSeen,
@@ -280,16 +589,6 @@ class _$ModuleImpl implements _Module {
         _journals = journals,
         _articles = articles;
 
-  @override
-  final String subjectId;
-  @override
-  final String subjectName;
-  @override
-  final String sessionId;
-  @override
-  final int sessionNo;
-  @override
-  final SessionType sessionType;
   @override
   final String id;
   @override
@@ -335,24 +634,14 @@ class _$ModuleImpl implements _Module {
 
   @override
   String toString() {
-    return 'Module(subjectId: $subjectId, subjectName: $subjectName, sessionId: $sessionId, sessionNo: $sessionNo, sessionType: $sessionType, id: $id, title: $title, description: $description, isAllVideoSeen: $isAllVideoSeen, videos: $videos, documents: $documents, journals: $journals, articles: $articles, status: $status)';
+    return 'Module.detail(id: $id, title: $title, description: $description, isAllVideoSeen: $isAllVideoSeen, videos: $videos, documents: $documents, journals: $journals, articles: $articles, status: $status)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ModuleImpl &&
-            (identical(other.subjectId, subjectId) ||
-                other.subjectId == subjectId) &&
-            (identical(other.subjectName, subjectName) ||
-                other.subjectName == subjectName) &&
-            (identical(other.sessionId, sessionId) ||
-                other.sessionId == sessionId) &&
-            (identical(other.sessionNo, sessionNo) ||
-                other.sessionNo == sessionNo) &&
-            (identical(other.sessionType, sessionType) ||
-                other.sessionType == sessionType) &&
+            other is _$DetailModuleImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -370,11 +659,6 @@ class _$ModuleImpl implements _Module {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      subjectId,
-      subjectName,
-      sessionId,
-      sessionNo,
-      sessionType,
       id,
       title,
       description,
@@ -388,18 +672,138 @@ class _$ModuleImpl implements _Module {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ModuleImplCopyWith<_$ModuleImpl> get copyWith =>
-      __$$ModuleImplCopyWithImpl<_$ModuleImpl>(this, _$identity);
+  _$$DetailModuleImplCopyWith<_$DetailModuleImpl> get copyWith =>
+      __$$DetailModuleImplCopyWithImpl<_$DetailModuleImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String id,
+            int totalVideos,
+            int totalDocuments,
+            int totalJournals,
+            int totalArticles,
+            bool isAllVideoSeen,
+            String title,
+            String description,
+            bool submitted)
+        session,
+    required TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            List<Content> videos,
+            List<Document> documents,
+            List<Content> journals,
+            List<Content> articles,
+            ProgressStatus status)
+        detail,
+  }) {
+    return detail(id, title, description, isAllVideoSeen, videos, documents,
+        journals, articles, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String id,
+            int totalVideos,
+            int totalDocuments,
+            int totalJournals,
+            int totalArticles,
+            bool isAllVideoSeen,
+            String title,
+            String description,
+            bool submitted)?
+        session,
+    TResult? Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            List<Content> videos,
+            List<Document> documents,
+            List<Content> journals,
+            List<Content> articles,
+            ProgressStatus status)?
+        detail,
+  }) {
+    return detail?.call(id, title, description, isAllVideoSeen, videos,
+        documents, journals, articles, status);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String id,
+            int totalVideos,
+            int totalDocuments,
+            int totalJournals,
+            int totalArticles,
+            bool isAllVideoSeen,
+            String title,
+            String description,
+            bool submitted)?
+        session,
+    TResult Function(
+            String id,
+            String title,
+            String description,
+            bool isAllVideoSeen,
+            List<Content> videos,
+            List<Document> documents,
+            List<Content> journals,
+            List<Content> articles,
+            ProgressStatus status)?
+        detail,
+    required TResult orElse(),
+  }) {
+    if (detail != null) {
+      return detail(id, title, description, isAllVideoSeen, videos, documents,
+          journals, articles, status);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ModuleSession value) session,
+    required TResult Function(DetailModule value) detail,
+  }) {
+    return detail(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ModuleSession value)? session,
+    TResult? Function(DetailModule value)? detail,
+  }) {
+    return detail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ModuleSession value)? session,
+    TResult Function(DetailModule value)? detail,
+    required TResult orElse(),
+  }) {
+    if (detail != null) {
+      return detail(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _Module implements Module {
-  const factory _Module(
-      {required final String subjectId,
-      required final String subjectName,
-      required final String sessionId,
-      required final int sessionNo,
-      required final SessionType sessionType,
-      required final String id,
+abstract class DetailModule implements Module {
+  const factory DetailModule(
+      {required final String id,
       required final String title,
       required final String description,
       required final bool isAllVideoSeen,
@@ -407,18 +811,8 @@ abstract class _Module implements Module {
       required final List<Document> documents,
       required final List<Content> journals,
       required final List<Content> articles,
-      required final ProgressStatus status}) = _$ModuleImpl;
+      required final ProgressStatus status}) = _$DetailModuleImpl;
 
-  @override
-  String get subjectId;
-  @override
-  String get subjectName;
-  @override
-  String get sessionId;
-  @override
-  int get sessionNo;
-  @override
-  SessionType get sessionType;
   @override
   String get id;
   @override
@@ -427,18 +821,13 @@ abstract class _Module implements Module {
   String get description;
   @override
   bool get isAllVideoSeen;
-  @override
   List<Content> get videos;
-  @override
   List<Document> get documents;
-  @override
   List<Content> get journals;
-  @override
   List<Content> get articles;
-  @override
   ProgressStatus get status;
   @override
   @JsonKey(ignore: true)
-  _$$ModuleImplCopyWith<_$ModuleImpl> get copyWith =>
+  _$$DetailModuleImplCopyWith<_$DetailModuleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

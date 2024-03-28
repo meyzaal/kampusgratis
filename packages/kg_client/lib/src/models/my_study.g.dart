@@ -155,6 +155,49 @@ Map<String, dynamic> _$$MsSubjectImplToJson(_$MsSubjectImpl instance) =>
       'thumbnail': instance.thumbnail,
     };
 
+_$SessionModulesImpl _$$SessionModulesImplFromJson(Map<String, dynamic> json) =>
+    _$SessionModulesImpl(
+      detail: json['detail'] == null
+          ? null
+          : Detail.fromJson(json['detail'] as Map<String, dynamic>),
+      modules: (json['modules'] as List<dynamic>?)
+          ?.map((e) => ModuleSession.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$SessionModulesImplToJson(
+        _$SessionModulesImpl instance) =>
+    <String, dynamic>{
+      'detail': instance.detail,
+      'modules': instance.modules,
+    };
+
+_$ModuleSessionImpl _$$ModuleSessionImplFromJson(Map<String, dynamic> json) =>
+    _$ModuleSessionImpl(
+      id: json['id'] as String?,
+      totalVideos: json['total_videos'] as String?,
+      totalDocuments: json['total_documents'] as String?,
+      totalJournals: json['total_journals'] as String?,
+      totalArticles: json['total_articles'] as String?,
+      isAllVideoSeen: json['is_all_video_seen'] as bool?,
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      submitted: json['submitted'] as bool?,
+    );
+
+Map<String, dynamic> _$$ModuleSessionImplToJson(_$ModuleSessionImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'total_videos': instance.totalVideos,
+      'total_documents': instance.totalDocuments,
+      'total_journals': instance.totalJournals,
+      'total_articles': instance.totalArticles,
+      'is_all_video_seen': instance.isAllVideoSeen,
+      'title': instance.title,
+      'description': instance.description,
+      'submitted': instance.submitted,
+    };
+
 _$ModuleDetailsImpl _$$ModuleDetailsImplFromJson(Map<String, dynamic> json) =>
     _$ModuleDetailsImpl(
       detail: json['detail'] == null
@@ -162,7 +205,7 @@ _$ModuleDetailsImpl _$$ModuleDetailsImplFromJson(Map<String, dynamic> json) =>
           : Detail.fromJson(json['detail'] as Map<String, dynamic>),
       module: json['module'] == null
           ? null
-          : Module.fromJson(json['module'] as Map<String, dynamic>),
+          : DetailModule.fromJson(json['module'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ModuleDetailsImplToJson(_$ModuleDetailsImpl instance) =>
@@ -189,7 +232,8 @@ Map<String, dynamic> _$$DetailImplToJson(_$DetailImpl instance) =>
       'session_type': _$SessionTypeEnumMap[instance.sessionType],
     };
 
-_$ModuleImpl _$$ModuleImplFromJson(Map<String, dynamic> json) => _$ModuleImpl(
+_$DetailModuleImpl _$$DetailModuleImplFromJson(Map<String, dynamic> json) =>
+    _$DetailModuleImpl(
       id: json['id'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -209,7 +253,7 @@ _$ModuleImpl _$$ModuleImplFromJson(Map<String, dynamic> json) => _$ModuleImpl(
       status: $enumDecodeNullable(_$ProgressStatusEnumMap, json['status']),
     );
 
-Map<String, dynamic> _$$ModuleImplToJson(_$ModuleImpl instance) =>
+Map<String, dynamic> _$$DetailModuleImplToJson(_$DetailModuleImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

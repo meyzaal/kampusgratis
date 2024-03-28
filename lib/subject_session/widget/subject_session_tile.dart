@@ -10,6 +10,8 @@ class SubjectSessionTile extends StatelessWidget {
     required this.isLocked,
     required this.number,
     required this.title,
+    required this.subjectId,
+    required this.sessionId,
     required this.progresses,
     super.key,
   });
@@ -17,6 +19,8 @@ class SubjectSessionTile extends StatelessWidget {
   final bool isLocked;
   final int number;
   final String title;
+  final String subjectId;
+  final String sessionId;
   final List<Progress> progresses;
 
   @override
@@ -50,7 +54,22 @@ class SubjectSessionTile extends StatelessWidget {
                         color: progress.status.iconColor(context),
                       )
                     : null,
-                onTap: progress.status.isLocked ? null : () {},
+                onTap: progress.status.isLocked
+                    ? null
+                    : switch (progress.type) {
+                        // TODO: Handle this case.
+                        ProgressType.assessment => null,
+                        // TODO: Handle this case.
+                        ProgressType.assignment => null,
+                        // TODO: Handle this case.
+                        ProgressType.module => () =>
+                            SessionModulesRoute(subjectId, sessionId)
+                                .push<void>(context),
+                        // TODO: Handle this case.
+                        ProgressType.quiz => null,
+                        // TODO: Handle this case.
+                        ProgressType.reflection => null,
+                      },
               ),
             )
             .toList(),
